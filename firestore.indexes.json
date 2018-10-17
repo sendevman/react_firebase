@@ -1,0 +1,18 @@
+{
+  "indexes": [
+    {
+      "collectionId": "vod",
+      "state": "READY",
+      "fields": [
+        {
+          "fieldPath": "category",
+          "mode": "DESCENDING"
+        },
+        {
+          "fieldPath": "timestamp",
+          "mode": "DESCENDING"
+        }
+      ]
+    }
+  ]
+}
