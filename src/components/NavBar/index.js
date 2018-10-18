@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 // My Firebase
-import { auth } from '../firebase';
+import { auth } from '../../firebase';
 
 // Material-UI
 import AppBar from '@material-ui/core/AppBar';
@@ -19,7 +19,7 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuIcon from '@material-ui/icons/Menu';
 
 // My Styles
-import './App.css';
+import '../../assets/css/navbar.css';
 
 class Apps extends Component {
 	constructor(props) {

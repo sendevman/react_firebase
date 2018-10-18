@@ -17,16 +17,16 @@ import List from '@material-ui/core/List';
 // My routes
 
 // My Styles
-import './App.css';
+import '../assets/css/routes.css';
 
 // My Customs
-import NavBar from './NavBar';
+import NavBar from '../components/NavBar';
 
 // My Pages
-import HomePage from './HomePage';
+import HomePage from '../screens/Home';
 // import LandingPage from './LandingPage';
 // import AdminPage from './AdminPage';
-import LoginPage from './LoginPage';
+import LoginPage from '../screens/Login';
 /* eslint no-unused-vars: 0 */
 const styles = theme => ({
 	drawerPaper: {
@@ -35,7 +35,7 @@ const styles = theme => ({
 	},
 });
 
-class App extends Component {
+class Routes extends Component {
 	constructor(props) {
 		super(props);
 		/* eslint react/no-unused-state: 0 */
@@ -114,8 +114,8 @@ class App extends Component {
 	}
 }
 
-App.propTypes = {
+Routes.propTypes = {
 	classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(App);
+export default withStyles(styles)(Routes);
