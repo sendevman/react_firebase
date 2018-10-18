@@ -4,13 +4,13 @@ import React, { Component } from 'react';
 import './App.css';
 
 class HomePage extends Component {
-  render() {
-    return (
-      <div className="Container-box">
-        You are in the Home!
-      </div>
-    );
-  }
+	render() {
+		return (
+			<div className="Container-box">
+				You are in the Home!
+			</div>
+		);
+	}
 }
 
 export default HomePage;
