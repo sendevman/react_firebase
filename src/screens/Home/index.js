@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 // My Styles
-import '../../assets/css/home.css';
+import 'assets/scss/home.scss';
 
 class HomePage extends Component {
   render() {
