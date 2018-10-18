@@ -3,18 +3,18 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { fromJS } from 'immutable';
 
-import App from './screens/App';
+import Routes from './routes';
 import configureStore from './store/store';
 import * as serviceWorker from './serviceWorker';
 
-import './index.css';
+import './assets/css/index.css';
 
 const initialState = fromJS({});
 const store = configureStore(initialState);
 
 ReactDOM.render(
 	<Provider store={store}>
-		<App />
+		<Routes />
 	</Provider>,
 	document.getElementById('root'));
 

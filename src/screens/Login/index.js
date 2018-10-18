@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 
 // My Firebase
-import { auth } from '../firebase/index';
+import { auth } from '../../firebase/index';
 
 // Material-UI
 import Card from '@material-ui/core/Card';
@@ -18,10 +18,10 @@ import Button from '@material-ui/core/Button';
 // My routes
 
 // My Styles
-import './Auth.css';
+import '../../assets/css/login.css';
 
 // My Assets
-import imgDefault from '../assets/images/imgDefault.png';
+import imgDefault from '../../assets/images/imgDefault.png';
 
 const INITIAL_STATE = {
 	email: '',
