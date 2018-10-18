@@ -18,10 +18,10 @@ import Button from '@material-ui/core/Button';
 // My routes
 
 // My Styles
-import '../../assets/css/login.css';
+import 'assets/scss/login.scss';
 
 // My Assets
-import imgDefault from '../../assets/images/imgDefault.png';
+import imgDefault from 'assets/images/imgDefault.png';
 
 const INITIAL_STATE = {
 	email: '',
