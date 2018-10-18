@@ -4,9 +4,6 @@ import PropTypes from 'prop-types';
 // React Router Dom
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
-// My Firebase
-import { auth, firestore, firebase } from '../firebase';
-
 // Material-UI
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
@@ -14,19 +11,24 @@ import Divider from '@material-ui/core/Divider';
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
 
+
+// My Firebase
+import { auth, firestore, firebase } from '../firebase';
+
 // My routes
 
 // My Styles
-import '../assets/css/routes.css';
+import 'assets/scss/routes.scss';
 
 // My Customs
-import NavBar from '../components/NavBar';
+import NavBar from 'components/NavBar';
 
 // My Pages
-import HomePage from '../screens/Home';
+import HomePage from 'screens/Home';
 // import LandingPage from './LandingPage';
 // import AdminPage from './AdminPage';
-import LoginPage from '../screens/Login';
+import LoginPage from 'screens/Login';
+
 /* eslint no-unused-vars: 0 */
 const styles = theme => ({
 	drawerPaper: {

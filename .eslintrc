@@ -7,7 +7,7 @@
 	},
 	"extends": "airbnb",
 	"rules": {
-		"indent": [2, "tab"],
+		"indent": [0, "tab"],
 		"no-tabs": 0,
 		"arrow-parens": 0,
 		"react/jsx-indent": 0,
