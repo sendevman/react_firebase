@@ -1,24 +1,24 @@
 /* NavBar Styles */
 .NavBar-Box {
-	flex-grow: 1;
+  flex-grow: 1;
 }
 
 .NavBar-Menu-Btn {
-	margin-left: -12px !important;
-	margin-right: 10px !important;
+  margin-left: -12px !important;
+  margin-right: 10px !important;
 }
 
 .NavBar-Logo {
-	flex-grow: 1;
-	color: rgba(0, 0, 0, 0.87);
-	font-size: 1.25rem;
-	font-weight: 500;
-	font-family: "Roboto", "Helvetica", "Arial", sans-serif;
-	line-height: 1.6;
-	letter-spacing: 0.0075em;
+  flex-grow: 1;
+  color: rgba(0, 0, 0, 0.87);
+  font-size: 1.25rem;
+  font-weight: 500;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  line-height: 1.6;
+  letter-spacing: 0.0075em;
 }
 
 .NavBar-Logo-Link {
-	color: #FFF;
-	text-decoration: none;
+  color: #FFF;
+  text-decoration: none;
 }

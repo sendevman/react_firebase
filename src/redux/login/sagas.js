@@ -4,5 +4,5 @@
 export function* sagaWatcher() {}
 
 export default [
-	sagaWatcher(),
+  sagaWatcher(),
 ];
