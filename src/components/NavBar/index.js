@@ -19,7 +19,7 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuIcon from '@material-ui/icons/Menu';
 
 // My Styles
-import '../../assets/css/navbar.css';
+import 'assets/scss/navbar.scss';
 
 class Apps extends Component {
   constructor(props) {
