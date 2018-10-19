@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 
-// My Styles
-import '../../assets/css/home.css';
-
 class HomePage extends Component {
   render() {
     return (
