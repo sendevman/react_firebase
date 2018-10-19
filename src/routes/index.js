@@ -17,9 +17,6 @@ import { auth, firestore, firebase } from '../firebase';
 
 // My routes
 
-// My Styles
-import 'assets/scss/routes.scss';
-
 // My Customs
 import NavBar from 'components/NavBar';
 
