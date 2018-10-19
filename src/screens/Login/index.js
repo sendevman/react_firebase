@@ -17,9 +17,6 @@ import Button from '@material-ui/core/Button';
 
 // My routes
 
-// My Styles
-import 'assets/scss/login.scss';
-
 // My Assets
 import imgDefault from 'assets/images/imgDefault.png';
 
