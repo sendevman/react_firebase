@@ -1,24 +1,14 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 
 // React Router Dom
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-
-// Material-UI
-import { withStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-import Divider from '@material-ui/core/Divider';
-import Drawer from '@material-ui/core/Drawer';
-import List from '@material-ui/core/List';
-
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 // My Firebase
-import { auth, firestore, firebase } from '../firebase';
-
-// My routes
+import { firestore, firebase } from '../firebase';
 
 // My Customs
 import NavBar from 'components/NavBar';
+import SideBar from 'components/SideBar';
 
 // My Pages
 import HomePage from 'screens/Home';
@@ -26,22 +16,14 @@ import HomePage from 'screens/Home';
 // import AdminPage from './AdminPage';
 import LoginPage from 'screens/Login';
 
-/* eslint no-unused-vars: 0 */
-const styles = theme => ({
-  drawerPaper: {
-    position: 'relative',
-    width: 240,
-  },
-});
-
 class Routes extends Component {
   constructor(props) {
     super(props);
-    /* eslint react/no-unused-state: 0 */
+
     this.state = {
       authUser: false,
       currentUser: null,
-      showDrawer: false,
+      showDrawer: false
     };
   }
 
@@ -68,41 +50,20 @@ class Routes extends Component {
   };
 
   render() {
-    const { classes } = this.props;
     const { authUser } = this.state;
+
     return (
       <Router>
         <div>
           <NavBar
             onShowDrawer={(value) => this.toggleDrawer(value)}
             authUser={authUser} />
-          <Drawer
-            open={this.state.showDrawer}
-            onClose={this.toggleDrawer(false)}
-            classes={{ paper: classes.drawerPaper }}>
-            <div
-              tabIndex={0}
-              role="button"
-              onClick={this.toggleDrawer(false)}
-              onKeyDown={this.toggleDrawer(false)}>
-              <List>
-                <Link to="/" className="Drawer-List-Link">
-                  <Button className="Drawer-List-Btn">Home</Button>
-                </Link>
-                <Link to="/login" className="Drawer-List-Link">
-                  <Button className="Drawer-List-Btn">Login</Button>
-                </Link>
-                {authUser && (
-                  <div>
-                    <Divider />
-                    <List>
-                      <Button onClick={auth.doSignOut} className="Drawer-List-Btn">Logout</Button>
-                    </List>
-                  </div>
-                )}
-              </List>
-            </div>
-          </Drawer>
+
+          <SideBar
+            showDrawer={this.state.showDrawer}
+            onShowDrawer={(value) => this.toggleDrawer(value)}
+            authUser={authUser} />
+
           <main className="Main-Content">
             <Route exact path="/" component={HomePage} />
             <Route exact path="/login" component={LoginPage} />
@@ -113,8 +74,4 @@ class Routes extends Component {
   }
 }
 
-Routes.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(Routes);
+export default Routes;
