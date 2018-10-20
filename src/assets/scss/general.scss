@@ -12,3 +12,40 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.border-shadow {
+  box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
+    0px 1px 1px 0px rgba(0, 0, 0, 0.14),
+    0px 2px 1px -1px rgba(0, 0, 0, 0.12);
+  border-radius: 0.25rem;
+}
+
+.sub-container {
+  overflow: hidden;
+  padding: 2.25rem;
+}
+
+.container-label {
+  margin-bottom: 2.25rem;
+  font-size: 1.25rem;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.w-25 {
+  width: 25%;
+}
+
+.w-50 {
+  width: 50%;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.align-right {
+  float: right;
+}
