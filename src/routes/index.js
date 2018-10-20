@@ -15,6 +15,7 @@ import HomePage from 'screens/Home';
 // import LandingPage from './LandingPage';
 // import AdminPage from './AdminPage';
 import LoginPage from 'screens/Login';
+import LocationsAdd from 'screens/Locations/Add/index';
 
 class Routes extends Component {
   constructor(props) {
@@ -64,6 +65,7 @@ class Routes extends Component {
           <main className="Main-Content">
             <Route exact path="/" component={HomePage} />
             <Route exact path="/login" component={LoginPage} />
+            <Route exact path="/locations/add" component={LocationsAdd} />
           </main>
         </div>
       </Router>
