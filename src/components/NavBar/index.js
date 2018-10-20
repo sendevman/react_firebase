@@ -18,7 +18,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuIcon from '@material-ui/icons/Menu';
 
-class Apps extends Component {
+class NavBar extends Component {
   constructor(props) {
     super(props);
 
@@ -88,9 +88,9 @@ class Apps extends Component {
   }
 }
 
-Apps.propTypes = {
-  onShowDrawer: PropTypes.func.isRequired,
+NavBar.propTypes = {
   authUser: PropTypes.bool.isRequired,
+  onShowDrawer: PropTypes.func.isRequired,
 };
 
-export default Apps;
+export default NavBar;
