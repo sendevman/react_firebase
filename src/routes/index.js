@@ -22,8 +22,7 @@ class Routes extends Component {
 
     this.state = {
       authUser: false,
-      currentUser: null,
-      showDrawer: false
+      showDrawer: false,
     };
   }
 
@@ -33,14 +32,13 @@ class Routes extends Component {
         firestore.getCurrentUser(authUser.uid)
           .then(doc => {
             if (!doc.exists) return false;
-            this.setState({ currentUser: doc.data() });
             return true;
           })
           .catch(err => { console.log('Error getting documents', err); });
 
         this.setState({ authUser: true });
       } else {
-        this.setState({ currentUser: null, authUser: false });
+        this.setState({ authUser: false });
       }
     });
   }
@@ -61,8 +59,7 @@ class Routes extends Component {
 
           <SideBar
             showDrawer={this.state.showDrawer}
-            onShowDrawer={(value) => this.toggleDrawer(value)}
-            authUser={authUser} />
+            onShowDrawer={(value) => this.toggleDrawer(value)} />
 
           <main className="Main-Content">
             <Route exact path="/" component={HomePage} />

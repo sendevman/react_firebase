@@ -90,7 +90,7 @@ class NavBar extends Component {
 
 NavBar.propTypes = {
   authUser: PropTypes.bool.isRequired,
-  onShowDrawer: PropTypes.func.isRequired
+  onShowDrawer: PropTypes.func.isRequired,
 };
 
 export default NavBar;

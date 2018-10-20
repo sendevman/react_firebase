@@ -26,62 +26,62 @@ import VODIcon from '@material-ui/icons/OndemandVideo';
 import direcTv from 'assets/images/direcTv.png';
 
 // My Styles
-const styles = theme => ({
+const styles = {
   drawerPaper: {
     position: 'relative',
     width: 250,
     backgroundColor: '#262f3d',
-    color: '#fff'
+    color: '#fff',
   },
   wrapperItems: {
-    backgroundColor: '#19212b'
+    backgroundColor: '#19212b',
   },
   itemNested: {
     paddingLeft: 32,
 
-    '&:hover': { backgroundColor: 'rgba(255, 255, 255, 0.08)' }
+    '&:hover': { backgroundColor: 'rgba(255, 255, 255, 0.08)' },
   },
   iconGrey: {
     marginRight: 0,
-    color: 'rgba(255, 255, 255, 0.7)'
+    color: 'rgba(255, 255, 255, 0.7)',
   },
   iconWhite: {
     marginRight: 0,
-    color: '#fff'
+    color: '#fff',
   },
   divider: {
-    backgroundColor: '#404854'
+    backgroundColor: '#404854',
   },
   itemText: {
     color: '#fff',
     fontSize: '1rem',
     fontWeight: '400',
     fontFamily: 'Roboto, Helvetica, Arial, sans-serif',
-    lineHeight: '1.5em'
+    lineHeight: '1.5em',
   },
   nestedText: {
-    color: 'rgba(255, 255, 255, 0.7)'
+    color: 'rgba(255, 255, 255, 0.7)',
   },
   itemList: {
-    '&:hover': { backgroundColor: 'rgba(255, 255, 255, 0.08)' }
+    '&:hover': { backgroundColor: 'rgba(255, 255, 255, 0.08)' },
   },
   headerActive: {
     backgroundColor: '#19212b',
 
-    '&:hover': { backgroundColor: '#19212b' }
+    '&:hover': { backgroundColor: '#19212b' },
   },
   direcTvIcon: {
     width: 24,
     height: 24,
     borderRadius: 2,
 
-    '& img': { objectFit: 'contain' }
+    '& img': { objectFit: 'contain' },
   },
   actionLink: {
     textDecoration: 'none',
-    color: 'white'
-  }
-});
+    color: 'white',
+  },
+};
 
 class SideBar extends Component {
   constructor(props) {
@@ -89,26 +89,26 @@ class SideBar extends Component {
 
     this.state = {
       expandLocations: false,
-      expandProducts: false
+      expandProducts: false,
     };
   }
 
   onExpandLocations = () => {
     this.setState(state => ({
       expandLocations: !state.expandLocations,
-      expandProducts: false
+      expandProducts: false,
     }));
   };
 
   onExpandProducts = () => {
     this.setState(state => ({
       expandProducts: !state.expandProducts,
-      expandLocations: false
+      expandLocations: false,
     }));
   };
 
   render() {
-    const { classes, authUser, onShowDrawer, showDrawer } = this.props;
+    const { classes, onShowDrawer, showDrawer } = this.props;
     const { expandLocations, expandProducts } = this.state;
 
     return (
@@ -118,52 +118,64 @@ class SideBar extends Component {
         classes={{ paper: classes.drawerPaper }}>
         <div tabIndex={0} role="button" onKeyDown={onShowDrawer(false)}>
           <List>
-            <ListItem button disableRipple={true} onClick={this.onExpandLocations}
-              className={[classes.itemList, (expandLocations ? classes.headerActive : "")].join(' ')}>
-              <ListItemText disableTypography={true} className={classes.itemText} primary="Locations" />
+            <ListItem
+              button
+              disableRipple
+              onClick={this.onExpandLocations}
+              className={[classes.itemList, (expandLocations ? classes.headerActive : '')].join(' ')}>
+              <ListItemText disableTypography className={classes.itemText} primary="Locations" />
               {expandLocations ? <ExpandLess /> : <ExpandMore />}
             </ListItem>
-            <Collapse in={expandLocations} timeout="auto" unmountOnExit
+            <Collapse
+              in={expandLocations}
+              timeout="auto"
+              unmountOnExit
               classes={{ wrapper: classes.wrapperItems }}>
               <List component="div" disablePadding>
                 <ListItem button className={classes.itemNested} onClick={onShowDrawer(false)}>
                   <ListItemIcon className={classes.iconGrey}>
                     <AddIcon />
                   </ListItemIcon>
-                  <ListItemText disableTypography={true} className={[classes.itemText, classes.nestedText].join(' ')} inset primary="Add" />
+                  <ListItemText disableTypography className={[classes.itemText, classes.nestedText].join(' ')} inset primary="Add" />
                 </ListItem>
 
                 <ListItem button className={classes.itemNested} onClick={onShowDrawer(false)}>
                   <ListItemIcon className={classes.iconGrey}>
                     <SettingsIcon />
                   </ListItemIcon>
-                  <ListItemText disableTypography={true} className={[classes.itemText, classes.nestedText].join(' ')} inset primary="Manage" />
+                  <ListItemText disableTypography className={[classes.itemText, classes.nestedText].join(' ')} inset primary="Manage" />
                 </ListItem>
               </List>
             </Collapse>
 
             <Divider className={classes.divider} />
 
-            <ListItem button disableRipple={true} onClick={this.onExpandProducts}
-              className={[classes.itemList, (expandProducts ? classes.headerActive : "")].join(' ')}>
-              <ListItemText disableTypography={true} className={classes.itemText} primary="Products" />
+            <ListItem
+              button
+              disableRipple
+              onClick={this.onExpandProducts}
+              className={[classes.itemList, (expandProducts ? classes.headerActive : '')].join(' ')}>
+              <ListItemText disableTypography className={classes.itemText} primary="Products" />
               {expandProducts ? <ExpandLess /> : <ExpandMore />}
             </ListItem>
-            <Collapse in={expandProducts} timeout="auto" unmountOnExit
+            <Collapse
+              in={expandProducts}
+              timeout="auto"
+              unmountOnExit
               classes={{ wrapper: classes.wrapperItems }}>
               <List component="div" disablePadding>
                 <ListItem button className={classes.itemNested} onClick={onShowDrawer(false)}>
                   <ListItemIcon className={classes.iconGrey}>
                     <AddIcon />
                   </ListItemIcon>
-                  <ListItemText disableTypography={true} className={[classes.itemText, classes.nestedText].join(' ')} inset primary="Add" />
+                  <ListItemText disableTypography className={[classes.itemText, classes.nestedText].join(' ')} inset primary="Add" />
                 </ListItem>
 
                 <ListItem button className={classes.itemNested} onClick={onShowDrawer(false)}>
                   <ListItemIcon className={classes.iconGrey}>
                     <SettingsIcon />
                   </ListItemIcon>
-                  <ListItemText disableTypography={true} className={[classes.itemText, classes.nestedText].join(' ')} inset primary="Manage" />
+                  <ListItemText disableTypography className={[classes.itemText, classes.nestedText].join(' ')} inset primary="Manage" />
                 </ListItem>
               </List>
             </Collapse>
@@ -175,14 +187,14 @@ class SideBar extends Component {
                 <ListItemIcon className={classes.iconWhite}>
                   <VODIcon />
                 </ListItemIcon>
-                <ListItemText disableTypography={true} className={classes.itemText} inset primary="VOD" />
+                <ListItemText disableTypography className={classes.itemText} inset primary="VOD" />
               </ListItem>
             </Link>
 
             <Link to="/login" className={classes.actionLink} onClick={onShowDrawer(false)}>
               <ListItem button className={classes.itemList}>
                 <Avatar className={classes.direcTvIcon} alt="DirecTV" src={direcTv} />
-                <ListItemText disableTypography={true} className={classes.itemText} inset primary="DirecTV" />
+                <ListItemText disableTypography className={classes.itemText} inset primary="DirecTV" />
               </ListItem>
             </Link>
           </List>
@@ -194,9 +206,8 @@ class SideBar extends Component {
 
 SideBar.propTypes = {
   classes: PropTypes.object.isRequired,
-  authUser: PropTypes.bool.isRequired,
   onShowDrawer: PropTypes.func.isRequired,
-  showDrawer: PropTypes.bool.isRequired
+  showDrawer: PropTypes.bool.isRequired,
 };
 
 export default withStyles(styles)(SideBar);
