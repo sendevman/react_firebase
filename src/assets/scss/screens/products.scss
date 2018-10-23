@@ -1,0 +1,50 @@
+.left-border-dark-blue {
+  border-left: 5px solid $dark-blue;
+  padding-left: 19px !important;
+}
+
+.label-products-table {
+  font-size: 1.25rem;
+
+  &.select-text {
+    margin-bottom: 20px;
+  }
+}
+
+.select-zone-box {
+  width: 100%;
+}
+
+.buttons-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.btn-icon-text {
+  &.att-red {
+    color: #fff;
+    background-color: $red;
+
+    &:hover {
+      background-color: $red-hover;
+    }
+  }
+
+  &.att-blue {
+    color: #fff;
+    background-color: $blue;
+
+    &:hover {
+      background-color: $blue-hover;
+    }
+  }
+
+  &.margin-top {
+    margin-top: 10px;
+  }
+
+  &.margin-left {
+    margin-left: 10px;
+  }
+}
