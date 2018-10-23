@@ -1,7 +1,7 @@
-import loginSagas from '../redux/login/sagas';
+import firebaseSagas from '../redux/firebase/sagas';
 
 export default function* rootSaga() {
   yield [
-    ...loginSagas,
+    ...firebaseSagas,
   ];
 }
