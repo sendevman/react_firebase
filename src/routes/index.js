@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 
 // React Router Dom
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-
-// My Firebase
-import { firestore, firebase } from '../firebase';
+import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
 
 // My Customs
 import NavBar from 'components/NavBar';
@@ -15,33 +12,26 @@ import HomePage from 'screens/Home';
 // import LandingPage from './LandingPage';
 // import AdminPage from './AdminPage';
 import LoginPage from 'screens/Login';
-import LocationsAdd from 'screens/Locations/Add/index';
+
+const AuthRoute = (props) => (
+  localStorage.getItem('token') !== null
+  ? <Route {...props} />
+  : <Redirect to="/login" />
+);
+
+const GuestRoute = (props) => (
+  localStorage.getItem('token') === null
+  ? <Route {...props} />
+  : <Redirect to="/" />
+);
 
 class Routes extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      authUser: false,
       showDrawer: false,
     };
-  }
-
-  componentDidMount() {
-    firebase.auth.onAuthStateChanged(authUser => {
-      if (authUser) {
-        firestore.getCurrentUser(authUser.uid)
-          .then(doc => {
-            if (!doc.exists) return false;
-            return true;
-          })
-          .catch(err => { console.log('Error getting documents', err); });
-
-        this.setState({ authUser: true });
-      } else {
-        this.setState({ authUser: false });
-      }
-    });
   }
 
   toggleDrawer = (open) => () => {
@@ -49,23 +39,20 @@ class Routes extends Component {
   };
 
   render() {
-    const { authUser } = this.state;
-
     return (
       <Router>
         <div>
-          <NavBar
-            onShowDrawer={(value) => this.toggleDrawer(value)}
-            authUser={authUser} />
+          <NavBar onShowDrawer={(value) => this.toggleDrawer(value)} />
 
           <SideBar
             showDrawer={this.state.showDrawer}
             onShowDrawer={(value) => this.toggleDrawer(value)} />
 
           <main className="Main-Content">
-            <Route exact path="/" component={HomePage} />
-            <Route exact path="/login" component={LoginPage} />
-            <Route exact path="/locations/add" component={LocationsAdd} />
+            <Switch>
+              <GuestRoute exact path="/login" component={LoginPage} />
+              <AuthRoute exact path="/" component={HomePage} />
+            </Switch>
           </main>
         </div>
       </Router>
