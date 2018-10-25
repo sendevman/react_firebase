@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 // React Router Dom
 import { Link } from 'react-router-dom';
-
-// My Firebase
-import { auth } from '../../firebase';
 
 // Material-UI
 import AppBar from '@material-ui/core/AppBar';
@@ -17,6 +15,8 @@ import Toolbar from '@material-ui/core/Toolbar';
 // Material-UI - Icons
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuIcon from '@material-ui/icons/Menu';
+
+import { authLogout } from 'redux/firebase/actions';
 
 class NavBar extends Component {
   constructor(props) {
@@ -32,6 +32,10 @@ class NavBar extends Component {
   handleClose = () => {
     this.setState({ anchorEl: null });
   };
+
+  handleLogout = () => {
+    this.props.authLogout();
+  }
 
   render() {
     const { anchorEl } = this.state;
@@ -77,7 +81,7 @@ class NavBar extends Component {
                   open={open}
                   onClose={this.handleClose}
                 >
-                  <MenuItem onClick={auth.doSignOut}>Logout</MenuItem>
+                  <MenuItem onClick={this.handleLogout}>Logout</MenuItem>
                 </Menu>
               </div>
             )}
@@ -88,9 +92,14 @@ class NavBar extends Component {
   }
 }
 
+const mapDispatchToProps = dispatch => ({
+  authLogout: () => dispatch(authLogout()),
+});
+
 NavBar.propTypes = {
   authUser: PropTypes.bool.isRequired,
   onShowDrawer: PropTypes.func.isRequired,
+  authLogout: PropTypes.func.isRequired,
 };
 
-export default NavBar;
+export default connect(null, mapDispatchToProps)(NavBar);
