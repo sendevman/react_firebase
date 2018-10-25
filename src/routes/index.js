@@ -3,9 +3,6 @@ import React, { Component } from 'react';
 // React Router Dom
 import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
 
-// My Firebase
-import { firestore, firebase } from '../firebase';
-
 // My Customs
 import NavBar from 'components/NavBar';
 import SideBar from 'components/SideBar';
@@ -33,26 +30,8 @@ class Routes extends Component {
     super(props);
 
     this.state = {
-      authUser: false,
       showDrawer: false,
     };
-  }
-
-  componentDidMount() {
-    firebase.auth.onAuthStateChanged(authUser => {
-      if (authUser) {
-        firestore.getCurrentUser(authUser.uid)
-          .then(doc => {
-            if (!doc.exists) return false;
-            return true;
-          })
-          .catch(err => { console.log('Error getting documents', err); });
-
-        this.setState({ authUser: true });
-      } else {
-        this.setState({ authUser: false });
-      }
-    });
   }
 
   toggleDrawer = (open) => () => {
@@ -60,14 +39,10 @@ class Routes extends Component {
   };
 
   render() {
-    const { authUser } = this.state;
-
     return (
       <Router>
         <div>
-          <NavBar
-            onShowDrawer={(value) => this.toggleDrawer(value)}
-            authUser={authUser} />
+          <NavBar onShowDrawer={(value) => this.toggleDrawer(value)} />
 
           <SideBar
             showDrawer={this.state.showDrawer}
