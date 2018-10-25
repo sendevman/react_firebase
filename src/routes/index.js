@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 // React Router Dom
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
 
 // My Firebase
 import { firestore, firebase } from '../firebase';
@@ -15,6 +15,18 @@ import HomePage from 'screens/Home';
 // import LandingPage from './LandingPage';
 // import AdminPage from './AdminPage';
 import LoginPage from 'screens/Login';
+
+const AuthRoute = (props) => (
+  localStorage.getItem('token') !== null
+  ? <Route {...props} />
+  : <Redirect to="/login" />
+);
+
+const GuestRoute = (props) => (
+  localStorage.getItem('token') === null
+  ? <Route {...props} />
+  : <Redirect to="/" />
+);
 
 class Routes extends Component {
   constructor(props) {
@@ -62,8 +74,10 @@ class Routes extends Component {
             onShowDrawer={(value) => this.toggleDrawer(value)} />
 
           <main className="Main-Content">
-            <Route exact path="/" component={HomePage} />
-            <Route exact path="/login" component={LoginPage} />
+            <Switch>
+              <GuestRoute exact path="/login" component={LoginPage} />
+              <AuthRoute exact path="/" component={HomePage} />
+            </Switch>
           </main>
         </div>
       </Router>
