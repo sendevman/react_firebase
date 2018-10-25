@@ -70,6 +70,8 @@ function* asyncAuthLogin(param) {
 }
 
 function* asyncAuthLogout() {
+  localStorage.removeItem('token');
+	localStorage.removeItem('refreshToken');
   yield call(authLogout);
 }
 
