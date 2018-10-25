@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { compose } from 'redux';
 import { connect } from 'react-redux';
 
 // React Router Dom
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 // Material-UI
 import AppBar from '@material-ui/core/AppBar';
@@ -22,7 +23,9 @@ class NavBar extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { anchorEl: null };
+    this.state = {
+      anchorEl: null,
+    };
   }
 
   handleMenu = event => {
@@ -35,6 +38,8 @@ class NavBar extends Component {
 
   handleLogout = () => {
     this.props.authLogout();
+    this.handleClose();
+    this.props.history.push('/login');
   }
 
   render() {
@@ -57,7 +62,7 @@ class NavBar extends Component {
               <Link to="/" className="NavBar-Logo-Link">RC Web Interface</Link>
             </div>
 
-            {this.props.authUser && (
+            {localStorage.getItem('token') !== null && (
               <div>
                 <IconButton
                   aria-owns={open ? 'menu-appbar' : null}
@@ -97,9 +102,12 @@ const mapDispatchToProps = dispatch => ({
 });
 
 NavBar.propTypes = {
-  authUser: PropTypes.bool.isRequired,
+  history: PropTypes.object.isRequired,
   onShowDrawer: PropTypes.func.isRequired,
   authLogout: PropTypes.func.isRequired,
 };
 
-export default connect(null, mapDispatchToProps)(NavBar);
+export default compose(
+  withRouter,
+  connect(null, mapDispatchToProps),
+)(NavBar);
