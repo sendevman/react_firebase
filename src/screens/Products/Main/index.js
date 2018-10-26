@@ -20,7 +20,7 @@ class ProductsMain extends Component {
   render() {
     return (
       <div id="locations-add" className="Container-box">
-        <Card>
+        <Card className="card-box">
           <CardContent className="left-border-dark-blue">
             <Grid container spacing={24}>
               <SelectZone />
@@ -56,7 +56,7 @@ class ProductsMain extends Component {
                       </Tooltip>
 
                       <Tooltip title="Create Product" placement="top">
-                        <Button variant="contained" size="small" aria-label="Create" className="btn-icon-text att-blue margin-top margin-left">
+                        <Button variant="contained" size="small" aria-label="Create" className="btn-icon-text att-orange margin-top margin-left">
                           <CreateIcon />
                         </Button>
                       </Tooltip>

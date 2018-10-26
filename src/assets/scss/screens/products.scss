@@ -1,6 +1,20 @@
+.card-box { width: 100%; }
+
+.left-border-dark-blue,
+.left-border-dark-green {
+  padding-left: 19px !important;
+
+  &.single {
+    padding-left: 11px !important;
+  }
+}
+
 .left-border-dark-blue {
   border-left: 5px solid $dark-blue;
-  padding-left: 19px !important;
+}
+
+.left-border-dark-green {
+  border-left: 5px solid $dark-green;
 }
 
 .label-products-table {
@@ -11,8 +25,57 @@
   }
 }
 
-.select-zone-box {
+.select-zone-box,
+.text-field-width {
   width: 100%;
+}
+
+.padding-vertical {
+  padding: 12px 0;
+}
+
+.product-card-media {
+  min-height: 270px;
+}
+
+.upload-box {
+  position: relative;
+
+  .file-input {
+    display: none;
+  }
+
+  .flat-button-file {
+    position: absolute;
+    bottom: 22px;
+    z-index: 1;
+
+    .upload-button {
+      font-size: 14px;
+      background-color: #FFF;
+      color: black;
+      
+      &:hover {
+        background-color: rgba(240, 240, 240, 0.87);
+      }
+    }
+  }
+
+  .flat-button-colors {
+    position: absolute;
+    top: 6px;
+    right: 0px;
+  }
+
+  .device-options-button {
+    position: absolute;
+    bottom: -33px;
+    right: 12px;
+  }
+
+  .upload-text-field input {
+    padding-left: 120px;
+  }
 }
 
 .buttons-box {
@@ -40,6 +103,24 @@
     }
   }
 
+  &.att-orange {
+    color: #fff;
+    background-color: $orange;
+
+    &:hover {
+      background-color: $orange-hover;
+    }
+  }
+
+  &.att-green {
+    color: #fff;
+    background-color: $green;
+
+    &:hover {
+      background-color: $green-hover;
+    }
+  }
+
   &.margin-top {
     margin-top: 10px;
   }
@@ -47,4 +128,32 @@
   &.margin-left {
     margin-left: 10px;
   }
+}
+
+.title-features {
+  font-size: 18px;
+  color: $dark-blue;
+  margin: 16px 0 0px 0px;
+}
+
+.subtitle-features {
+  color: $dark-green;
+  margin: 16px 0 0px 0px;
+}
+
+.image-colors-list.list {
+  margin-top: 14px;
+
+  .item-color {
+    background-color: $func-gray;
+
+    &:hover {
+      background-color: $func-gray-hover;
+    }
+  }
+}
+
+.expand-div {
+  width: 100%;
+  margin-top: -14px;
 }
