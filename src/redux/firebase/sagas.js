@@ -1,17 +1,17 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 
 import {
-	GET_FB_USERS,
-	GET_FB_LOCATIONS,
-	GET_FB_PRODUCTS,
-	GET_FB_AERAS,
+  GET_FB_USERS,
+  GET_FB_LOCATIONS,
+  GET_FB_PRODUCTS,
+  GET_FB_AERAS,
   GET_FB_VOD,
-	GET_CURRENT_USER,
+  GET_CURRENT_USER,
   FB_AUTH_LOGIN,
   FB_AUTH_LOGOUT,
-	FB_TMP_UPLOAD_IMAGE,
-	FB_TMP_DELETE_IMAGE,
-	FB_UPLOAD_IMAGE,
+  FB_TMP_UPLOAD_IMAGE,
+  FB_TMP_DELETE_IMAGE,
+  FB_UPLOAD_IMAGE,
 } from './constants';
 
 import {
@@ -71,7 +71,7 @@ function* asyncAuthLogin(param) {
 
 function* asyncAuthLogout() {
   localStorage.removeItem('token');
-	localStorage.removeItem('refreshToken');
+  localStorage.removeItem('refreshToken');
   yield call(authLogout);
 }
 
