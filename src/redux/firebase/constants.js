@@ -9,3 +9,14 @@ export const SET_STORE_LOCATIONS = 'firebase/SET_STORE_LOCATIONS';
 export const SET_STORE_PRODUCTS = 'firebase/SET_STORE_PRODUCTS';
 export const SET_STORE_AERAS = 'firebase/SET_STORE_AERAS';
 export const SET_STORE_VOD = 'firebase/SET_STORE_VOD';
+
+export const FB_AUTH_LOGIN = 'firebase/FB_AUTH_LOGIN';
+export const FB_AUTH_LOGOUT = 'firebase/FB_AUTH_LOGOUT';
+
+export const GET_CURRENT_USER = 'firebase/GET_CURRENT_USER';
+export const SET_CURRENT_USER = 'firebase/SET_CURRENT_USER';
+export const SET_USER_ERROR = 'firebase/SET_USER_ERROR';
+
+export const FB_TMP_UPLOAD_IMAGE = 'firebase/FB_TMP_UPLOAD_IMAGE';
+export const FB_TMP_DELETE_IMAGE = 'firebase/FB_TMP_DELETE_IMAGE';
+export const FB_UPLOAD_IMAGE = 'firebase/FB_UPLOAD_IMAGE';
