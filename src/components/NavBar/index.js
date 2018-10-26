@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { compose } from 'redux';
+import { connect } from 'react-redux';
 
 // React Router Dom
-import { Link } from 'react-router-dom';
-
-// My Firebase
-import { auth } from '../../firebase';
+import { Link, withRouter } from 'react-router-dom';
 
 // Material-UI
 import AppBar from '@material-ui/core/AppBar';
@@ -18,11 +17,16 @@ import Toolbar from '@material-ui/core/Toolbar';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuIcon from '@material-ui/icons/Menu';
 
+// My Reduxes
+import { authLogout } from 'redux/firebase/actions';
+
 class NavBar extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { anchorEl: null };
+    this.state = {
+      anchorEl: null,
+    };
   }
 
   handleMenu = event => {
@@ -32,6 +36,12 @@ class NavBar extends Component {
   handleClose = () => {
     this.setState({ anchorEl: null });
   };
+
+  handleLogout = () => {
+    this.props.authLogout();
+    this.handleClose();
+    this.props.history.push('/login');
+  }
 
   render() {
     const { anchorEl } = this.state;
@@ -53,7 +63,7 @@ class NavBar extends Component {
               <Link to="/" className="NavBar-Logo-Link">RC Web Interface</Link>
             </div>
 
-            {this.props.authUser && (
+            {localStorage.getItem('token') !== null && (
               <div>
                 <IconButton
                   aria-owns={open ? 'menu-appbar' : null}
@@ -77,7 +87,7 @@ class NavBar extends Component {
                   open={open}
                   onClose={this.handleClose}
                 >
-                  <MenuItem onClick={auth.doSignOut}>Logout</MenuItem>
+                  <MenuItem onClick={this.handleLogout}>Logout</MenuItem>
                 </Menu>
               </div>
             )}
@@ -88,9 +98,17 @@ class NavBar extends Component {
   }
 }
 
+const mapDispatchToProps = dispatch => ({
+  authLogout: () => dispatch(authLogout()),
+});
+
 NavBar.propTypes = {
-  authUser: PropTypes.bool.isRequired,
+  history: PropTypes.object.isRequired,
   onShowDrawer: PropTypes.func.isRequired,
+  authLogout: PropTypes.func.isRequired,
 };
 
-export default NavBar;
+export default compose(
+  withRouter,
+  connect(null, mapDispatchToProps),
+)(NavBar);
