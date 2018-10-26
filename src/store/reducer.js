@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux-immutable';
-import loginReducer from '../redux/login/reducer';
+import firebaseReducer from '../redux/firebase/reducer';
 
 export default function createReducer() {
   return combineReducers({
-    login: loginReducer,
+    firebase: firebaseReducer,
   });
 }
