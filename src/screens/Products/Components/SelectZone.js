@@ -10,9 +10,6 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 
-// Material-UI Icons
-import AddIcon from '@material-ui/icons/Add';
-
 class SelectZone extends Component {
   constructor(props) {
     super(props);
@@ -61,9 +58,9 @@ class SelectZone extends Component {
                     onChange={e => this._handleInputChange(e, 'selectedZone')}
                     input={<Input name="selectedZone" id="zone-name-helper" />}>
                     <MenuItem value=""><em>None</em></MenuItem>
-                    { zones.map(zone =>
+                    { zones.map(zone => (
                       <MenuItem key={zone.id} value={zone.id}>{zone.name} - {zone.walkbaseId}</MenuItem>
-                    )}
+                    ))}
                   </Select>
                 </FormControl>
               </Grid>

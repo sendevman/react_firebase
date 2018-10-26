@@ -42,7 +42,7 @@ class ProductsTable extends Component {
 
   _handleInputChange = (event) => {
     const stateCopy = Object.assign({}, this.state);
-    stateCopy['search'] = event.target.value;
+    stateCopy.search = event.target.value;
     this.setState({ ...stateCopy });
   };
 
