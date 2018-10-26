@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { compose } from 'redux';
+import { connect } from 'react-redux';
 
 // React Router Dom
 import { withRouter } from 'react-router-dom';
-
-// My Firebase
-import { auth } from '../../firebase/index';
 
 // Material-UI
 import Button from '@material-ui/core/Button';
@@ -14,6 +13,10 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import TextField from '@material-ui/core/TextField';
+
+// My Reduxes
+import { authLogin } from 'redux/firebase/actions';
+import { userErrorSelector } from 'redux/firebase/selectors';
 
 // My Assets
 import imgDefault from 'assets/images/imgDefault.png';
@@ -27,7 +30,7 @@ const INITIAL_STATE = {
   passwordErrorText: 'should be at least 8 characters',
 };
 
-class LoginForm extends Component {
+class LoginPage extends Component {
   constructor(props) {
     super(props);
 
@@ -39,6 +42,16 @@ class LoginForm extends Component {
 
     this.email = React.createRef();
     this.password = React.createRef();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { history } = this.props;
+    if (nextProps.userError.res === 'noError') {
+      this.setState({ ...INITIAL_STATE });
+      history.push('/');
+    } else {
+      this.handleError(nextProps.userError);
+    }
   }
 
   _handleInputChange = (event) => {
@@ -75,22 +88,11 @@ class LoginForm extends Component {
   isEmpty = (str) => (!str || !str.trim() || str.length === 0);
 
   _signIn = () => {
-    if (this.validEmail() && this.validPassword()) {
-      this.signIn();
-    }
-  }
-
-  signIn = () => {
     const { email, password } = this.state;
-    const { history } = this.props;
-
-    /* eslint no-unused-vars: 0 */
-    auth.doSignIn(email, password)
-      .then(authUser => {
-        this.setState({ ...INITIAL_STATE });
-        history.push('/');
-      })
-      .catch(error => { this.handleError(error); });
+    const { authLogin } = this.props;
+    if (this.validEmail() && this.validPassword()) {
+      authLogin({ email, password });
+    }
   }
 
   handleError(error) {
@@ -172,16 +174,21 @@ class LoginForm extends Component {
   }
 }
 
-const LogInPage = ({ history }) => <LoginForm history={history} />;
+const mapStateToProps = state => ({
+  userError: userErrorSelector(state),
+});
 
-LogInPage.propTypes = {
+const mapDispatchToProps = dispatch => ({
+  authLogin: (auth) => dispatch(authLogin(auth)),
+});
+
+LoginPage.propTypes = {
+  userError: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
+  authLogin: PropTypes.func.isRequired,
 };
 
-export default withRouter(LogInPage);
-
-LoginForm.propTypes = {
-  history: PropTypes.object.isRequired,
-};
-
-export { LoginForm };
+export default compose(
+  withRouter,
+  connect(mapStateToProps, mapDispatchToProps),
+)(LoginPage);

@@ -166,12 +166,14 @@ class SideBar extends Component {
               unmountOnExit
               classes={{ wrapper: classes.wrapperItems }}>
               <List component="div" disablePadding>
-                <ListItem button className={classes.itemNested} onClick={onShowDrawer(false)}>
-                  <ListItemIcon className={classes.iconGrey}>
-                    <AddIcon />
-                  </ListItemIcon>
-                  <ListItemText disableTypography className={[classes.itemText, classes.nestedText].join(' ')} inset primary="Add" />
-                </ListItem>
+                <Link to="/products/new" className={classes.actionLink}>
+                  <ListItem button className={classes.itemNested} onClick={onShowDrawer(false)}>
+                    <ListItemIcon className={classes.iconGrey}>
+                      <AddIcon />
+                    </ListItemIcon>
+                    <ListItemText disableTypography className={[classes.itemText, classes.nestedText].join(' ')} inset primary="Add" />
+                  </ListItem>
+                </Link>
 
                 <Link to="/locations/p9ZRp6uaLCjJiT9zJSDd/products" className={classes.actionLink}>
                   <ListItem button className={classes.itemNested} onClick={onShowDrawer(false)}>
