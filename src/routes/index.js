@@ -9,9 +9,10 @@ import SideBar from 'components/SideBar';
 
 // My Pages
 import HomePage from 'screens/Home';
-// import LandingPage from './LandingPage';
-// import AdminPage from './AdminPage';
 import LoginPage from 'screens/Login';
+import LocationsAdd from 'screens/Locations/Add/index';
+import ProductsMain from 'screens/Products/Main/index';
+import ProductsAdd from 'screens/Products/Add/index';
 
 const AuthRoute = (props) => (
   localStorage.getItem('token') !== null
@@ -52,6 +53,9 @@ class Routes extends Component {
             <Switch>
               <GuestRoute exact path="/login" component={LoginPage} />
               <AuthRoute exact path="/" component={HomePage} />
+              <AuthRoute exact path="/locations/add" component={LocationsAdd} />
+              <AuthRoute exact path="/products/new" component={ProductsAdd} />
+              <AuthRoute exact path="/locations/:store_id/products" component={ProductsMain} />
             </Switch>
           </main>
         </div>

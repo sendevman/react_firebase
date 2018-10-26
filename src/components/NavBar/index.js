@@ -17,6 +17,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuIcon from '@material-ui/icons/Menu';
 
+// My Reduxes
 import { authLogout } from 'redux/firebase/actions';
 
 class NavBar extends Component {
