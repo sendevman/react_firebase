@@ -3,7 +3,7 @@ import FormLabel from '@material-ui/core/FormLabel';
 import FormGroup from '@material-ui/core/FormGroup';
 import Grid from '@material-ui/core/Grid';
 
-import InputEvent from './InputEvent';
+import InputEvent from 'components/InputEvent';
 
 class GeneralInfo extends InputEvent {
   constructor(props) {

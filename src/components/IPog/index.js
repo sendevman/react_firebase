@@ -5,7 +5,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Grid from '@material-ui/core/Grid';
 import Checkbox from '@material-ui/core/Checkbox';
 
-import InputEvent from './InputEvent';
+import InputEvent from 'components/InputEvent';
 
 class IPog extends InputEvent {
   constructor(props) {

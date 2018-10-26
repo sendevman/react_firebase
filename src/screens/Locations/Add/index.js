@@ -4,13 +4,12 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Grid from '@material-ui/core/Grid';
 
-import GeneralInfo from './Components/GeneralInfo';
-import Walkbase from './Components/Walkbase';
-import IPog from './Components/IPog';
-import Managers from './Components/Managers';
+import GeneralInfo from 'components/GeneralInfo';
+import Walkbase from 'components/Walkbase';
+import IPog from 'components/IPog';
+import Managers from './Managers';
 
 class LocationsAdd extends Component {
-
   render() {
     return (
       <div id="locations-add" className="Container-box">

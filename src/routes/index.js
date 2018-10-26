@@ -12,17 +12,19 @@ import HomePage from 'screens/Home';
 // import LandingPage from './LandingPage';
 // import AdminPage from './AdminPage';
 import LoginPage from 'screens/Login';
+import LocationsAdd from 'screens/Locations/Add/index';
+import Locations from 'screens/Locations';
 
 const AuthRoute = (props) => (
   localStorage.getItem('token') !== null
-  ? <Route {...props} />
-  : <Redirect to="/login" />
+    ? <Route {...props} />
+    : <Redirect to="/login" />
 );
 
 const GuestRoute = (props) => (
   localStorage.getItem('token') === null
-  ? <Route {...props} />
-  : <Redirect to="/" />
+    ? <Route {...props} />
+    : <Redirect to="/" />
 );
 
 class Routes extends Component {
@@ -50,6 +52,8 @@ class Routes extends Component {
 
           <main className="Main-Content">
             <Switch>
+              <AuthRoute exact path="/locations/add" component={LocationsAdd} />
+              <AuthRoute exact path="/locations" component={Locations} />
               <GuestRoute exact path="/login" component={LoginPage} />
               <AuthRoute exact path="/" component={HomePage} />
             </Switch>
