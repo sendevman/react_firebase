@@ -5,8 +5,6 @@ import CardContent from '@material-ui/core/CardContent';
 import Grid from '@material-ui/core/Grid';
 
 import GeneralInfo from 'components/GeneralInfo';
-import Walkbase from 'components/Walkbase';
-import IPog from 'components/IPog';
 import Managers from './Managers';
 
 class LocationsAdd extends Component {
@@ -14,12 +12,10 @@ class LocationsAdd extends Component {
     return (
       <div id="locations-add" className="Container-box">
         <Card>
-          <CardContent>
+          <CardContent className="left-border-dark-green">
             <div className="container-label">Add Location</div>
             <Grid container spacing={24}>
               <GeneralInfo />
-              <Walkbase />
-              <IPog />
               <Managers />
             </Grid>
           </CardContent>
