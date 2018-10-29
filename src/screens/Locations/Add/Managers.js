@@ -1,9 +1,14 @@
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
 import FormLabel from '@material-ui/core/FormLabel';
 import FormGroup from '@material-ui/core/FormGroup';
 import Grid from '@material-ui/core/Grid';
+import Tooltip from '@material-ui/core/Tooltip';
+import AddIcon from '@material-ui/icons/Add';
+import Button from '@material-ui/core/Button';
 
 import InputEvent from 'components/InputEvent';
 import SearchList from 'components/SearchList';
@@ -55,22 +60,32 @@ class Managers extends InputEvent {
     const { tables, columns } = this.state;
     return (
       <Grid item xs={12}>
-        <div className="border-shadow">
-          <Grid container>
-            <SearchList
-              columns={columns}
-              tables={tables}
-              label="Add Managers / Users to location" />
-            <Grid item xs={12}>
-              <div className="sub-container">
-                <FormLabel component="legend">Managers / Users added to location</FormLabel>
+        <Card>
+          <CardContent className="left-border-dark-purple">
+            <Grid container>
+              <SearchList
+                columns={columns}
+                tables={tables}
+                label="Add Managers / Users to location" />
+              <Grid item xs={12}>
+                <FormLabel component="legend" className="mt-block">Managers / Users added to location</FormLabel>
                 <FormGroup>
                   <Table tables={tables} columns={columns} />
                 </FormGroup>
-              </div>
+                <div className="buttons-box mt-block">
+                  <Tooltip title="Create Product" placement="top">
+                    <Button
+                      className="btn-icon-text att-green margin-top margin-left"
+                      variant="fab"
+                      aria-label="Add">
+                      <AddIcon />
+                    </Button>
+                  </Tooltip>
+                </div>
+              </Grid>
             </Grid>
-          </Grid>
-        </div>
+          </CardContent>
+        </Card>
       </Grid>
     );
   }
