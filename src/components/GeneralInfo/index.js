@@ -112,23 +112,23 @@ class GeneralInfo extends InputEvent {
                   </FormGroup>
                 </div>
                 <div className="buttons-box mt-block">
-                  <Tooltip title="Create Product" placement="top">
+                  <Tooltip title="Refresh Ipog Data" placement="top">
                     <Button
                       className="btn-icon-text att-orange margin-top margin-left"
                       variant="contained"
                       size="small"
-                      aria-label="Create"
+                      aria-label="Refresh"
                       onClick={this.refresh}>
                       <RefreshIcon />
                     </Button>
                   </Tooltip>
-                  <Tooltip title="Create Product" placement="top">
+                  <Tooltip title="Save" placement="top">
                     <Button
                       className="btn-icon-text att-orange margin-top margin-left"
                       variant="contained"
                       size="small"
-                      aria-label="Create"
-                      onClick={this.upload}>
+                      aria-label="Save"
+                      onClick={this.save}>
                       <SaveIcon />
                     </Button>
                   </Tooltip>

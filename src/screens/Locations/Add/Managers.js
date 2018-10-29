@@ -6,9 +6,6 @@ import CardContent from '@material-ui/core/CardContent';
 import FormLabel from '@material-ui/core/FormLabel';
 import FormGroup from '@material-ui/core/FormGroup';
 import Grid from '@material-ui/core/Grid';
-import Tooltip from '@material-ui/core/Tooltip';
-import AddIcon from '@material-ui/icons/Add';
-import Button from '@material-ui/core/Button';
 
 import InputEvent from 'components/InputEvent';
 import SearchList from 'components/SearchList';
@@ -72,16 +69,6 @@ class Managers extends InputEvent {
                 <FormGroup>
                   <Table tables={tables} columns={columns} />
                 </FormGroup>
-                <div className="buttons-box mt-block">
-                  <Tooltip title="Create Product" placement="top">
-                    <Button
-                      className="btn-icon-text att-green margin-top margin-left"
-                      variant="fab"
-                      aria-label="Add">
-                      <AddIcon />
-                    </Button>
-                  </Tooltip>
-                </div>
               </Grid>
             </Grid>
           </CardContent>

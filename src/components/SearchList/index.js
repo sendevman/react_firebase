@@ -36,7 +36,7 @@ class Managers extends InputEvent {
             <Table columns={columns} tables={tables} />
           </FormGroup>
           <div className="buttons-box mt-block">
-            <Tooltip title="Create Product" placement="top">
+            <Tooltip title="Add Users" placement="top">
               <Button
                 className="btn-icon-text att-green margin-top margin-left"
                 variant="fab"
