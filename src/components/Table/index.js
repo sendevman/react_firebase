@@ -31,7 +31,7 @@ Table.propTypes = {
 };
 
 Table.defaultProps = {
-  pageSize: 9,
+  pageSize: 5,
   tables: [],
   columns: [],
 };

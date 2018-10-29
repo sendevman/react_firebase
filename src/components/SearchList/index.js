@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types';
 
-import TextField from '@material-ui/core/TextField';
 import FormLabel from '@material-ui/core/FormLabel';
 import FormGroup from '@material-ui/core/FormGroup';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
+import Tooltip from '@material-ui/core/Tooltip';
 
 import InputEvent from 'components/InputEvent';
 import Table from 'components/Table';
@@ -28,33 +28,25 @@ class Managers extends InputEvent {
   render() {
     const { columns, label, tables } = this.props;
     return (
-      <div>
+      <Grid container>
         <Grid item xs={12}>
-          <div className="sub-container">
-            <FormLabel component="legend">{label}</FormLabel>
-            <FormGroup>
-              <TextField
-                className="Text-Field w-50"
-                type="text"
-                name="search"
-                label="Search"
-                value={this.state.search}
-                onChange={e => this.handleInputChange(e, 'search')}
-                required
-                margin="normal"
-              />
-              <Table columns={columns} tables={tables} />
-            </FormGroup>
+          <FormLabel component="legend" classname="mt-block">{label}</FormLabel>
+          <FormGroup>
+            {this.subrender('search', 'Search', this.state.search)}
+            <Table columns={columns} tables={tables} />
+          </FormGroup>
+          <div className="buttons-box mt-block">
+            <Tooltip title="Create Product" placement="top">
+              <Button
+                className="btn-icon-text att-green margin-top margin-left"
+                variant="fab"
+                aria-label="Add">
+                <AddIcon />
+              </Button>
+            </Tooltip>
           </div>
         </Grid>
-        <Grid item xs={12}>
-          <div className="sub-container align-right">
-            <Button variant="fab" color="primary" aria-label="Add">
-              <AddIcon />
-            </Button>
-          </div>
-        </Grid>
-      </div>
+      </Grid>
     );
   }
 }
