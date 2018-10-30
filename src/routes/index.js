@@ -11,19 +11,21 @@ import SideBar from 'components/SideBar';
 import HomePage from 'screens/Home';
 import LoginPage from 'screens/Login';
 import LocationsAdd from 'screens/Locations/Add/index';
+import LocationsManage from 'screens/Locations/Manage/index';
+import LocationsManTab from 'screens/Locations/Manage/Manage';
 import ProductsMain from 'screens/Products/Main/index';
 import ProductsAdd from 'screens/Products/Add/index';
 
 const AuthRoute = (props) => (
   localStorage.getItem('token') !== null
-  ? <Route {...props} />
-  : <Redirect to="/login" />
+    ? <Route {...props} />
+    : <Redirect to="/login" />
 );
 
 const GuestRoute = (props) => (
   localStorage.getItem('token') === null
-  ? <Route {...props} />
-  : <Redirect to="/" />
+    ? <Route {...props} />
+    : <Redirect to="/" />
 );
 
 class Routes extends Component {
@@ -54,6 +56,8 @@ class Routes extends Component {
               <GuestRoute exact path="/login" component={LoginPage} />
               <AuthRoute exact path="/" component={HomePage} />
               <AuthRoute exact path="/locations/add" component={LocationsAdd} />
+              <AuthRoute exact path="/locations/manage" component={LocationsManage} />
+              <AuthRoute exact path="/locations/manage/products" component={LocationsManTab} />
               <AuthRoute exact path="/products/new" component={ProductsAdd} />
               <AuthRoute exact path="/locations/:store_id/products" component={ProductsMain} />
             </Switch>
