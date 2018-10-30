@@ -53,18 +53,15 @@ class Locations extends InputEvent {
   render() {
     const { tables, columns } = this.state;
     return (
-      <div id="locations" className="Container-box">
+      <div id="locations-manage" className="Container-box">
         <Card>
-          <CardContent>
-            <Grid item xs={12}>
-              <div className="border-shadow">
-                <Grid container>
-                  <SearchList
-                    columns={columns}
-                    tables={tables}
-                    label="Select a location to manage" />
-                </Grid>
-              </div>
+          <CardContent className="left-border-orange">
+            <Grid container>
+              <SearchList
+                columns={columns}
+                tables={tables}
+                label="Select a location to manage"
+                btnTooltip="Add New Location" />
             </Grid>
           </CardContent>
         </Card>

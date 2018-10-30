@@ -26,17 +26,17 @@ class Managers extends InputEvent {
   }
 
   render() {
-    const { columns, label, tables } = this.props;
+    const { columns, label, tables, btnTooltip } = this.props;
     return (
       <Grid container>
         <Grid item xs={12}>
-          <FormLabel component="legend" classname="mt-block">{label}</FormLabel>
+          <FormLabel component="legend" className="mt-block">{label}</FormLabel>
           <FormGroup>
             {this.subrender('search', 'Search', this.state.search)}
             <Table columns={columns} tables={tables} />
           </FormGroup>
           <div className="buttons-box mt-block">
-            <Tooltip title="Add Users" placement="top">
+            <Tooltip title={btnTooltip} placement="top">
               <Button
                 className="btn-icon-text att-green margin-top margin-left"
                 variant="fab"
@@ -54,11 +54,13 @@ class Managers extends InputEvent {
 Managers.propTypes = {
   tables: PropTypes.array,
   columns: PropTypes.array,
+  btnTooltip: PropTypes.string,
 };
 
 Managers.defaultProps = {
   tables: [],
   columns: [],
+  btnTooltip: '',
 };
 
 export default Managers;
