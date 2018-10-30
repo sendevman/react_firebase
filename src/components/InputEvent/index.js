@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import TextField from '@material-ui/core/TextField';
 
 class InputEvent extends Component {
   handleInputChange = (e, type) => {
@@ -12,6 +13,19 @@ class InputEvent extends Component {
     stateCopy[type] = e.target.checked;
     this.setState({ ...stateCopy });
   };
+
+  subrender = (name, label, value) => (
+    <TextField
+      className="Text-Field"
+      type="text"
+      name={name}
+      label={label}
+      value={value}
+      onChange={e => this.handleInputChange(e, name)}
+      required
+      margin="normal"
+    />
+  );
 }
 
 export default InputEvent;
