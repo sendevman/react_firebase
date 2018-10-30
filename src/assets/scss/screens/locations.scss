@@ -1,5 +1,9 @@
-#locations,
+#locations-manage,
+#locations-man-tab,
 #locations-add {
 	margin: auto;
 	max-width: 62.5rem;
+	.MuiTab-selected-100 {
+		border-left: 5px solid $dark-purple;
+	}
 }

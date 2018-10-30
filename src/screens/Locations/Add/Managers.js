@@ -63,7 +63,8 @@ class Managers extends InputEvent {
               <SearchList
                 columns={columns}
                 tables={tables}
-                label="Add Managers / Users to location" />
+                label="Add Managers / Users to location"
+                btnTooltip="Add Users" />
               <Grid item xs={12}>
                 <FormLabel component="legend" className="mt-block">Managers / Users added to location</FormLabel>
                 <FormGroup>
