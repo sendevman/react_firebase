@@ -40,8 +40,8 @@ function* asyncGetUsers() {
 }
 
 function* asyncGetLocations() {
-  const users = yield call(getData, 'locations');
-  yield put(setLocations(users));
+  const locations = yield call(getData, 'locations');
+  yield put(setLocations(locations));
 }
 
 function* asyncGetProducts() {

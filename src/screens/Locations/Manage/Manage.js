@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
@@ -16,7 +17,7 @@ class LocationsManTab extends Component {
     };
   }
 
-  handleChange = (event, value) => {
+  handleChange = (value) => {
     this.setState({ value });
   };
 
@@ -44,7 +45,7 @@ class LocationsManTab extends Component {
         </AppBar>
         {value === 0 &&
           <Typography component="div" style={{ padding: 8 * 3, width: '90%' }}>
-            <Info />
+            <Info storeId={this.props.match.params.store_id} />
           </Typography>}
         {value === 1 &&
           <Typography component="div" style={{ padding: 8 * 3 }}>
@@ -62,5 +63,9 @@ class LocationsManTab extends Component {
     );
   }
 }
+
+LocationsManTab.propTypes = {
+  match: PropTypes.object.isRequired,
+};
 
 export default LocationsManTab;
