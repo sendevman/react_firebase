@@ -7,7 +7,6 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Grid from '@material-ui/core/Grid';
 import FormControl from '@material-ui/core/FormControl';
 import TextField from '@material-ui/core/TextField';
-import Tooltip from '@material-ui/core/Tooltip';
 import FormGroup from '@material-ui/core/FormGroup';
 
 import ArchivelIcon from '@material-ui/icons/Archive';
@@ -41,7 +40,7 @@ class HomeView extends InputEvent {
 	}
 
 	render() {
-		const { footer, image, subtitle, title, backTitle } = this.state;
+		const { image } = this.state;
 		const { activeComponent } = this.props;
 		return (
 			<Grid item xs={12}>
@@ -60,9 +59,9 @@ class HomeView extends InputEvent {
 
 							<Grid item xs={12} sm={6}>
 								<FormGroup>
-									{activeComponent.title && this.subrender('title', 'Title', title)}
-									{activeComponent.subtitle && this.subrender('subtitle', 'Subtitle', subtitle)}
-									{activeComponent.footer && this.subrender('footer', 'Footer', footer)}
+									{activeComponent.title && this.renderText('title', 'Title')}
+									{activeComponent.subtitle && this.renderText('subtitle', 'Subtitle')}
+									{activeComponent.footer && this.renderText('footer', 'Footer')}
 								</FormGroup>
 
 								{activeComponent.cardImage &&
@@ -93,7 +92,7 @@ class HomeView extends InputEvent {
 									</div>}
 								{activeComponent.backTitle &&
 									<FormGroup>
-										{this.subrender('backTitle', 'Background Title', backTitle)}
+										{this.renderText('backTitle', 'Background Title')}
 									</FormGroup>}
 								{activeComponent.backImage &&
 									<div className="homeview-upload-box">
@@ -125,45 +124,10 @@ class HomeView extends InputEvent {
 						</Grid>
 
 						<div className="buttons-box">
-							<Tooltip title="Preview" placement="top">
-								<Button
-									variant="contained"
-									size="small"
-									aria-label="Preview"
-									className="btn-icon-text att-blue margin-top margin-left">
-									<PreviewIcon />
-								</Button>
-							</Tooltip>
-
-							<Tooltip title="Save" placement="top">
-								<Button
-									variant="contained"
-									size="small"
-									aria-label="Save"
-									className="btn-icon-text att-red margin-top margin-left">
-									<SaveIcon />
-								</Button>
-							</Tooltip>
-
-							<Tooltip title="Import" placement="top">
-								<Button
-									variant="contained"
-									size="small"
-									aria-label="Import"
-									className="btn-icon-text att-green margin-top margin-left">
-									<ImportIcon />
-								</Button>
-							</Tooltip>
-
-							<Tooltip title="Archive" placement="top">
-								<Button
-									variant="contained"
-									size="small"
-									aria-label="Archive"
-									className="btn-icon-text att-orange margin-top margin-left">
-									<ArchivelIcon />
-								</Button>
-							</Tooltip>
+							{this.renderButton('Preview', 'blue', () => {}, <PreviewIcon />)}
+							{this.renderButton('Save', 'red', () => {}, <SaveIcon />)}
+							{this.renderButton('Import', 'green', () => {}, <ImportIcon />)}
+							{this.renderButton('Archive', 'orange', () => {}, <ArchivelIcon />)}
 						</div>
 					</CardContent>
 				</Card>
