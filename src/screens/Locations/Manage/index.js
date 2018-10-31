@@ -8,8 +8,8 @@ import Grid from '@material-ui/core/Grid';
 import InputEvent from 'components/InputEvent';
 import SearchList from 'components/SearchList';
 
-import { getUsers, getLocations } from 'redux/firebase/actions';
-import { usersSelector, locationsSelector } from 'redux/firebase/selectors';
+import { getLocations } from 'redux/firebase/actions';
+import { locationsSelector } from 'redux/firebase/selectors';
 
 class Locations extends InputEvent {
   constructor(props) {
@@ -18,40 +18,80 @@ class Locations extends InputEvent {
     this.state = {
       search: '',
       tables: [],
-      columns: [
-        {
-          Header: () => (
-            <div>
-              <span>email</span>
-            </div>
-          ),
-          accessor: 'email',
-          width: 200,
-        },
-        {
-          Header: () => (
-            <div>
-              <span>name</span>
-            </div>
-          ),
-          accessor: 'email',
-          width: 200,
-        },
-        {
-          Header: () => (
-            <div>
-              <span>user type</span>
-            </div>
-          ),
-          accessor: 'email',
-          width: 200,
-        },
-      ],
     };
   }
 
+  componentDidMount() {
+    this.props.getLocations();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.locations !== nextProps.locations) {
+      const tables = nextProps.locations.map(location => ({
+        storeId: location.storeId,
+        ...location.storeInfo,
+        city: '',
+        state: '',
+        type: '',
+      }));
+      this.setState({ tables });
+    }
+  }
+
+  addLocations = () => {
+    this.props.history.push('/locations/add');
+  }
+
+  handleOnClick = (row) => {
+    this.props.history.push(`/locations/manage/${row.storeId}/info`);
+  }
+
+  headerRedner = (header) => (
+    <div>
+      <span>{header}</span>
+    </div>
+  );
+
+  cellRender = (cell, title) => (
+    <div onClick={() => this.handleOnClick(cell)}>
+      <span>{title}</span>
+    </div>
+  );
+
   render() {
-    const { tables, columns } = this.state;
+    const { tables } = this.state;
+    const columns = [
+      {
+        Header: () => this.headerRedner('Name'),
+        Cell: ({ row }) => this.cellRender(row, row.name),
+        accessor: 'name',
+      },
+      {
+        Header: () => this.headerRedner('Store ID'),
+        Cell: ({ row }) => this.cellRender(row, row.storeId),
+        accessor: 'storeId',
+      },
+      {
+        Header: () => this.headerRedner('City'),
+        Cell: ({ row }) => this.cellRender(row, row.city),
+        accessor: 'city',
+      },
+      {
+        Header: () => this.headerRedner('State'),
+        Cell: ({ row }) => this.cellRender(row, row.state),
+        accessor: 'state',
+      },
+      {
+        Header: () => this.headerRedner('Reigon'),
+        Cell: ({ row }) => this.cellRender(row, row.region),
+        accessor: 'region',
+      },
+      {
+        Header: () => this.headerRedner('Type'),
+        Cell: ({ row }) => this.cellRender(row, row.type),
+        accessor: 'type',
+      },
+    ];
     return (
       <div id="locations-manage" className="Container-box">
         <Card>
@@ -61,7 +101,8 @@ class Locations extends InputEvent {
                 columns={columns}
                 tables={tables}
                 label="Select a location to manage"
-                btnTooltip="Add New Location" />
+                btnTooltip="Add New Location"
+                addBtn={this.addLocations} />
             </Grid>
           </CardContent>
         </Card>
@@ -71,24 +112,20 @@ class Locations extends InputEvent {
 }
 
 const mapStateToProps = state => ({
-  users: usersSelector(state),
   locations: locationsSelector(state),
 });
 
 const mapDispatchToProps = dispatch => ({
-  getUsers: () => dispatch(getUsers()),
   getLocations: () => dispatch(getLocations()),
 });
 
 Locations.propTypes = {
-  users: PropTypes.array,
   locations: PropTypes.array,
-  getUsers: PropTypes.func.isRequired,
+  history: PropTypes.object.isRequired,
   getLocations: PropTypes.func.isRequired,
 };
 
 Locations.defaultProps = {
-  users: [],
   locations: [],
 };
 

@@ -40,7 +40,8 @@ class Managers extends InputEvent {
               <Button
                 className="btn-icon-text att-green margin-top margin-left"
                 variant="fab"
-                aria-label="Add">
+                aria-label="Add"
+                onClick={this.props.addBtn}>
                 <AddIcon />
               </Button>
             </Tooltip>
@@ -55,6 +56,7 @@ Managers.propTypes = {
   tables: PropTypes.array,
   columns: PropTypes.array,
   btnTooltip: PropTypes.string,
+  addBtn: PropTypes.func.isRequired,
 };
 
 Managers.defaultProps = {
