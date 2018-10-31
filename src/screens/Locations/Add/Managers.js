@@ -1,32 +1,24 @@
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-import FormLabel from '@material-ui/core/FormLabel';
-import FormGroup from '@material-ui/core/FormGroup';
 import Grid from '@material-ui/core/Grid';
-import Tooltip from '@material-ui/core/Tooltip';
-import Button from '@material-ui/core/Button';
-
-import DeleteIcon from '@material-ui/icons/Delete';
 
 import _ from 'lodash';
 
-import InputEvent from 'components/InputEvent';
 import SearchList from 'components/SearchList';
-import Table from 'components/Table';
+import List from 'components/List';
 
 import { getUsers } from 'redux/firebase/actions';
 import { usersSelector } from 'redux/firebase/selectors';
 
-class Managers extends InputEvent {
+class Managers extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      search: '',
-      tables: [],
       selected: [],
       selectedUsers: [],
     };
@@ -111,25 +103,16 @@ class Managers extends InputEvent {
                 columns={allUsersColumn}
                 tables={this.props.users}
                 label="Add Managers / Users to location"
-                btnTooltip="Add Users"
-                addBtn={this.addUsers} />
-              <Grid item xs={12}>
-                <FormLabel component="legend" className="mt-block">Managers / Users added to location</FormLabel>
-                <FormGroup>
-                  <Table tables={selectedUsers} columns={selectedUsersColumn} />
-                </FormGroup>
-                <div className="buttons-box mt-block">
-                  <Tooltip title="Delete Users" placement="top">
-                    <Button
-                      className="btn-icon-text att-blue margin-top margin-left"
-                      variant="fab"
-                      aria-label="Delete"
-                      onClick={this.deleteUsers}>
-                      <DeleteIcon />
-                    </Button>
-                  </Tooltip>
-                </div>
-              </Grid>
+                addbtnTooltip="Add Users"
+                savebtn={false}
+                handleAdd={this.addUsers} />
+              <List
+                label="Managers / Users added to location"
+                tables={selectedUsers}
+                columns={selectedUsersColumn}
+                addbtn={false}
+                handleDelete={this.deleteUsers}
+              />
             </Grid>
           </CardContent>
         </Card>
