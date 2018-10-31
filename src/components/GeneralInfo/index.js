@@ -1,3 +1,8 @@
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+
+import _ from 'lodash';
+
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import FormLabel from '@material-ui/core/FormLabel';
@@ -12,6 +17,9 @@ import RefreshIcon from '@material-ui/icons/Refresh';
 
 import InputEvent from 'components/InputEvent';
 
+import { getLocations } from 'redux/firebase/actions';
+import { locationsSelector } from 'redux/firebase/selectors';
+
 class GeneralInfo extends InputEvent {
   constructor(props) {
     super(props);
@@ -21,7 +29,7 @@ class GeneralInfo extends InputEvent {
       storeId: '',
       city: '',
       state: '',
-      reigon: '',
+      region: '',
       type: '',
       fileName: '',
       floorId1: '',
@@ -33,6 +41,22 @@ class GeneralInfo extends InputEvent {
     };
   }
 
+  componentDidMount() {
+    this.props.getLocations();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.locations !== nextProps.locations && this.props.storeId !== '') {
+      const { locations } = nextProps;
+      const location = _.find(locations, data => this.props.storeId === data.storeId);
+      this.setState({
+        name: location.storeInfo.name,
+        storeId: location.storeId,
+        region: location.storeInfo.region,
+      });
+    }
+  }
+
   upload = () => {
   }
 
@@ -42,7 +66,7 @@ class GeneralInfo extends InputEvent {
       storeId,
       city,
       state,
-      reigon,
+      region,
       type,
       fileName,
       floorId1,
@@ -67,7 +91,7 @@ class GeneralInfo extends InputEvent {
                     {this.subrender('cpID', 'CPID', cpID)}
                     {this.subrender('city', 'City', city)}
                     {this.subrender('state', 'State', state)}
-                    {this.subrender('reigon', 'Reigon', reigon)}
+                    {this.subrender('region', 'Reigon', region)}
                     {this.subrender('type', 'Type', type)}
                     {this.subrender('subtype', 'Subtype', subtype)}
                   </FormGroup>
@@ -106,8 +130,7 @@ class GeneralInfo extends InputEvent {
                         <Checkbox
                           checked={autoUpdate}
                           onChange={e => this.handleCheckChange(e, 'autoUpdate')}
-                          value="autoUpdate" />
-                      }
+                          value="autoUpdate" />}
                     />
                   </FormGroup>
                 </div>
@@ -142,4 +165,23 @@ class GeneralInfo extends InputEvent {
   }
 }
 
-export default GeneralInfo;
+const mapStateToProps = state => ({
+	locations: locationsSelector(state),
+});
+
+const mapDispatchToProps = dispatch => ({
+	getLocations: () => dispatch(getLocations()),
+});
+
+GeneralInfo.propTypes = {
+  locations: PropTypes.array,
+  storeId: PropTypes.string,
+  getLocations: PropTypes.func.isRequired,
+};
+
+GeneralInfo.defaultProps = {
+  locations: [],
+  storeId: '',
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(GeneralInfo);
