@@ -22,7 +22,9 @@ code {
 
 .sub-container {
   overflow: hidden;
-  padding: 2.25rem;
+  padding-top: 1.5rem;
+  padding-right: 1.5rem;
+  padding-bottom: 1rem;
 }
 
 .container-label {
@@ -50,8 +52,104 @@ code {
   float: right;
 }
 
-.margin-zero.item-box { margin: 0; }
+.mt-block {
+  margin-top: 2rem;
+}
+
+.default-text-color {
+  color: rgba(0, 0, 0, 0.54)
+}
 
 .margin-top-zero.item-box { margin-top: 0; }
 
 .margin-top-twelve.item-box { margin-top: 12px; }
+
+.buttons-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.left-border-dark-blue,
+.left-border-dark-green {
+  padding-left: 19px !important;
+
+  &.single {
+    padding-left: 11px !important;
+  }
+}
+
+.left-border-dark-purple {
+  border-left: 5px solid $dark-purple;
+}
+
+.left-border-dark-blue {
+  border-left: 5px solid $dark-blue;
+}
+
+.left-border-dark-green {
+  border-left: 5px solid $dark-green;
+}
+
+.left-border-orange {
+  border-left: 5px solid $orange;
+}
+
+.label-products-table {
+  font-size: 1.25rem;
+
+  &.select-text {
+    margin-bottom: 20px;
+  }
+}
+
+
+.btn-icon-text {
+  &.att-red {
+    color: #fff;
+    background-color: $red;
+
+    &:hover {
+      background-color: $red-hover;
+    }
+  }
+
+  &.att-blue {
+    color: #fff;
+    background-color: $blue;
+
+    &:hover {
+      background-color: $blue-hover;
+    }
+  }
+
+  &.att-orange {
+    color: #fff;
+    background-color: $orange;
+
+    &:hover {
+      background-color: $orange-hover;
+    }
+  }
+
+  &.att-green {
+    color: #fff;
+    background-color: $green;
+
+    &:hover {
+      background-color: $green-hover;
+    }
+  }
+
+  &.margin-top {
+    margin-top: 10px;
+  }
+
+  &.margin-left {
+    margin-left: 10px;
+  }
+
+  &.margin-top-30 {
+    margin-top: 1.875rem;
+  }
+}

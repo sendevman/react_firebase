@@ -140,13 +140,14 @@ class SideBar extends Component {
                     <ListItemText disableTypography className={[classes.itemText, classes.nestedText].join(' ')} inset primary="Add" />
                   </ListItem>
                 </Link>
-
-                <ListItem button className={classes.itemNested} onClick={onShowDrawer(false)}>
-                  <ListItemIcon className={classes.iconGrey}>
-                    <SettingsIcon />
-                  </ListItemIcon>
-                  <ListItemText disableTypography className={[classes.itemText, classes.nestedText].join(' ')} inset primary="Manage" />
-                </ListItem>
+                <Link to="/locations/manage" className={classes.actionLink}>
+                  <ListItem button className={classes.itemNested} onClick={onShowDrawer(false)}>
+                    <ListItemIcon className={classes.iconGrey}>
+                      <SettingsIcon />
+                    </ListItemIcon>
+                    <ListItemText disableTypography className={[classes.itemText, classes.nestedText].join(' ')} inset primary="Manage" />
+                  </ListItem>
+                </Link>
               </List>
             </Collapse>
 
