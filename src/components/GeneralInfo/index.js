@@ -11,7 +11,6 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Checkbox from '@material-ui/core/Checkbox';
-import Tooltip from '@material-ui/core/Tooltip';
 import SaveIcon from '@material-ui/icons/Save';
 import RefreshIcon from '@material-ui/icons/Refresh';
 
@@ -57,8 +56,9 @@ class GeneralInfo extends InputEvent {
     }
   }
 
-  upload = () => {
-  }
+  upload = () => {}
+  refresh = () => {}
+  save = () => {}
 
   render() {
     const {
@@ -85,15 +85,15 @@ class GeneralInfo extends InputEvent {
                 <div className="sub-container">
                   <FormLabel component="legend">General Info</FormLabel>
                   <FormGroup>
-                    {this.subrender('name', 'Name', name)}
-                    {this.subrender('storeId', 'Store ID', storeId)}
-                    {this.subrender('dbID', 'DBID', dbID)}
-                    {this.subrender('cpID', 'CPID', cpID)}
-                    {this.subrender('city', 'City', city)}
-                    {this.subrender('state', 'State', state)}
-                    {this.subrender('region', 'Reigon', region)}
-                    {this.subrender('type', 'Type', type)}
-                    {this.subrender('subtype', 'Subtype', subtype)}
+                    {this.renderText('name', 'Name', name)}
+                    {this.renderText('storeId', 'Store ID', storeId)}
+                    {this.renderText('dbID', 'DBID', dbID)}
+                    {this.renderText('cpID', 'CPID', cpID)}
+                    {this.renderText('city', 'City', city)}
+                    {this.renderText('state', 'State', state)}
+                    {this.renderText('region', 'Reigon', region)}
+                    {this.renderText('type', 'Type', type)}
+                    {this.renderText('subtype', 'Subtype', subtype)}
                   </FormGroup>
                 </div>
               </Grid>
@@ -101,15 +101,15 @@ class GeneralInfo extends InputEvent {
                 <div className="sub-container">
                   <FormLabel component="legend">Walkbase</FormLabel>
                   <FormGroup>
-                    {this.subrender('floorId1', 'Floor ID1', floorId1)}
-                    {this.subrender('floorId2', 'Floor ID2', floorId2)}
+                    {this.renderText('floorId1', 'Floor ID1', floorId1)}
+                    {this.renderText('floorId2', 'Floor ID2', floorId2)}
                   </FormGroup>
                 </div>
                 <div className="sub-container">
                   <FormLabel component="legend" className="mt-block">Floorplan Upload</FormLabel>
                   <FormGroup>
                     <div className="d-flex">
-                      {this.subrender('fileName', 'File Name.png', fileName)}
+                      {this.renderText('fileName', 'File Name.png', fileName)}
                       <Button
                         className="btn-icon-text att-green margin-top-30 margin-left"
                         variant="contained"
@@ -135,26 +135,8 @@ class GeneralInfo extends InputEvent {
                   </FormGroup>
                 </div>
                 <div className="buttons-box mt-block">
-                  <Tooltip title="Refresh Ipog Data" placement="top">
-                    <Button
-                      className="btn-icon-text att-orange margin-top margin-left"
-                      variant="contained"
-                      size="small"
-                      aria-label="Refresh"
-                      onClick={this.refresh}>
-                      <RefreshIcon />
-                    </Button>
-                  </Tooltip>
-                  <Tooltip title="Save" placement="top">
-                    <Button
-                      className="btn-icon-text att-orange margin-top margin-left"
-                      variant="contained"
-                      size="small"
-                      aria-label="Save"
-                      onClick={this.save}>
-                      <SaveIcon />
-                    </Button>
-                  </Tooltip>
+                  {this.renderButton('Refresh Ipog Data', 'blue', this.refresh, <RefreshIcon />)}
+                  {this.renderButton('Save', 'orange', this.save, <SaveIcon />)}
                 </div>
               </Grid>
             </Grid>
