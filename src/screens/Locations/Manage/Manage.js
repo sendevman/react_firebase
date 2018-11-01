@@ -54,10 +54,10 @@ class LocationsManTab extends Component {
             textColor="primary"
             fullWidth
           >
-            <Tab label="Info" />
-            <Tab label="Users" />
-            <Tab label="Zones" />
-            <Tab label="Products" />
+            <Tab className="info" label="Info" />
+            <Tab className="users" label="Users" />
+            <Tab className="zones" label="Zones" />
+            <Tab className="products" label="Products" />
           </Tabs>
         </AppBar>
         {value === 0 &&
