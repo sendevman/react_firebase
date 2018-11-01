@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 import _ from 'lodash';
 
@@ -31,37 +31,38 @@ class LocationsManUsers extends Component {
 		if (this.props.users !== nextProps.users) {
 			const selected = {};
 			_.each(nextProps.users, user => {
-			selected[user.email] = false;
+				selected[user.email] = false;
 			});
 			this.setState({ selected });
 		}
 	}
+
 	saveUsers = () => {}
+
+	headerRedner = (header) => (
+		<div>
+			<span>{header}</span>
+		</div>
+	);
+
+	handleSelect = (email) => {
+		const selected = JSON.parse(JSON.stringify(this.state.selected));
+		selected[email] = !selected[email];
+		this.setState({ selected });
+	}
 
 	render() {
 		const accessUsersColumn = [
 			{
-				Header: () => (
-					<div>
-						<span>email</span>
-					</div>
-				),
+				Header: () => this.headerRedner('Email'),
 				accessor: 'email',
 			},
 			{
-				Header: () => (
-					<div>
-						<span>name</span>
-					</div>
-				),
+				Header: () => this.headerRedner('Name'),
 				accessor: 'name',
 			},
 			{
-				Header: () => (
-					<div>
-						<span>user type</span>
-					</div>
-				),
+				Header: () => this.headerRedner('User Type'),
 				accessor: 'name',
 			},
 		];
@@ -121,12 +122,12 @@ const mapDispatchToProps = dispatch => ({
 	getUsers: () => dispatch(getUsers()),
 });
 
-LocationsManUsers.propTypes = {
-	storeId: PropTypes.string,
-};
+// LocationsManUsers.propTypes = {
+// 	storeId: PropTypes.string,
+// };
 
-LocationsManUsers.defaultProps = {
-	storeId: '',
-};
+// LocationsManUsers.defaultProps = {
+// 	storeId: '',
+// };
 
 export default connect(mapStateToProps, mapDispatchToProps)(LocationsManUsers);
