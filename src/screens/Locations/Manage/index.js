@@ -101,8 +101,9 @@ class Locations extends InputEvent {
                 columns={columns}
                 tables={tables}
                 label="Select a location to manage"
-                btnTooltip="Add New Location"
-                addBtn={this.addLocations} />
+                addbtnTooltip="Add New Location"
+                savebtn={false}
+                handleAdd={this.addLocations} />
             </Grid>
           </CardContent>
         </Card>

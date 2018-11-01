@@ -3,9 +3,8 @@ import PropTypes from 'prop-types';
 import FormLabel from '@material-ui/core/FormLabel';
 import FormGroup from '@material-ui/core/FormGroup';
 import Grid from '@material-ui/core/Grid';
-import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
-import Tooltip from '@material-ui/core/Tooltip';
+import SaveIcon from '@material-ui/icons/Save';
 
 import InputEvent from 'components/InputEvent';
 import Table from 'components/Table';
@@ -26,25 +25,26 @@ class Managers extends InputEvent {
   }
 
   render() {
-    const { columns, label, tables, btnTooltip } = this.props;
+    const {
+      columns,
+      label,
+      tables,
+      addbtnTooltip,
+      savebtnTooltip,
+      addbtn,
+      savebtn,
+    } = this.props;
     return (
       <Grid container>
         <Grid item xs={12}>
           <FormLabel component="legend" className="mt-block">{label}</FormLabel>
           <FormGroup>
-            {this.subrender('search', 'Search', this.state.search)}
+            {this.renderText('search', 'Search', this.state.search)}
             <Table columns={columns} tables={tables} />
           </FormGroup>
           <div className="buttons-box mt-block">
-            <Tooltip title={btnTooltip} placement="top">
-              <Button
-                className="btn-icon-text att-green margin-top margin-left"
-                variant="fab"
-                aria-label="Add"
-                onClick={this.props.addBtn}>
-                <AddIcon />
-              </Button>
-            </Tooltip>
+            {addbtn && this.renderButton(addbtnTooltip, 'green', this.props.handleAdd, <AddIcon />, 'fab')}
+            {savebtn && this.renderButton(savebtnTooltip, 'red', this.props.handleSave, <SaveIcon />)}
           </div>
         </Grid>
       </Grid>
@@ -55,14 +55,23 @@ class Managers extends InputEvent {
 Managers.propTypes = {
   tables: PropTypes.array,
   columns: PropTypes.array,
-  btnTooltip: PropTypes.string,
-  addBtn: PropTypes.func.isRequired,
+  addbtnTooltip: PropTypes.string,
+  savebtnTooltip: PropTypes.string,
+  addbtn: PropTypes.bool,
+  savebtn: PropTypes.bool,
+  handleAdd: PropTypes.func,
+  handleSave: PropTypes.func,
 };
 
 Managers.defaultProps = {
   tables: [],
   columns: [],
-  btnTooltip: '',
+  addbtnTooltip: '',
+  savebtnTooltip: '',
+  addbtn: true,
+  savebtn: true,
+  handleAdd: () => {},
+  handleSave: () => {},
 };
 
 export default Managers;
