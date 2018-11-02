@@ -19,12 +19,25 @@ class InputEvent extends Component {
     this.setState({ ...stateCopy });
   };
 
-  renderText = (name, label) => (
+  renderHeader = (header) => (
+    <div>
+      <span>{header}</span>
+    </div>
+  );
+
+  renderCell = (cell, handle) => (
+    <div onClick={handle}>
+      <span>{cell}</span>
+    </div>
+  );
+
+  renderText = (name, label, placeholder = '') => (
     <TextField
       className="Text-Field"
       type="text"
       name={name}
       label={label}
+      placeholder={placeholder}
       value={this.state[name]}
       onChange={e => this.handleInputChange(e, name)}
       required
