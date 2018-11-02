@@ -35,18 +35,16 @@ class Managers extends InputEvent {
       savebtn,
     } = this.props;
     return (
-      <Grid container>
-        <Grid item xs={12}>
-          <FormLabel component="legend" className="mt-block">{label}</FormLabel>
-          <FormGroup>
-            {this.renderText('search', 'Search', this.state.search)}
-            <Table columns={columns} tables={tables} />
-          </FormGroup>
-          <div className="buttons-box mt-block">
-            {addbtn && this.renderButton(addbtnTooltip, 'green', this.props.handleAdd, <AddIcon />, 'fab')}
-            {savebtn && this.renderButton(savebtnTooltip, 'red', this.props.handleSave, <SaveIcon />)}
-          </div>
-        </Grid>
+      <Grid item xs={12}>
+        <FormLabel component="legend" className="mt-block">{label}</FormLabel>
+        <FormGroup>
+          {this.renderText('search', 'Search', this.state.search)}
+          <Table columns={columns} tables={tables} />
+        </FormGroup>
+        <div className="buttons-box mt-block">
+          {addbtn && this.renderButton(addbtnTooltip, 'green', this.props.handleAdd, <AddIcon />, 'fab')}
+          {savebtn && this.renderButton(savebtnTooltip, 'red', this.props.handleSave, <SaveIcon />)}
+        </div>
       </Grid>
     );
   }

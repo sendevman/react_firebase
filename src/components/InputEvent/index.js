@@ -2,6 +2,9 @@ import { Component } from 'react';
 import TextField from '@material-ui/core/TextField';
 import Tooltip from '@material-ui/core/Tooltip';
 import Button from '@material-ui/core/Button';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import Grid from '@material-ui/core/Grid';
 
 class InputEvent extends Component {
   handleInputChange = (e, type) => {
@@ -40,6 +43,16 @@ class InputEvent extends Component {
       </Button>
     </Tooltip>
   );
+
+  renderGrid = (color, child, xSize = 12, sSize = 12) => (
+		<Grid item xs={xSize} sm={sSize}>
+			<Card>
+				<CardContent className={`left-border-${color}`}>
+					{child}
+				</CardContent>
+			</Card>
+		</Grid>
+	);
 }
 
 export default InputEvent;
