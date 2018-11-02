@@ -1,11 +1,12 @@
-import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import Grid from '@material-ui/core/Grid';
+
 import GeneralInfo from 'components/GeneralInfo';
 import HomeView from 'components/HomeView';
+import InputEvent from 'components/InputEvent';
 
-class LocationsManInfo extends Component {
+class LocationsManInfo extends InputEvent {
 	render() {
 		const globalBackComponent = {
 			title: false,
@@ -26,13 +27,15 @@ class LocationsManInfo extends Component {
 		return (
 			<div id="locations-man-info" className="Container-box">
 				<Grid container spacing={24}>
-					<GeneralInfo storeId={this.props.storeId} />
-					<HomeView
-						title="Home Open View"
-						activeComponent={homeViewComponent} />
-					<HomeView
-						title="Global Background"
-						activeComponent={globalBackComponent} />
+					{this.renderGrid('orange', <GeneralInfo storeId={this.props.storeId} />)}
+					{this.renderGrid('orange',
+						<HomeView
+							title="Home Open View"
+							activeComponent={homeViewComponent} />)}
+					{this.renderGrid('orange',
+						<HomeView
+							title="Global Background"
+							activeComponent={globalBackComponent} />)}
 				</Grid>
 			</div>
 		);

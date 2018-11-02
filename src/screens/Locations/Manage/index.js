@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-import Grid from '@material-ui/core/Grid';
 
 import InputEvent from 'components/InputEvent';
 import SearchList from 'components/SearchList';
@@ -96,15 +95,13 @@ class Locations extends InputEvent {
       <div id="locations-manage" className="Container-box">
         <Card>
           <CardContent className="left-border-orange">
-            <Grid container>
-              <SearchList
-                columns={columns}
-                tables={tables}
-                label="Select a location to manage"
-                addbtnTooltip="Add New Location"
-                savebtn={false}
-                handleAdd={this.addLocations} />
-            </Grid>
+            <SearchList
+              columns={columns}
+              tables={tables}
+              label="Select a location to manage"
+              addbtnTooltip="Add New Location"
+              savebtn={false}
+              handleAdd={this.addLocations} />
           </CardContent>
         </Card>
       </div>
