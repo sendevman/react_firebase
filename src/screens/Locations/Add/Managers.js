@@ -98,22 +98,20 @@ class Managers extends Component {
       <Grid item xs={12}>
         <Card>
           <CardContent className="left-border-dark-purple">
-            <Grid container>
-              <SearchList
-                columns={allUsersColumn}
-                tables={this.props.users}
-                label="Add Managers / Users to location"
-                addbtnTooltip="Add Users"
-                savebtn={false}
-                handleAdd={this.addUsers} />
-              <List
-                label="Managers / Users added to location"
-                tables={selectedUsers}
-                columns={selectedUsersColumn}
-                addbtn={false}
-                handleDelete={this.deleteUsers}
-              />
-            </Grid>
+            <SearchList
+              columns={allUsersColumn}
+              tables={this.props.users}
+              label="Add Managers / Users to location"
+              addbtnTooltip="Add Users"
+              savebtn={false}
+              handleAdd={this.addUsers} />
+            <List
+              label="Managers / Users added to location"
+              tables={selectedUsers}
+              columns={selectedUsersColumn}
+              addbtn={false}
+              handleDelete={this.deleteUsers}
+            />
           </CardContent>
         </Card>
       </Grid>
