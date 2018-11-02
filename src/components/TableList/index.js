@@ -3,13 +3,15 @@ import PropTypes from 'prop-types';
 import FormLabel from '@material-ui/core/FormLabel';
 import FormGroup from '@material-ui/core/FormGroup';
 import Grid from '@material-ui/core/Grid';
+
 import AddIcon from '@material-ui/icons/Add';
 import SaveIcon from '@material-ui/icons/Save';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 import InputEvent from 'components/InputEvent';
 import Table from 'components/Table';
 
-class Managers extends InputEvent {
+class TableList extends InputEvent {
   constructor(props) {
     super(props);
 
@@ -31,45 +33,57 @@ class Managers extends InputEvent {
       tables,
       addbtnTooltip,
       savebtnTooltip,
+      deletebtnTooltip,
       addbtn,
       savebtn,
+      deletebtn,
+      searchEnable,
     } = this.props;
     return (
       <Grid item xs={12}>
         <FormLabel component="legend" className="mt-block">{label}</FormLabel>
         <FormGroup>
-          {this.renderText('search', 'Search', this.state.search)}
+          {searchEnable && this.renderText('search', 'Search', this.state.search)}
           <Table columns={columns} tables={tables} />
         </FormGroup>
         <div className="buttons-box mt-block">
           {addbtn && this.renderButton(addbtnTooltip, 'green', this.props.handleAdd, <AddIcon />, 'fab')}
           {savebtn && this.renderButton(savebtnTooltip, 'red', this.props.handleSave, <SaveIcon />)}
+          {deletebtn && this.renderButton(deletebtnTooltip, 'blue', this.props.handleDelete, <DeleteIcon />)}
         </div>
       </Grid>
     );
   }
 }
 
-Managers.propTypes = {
+TableList.propTypes = {
   tables: PropTypes.array,
   columns: PropTypes.array,
   addbtnTooltip: PropTypes.string,
   savebtnTooltip: PropTypes.string,
+  deletebtnTooltip: PropTypes.string,
   addbtn: PropTypes.bool,
   savebtn: PropTypes.bool,
+  deletebtn: PropTypes.bool,
+  searchEnable: PropTypes.bool,
   handleAdd: PropTypes.func,
   handleSave: PropTypes.func,
+  handleDelete: PropTypes.func,
 };
 
-Managers.defaultProps = {
+TableList.defaultProps = {
   tables: [],
   columns: [],
   addbtnTooltip: '',
   savebtnTooltip: '',
-  addbtn: true,
-  savebtn: true,
+  deletebtnTooltip: '',
+  addbtn: false,
+  savebtn: false,
+  deletebtn: false,
+  searchEnable: false,
   handleAdd: () => {},
   handleSave: () => {},
+  handleDelete: () => {},
 };
 
-export default Managers;
+export default TableList;

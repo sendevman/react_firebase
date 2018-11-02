@@ -5,7 +5,7 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 
 import InputEvent from 'components/InputEvent';
-import SearchList from 'components/SearchList';
+import TableList from 'components/TableList';
 
 import { getLocations } from 'redux/firebase/actions';
 import { locationsSelector } from 'redux/firebase/selectors';
@@ -45,49 +45,37 @@ class Locations extends InputEvent {
     this.props.history.push(`/locations/manage/${row.storeId}/info`);
   }
 
-  headerRedner = (header) => (
-    <div>
-      <span>{header}</span>
-    </div>
-  );
-
-  cellRender = (cell, title) => (
-    <div onClick={() => this.handleOnClick(cell)}>
-      <span>{title}</span>
-    </div>
-  );
-
   render() {
     const { tables } = this.state;
     const columns = [
       {
-        Header: () => this.headerRedner('Name'),
-        Cell: ({ row }) => this.cellRender(row, row.name),
+        Header: () => this.renderHeader('Name'),
+        Cell: ({ row }) => this.renderCell(row.name, () => this.handleOnClick(row)),
         accessor: 'name',
       },
       {
-        Header: () => this.headerRedner('Store ID'),
-        Cell: ({ row }) => this.cellRender(row, row.storeId),
+        Header: () => this.renderHeader('Store ID'),
+        Cell: ({ row }) => this.renderCell(row.storeId, () => this.handleOnClick(row)),
         accessor: 'storeId',
       },
       {
-        Header: () => this.headerRedner('City'),
-        Cell: ({ row }) => this.cellRender(row, row.city),
+        Header: () => this.renderHeader('City'),
+        Cell: ({ row }) => this.renderCell(row.city, () => this.handleOnClick(row)),
         accessor: 'city',
       },
       {
-        Header: () => this.headerRedner('State'),
-        Cell: ({ row }) => this.cellRender(row, row.state),
+        Header: () => this.renderHeader('State'),
+        Cell: ({ row }) => this.renderCell(row.state, () => this.handleOnClick(row)),
         accessor: 'state',
       },
       {
-        Header: () => this.headerRedner('Reigon'),
-        Cell: ({ row }) => this.cellRender(row, row.region),
+        Header: () => this.renderHeader('Reigon'),
+        Cell: ({ row }) => this.renderCell(row.region, () => this.handleOnClick(row)),
         accessor: 'region',
       },
       {
-        Header: () => this.headerRedner('Type'),
-        Cell: ({ row }) => this.cellRender(row, row.type),
+        Header: () => this.renderHeader('Type'),
+        Cell: ({ row }) => this.renderCell(row.type, () => this.handleOnClick(row)),
         accessor: 'type',
       },
     ];
@@ -95,12 +83,13 @@ class Locations extends InputEvent {
       <div id="locations-manage" className="Container-box">
         <Card>
           <CardContent className="left-border-orange">
-            <SearchList
+            <TableList
               columns={columns}
               tables={tables}
               label="Select a location to manage"
               addbtnTooltip="Add New Location"
-              savebtn={false}
+              addbtn
+              searchEnable
               handleAdd={this.addLocations} />
           </CardContent>
         </Card>
