@@ -58,7 +58,6 @@ class Routes extends Component {
               <AuthRoute exact path="/locations/add" component={LocationsAdd} />
               <AuthRoute exact path="/locations/manage" component={LocationsManage} />
               <AuthRoute exact path="/locations/manage/:store_id/:tab" component={LocationsManTab} />
-              {/* <AuthRoute exact path="/locations/manage/:store_id/users" component={LocationsManTab} /> */}
               <AuthRoute exact path="/products/new" component={ProductsAdd} />
               <AuthRoute exact path="/locations/:store_id/products" component={ProductsMain} />
             </Switch>

@@ -16,7 +16,8 @@ class LocationsAdd extends InputEvent {
           <CardContent className="left-border-dark-green">
             <div className="container-label">Add Location</div>
             <Grid container spacing={24}>
-              <GeneralInfo />
+              {this.renderGrid('orange',
+                <GeneralInfo />)}
               <Managers />
               <Grid item xs={12}>
                 <div className="buttons-box mt-block">

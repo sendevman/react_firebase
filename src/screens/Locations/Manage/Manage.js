@@ -7,20 +7,21 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 
 import Info from './Info';
-import User from './User';
+import Users from './Users';
+import Zones from './Zones';
 
 class LocationsManTab extends Component {
   constructor(props) {
     super(props);
     const { match } = this.props;
-    let value = '';
+    let value = 0;
     if (match.params.tab === 'info') {
       value = 0;
     } else if (match.params.tab === 'users') {
       value = 1;
     } else if (match.params.tab === 'zones') {
       value = 2;
-    } else {
+    } else if (match.params.tab === 'products') {
       value = 3;
     }
     this.state = {
@@ -36,8 +37,8 @@ class LocationsManTab extends Component {
     } else if (value === 1) {
       history.push(`/locations/manage/${match.params.store_id}/users`);
     } else if (value === 2) {
-      history.push(`/locations/manage/${match.params.store_id}/zone`);
-    } else {
+      history.push(`/locations/manage/${match.params.store_id}/zones`);
+    } else if (value === 3) {
       history.push(`/locations/manage/${match.params.store_id}/products`);
     }
   };
@@ -66,13 +67,13 @@ class LocationsManTab extends Component {
           </Typography>}
         {value === 1 &&
           <Typography component="div" style={{ padding: 8 * 3, width: '90%' }}>
-            <User />
+            <Users />
           </Typography>}
         {value === 2 &&
-          <Typography component="div" style={{ padding: 8 * 3 }}>
-            Zones
+          <Typography component="div" style={{ padding: 8 * 3, width: '90%' }}>
+            <Zones />
           </Typography>}
-        {value === 2 &&
+        {value === 3 &&
           <Typography component="div" style={{ padding: 8 * 3 }}>
             Products
           </Typography>}
