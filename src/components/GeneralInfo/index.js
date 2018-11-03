@@ -80,15 +80,15 @@ class GeneralInfo extends InputEvent {
           <div className="sub-container">
             <FormLabel component="legend">General Info</FormLabel>
             <FormGroup>
-              {this.renderText('name', 'Name', name)}
-              {this.renderText('storeId', 'Store ID', storeId)}
-              {this.renderText('dbID', 'DBID', dbID)}
-              {this.renderText('cpID', 'CPID', cpID)}
-              {this.renderText('city', 'City', city)}
-              {this.renderText('state', 'State', state)}
-              {this.renderText('region', 'Reigon', region)}
-              {this.renderText('type', 'Type', type)}
-              {this.renderText('subtype', 'Subtype', subtype)}
+              {this.renderText('name', 'Name')}
+              {this.renderText('storeId', 'Store ID')}
+              {this.renderText('dbID', 'DBID')}
+              {this.renderText('cpID', 'CPID')}
+              {this.renderText('city', 'City')}
+              {this.renderText('state', 'State')}
+              {this.renderText('region', 'Reigon')}
+              {this.renderText('type', 'Type')}
+              {this.renderText('subtype', 'Subtype')}
             </FormGroup>
           </div>
         </Grid>
@@ -96,15 +96,15 @@ class GeneralInfo extends InputEvent {
           <div className="sub-container">
             <FormLabel component="legend">Walkbase</FormLabel>
             <FormGroup>
-              {this.renderText('floorId1', 'Floor ID1', floorId1)}
-              {this.renderText('floorId2', 'Floor ID2', floorId2)}
+              {this.renderText('floorId1', 'Floor ID1')}
+              {this.renderText('floorId2', 'Floor ID2')}
             </FormGroup>
           </div>
           <div className="sub-container">
             <FormLabel component="legend" className="mt-block">Floorplan Upload</FormLabel>
             <FormGroup>
               <div className="d-flex">
-                {this.renderText('fileName', 'File Name.png', fileName)}
+                {this.renderText('fileName', 'File Name.png')}
                 <Button
                   className="btn-icon-text att-green margin-top-30 margin-left"
                   variant="contained"
