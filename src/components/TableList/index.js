@@ -7,6 +7,7 @@ import Grid from '@material-ui/core/Grid';
 import AddIcon from '@material-ui/icons/Add';
 import SaveIcon from '@material-ui/icons/Save';
 import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
 
 import InputEvent from 'components/InputEvent';
 import Table from 'components/Table';
@@ -33,9 +34,11 @@ class TableList extends InputEvent {
       tables,
       addbtnTooltip,
       savebtnTooltip,
+      editbtnTooltip,
       deletebtnTooltip,
       addbtn,
       savebtn,
+      editbtn,
       deletebtn,
       searchEnable,
     } = this.props;
@@ -43,12 +46,13 @@ class TableList extends InputEvent {
       <Grid item xs={12}>
         <FormLabel component="legend" className="mt-block">{label}</FormLabel>
         <FormGroup>
-          {searchEnable && this.renderText('search', 'Search', this.state.search)}
+          {searchEnable && this.renderText('search', 'Search')}
           <Table columns={columns} tables={tables} />
         </FormGroup>
         <div className="buttons-box mt-block">
           {addbtn && this.renderButton(addbtnTooltip, 'green', this.props.handleAdd, <AddIcon />, 'fab')}
           {savebtn && this.renderButton(savebtnTooltip, 'red', this.props.handleSave, <SaveIcon />)}
+          {editbtn && this.renderButton(editbtnTooltip, 'red', this.props.handleEdit, <EditIcon />)}
           {deletebtn && this.renderButton(deletebtnTooltip, 'blue', this.props.handleDelete, <DeleteIcon />)}
         </div>
       </Grid>
@@ -61,13 +65,16 @@ TableList.propTypes = {
   columns: PropTypes.array,
   addbtnTooltip: PropTypes.string,
   savebtnTooltip: PropTypes.string,
+  editbtnTooltip: PropTypes.string,
   deletebtnTooltip: PropTypes.string,
   addbtn: PropTypes.bool,
   savebtn: PropTypes.bool,
+  editbtn: PropTypes.bool,
   deletebtn: PropTypes.bool,
   searchEnable: PropTypes.bool,
   handleAdd: PropTypes.func,
   handleSave: PropTypes.func,
+  handleEdit: PropTypes.func,
   handleDelete: PropTypes.func,
 };
 
@@ -76,13 +83,16 @@ TableList.defaultProps = {
   columns: [],
   addbtnTooltip: '',
   savebtnTooltip: '',
+  editbtnTooltip: '',
   deletebtnTooltip: '',
   addbtn: false,
   savebtn: false,
+  editbtn: false,
   deletebtn: false,
   searchEnable: false,
   handleAdd: () => {},
   handleSave: () => {},
+  handleEdit: () => {},
   handleDelete: () => {},
 };
 

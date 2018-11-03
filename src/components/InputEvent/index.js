@@ -31,9 +31,9 @@ class InputEvent extends Component {
     </div>
   );
 
-  renderText = (name, label, placeholder = '') => (
+  renderText = (name, label, className = 'Text-Field', placeholder = '') => (
     <TextField
-      className="Text-Field"
+      className={className}
       type="text"
       name={name}
       label={label}
@@ -45,10 +45,11 @@ class InputEvent extends Component {
     />
   );
 
-  renderButton = (title, color, handleOnClick, child, shape = 'contained') => (
+  renderButton = (title, color, handleOnClick, child, shape = 'contained', size = 'medium') => (
     <Tooltip title={title} placement="top">
       <Button
         variant={shape}
+        size={size}
         aria-label={title}
         className={`btn-icon-text att-${color} margin-top margin-left`}
         onClick={handleOnClick}>
