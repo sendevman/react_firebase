@@ -44,7 +44,7 @@ class TableList extends InputEvent {
     } = this.props;
     return (
       <Grid item xs={12}>
-        <FormLabel component="legend" className="mt-block">{label}</FormLabel>
+        <FormLabel component="legend" className="mt-block label-products-table select-text">{label}</FormLabel>
         <FormGroup>
           {searchEnable && this.renderText('search', 'Search')}
           <Table columns={columns} tables={tables} />
