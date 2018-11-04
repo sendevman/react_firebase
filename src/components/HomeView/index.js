@@ -26,6 +26,8 @@ class HomeView extends InputEvent {
 			subtitle: '',
 			title: '',
 			backTitle: '',
+			file: '',
+			imgSrc: '',
 		};
 	}
 
@@ -33,12 +35,20 @@ class HomeView extends InputEvent {
 		const target = event.target;
 		const file = target.files[0];
 
-		if (file) this.setState({ image: file.name });
-		else this.setState({ image: '' });
+		if (file) {
+			this.setState({ image: file.name });
+			const reader = new FileReader();
+			reader.onload = () => {
+				this.setState({ imgSrc: reader.result, file });
+			};
+			reader.readAsDataURL(file);
+		} else {
+			this.setState({ image: '' });
+		}
 	}
 
 	render() {
-		const { image } = this.state;
+		const { image, imgSrc } = this.state;
 		const { activeComponent } = this.props;
 		return (
 			<Grid item xs={12}>
@@ -48,7 +58,7 @@ class HomeView extends InputEvent {
 					<Grid item xs={12} sm={6}>
 						<CardMedia
 							className="homeview-card-media"
-							image={imgDefault}
+							image={imgSrc || imgDefault}
 							title="Contemplative Reptile"
 						/>
 					</Grid>
@@ -74,16 +84,8 @@ class HomeView extends InputEvent {
 										Upload
 									</Button>
 								</label>
-
 								<FormControl className="select-zone-box">
-									<TextField
-										className="upload-text-field"
-										type="text"
-										placeholder="Card Image"
-										value={image}
-										required
-										margin="normal"
-									/>
+									{this.renderText('image', '', 'upload-text-field', 'Card Image')}
 								</FormControl>
 							</div>}
 						{activeComponent.backTitle &&
