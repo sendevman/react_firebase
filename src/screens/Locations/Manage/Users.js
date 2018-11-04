@@ -5,8 +5,7 @@ import _ from 'lodash';
 
 import Grid from '@material-ui/core/Grid';
 
-import List from 'components/List';
-import SearchList from 'components/SearchList';
+import TableList from 'components/TableList';
 import InputEvent from 'components/InputEvent';
 
 import { getUsers } from 'redux/firebase/actions';
@@ -37,12 +36,6 @@ class LocationsManUsers extends InputEvent {
 
 	saveUsers = () => {}
 
-	headerRedner = (header) => (
-		<div>
-			<span>{header}</span>
-		</div>
-	);
-
 	handleSelect = (email) => {
 		const selected = JSON.parse(JSON.stringify(this.state.selected));
 		selected[email] = !selected[email];
@@ -52,15 +45,15 @@ class LocationsManUsers extends InputEvent {
 	render() {
 		const accessUsersColumn = [
 			{
-				Header: () => this.headerRedner('Email'),
+				Header: () => this.renderHeader('Email'),
 				accessor: 'email',
 			},
 			{
-				Header: () => this.headerRedner('Name'),
+				Header: () => this.renderHeader('Name'),
 				accessor: 'name',
 			},
 			{
-				Header: () => this.headerRedner('User Type'),
+				Header: () => this.renderHeader('User Type'),
 				accessor: 'name',
 			},
 		];
@@ -81,20 +74,24 @@ class LocationsManUsers extends InputEvent {
 			<div id="locations-man-info" className="Container-box">
 				<Grid container spacing={24}>
 					{this.renderGrid('dark-purple',
-						<List
+						<TableList
 							label="Users Access"
 							tables={this.props.users}
 							columns={accessUsersColumn}
-							deletebtn={false}
+							deletebtnTooltip="Delete User"
+							addbtnTooltip="Add User"
+							deletebtn
+							addbtn
 							handleDelete={this.deleteUsers}
 					/>)}
 					{this.renderGrid('dark-purple',
-						<SearchList
+						<TableList
 							columns={locationUsersColumn}
 							tables={this.props.users}
 							label="Add Managers / Users to location"
 							savebtnTooltip="Save"
-							addbtn={false}
+							savebtn
+							searchEnable
 							handleSave={this.saveUsers} />)}
 				</Grid>
 			</div>
