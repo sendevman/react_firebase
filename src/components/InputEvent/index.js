@@ -19,12 +19,25 @@ class InputEvent extends Component {
     this.setState({ ...stateCopy });
   };
 
-  renderText = (name, label) => (
+  renderHeader = (header) => (
+    <div>
+      <span>{header}</span>
+    </div>
+  );
+
+  renderCell = (cell, handle) => (
+    <div onClick={handle}>
+      <span>{cell}</span>
+    </div>
+  );
+
+  renderText = (name, label, className = 'Text-Field', placeholder = '') => (
     <TextField
-      className="Text-Field"
+      className={className}
       type="text"
       name={name}
       label={label}
+      placeholder={placeholder}
       value={this.state[name]}
       onChange={e => this.handleInputChange(e, name)}
       required
@@ -32,10 +45,11 @@ class InputEvent extends Component {
     />
   );
 
-  renderButton = (title, color, handleOnClick, child, shape = 'contained') => (
+  renderButton = (title, color, handleOnClick, child, shape = 'contained', size = 'medium') => (
     <Tooltip title={title} placement="top">
       <Button
         variant={shape}
+        size={size}
         aria-label={title}
         className={`btn-icon-text att-${color} margin-top margin-left`}
         onClick={handleOnClick}>

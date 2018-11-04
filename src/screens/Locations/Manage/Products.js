@@ -8,7 +8,7 @@ import InputEvent from 'components/InputEvent';
 import TableList from 'components/TableList';
 import SelectZone from 'components/SelectZone';
 
-class ProductsMain extends InputEvent {
+class Products extends InputEvent {
 	render() {
 		const currentProductsColumn = [
 			{
@@ -69,14 +69,14 @@ class ProductsMain extends InputEvent {
 	}
 }
 
-ProductsMain.propTypes = {
+Products.propTypes = {
 	currentProducts: PropTypes.array,
 	categoryProducts: PropTypes.array,
 };
 
-ProductsMain.defaultProps = {
+Products.defaultProps = {
 	currentProducts: [],
 	categoryProducts: [],
 };
 
-export default ProductsMain;
+export default Products;

@@ -8,8 +8,7 @@ import Grid from '@material-ui/core/Grid';
 
 import _ from 'lodash';
 
-import SearchList from 'components/SearchList';
-import List from 'components/List';
+import TableList from 'components/TableList';
 
 import { getUsers } from 'redux/firebase/actions';
 import { usersSelector } from 'redux/firebase/selectors';
@@ -98,18 +97,20 @@ class Managers extends Component {
       <Grid item xs={12}>
         <Card>
           <CardContent className="left-border-dark-purple">
-            <SearchList
+            <TableList
               columns={allUsersColumn}
               tables={this.props.users}
               label="Add Managers / Users to location"
               addbtnTooltip="Add Users"
-              savebtn={false}
+              addbtn
+              searchEnable
               handleAdd={this.addUsers} />
-            <List
+            <TableList
               label="Managers / Users added to location"
               tables={selectedUsers}
               columns={selectedUsersColumn}
-              addbtn={false}
+              deletebtnTooltip="Delete"
+              deletebtn
               handleDelete={this.deleteUsers}
             />
           </CardContent>

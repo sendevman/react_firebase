@@ -9,6 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import Info from './Info';
 import Users from './Users';
 import Zones from './Zones';
+import Products from './Products';
 
 class LocationsManTab extends Component {
   constructor(props) {
@@ -55,10 +56,10 @@ class LocationsManTab extends Component {
             textColor="primary"
             fullWidth
           >
-            <Tab className="info" label="Info" />
-            <Tab className="users" label="Users" />
-            <Tab className="zones" label="Zones" />
-            <Tab className="products" label="Products" />
+            <Tab className={value === 0 ? 'info' : ''} label="Info" />
+            <Tab className={value === 1 ? 'users' : ''} label="Users" />
+            <Tab className={value === 2 ? 'zones' : ''} label="Zones" />
+            <Tab className={value === 3 ? 'products' : ''} label="Products" />
           </Tabs>
         </AppBar>
         {value === 0 &&
@@ -75,7 +76,7 @@ class LocationsManTab extends Component {
           </Typography>}
         {value === 3 &&
           <Typography component="div" style={{ padding: 8 * 3 }}>
-            Products
+            <Products />
           </Typography>}
       </div>
     );
