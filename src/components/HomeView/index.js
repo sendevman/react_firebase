@@ -11,6 +11,7 @@ import ArchivelIcon from '@material-ui/icons/Archive';
 import SaveIcon from '@material-ui/icons/Save';
 import PreviewIcon from '@material-ui/icons/Streetview';
 import ImportIcon from '@material-ui/icons/ImportExport';
+import CloseIcon from '@material-ui/icons/Close';
 
 import InputEvent from 'components/InputEvent';
 
@@ -49,7 +50,14 @@ class HomeView extends InputEvent {
 
 	render() {
 		const { image, imgSrc } = this.state;
-		const { activeComponent } = this.props;
+		const {
+			activeComponent,
+			prevbtn,
+			savebtn,
+			importbtn,
+			archbtn,
+			cancelbtn,
+		} = this.props;
 		return (
 			<Grid item xs={12}>
 				<div className="label-products-table select-text">{this.props.title}</div>
@@ -122,10 +130,11 @@ class HomeView extends InputEvent {
 				</Grid>
 
 				<div className="buttons-box">
-					{this.renderButton('Preview', 'blue', () => {}, <PreviewIcon />)}
-					{this.renderButton('Save', 'red', () => {}, <SaveIcon />)}
-					{this.renderButton('Import', 'green', () => {}, <ImportIcon />)}
-					{this.renderButton('Archive', 'orange', () => {}, <ArchivelIcon />)}
+					{prevbtn && this.renderButton('Preview', 'blue', () => {}, <PreviewIcon />)}
+					{savebtn && this.renderButton('Save', 'green', () => {}, <SaveIcon />)}
+					{importbtn && this.renderButton('Import', 'purple', () => {}, <ImportIcon />)}
+					{archbtn && this.renderButton('Archive', 'orange', () => {}, <ArchivelIcon />)}
+					{cancelbtn && this.renderButton('Cancel', 'red', () => {}, <CloseIcon />)}
 				</div>
 			</Grid>
 		);
@@ -135,11 +144,31 @@ class HomeView extends InputEvent {
 HomeView.propTypes = {
 	title: PropTypes.string,
 	activeComponent: PropTypes.object,
+	prevbtn: PropTypes.bool,
+	savebtn: PropTypes.bool,
+	importbtn: PropTypes.bool,
+	archbtn: PropTypes.bool,
+	cancelbtn: PropTypes.bool,
+	handlePreview: PropTypes.func,
+	handleSave: PropTypes.func,
+	handleImport: PropTypes.func,
+	handleArchive: PropTypes.func,
+	handleCancel: PropTypes.func,
 };
 
 HomeView.defaultProps = {
 	title: '',
 	activeComponent: {},
+	prevbtn: false,
+	savebtn: false,
+	importbtn: false,
+	archbtn: false,
+	cancelbtn: false,
+	handlePreview: () => {},
+	handleSave: () => {},
+	handleImport: () => {},
+	handleArchive: () => {},
+	handleCancel: () => {},
 };
 
 export default HomeView;

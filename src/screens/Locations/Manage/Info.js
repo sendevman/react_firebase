@@ -7,6 +7,22 @@ import HomeView from 'components/HomeView';
 import InputEvent from 'components/InputEvent';
 
 class LocationsManInfo extends InputEvent {
+	handleHomePreview = () => {}
+
+	handleHomeSave = () => {}
+
+	handleHomeImport = () => {}
+
+	handleHomeArchive = () => {}
+
+	handleGlobalPreview = () => {}
+
+	handleGlobalSave = () => {}
+
+	handleGlobalImport = () => {}
+
+	handleGlobalArchive = () => {}
+
 	render() {
 		const globalBackComponent = {
 			title: false,
@@ -31,11 +47,27 @@ class LocationsManInfo extends InputEvent {
 					{this.renderGrid('orange',
 						<HomeView
 							title="Home Open View"
-							activeComponent={homeViewComponent} />)}
+							activeComponent={homeViewComponent}
+							prevbtn
+							savebtn
+							importbtn
+							archbtn
+							handlePreview={this.handleHomePreview}
+							handleSave={this.handleHomeSave}
+							handleImport={this.handleHomeImport}
+							handleArchive={this.handleHomeArchive} />)}
 					{this.renderGrid('orange',
 						<HomeView
 							title="Global Background"
-							activeComponent={globalBackComponent} />)}
+							activeComponent={globalBackComponent}
+							prevbtn
+							savebtn
+							importbtn
+							archbtn
+							handlePreview={this.handleGlobalPreview}
+							handleSave={this.handleGlobalSave}
+							handleImport={this.handleGlobalImport}
+							handleArchive={this.handleGlobalArchive} />)}
 				</Grid>
 			</div>
 		);
