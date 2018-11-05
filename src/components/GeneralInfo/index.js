@@ -54,26 +54,28 @@ class GeneralInfo extends InputEvent {
     }
   }
 
-  upload = () => {}
+  upload = () => {
+    // const target = event.target;
+    // const file = target.files[0];
+
+    // if (file) {
+    //   this.setState({ image: file.name });
+    //   const reader = new FileReader();
+    //   reader.onload = () => {
+    //     this.setState({ imgSrc: reader.result, file });
+    //   };
+    //   reader.readAsDataURL(file);
+    // } else {
+    //   this.setState({ image: '' });
+    // }
+  }
+
+
   refresh = () => {}
   save = () => {}
 
   render() {
-    const {
-      name,
-      storeId,
-      city,
-      state,
-      region,
-      type,
-      fileName,
-      floorId1,
-      floorId2,
-      autoUpdate,
-      dbID,
-      cpID,
-      subtype,
-    } = this.state;
+    const { autoUpdate } = this.state;
     return (
       <Grid container>
         <Grid item xs={12} sm={6}>

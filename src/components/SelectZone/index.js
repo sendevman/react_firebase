@@ -1,5 +1,3 @@
-import React, { Component } from 'react';
-
 import Grid from '@material-ui/core/Grid';
 import FormControl from '@material-ui/core/FormControl';
 import Input from '@material-ui/core/Input';
@@ -7,7 +5,9 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 
-class SelectZone extends Component {
+import InputEvent from 'components/InputEvent';
+
+class SelectZone extends InputEvent {
   constructor(props) {
     super(props);
 
@@ -27,16 +27,6 @@ class SelectZone extends Component {
     };
   }
 
-  componentWillMount() {
-    this._handleInputChange = this._handleInputChange.bind(this);
-  }
-
-  _handleInputChange = (event, type) => {
-    const stateCopy = Object.assign({}, this.state);
-    stateCopy[type] = event.target.value;
-    this.setState({ ...stateCopy });
-  };
-
   render() {
     const { selectedZone, zones } = this.state;
 
@@ -49,10 +39,10 @@ class SelectZone extends Component {
               <InputLabel htmlFor="zone-name-helper">Zone Name - Walkbase ID</InputLabel>
               <Select
                 value={selectedZone}
-                onChange={e => this._handleInputChange(e, 'selectedZone')}
+                onChange={e => this.handleInputChange(e, 'selectedZone')}
                 input={<Input name="selectedZone" id="zone-name-helper" />}>
                 <MenuItem value=""><em>None</em></MenuItem>
-                { zones.map(zone => (
+                {zones.map(zone => (
                   <MenuItem key={zone.id} value={zone.id}>{zone.name} - {zone.walkbaseId}</MenuItem>
                 ))}
               </Select>

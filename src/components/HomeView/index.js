@@ -11,6 +11,7 @@ import ArchivelIcon from '@material-ui/icons/Archive';
 import SaveIcon from '@material-ui/icons/Save';
 import PreviewIcon from '@material-ui/icons/Streetview';
 import ImportIcon from '@material-ui/icons/ImportExport';
+import CloseIcon from '@material-ui/icons/Close';
 
 import InputEvent from 'components/InputEvent';
 
@@ -26,6 +27,8 @@ class HomeView extends InputEvent {
 			subtitle: '',
 			title: '',
 			backTitle: '',
+			file: '',
+			imgSrc: '',
 		};
 	}
 
@@ -33,13 +36,28 @@ class HomeView extends InputEvent {
 		const target = event.target;
 		const file = target.files[0];
 
-		if (file) this.setState({ image: file.name });
-		else this.setState({ image: '' });
+		if (file) {
+			this.setState({ image: file.name });
+			const reader = new FileReader();
+			reader.onload = () => {
+				this.setState({ imgSrc: reader.result, file });
+			};
+			reader.readAsDataURL(file);
+		} else {
+			this.setState({ image: '' });
+		}
 	}
 
 	render() {
-		const { image } = this.state;
-		const { activeComponent } = this.props;
+		const { image, imgSrc } = this.state;
+		const {
+			activeComponent,
+			prevbtn,
+			savebtn,
+			importbtn,
+			archbtn,
+			cancelbtn,
+		} = this.props;
 		return (
 			<Grid item xs={12}>
 				<div className="label-products-table select-text">{this.props.title}</div>
@@ -48,7 +66,7 @@ class HomeView extends InputEvent {
 					<Grid item xs={12} sm={6}>
 						<CardMedia
 							className="homeview-card-media"
-							image={imgDefault}
+							image={imgSrc || imgDefault}
 							title="Contemplative Reptile"
 						/>
 					</Grid>
@@ -74,16 +92,8 @@ class HomeView extends InputEvent {
 										Upload
 									</Button>
 								</label>
-
 								<FormControl className="select-zone-box">
-									<TextField
-										className="upload-text-field"
-										type="text"
-										placeholder="Card Image"
-										value={image}
-										required
-										margin="normal"
-									/>
+									{this.renderText('image', '', 'upload-text-field', 'Card Image')}
 								</FormControl>
 							</div>}
 						{activeComponent.backTitle &&
@@ -120,10 +130,11 @@ class HomeView extends InputEvent {
 				</Grid>
 
 				<div className="buttons-box">
-					{this.renderButton('Preview', 'blue', () => {}, <PreviewIcon />)}
-					{this.renderButton('Save', 'red', () => {}, <SaveIcon />)}
-					{this.renderButton('Import', 'green', () => {}, <ImportIcon />)}
-					{this.renderButton('Archive', 'orange', () => {}, <ArchivelIcon />)}
+					{prevbtn && this.renderButton('Preview', 'blue', () => {}, <PreviewIcon />)}
+					{savebtn && this.renderButton('Save', 'green', () => {}, <SaveIcon />)}
+					{importbtn && this.renderButton('Import', 'purple', () => {}, <ImportIcon />)}
+					{archbtn && this.renderButton('Archive', 'orange', () => {}, <ArchivelIcon />)}
+					{cancelbtn && this.renderButton('Cancel', 'red', () => {}, <CloseIcon />)}
 				</div>
 			</Grid>
 		);
@@ -133,11 +144,31 @@ class HomeView extends InputEvent {
 HomeView.propTypes = {
 	title: PropTypes.string,
 	activeComponent: PropTypes.object,
+	prevbtn: PropTypes.bool,
+	savebtn: PropTypes.bool,
+	importbtn: PropTypes.bool,
+	archbtn: PropTypes.bool,
+	cancelbtn: PropTypes.bool,
+	handlePreview: PropTypes.func,
+	handleSave: PropTypes.func,
+	handleImport: PropTypes.func,
+	handleArchive: PropTypes.func,
+	handleCancel: PropTypes.func,
 };
 
 HomeView.defaultProps = {
 	title: '',
 	activeComponent: {},
+	prevbtn: false,
+	savebtn: false,
+	importbtn: false,
+	archbtn: false,
+	cancelbtn: false,
+	handlePreview: () => {},
+	handleSave: () => {},
+	handleImport: () => {},
+	handleArchive: () => {},
+	handleCancel: () => {},
 };
 
 export default HomeView;
