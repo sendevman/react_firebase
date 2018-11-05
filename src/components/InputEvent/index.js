@@ -31,17 +31,17 @@ class InputEvent extends Component {
     </div>
   );
 
-  renderText = (name, label, className = 'Text-Field', placeholder = '') => (
+  renderText = (name, label, className = 'Text-Field', placeholder = '', margin = 'normal', type = 'text') => (
     <TextField
       className={className}
-      type="text"
+      type={type}
       name={name}
       label={label}
       placeholder={placeholder}
       value={this.state[name]}
       onChange={e => this.handleInputChange(e, name)}
       required
-      margin="normal"
+      margin={margin}
     />
   );
 

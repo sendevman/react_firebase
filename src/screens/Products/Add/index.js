@@ -4,14 +4,25 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Grid from '@material-ui/core/Grid';
 
-import ProductCard from '../Components/ProductCard';
 import ProductForm from '../Components/ProductForm';
 import ProductImport from '../Components/ProductImport';
 import InputEvent from 'components/InputEvent';
 import TableList from 'components/TableList';
 
+import HomeView from 'components/HomeView';
+
 class ProductsAdd extends InputEvent {
+  handleCardSave = () => {}
+
+  handleCardCancel = () => {}
+
   render() {
+    const cardProductComponent = {
+			title: true,
+			subtitle: true,
+			footer: true,
+			cardImage: true,
+		};
     const catalogProductsColumn = [
 			{
 				Header: () => this.renderHeader('Model'),
@@ -55,7 +66,14 @@ class ProductsAdd extends InputEvent {
 
           <ProductImport />
 
-          <ProductCard />
+					{this.renderGrid('dark-green',
+						<HomeView
+              title="Product Card"
+              activeComponent={cardProductComponent}
+              savebtn
+              cancelbtn
+              handleSave={this.handleCardSave}
+              handleCancel={this.handleCardCancel} />)}
 
           <Grid item xs={12}>
             <Card>
