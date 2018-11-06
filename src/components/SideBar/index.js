@@ -176,7 +176,7 @@ class SideBar extends Component {
                   </ListItem>
                 </Link>
 
-                <Link to="/locations/p9ZRp6uaLCjJiT9zJSDd/products" className={classes.actionLink}>
+                <Link to="/products/manage" className={classes.actionLink}>
                   <ListItem button className={classes.itemNested} onClick={onShowDrawer(false)}>
                     <ListItemIcon className={classes.iconGrey}>
                       <SettingsIcon />
