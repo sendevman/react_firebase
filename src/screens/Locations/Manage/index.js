@@ -69,7 +69,7 @@ class Locations extends InputEvent {
         accessor: 'state',
       },
       {
-        Header: () => this.renderHeader('Reigon'),
+        Header: () => this.renderHeader('Region'),
         Cell: ({ row }) => this.renderCell(row.region, () => this.handleOnClick(row)),
         accessor: 'region',
       },
