@@ -88,7 +88,7 @@ class GeneralInfo extends InputEvent {
               {this.renderText('cpID', 'CPID')}
               {this.renderText('city', 'City')}
               {this.renderText('state', 'State')}
-              {this.renderText('region', 'Reigon')}
+              {this.renderText('region', 'Region')}
               {this.renderText('type', 'Type')}
               {this.renderText('subtype', 'Subtype')}
             </FormGroup>
