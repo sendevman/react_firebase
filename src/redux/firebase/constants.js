@@ -20,3 +20,6 @@ export const SET_USER_ERROR = 'firebase/SET_USER_ERROR';
 export const FB_TMP_UPLOAD_IMAGE = 'firebase/FB_TMP_UPLOAD_IMAGE';
 export const FB_TMP_DELETE_IMAGE = 'firebase/FB_TMP_DELETE_IMAGE';
 export const FB_UPLOAD_IMAGE = 'firebase/FB_UPLOAD_IMAGE';
+
+export const ADD_FB_LOCATIONS = 'firebase/ADD_FB_LOCATIONS';
+export const ADD_FB_USERSTOLOCATIONS = 'firebase/ADD_FB_USERSTOLOCATIONS';

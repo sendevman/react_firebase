@@ -12,6 +12,8 @@ import {
   FB_TMP_UPLOAD_IMAGE,
   FB_TMP_DELETE_IMAGE,
   FB_UPLOAD_IMAGE,
+  ADD_FB_LOCATIONS,
+  // ADD_FB_USERSTOLOCATIONS,
 } from './constants';
 
 import {
@@ -22,6 +24,8 @@ import {
   authLogout,
   uploadImage,
   deleteTmpImage,
+  addData,
+  // addUsersToLocations,
 } from './api';
 
 import {
@@ -33,6 +37,14 @@ import {
   setCurrentUser,
   setUserError,
 } from './actions';
+
+// function* asyncAddUserstoLocations(param) {
+//   yield call(addUsersToLocations, param.payload.users);
+// }
+
+function* asyncAddLocations(param) {
+  yield call(addData, 'locations', param.payload.locations);
+}
 
 function* asyncGetUsers() {
   const users = yield call(getData, 'users');
@@ -104,6 +116,8 @@ export function* sagaWatcher() {
   yield takeLatest(FB_TMP_UPLOAD_IMAGE, asyncUploadTmpImage);
   yield takeLatest(FB_TMP_DELETE_IMAGE, asyncDeleteTmpImage);
   yield takeLatest(FB_UPLOAD_IMAGE, asyncUploadImage);
+  yield takeLatest(ADD_FB_LOCATIONS, asyncAddLocations);
+  // yield takeLatest(ADD_FB_USERSTOLOCATIONS, asyncAddUserstoLocations);
 }
 
 export default [

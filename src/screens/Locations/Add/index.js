@@ -9,6 +9,10 @@ import GeneralInfo from 'components/GeneralInfo';
 import Managers from './Managers';
 
 class LocationsAdd extends InputEvent {
+  addLocations = () => {
+    this.props.history.push('/locations/manage');
+  }
+
   render() {
     return (
       <div id="locations-add" className="Container-box">
@@ -21,7 +25,7 @@ class LocationsAdd extends InputEvent {
               <Managers />
               <Grid item xs={12}>
                 <div className="buttons-box mt-block">
-                  {this.renderButton('Add Location', 'green', () => {}, <AddIcon />, 'fab')}
+                  {this.renderButton('Add Location', 'green', this.addLocations, <AddIcon />, 'fab')}
                 </div>
               </Grid>
             </Grid>
@@ -31,5 +35,12 @@ class LocationsAdd extends InputEvent {
     );
   }
 }
+
+LocationsAdd.propTypes = {
+};
+
+LocationsAdd.defaultProps = {
+  history: [],
+};
 
 export default LocationsAdd;
