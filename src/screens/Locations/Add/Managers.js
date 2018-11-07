@@ -10,7 +10,7 @@ import _ from 'lodash';
 
 import TableList from 'components/TableList';
 
-import { addUsersToLocations, getUsers } from 'redux/firebase/actions';
+import { getUsers } from 'redux/firebase/actions';
 import { usersSelector } from 'redux/firebase/selectors';
 
 class Managers extends Component {
@@ -46,11 +46,12 @@ class Managers extends Component {
   addUsers = () => {
     const selectedUsers = _.filter(this.props.users, user => this.state.selected[user.email]);
     this.setState({ selectedUsers });
-    this.props.addUsersToLocations(selectedUsers);
+    this.props.handleUsers(selectedUsers);
   }
 
   deleteUsers = () => {
     this.setState({ selectedUsers: [] });
+    this.props.handleUsers([]);
   }
 
   render() {
@@ -127,12 +128,12 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   getUsers: () => dispatch(getUsers()),
-  addUsersToLocations: (users) => dispatch(addUsersToLocations(users)),
 });
 
 Managers.propTypes = {
   users: PropTypes.array,
   getUsers: PropTypes.func.isRequired,
+  handleUsers: PropTypes.func.isRequired,
 };
 
 Managers.defaultProps = {
