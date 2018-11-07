@@ -29,6 +29,7 @@ class Locations extends InputEvent {
       const tables = nextProps.locations.map(location => ({
         storeId: location.storeId,
         ...location.storeInfo,
+        fbId: location.fbId,
       }));
       this.setState({ tables });
     }
@@ -39,7 +40,7 @@ class Locations extends InputEvent {
   }
 
   handleOnClick = (row) => {
-    this.props.history.push(`/locations/manage/${row.storeId}/info`);
+    this.props.history.push(`/locations/manage/${row._original.fbId}/info`);
   }
 
   render() {

@@ -1,4 +1,4 @@
-import { call, put, takeLatest } from 'redux-saga/effects';
+import { all, call, put, takeLatest } from 'redux-saga/effects';
 
 import {
   GET_FB_USERS,
@@ -24,8 +24,8 @@ import {
   authLogout,
   uploadImage,
   deleteTmpImage,
-  addData,
-  // addUsersToLocations,
+  getAddDataId,
+  addCollection,
 } from './api';
 
 import {
@@ -38,12 +38,12 @@ import {
   setUserError,
 } from './actions';
 
-// function* asyncAddUserstoLocations(param) {
-//   yield call(addUsersToLocations, param.payload.users);
-// }
-
 function* asyncAddLocations(param) {
-  yield call(addData, 'locations', param.payload.locations);
+  const id = yield call(getAddDataId, 'locations', param.payload.locations);
+  const requests = param.payload.users.map(user =>
+    call(addCollection, 'locations', id, 'users', user),
+  );
+  yield all(requests);
 }
 
 function* asyncGetUsers() {
@@ -117,7 +117,6 @@ export function* sagaWatcher() {
   yield takeLatest(FB_TMP_DELETE_IMAGE, asyncDeleteTmpImage);
   yield takeLatest(FB_UPLOAD_IMAGE, asyncUploadImage);
   yield takeLatest(ADD_FB_LOCATIONS, asyncAddLocations);
-  // yield takeLatest(ADD_FB_USERSTOLOCATIONS, asyncAddUserstoLocations);
 }
 
 export default [

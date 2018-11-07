@@ -19,7 +19,6 @@ import {
 	FB_TMP_DELETE_IMAGE,
 	FB_UPLOAD_IMAGE,
 	ADD_FB_LOCATIONS,
-	ADD_FB_USERSTOLOCATIONS,
 } from './constants';
 
 export const getUsers = createAction(
@@ -108,10 +107,5 @@ export const uploadImage = createAction(
 
 export const addLocations = createAction(
 	ADD_FB_LOCATIONS,
-	(locations) => ({ locations }),
-);
-
-export const addUsersToLocations = createAction(
-	ADD_FB_USERSTOLOCATIONS,
-	(users) => ({ users }),
+	(locations, users) => ({ locations, users }),
 );

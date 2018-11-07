@@ -14,7 +14,7 @@ import RefreshIcon from '@material-ui/icons/Refresh';
 
 import InputEvent from 'components/InputEvent';
 
-import { addLocations, getLocations } from 'redux/firebase/actions';
+import { getLocations } from 'redux/firebase/actions';
 import { locationsSelector } from 'redux/firebase/selectors';
 
 class GeneralInfo extends InputEvent {
@@ -75,9 +75,9 @@ class GeneralInfo extends InputEvent {
   save = () => {
     const { name, storeId, city, state, region, type, floorId1, floorId2, dbID, cpID, subtype } = this.state;
     const data = {
+      storeId,
       storeInfo: {
         admin: {},
-        storeId,
         name,
         region,
         city,
@@ -92,7 +92,7 @@ class GeneralInfo extends InputEvent {
         zoneId: [],
       },
     };
-    this.props.addLocations(data);
+    this.props.genInfoSave(data);
   }
 
   render() {
@@ -168,19 +168,20 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   getLocations: () => dispatch(getLocations()),
-  addLocations: (data) => dispatch(addLocations(data)),
 });
 
 GeneralInfo.propTypes = {
   locations: PropTypes.array,
   storeId: PropTypes.string,
-  getLocations: PropTypes.func.isRequired,
-  addLocations: PropTypes.func.isRequired,
+  genInfo: PropTypes.func,
+  getLocations: PropTypes.func,
 };
 
 GeneralInfo.defaultProps = {
   locations: [],
   storeId: '',
+  genInfo: () => {},
+  getLocations: () => {},
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(GeneralInfo);

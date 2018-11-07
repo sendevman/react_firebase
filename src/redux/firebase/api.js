@@ -5,22 +5,22 @@ export const getData = (data) =>
 		.then(res => {
 			const response = [];
 			res.forEach(item => {
-				response.push(item.data());
+				response.push({ ...item.data(), fbId: item.id });
 			});
 			return response;
 		});
 
-export const addData = (field, data) => firestore.collection(field).add(data)
-		.then(res => res);
+export const getAddDataId = (field, data) =>
+	firestore
+		.collection(field).add(data)
+		.then(res => res.id);
 
-// export const addUsersToLocations = (data, optional) => {
-// 	console.log(data, optional);
-// 	return firestore.collection(data).get()
-// 		.then(res => res)
-// 		.then(res => data.map(item => res.collection('users').add(item)));
-// 	// return firestore.collection('locations').set(data)
-// 	// 	.then(res => res);
-// };
+export const addCollection = (field, id, childCollection, user) =>
+	firestore
+		.collection(field).doc(id)
+		.collection(childCollection)
+		.add(user)
+		.then(res => res);
 
 export const authLogin = (authInfo) =>
 	auth.signInWithEmailAndPassword(authInfo.email, authInfo.password)
