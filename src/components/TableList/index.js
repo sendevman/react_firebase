@@ -69,7 +69,7 @@ TableList.propTypes = {
   savebtnTooltip: PropTypes.string,
   editbtnTooltip: PropTypes.string,
   deletebtnTooltip: PropTypes.string,
-  showPagination: PropTypes.string,
+  showPagination: PropTypes.bool,
   pageSize: PropTypes.number,
   addbtn: PropTypes.bool,
   savebtn: PropTypes.bool,
