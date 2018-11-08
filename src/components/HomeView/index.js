@@ -4,7 +4,6 @@ import Button from '@material-ui/core/Button';
 import CardMedia from '@material-ui/core/CardMedia';
 import Grid from '@material-ui/core/Grid';
 import FormControl from '@material-ui/core/FormControl';
-import TextField from '@material-ui/core/TextField';
 import FormGroup from '@material-ui/core/FormGroup';
 
 import ArchivelIcon from '@material-ui/icons/Archive';
@@ -15,7 +14,7 @@ import CloseIcon from '@material-ui/icons/Close';
 
 import InputEvent from 'components/InputEvent';
 
-import imgDefault from 'assets/images/imgDefault.png';
+import ImgDefault from 'assets/images/imgDefault.png';
 
 class HomeView extends InputEvent {
 	constructor(props) {
@@ -23,24 +22,34 @@ class HomeView extends InputEvent {
 
 		this.state = {
 			footer: '',
-			image: '',
 			subtitle: '',
-			title: '',
 			backTitle: '',
-			file: '',
-			imgSrc: '',
+			imgBackSrc: '',
+			imgCardSrc: '',
+			imageNameBackSrc: '',
+			imageNameCardSrc: '',
 		};
 	}
 
-	handleInputFileChange = (event) => {
+	handleInputFileChange = (event, type) => {
 		const target = event.target;
 		const file = target.files[0];
 
 		if (file) {
-			this.setState({ image: file.name });
+			this.setState({ });
 			const reader = new FileReader();
 			reader.onload = () => {
-				this.setState({ imgSrc: reader.result, file });
+				if (type === 'back') {
+					this.setState({
+						imgBackSrc: reader.result,
+						imageNameBackSrc: file.name,
+					});
+				} else {
+					this.setState({
+						imgCardSrc: reader.result,
+						imageNameCardSrc: file.name,
+					});
+				}
 			};
 			reader.readAsDataURL(file);
 		} else {
@@ -49,7 +58,7 @@ class HomeView extends InputEvent {
 	}
 
 	render() {
-		const { image, imgSrc } = this.state;
+		const { imgBackSrc, imgCardSrc } = this.state;
 		const {
 			activeComponent,
 			prevbtn,
@@ -57,18 +66,26 @@ class HomeView extends InputEvent {
 			importbtn,
 			archbtn,
 			cancelbtn,
+			title,
 		} = this.props;
 		return (
 			<Grid item xs={12}>
-				<div className="label-products-table select-text">{this.props.title}</div>
+				<div className="label-products-table select-text">{title}</div>
 
 				<Grid container spacing={24}>
 					<Grid item xs={12} sm={6}>
-						<CardMedia
-							className="homeview-card-media"
-							image={imgSrc || imgDefault}
-							title="Contemplative Reptile"
-						/>
+						<div className="homeviewer-cardmedia-contaienr">
+							<CardMedia
+								className="homeview-back-media"
+								image={imgBackSrc || ImgDefault}
+								title="Contemplative Reptile"
+							/>
+							{(activeComponent.cardImage && imgCardSrc !== '') && <CardMedia
+								className="homeview-card-media"
+								image={imgCardSrc || ImgDefault}
+								title="Contemplative Reptile"
+							/>}
+						</div>
 					</Grid>
 
 					<Grid item xs={12} sm={6}>
@@ -81,19 +98,19 @@ class HomeView extends InputEvent {
 						{activeComponent.cardImage &&
 							<div className="homeview-upload-box">
 								<input
-									id="flat-button-file"
+									id={`flat-button-file-card-${title}`}
 									className="file-input"
 									accept="image/*"
 									type="file"
-									onChange={this.handleInputFileChange} />
+									onChange={event => this.handleInputFileChange(event, 'card')} />
 
-								<label className="flat-button-file" htmlFor="flat-button-file">
+								<label className="flat-button-file" htmlFor={`flat-button-file-card-${title}`}>
 									<Button component="span" variant="contained" size="small" className="upload-button">
 										Upload
 									</Button>
 								</label>
 								<FormControl className="select-zone-box">
-									{this.renderText('image', '', 'upload-text-field', 'Card Image')}
+									{this.renderText('imageNameCardSrc', '', 'upload-text-field', 'Card Image')}
 								</FormControl>
 							</div>}
 						{activeComponent.backTitle &&
@@ -103,27 +120,20 @@ class HomeView extends InputEvent {
 						{activeComponent.backImage &&
 							<div className="homeview-upload-box">
 								<input
-									id="flat-button-file"
+									id={`flat-button-file-back-${title}`}
 									className="file-input"
 									accept="image/*"
 									type="file"
-									onChange={this.handleInputFileChange} />
+									onChange={event => this.handleInputFileChange(event, 'back')} />
 
-								<label className="flat-button-file" htmlFor="flat-button-file">
+								<label className="flat-button-file" htmlFor={`flat-button-file-back-${title}`}>
 									<Button component="span" variant="contained" size="small" className="upload-button">
 										Upload
 									</Button>
 								</label>
 
 								<FormControl className="select-zone-box">
-									<TextField
-										className="upload-text-field"
-										type="text"
-										placeholder="Background Image"
-										value={image}
-										required
-										margin="normal"
-									/>
+									{this.renderText('imageNameBackSrc', '', 'upload-text-field', 'Background Image')}
 								</FormControl>
 							</div>}
 					</Grid>

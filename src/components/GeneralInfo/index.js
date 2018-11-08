@@ -45,12 +45,22 @@ class GeneralInfo extends InputEvent {
   componentWillReceiveProps(nextProps) {
     if (this.props.locations !== nextProps.locations && this.props.storeId !== '') {
       const { locations } = nextProps;
-      const location = _.find(locations, data => this.props.storeId === data.storeId);
-      this.setState({
-        name: location.storeInfo.name,
-        storeId: location.storeId,
-        region: location.storeInfo.region,
-      });
+      const location = _.find(locations, data => this.props.storeId === data.fbId);
+      if (location !== 'undefined') {
+        this.setState({
+          name: location.storeInfo.name,
+          storeId: location.storeId,
+          region: location.storeInfo.region,
+          city: location.storeInfo.city,
+          state: location.storeInfo.state,
+          type: location.storeInfo.type,
+          floorId1: location.walkbase.floorId[0],
+          floorId2: location.walkbase.floorId[1],
+          dbID: location.storeInfo.dbID,
+          cpID: location.storeInfo.cpID,
+          subtype: location.storeInfo.subtype,
+        });
+      }
     }
   }
 
@@ -71,8 +81,32 @@ class GeneralInfo extends InputEvent {
   }
 
 
-  refresh = () => {}
-  save = () => {}
+  refresh = () => {
+    this.props.getLocations();
+  }
+
+  save = () => {
+    const { name, storeId, city, state, region, type, floorId1, floorId2, dbID, cpID, subtype } = this.state;
+    const data = {
+      storeId,
+      storeInfo: {
+        admin: {},
+        name,
+        region,
+        city,
+        state,
+        dbID,
+        cpID,
+        type,
+        subtype,
+      },
+      walkbase: {
+        floorId: [floorId1, floorId2],
+        zoneId: [],
+      },
+    };
+    this.props.genInfoSave(data);
+  }
 
   render() {
     const { autoUpdate } = this.state;
@@ -88,7 +122,7 @@ class GeneralInfo extends InputEvent {
               {this.renderText('cpID', 'CPID')}
               {this.renderText('city', 'City')}
               {this.renderText('state', 'State')}
-              {this.renderText('region', 'Reigon')}
+              {this.renderText('region', 'Region')}
               {this.renderText('type', 'Type')}
               {this.renderText('subtype', 'Subtype')}
             </FormGroup>
@@ -142,22 +176,25 @@ class GeneralInfo extends InputEvent {
 }
 
 const mapStateToProps = state => ({
-	locations: locationsSelector(state),
+  locations: locationsSelector(state),
 });
 
 const mapDispatchToProps = dispatch => ({
-	getLocations: () => dispatch(getLocations()),
+  getLocations: () => dispatch(getLocations()),
 });
 
 GeneralInfo.propTypes = {
   locations: PropTypes.array,
   storeId: PropTypes.string,
-  getLocations: PropTypes.func.isRequired,
+  genInfoSave: PropTypes.func,
+  getLocations: PropTypes.func,
 };
 
 GeneralInfo.defaultProps = {
   locations: [],
   storeId: '',
+  genInfoSave: () => {},
+  getLocations: () => {},
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(GeneralInfo);

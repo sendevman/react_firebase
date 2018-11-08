@@ -46,10 +46,12 @@ class Managers extends Component {
   addUsers = () => {
     const selectedUsers = _.filter(this.props.users, user => this.state.selected[user.email]);
     this.setState({ selectedUsers });
+    this.props.handleUsers(selectedUsers);
   }
 
   deleteUsers = () => {
     this.setState({ selectedUsers: [] });
+    this.props.handleUsers([]);
   }
 
   render() {
@@ -131,6 +133,7 @@ const mapDispatchToProps = dispatch => ({
 Managers.propTypes = {
   users: PropTypes.array,
   getUsers: PropTypes.func.isRequired,
+  handleUsers: PropTypes.func.isRequired,
 };
 
 Managers.defaultProps = {
