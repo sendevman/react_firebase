@@ -18,9 +18,15 @@ import {
 	FB_TMP_UPLOAD_IMAGE,
 	FB_TMP_DELETE_IMAGE,
 	FB_UPLOAD_IMAGE,
+	ADD_FB_LOCATIONS,
+	UPDATE_FB_DOC,
 } from './constants';
 
-/* get all data */
+export const updateDoc = createAction(
+	UPDATE_FB_DOC,
+	(field, id, data) => ({ field, id, data }),
+);
+
 export const getUsers = createAction(
 	GET_FB_USERS,
 );
@@ -99,6 +105,7 @@ export const uploadImage = createAction(
 	(file) => ({ file }),
 );
 
+<<<<<<< HEAD
 /* auth */
 export const authLogin = createAction(
 	FB_AUTH_LOGIN,
@@ -107,4 +114,9 @@ export const authLogin = createAction(
 
 export const authLogout = createAction(
 	FB_AUTH_LOGOUT,
+=======
+export const addLocations = createAction(
+	ADD_FB_LOCATIONS,
+	(locations, users) => ({ locations, users }),
+>>>>>>> logic
 );

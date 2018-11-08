@@ -1,5 +1,19 @@
-.homeview-card-media {
-	min-height: 270px;
+.homeviewer-cardmedia-contaienr {
+	position: relative;
+	height: 100%;
+
+	.homeview-back-media {
+		min-height: 270px;
+		height: 100%;
+	}
+
+	.homeview-card-media {
+		position: absolute;
+		top: 200px;
+		left: 10%;
+		right: 10%;
+		bottom: 10%;
+	}
 }
 
 .homeview-upload-box {
