@@ -80,3 +80,26 @@
   width: 100%;
   margin-top: -14px;
 }
+
+#products-manage,
+#products-man-phone,
+#products-add {
+	margin: auto;
+	max-width: 62.5rem;
+}
+
+#products-man-tab {
+	.info {
+		border-left: 5px solid $orange;
+	}
+	.users {
+		border-left: 5px solid $dark-purple;
+	}
+	.zones {
+		border-left: 5px solid $red;
+	}
+	.products {
+		border-left: 5px solid $green;
+	}
+}
+

@@ -15,6 +15,7 @@ import LocationsManage from 'screens/Locations/Manage/index';
 import LocationsManTab from 'screens/Locations/Manage/Manage';
 import ProductsMain from 'screens/Products/Main/index';
 import ProductsAdd from 'screens/Products/Add/index';
+import ProductsPhone from 'screens/Products/Phone/index';
 
 const AuthRoute = (props) => (
   localStorage.getItem('token') !== null
@@ -60,6 +61,7 @@ class Routes extends Component {
               <AuthRoute exact path="/locations/manage/:store_id/:tab" component={LocationsManTab} />
               <AuthRoute exact path="/products/new" component={ProductsAdd} />
               <AuthRoute exact path="/products/manage" component={ProductsMain} />
+              <AuthRoute exact path="/products/manage/device/:type/:store_id" component={ProductsPhone} />
             </Switch>
           </main>
         </div>

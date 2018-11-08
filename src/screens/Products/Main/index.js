@@ -17,11 +17,11 @@ class ProductsMain extends InputEvent {
 		this.props.getProducts();
 	}
 
-	handleOnClick = () => {
+	handleOnClick = (row) => {
+		this.props.history.push(`/products/manage/device/${row.subType}/${row.fbId}`);
 	}
 
 	render() {
-		console.log(this.props.currentProducts);
 		const currentProductsColumn = [
 			{
 				Header: () => this.renderHeader('Id'),
@@ -112,6 +112,7 @@ ProductsMain.propTypes = {
 	currentProducts: PropTypes.array.isRequired,
 	categoryProducts: PropTypes.array,
 	getProducts: PropTypes.func.isRequired,
+	history: PropTypes.object.isRequired,
 };
 
 ProductsMain.defaultProps = {
