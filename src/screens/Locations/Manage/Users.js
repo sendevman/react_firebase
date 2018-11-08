@@ -76,7 +76,7 @@ class LocationsManUsers extends InputEvent {
 					{this.renderGrid('dark-purple',
 						<TableList
 							label="Users Access"
-							tables={this.props.users}
+							tables={[]}
 							columns={accessUsersColumn}
 							deletebtnTooltip="Delete User"
 							addbtnTooltip="Add User"

@@ -18,7 +18,14 @@ import {
 	FB_TMP_UPLOAD_IMAGE,
 	FB_TMP_DELETE_IMAGE,
 	FB_UPLOAD_IMAGE,
+	ADD_FB_LOCATIONS,
+	UPDATE_FB_DOC,
 } from './constants';
+
+export const updateDoc = createAction(
+	UPDATE_FB_DOC,
+	(field, id, data) => ({ field, id, data }),
+);
 
 export const getUsers = createAction(
 	GET_FB_USERS,
@@ -102,4 +109,9 @@ export const deleteTmpImage = createAction(
 export const uploadImage = createAction(
 	FB_UPLOAD_IMAGE,
 	(file) => ({ file }),
+);
+
+export const addLocations = createAction(
+	ADD_FB_LOCATIONS,
+	(locations, users) => ({ locations, users }),
 );

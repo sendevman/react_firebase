@@ -5,10 +5,27 @@ export const getData = (data) =>
 		.then(res => {
 			const response = [];
 			res.forEach(item => {
-				response.push(item.data());
+				response.push({ ...item.data(), fbId: item.id });
 			});
 			return response;
 		});
+
+export const getAddDataId = (field, data) =>
+	firestore
+		.collection(field).add(data)
+		.then(res => res.id);
+
+export const addCollection = (field, id, childCollection, user) =>
+	firestore
+		.collection(field).doc(id)
+		.collection(childCollection)
+		.add(user)
+		.then(res => res);
+
+export const updateDoc = (field, id, data) =>
+	firestore
+		.collection(field).doc(id).set(data)
+		.then(res => res);
 
 export const authLogin = (authInfo) =>
 	auth.signInWithEmailAndPassword(authInfo.email, authInfo.password)
