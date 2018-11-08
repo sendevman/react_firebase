@@ -22,6 +22,11 @@ export const addCollection = (field, id, childCollection, user) =>
 		.add(user)
 		.then(res => res);
 
+export const updateDoc = (field, id, data) =>
+	firestore
+		.collection(field).doc(id).set(data)
+		.then(res => res);
+
 export const authLogin = (authInfo) =>
 	auth.signInWithEmailAndPassword(authInfo.email, authInfo.password)
 		.then(authUser => ({ state: 'success', user: authUser }))

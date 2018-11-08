@@ -1,10 +1,13 @@
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 import Grid from '@material-ui/core/Grid';
 
 import GeneralInfo from 'components/GeneralInfo';
 import HomeView from 'components/HomeView';
 import InputEvent from 'components/InputEvent';
+
+import { updateDoc } from 'redux/firebase/actions';
 
 class LocationsManInfo extends InputEvent {
 	handleHomePreview = () => {}
@@ -22,6 +25,10 @@ class LocationsManInfo extends InputEvent {
 	handleGlobalImport = () => {}
 
 	handleGlobalArchive = () => {}
+
+	handleSave = (data) => {
+		this.props.updateDoc('locations', this.props.storeId, data);
+	}
 
 	render() {
 		const globalBackComponent = {
@@ -43,7 +50,11 @@ class LocationsManInfo extends InputEvent {
 		return (
 			<div id="locations-man-info" className="Container-box">
 				<Grid container spacing={24}>
-					{this.renderGrid('orange', <GeneralInfo storeId={this.props.storeId} />)}
+					{this.renderGrid('orange',
+						<GeneralInfo
+							storeId={this.props.storeId}
+							genInfoSave={this.handleSave}
+						/>)}
 					{this.renderGrid('orange',
 						<HomeView
 							title="Home Open View"
@@ -74,6 +85,14 @@ class LocationsManInfo extends InputEvent {
 	}
 }
 
+// const mapStateToProps = state => ({
+// 	users: usersSelector(state),
+// });
+
+const mapDispatchToProps = dispatch => ({
+	updateDoc: (field, id, data) => dispatch(updateDoc(field, id, data)),
+});
+
 LocationsManInfo.propTypes = {
 	storeId: PropTypes.string,
 };
@@ -82,4 +101,4 @@ LocationsManInfo.defaultProps = {
 	storeId: '',
 };
 
-export default LocationsManInfo;
+export default connect(null, mapDispatchToProps)(LocationsManInfo);

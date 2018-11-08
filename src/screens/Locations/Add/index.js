@@ -12,7 +12,6 @@ import GeneralInfo from 'components/GeneralInfo';
 import Managers from './Managers';
 
 import { addLocations, addUsersToLocations } from 'redux/firebase/actions';
-// import { locationsSelector } from 'redux/firebase/selectors';
 
 class LocationsAdd extends InputEvent {
   constructor(props) {
@@ -33,8 +32,6 @@ class LocationsAdd extends InputEvent {
     this.setState({ genData: data });
   }
 
-  handleRefresh = () => {}
-
   handleUsers = (users) => {
     this.setState({ users });
   }
@@ -47,7 +44,7 @@ class LocationsAdd extends InputEvent {
             <div className="container-label">Add Location</div>
             <Grid container spacing={24}>
               {this.renderGrid('orange',
-                <GeneralInfo genInfoSave={this.handleSave} genInfoRefresh={this.refresh} />)}
+                <GeneralInfo genInfoSave={this.handleSave} />)}
               <Managers handleUsers={this.handleUsers} />
               <Grid item xs={12}>
                 <div className="buttons-box mt-block">
