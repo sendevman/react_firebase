@@ -1,0 +1,17 @@
+.component-display-container {
+	.content-box {
+		.display-title {
+			margin-bottom: 2rem;
+			font-size: 4.5rem;
+			line-height: initial;
+		}
+		.display-content-container {
+			display: flex;
+			align-items: center;
+			.display-size {
+				margin-right: 2rem;
+				font-size: 1.5rem;
+			}
+		}
+	}
+}

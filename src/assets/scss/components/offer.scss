@@ -1,0 +1,12 @@
+.component-offer-container {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	.icon-title-box {
+		margin-bottom: 10px;
+		.offer-icon {
+			margin-right: 10px;
+		}
+	}
+}
