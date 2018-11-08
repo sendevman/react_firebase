@@ -45,12 +45,22 @@ class GeneralInfo extends InputEvent {
   componentWillReceiveProps(nextProps) {
     if (this.props.locations !== nextProps.locations && this.props.storeId !== '') {
       const { locations } = nextProps;
-      const location = _.find(locations, data => this.props.storeId === data.storeId);
-      this.setState({
-        name: location.storeInfo.name,
-        storeId: location.storeId,
-        region: location.storeInfo.region,
-      });
+      const location = _.find(locations, data => this.props.storeId === data.fbId);
+      if (location !== 'undefined') {
+        this.setState({
+          name: location.storeInfo.name,
+          storeId: location.storeId,
+          region: location.storeInfo.region,
+          city: location.storeInfo.city,
+          state: location.storeInfo.state,
+          type: location.storeInfo.type,
+          floorId1: location.walkbase.floorId[0],
+          floorId2: location.walkbase.floorId[1],
+          dbID: location.storeInfo.dbID,
+          cpID: location.storeInfo.cpID,
+          subtype: location.storeInfo.subtype,
+        });
+      }
     }
   }
 
@@ -71,7 +81,10 @@ class GeneralInfo extends InputEvent {
   }
 
 
-  refresh = () => {}
+  refresh = () => {
+    this.props.getLocations();
+  }
+
   save = () => {
     const { name, storeId, city, state, region, type, floorId1, floorId2, dbID, cpID, subtype } = this.state;
     const data = {
@@ -173,14 +186,14 @@ const mapDispatchToProps = dispatch => ({
 GeneralInfo.propTypes = {
   locations: PropTypes.array,
   storeId: PropTypes.string,
-  genInfo: PropTypes.func,
+  genInfoSave: PropTypes.func,
   getLocations: PropTypes.func,
 };
 
 GeneralInfo.defaultProps = {
   locations: [],
   storeId: '',
-  genInfo: () => {},
+  genInfoSave: () => {},
   getLocations: () => {},
 };
 
