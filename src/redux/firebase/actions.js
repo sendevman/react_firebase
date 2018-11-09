@@ -47,6 +47,12 @@ export const getVod = createAction(
 	GET_FB_VOD,
 );
 
+/* add data */
+export const addLocations = createAction(
+	ADD_FB_LOCATIONS,
+	(locations, users) => ({ locations, users }),
+);
+
 /* set all data */
 export const setUsers = createAction(
 	SET_STORE_USERS,
@@ -105,7 +111,6 @@ export const uploadImage = createAction(
 	(file) => ({ file }),
 );
 
-<<<<<<< HEAD
 /* auth */
 export const authLogin = createAction(
 	FB_AUTH_LOGIN,
@@ -114,9 +119,4 @@ export const authLogin = createAction(
 
 export const authLogout = createAction(
 	FB_AUTH_LOGOUT,
-=======
-export const addLocations = createAction(
-	ADD_FB_LOCATIONS,
-	(locations, users) => ({ locations, users }),
->>>>>>> logic
 );

@@ -28,13 +28,6 @@ export const updateDoc = (field, id, data) =>
 		.collection(field).doc(id).set(data)
 		.then(res => res);
 
-export const authLogin = (authInfo) =>
-	auth.signInWithEmailAndPassword(authInfo.email, authInfo.password)
-		.then(authUser => ({ state: 'success', user: authUser }))
-		.catch(error => ({ state: 'error', error }));
-
-export const authLogout = () => auth.signOut();
-
 export const getCurrentUser = (userId) =>
 	firestore.collection('users')
 		.doc(userId)
