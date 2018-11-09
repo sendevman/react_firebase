@@ -1,0 +1,21 @@
+.component-camera-container {
+	.content-box {
+		.camera-bg {
+			background-image: url('../../assets/images/camera.png');
+			width: 100%;
+		}
+		.camera-title {
+			margin-bottom: 2rem;
+			font-size: 4.5rem;
+			line-height: initial;
+		}
+		.camera-content-container {
+			.camera-content {
+				display: flex;
+				align-items: center;
+				margin-right: 2rem;
+				// font-size: 1.5rem;
+			}
+		}
+	}
+}

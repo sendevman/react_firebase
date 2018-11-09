@@ -1,0 +1,43 @@
+.component-battery-container {
+	.content-box {
+		.battery-bg {
+			background-image: url('../../assets/images/battery.png');
+			width: 100%;
+		}
+		.battery-title {
+			margin-bottom: 2rem;
+			font-size: 4.5rem;
+			line-height: initial;
+		}
+		.battery-content-container {
+			display: flex;
+			justify-content: center;
+			.battery-content-item {
+				display: flex;
+    			flex-flow: column;
+    			align-items: center;
+				margin-left: 1rem;
+				margin-right: 1rem;
+				.battery-header {
+					background: #4CA90C;
+					width: 2.5rem;
+					height: 0.5rem;
+				}
+				.battery-body {
+					border: 0.125rem solid #4ca90c;
+					margin: 0.1875rem;
+					margin-top: 0;
+					flex-grow: 1;
+					height: 5.3125rem;
+					min-width: 4rem;
+					max-width: 4rem;
+					border-radius: 0;
+					display: flex;
+					flex-flow: column;
+					justify-content: space-around;
+					align-items: center;
+				}
+			}
+		}
+	}
+}
