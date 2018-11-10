@@ -42,7 +42,14 @@ class DevicePhone extends Component {
 	render() {
 		const { currentProduct, value } = this.state;
 		return (
-			<div id="products-man-phone" className="Container-box">
+			<div
+				id="products-man-phone"
+				className="Container-box"
+				style={{
+					background: "url('/assets/images/backgroundHD.png')",
+					backgroundSize: 'cover',
+					backgroundPositionX: 'center',
+				}}>
 				<AppBar position="static" color="default">
 					<Tabs
 						value={this.state.value}

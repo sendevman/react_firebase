@@ -25,22 +25,12 @@ class WebpackDevConfig extends WebpackBaseConfig {
 
 		this.config.module.rules = this.config.module.rules.concat([
 			{
-				test: /^.((?!cssmodule).)*\.(sass|scss|css)$/,
-				loaders: [
-					{ loader: 'style-loader' },
-					{
-						loader: 'css-loader',
-						options: {
-							sourceMap: true,
-						},
-					},
-					{
-						loader: 'sass-loader',
-						options: {
-							sourceMap: true,
-						},
-					},
-				],
+				test: /^.((?!cssmodule).)*\.css$/,
+				loader: 'style-loader!css-loader!resolve-url-loader',
+			},
+			{
+				test: /^.((?!cssmodule).)*\.(scss|sass)$/,
+				loader: 'style-loader!css-loader!resolve-url-loader!sass-loader',
 			},
 		]);
 	}

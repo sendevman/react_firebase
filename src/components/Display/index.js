@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import displaybg from 'assets/images/display.png';
 
 class Display extends Component {
 	render() {
@@ -7,11 +8,7 @@ class Display extends Component {
 		return (
 			<div id="components-display" className="component-display-container">
 				<div className="content-box">
-					<div className="d-flex justify-content-center">
-						<div className="display-title">
-							Display
-						</div>
-					</div>
+					<img className="display-bg" src={displaybg} alt="" />
 					<div className="display-content-container">
 						<div className="display-size">
 							{`${display.size}"`}

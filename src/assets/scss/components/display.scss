@@ -1,13 +1,18 @@
 .component-display-container {
 	.content-box {
-		.display-title {
-			margin-bottom: 2rem;
-			font-size: 4.5rem;
-			line-height: initial;
+		position: relative;
+		.display-bg {
+			position: absolute;
+			width: calc(100% + 48px);
+			margin: -24px;
 		}
 		.display-content-container {
 			display: flex;
-			align-items: center;
+			flex-wrap: wrap;
+			justify-content: center;
+			z-index: 1;
+			position: relative;
+			padding-top: 8vw;
 			.display-size {
 				margin-right: 2rem;
 				font-size: 1.5rem;

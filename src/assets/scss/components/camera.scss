@@ -1,20 +1,26 @@
 .component-camera-container {
 	.content-box {
+		position: relative;
+		min-height: 16vw;
 		.camera-bg {
-			background-image: url('../../assets/images/camera.png');
-			width: 100%;
-		}
-		.camera-title {
-			margin-bottom: 2rem;
-			font-size: 4.5rem;
-			line-height: initial;
+			position: absolute;
+			width: calc(100% + 48px);
+			margin: -24px;
 		}
 		.camera-content-container {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: center;
+			z-index: 1;
+			position: relative;
+			padding-top: 8vw;
 			.camera-content {
 				display: flex;
+				flex-wrap: wrap;
 				align-items: center;
 				margin-right: 2rem;
-				// font-size: 1.5rem;
+				margin-right: 2rem;
+				margin-left: 2rem;
 			}
 		}
 	}

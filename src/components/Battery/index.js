@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
-// import CameraImg from 'assets/images/camera.png';
+import batterybg from 'assets/images/battery.png';
 
 class Battery extends Component {
 	render() {
@@ -15,11 +14,7 @@ class Battery extends Component {
 		return (
 			<div id="components-battery" className="component-battery-container">
 				<div className="content-box">
-					<div className="d-flex justify-content-center">
-						<div className="battery-title">
-							Battery
-						</div>
-					</div>
+					<img className="battery-bg" src={batterybg} alt="" />
 					<div className="battery-content-container">
 						{talkTime &&
 							<div className="battery-content-item">

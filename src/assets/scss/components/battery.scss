@@ -1,17 +1,19 @@
 .component-battery-container {
 	.content-box {
+		position: relative;
 		.battery-bg {
-			background-image: url('../../assets/images/battery.png');
-			width: 100%;
+			position: absolute;
+			width: calc(100% + 48px);
+			margin: -24px;
 		}
-		.battery-title {
-			margin-bottom: 2rem;
-			font-size: 4.5rem;
-			line-height: initial;
-		}
+
 		.battery-content-container {
 			display: flex;
+			flex-wrap: wrap;
 			justify-content: center;
+			z-index: 1;
+			position: relative;
+			padding-top: 8vw;
 			.battery-content-item {
 				display: flex;
     			flex-flow: column;

@@ -1,21 +1,11 @@
-// import React, { Component } from 'react';
-// import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-
-
-// import AppBar from '@material-ui/core/AppBar';
-// import Tabs from '@material-ui/core/Tabs';
-// import Tab from '@material-ui/core/Tab';
-// import Typography from '@material-ui/core/Typography';
-
-// import { getProducts } from 'redux/firebase/actions';
-// import { productsSelector } from 'redux/firebase/selectors';
 
 import Offer from 'components/Offer';
 import Colors from 'components/Colors';
 import Display from 'components/Display';
 import Camera from 'components/Camera';
 import Battery from 'components/Battery';
+import Accessories from 'components/Accessories';
 import InputEvent from 'components/InputEvent';
 
 class Info extends InputEvent {
@@ -28,19 +18,22 @@ class Info extends InputEvent {
 					{this.renderGrid('white', <Offer offer={product.offer} />)}
 				</div>
 				<div className="info-container">
-					{this.renderGrid('white', product.description)}
+					{this.renderGrid('', product.description, { background: 'rgb(255,255,255, 0.8)' })}
 				</div>
 				<div className="info-container">
-					{this.renderGrid('white', <Colors colors={product.colors} />)}
+					{this.renderGrid('', <Colors colors={product.colors} />, { background: 'rgb(255,255,255, 0)' })}
 				</div>
 				<div className="info-container">
-					{this.renderGrid('white', <Display display={product.display} />)}
+					{this.renderGrid('', <Display display={product.display} />, { background: 'rgb(255,255,255, 0)' })}
 				</div>
 				<div className="info-container">
-					{this.renderGrid('white', <Camera camera={product.camera} />)}
+					{this.renderGrid('', <Camera camera={product.camera} />, { background: 'rgb(255,255,255, 0)' })}
 				</div>
 				<div className="info-container">
-					{this.renderGrid('white', <Battery battery={product.battery} />)}
+					{this.renderGrid('', <Battery battery={product.battery} />, { background: 'rgb(255,255,255, 0)' })}
+				</div>
+				<div className="info-container">
+					{this.renderGrid('', <Accessories accessories={product.accessories} />, { background: 'rgb(255,255,255, 0)' })}
 				</div>
 			</div>
 		);
