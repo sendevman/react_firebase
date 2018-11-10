@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
-// import CameraImg from 'assets/images/camera.png';
+import camerabg from 'assets/images/camera.png';
 
 class Camera extends Component {
 	render() {
@@ -9,12 +8,7 @@ class Camera extends Component {
 		return (
 			<div id="components-camera" className="component-camera-container">
 				<div className="content-box">
-					<div className="d-flex justify-content-center">
-						<div className="camera-title">
-							Camera
-						</div>
-					</div>
-					{/* <img className="camera-bg" src={CameraImg} alt="" /> */}
+					<img className="camera-bg" src={camerabg} alt="" />
 					<div className="camera-content-container">
 						<div className="camera-content">
 							{camera.features !== undefined && camera.features.map((feature, index) => (

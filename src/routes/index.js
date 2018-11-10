@@ -16,7 +16,6 @@ import LocationsManTab from 'screens/Locations/Manage/Manage';
 import ProductsMain from 'screens/Products/Main/index';
 import ProductsAdd from 'screens/Products/Add/index';
 import ProductsPhone from 'screens/Products/Phone/index';
-import ProductsTablet from 'screens/Products/Tablet/index';
 
 const AuthRoute = (props) => (
   localStorage.getItem('token') !== null
