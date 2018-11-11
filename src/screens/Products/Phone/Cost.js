@@ -13,7 +13,7 @@ class Cost extends InputEvent {
 				<div className="info-container">
 					{this.renderGrid('', <DeviceOptions deviceOptions={product.deviceOptions} />, { background: 'rgb(255,255,255, 0)' })}
 				</div>
-				<div className="info-container">
+				<div className="info-container" style={{ marginTop: 0 }}>
 					<Costs cost={product.cost} />
 				</div>
 			</div>
