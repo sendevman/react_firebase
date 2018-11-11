@@ -1,13 +1,11 @@
 import PropTypes from 'prop-types';
 
-import Offer from 'components/Offer';
 import CustomReviews from 'components/CustomReviews';
 import InputEvent from 'components/InputEvent';
 
 class Review extends InputEvent {
 	render() {
 		const { product } = this.props;
-		console.log(product);
 		return (
 			<div id="products-man-phone-review" className="Container-box">
 				<div className="info-container">
