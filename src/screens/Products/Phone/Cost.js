@@ -1,20 +1,21 @@
-import React, { Component } from 'react';
-// import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-// import AppBar from '@material-ui/core/AppBar';
-// import Tabs from '@material-ui/core/Tabs';
-// import Tab from '@material-ui/core/Tab';
-// import Typography from '@material-ui/core/Typography';
+import Costs from 'components/Costs';
+import DeviceOptions from 'components/DeviceOptions';
+import InputEvent from 'components/InputEvent';
 
-// import { getProducts } from 'redux/firebase/actions';
-// import { productsSelector } from 'redux/firebase/selectors';
-
-class Cost extends Component {
+class Cost extends InputEvent {
 	render() {
+		const { product } = this.props;
+		console.log(product);
 		return (
 			<div id="products-man-phone-cost" className="Container-box">
-				Cost & Plans
+				<div className="info-container">
+					{this.renderGrid('', <DeviceOptions deviceOptions={product.deviceOptions} />, { background: 'rgb(255,255,255, 0)' })}
+				</div>
+				<div className="info-container">
+					<Costs cost={product.cost} />
+				</div>
 			</div>
 		);
 	}
