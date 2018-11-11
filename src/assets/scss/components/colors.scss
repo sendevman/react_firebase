@@ -1,0 +1,31 @@
+.component-colors-container {
+	.content-box {
+		position: relative;
+		.colors-bg {
+			position: absolute;
+			width: calc(100% + 48px);
+			margin: -24px;
+		}
+		.colors-container {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: center;
+			z-index: 1;
+			position: relative;
+			padding-top: 8vw;
+			.color-item-container {
+				margin-left: 1vw;
+				margin-right: 1vw;
+				.color-item-title {
+					text-align: center;
+					max-width: 10vw;
+					white-space: normal;
+					word-break: break-word;
+				}
+				.color-item-image {
+					max-height: 14vw;
+				}
+			}
+		}
+	}
+}

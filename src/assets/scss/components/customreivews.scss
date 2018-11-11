@@ -1,0 +1,67 @@
+.component-customreviews-container {
+	.content-box {
+		position: relative;
+		.content-title {
+			display: flex;
+			.customreviews-title-img {
+				height: 30px;
+				margin-right: 10px;
+			}
+			.customreviews-title-label {
+				font-size: 1.25rem;
+			}
+		}
+		.customreviews-content {
+			.content-stars {
+				display: flex;
+				align-items: center;
+				.stars-value {
+					margin-left: 1rem;
+					font-size: 1.5rem;
+				}
+			}
+			.icon {
+				width: 1.625rem;
+				height: 1.625rem;
+			}
+			.customreviews-expand {
+				text-align: center;
+				font-size: 1.2rem;
+				cursor: pointer;
+				color: #4d74e8;
+			}
+		}
+		.content-expand {
+			margin-top: 2rem;
+			.expand-label {
+				font-size: 1.2rem;
+			}
+			.expand-bars-content {
+				.expand-bars-each {
+					display: flex;
+					align-items: center;
+					margin-top: 1rem;
+					margin-bottom: 1rem;
+					.expand-bars-stars {
+						margin-right: 1.5rem;
+					}
+					.expand-bars-rect {
+						height: 2rem;
+						border: 1px solid black;
+						flex: 1;
+						margin-right: 1.5rem;
+						.expand-bars-rect-inner {
+							background: rgb(224, 185, 11);
+						}
+					}
+				}
+			}
+			.customreviews-collapse {
+				text-align: center;
+				font-size: 1.2rem;
+				cursor: pointer;
+				color: #4d74e8;
+			}
+		}
+	}
+}

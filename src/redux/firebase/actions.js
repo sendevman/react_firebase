@@ -47,6 +47,13 @@ export const getVod = createAction(
 	GET_FB_VOD,
 );
 
+/* add data */
+export const addLocations = createAction(
+	ADD_FB_LOCATIONS,
+	(locations, users) => ({ locations, users }),
+);
+
+/* set all data */
 export const setUsers = createAction(
 	SET_STORE_USERS,
 	(users) => ({ users }),
@@ -72,15 +79,7 @@ export const setVod = createAction(
 	(vod) => ({ vod }),
 );
 
-export const authLogin = createAction(
-	FB_AUTH_LOGIN,
-	(auth) => ({ auth }),
-);
-
-export const authLogout = createAction(
-	FB_AUTH_LOGOUT,
-);
-
+/* user */
 export const getCurrentUser = createAction(
 	GET_CURRENT_USER,
 	(userId) => ({ userId }),
@@ -96,6 +95,7 @@ export const setUserError = createAction(
 	(userError) => ({ userError }),
 );
 
+/* image */
 export const uploadTmpImage = createAction(
 	FB_TMP_UPLOAD_IMAGE,
 	(file) => ({ file }),
@@ -111,7 +111,12 @@ export const uploadImage = createAction(
 	(file) => ({ file }),
 );
 
-export const addLocations = createAction(
-	ADD_FB_LOCATIONS,
-	(locations, users) => ({ locations, users }),
+/* auth */
+export const authLogin = createAction(
+	FB_AUTH_LOGIN,
+	(auth) => ({ auth }),
+);
+
+export const authLogout = createAction(
+	FB_AUTH_LOGOUT,
 );
