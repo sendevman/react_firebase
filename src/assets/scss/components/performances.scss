@@ -1,0 +1,20 @@
+.component-performances-container {
+	.content-box {
+		.performances-bg {
+			background-image: url('../../assets/images/performance.png');
+			width: 100%;
+		}
+		.performances-title {
+			margin-bottom: 2rem;
+			font-size: 4.5rem;
+			line-height: initial;
+		}
+		.performances-content-container {
+			.performances-content {
+				display: flex;
+				align-items: center;
+				margin-right: 2rem;
+			}
+		}
+	}
+}

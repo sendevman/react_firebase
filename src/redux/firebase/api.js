@@ -1,5 +1,6 @@
 import { auth, firestore, storage } from './config';
 
+/* all data */
 export const getData = (data) =>
 	firestore.collection(data).get()
 		.then(res => {
@@ -27,19 +28,13 @@ export const updateDoc = (field, id, data) =>
 		.collection(field).doc(id).set(data)
 		.then(res => res);
 
-export const authLogin = (authInfo) =>
-	auth.signInWithEmailAndPassword(authInfo.email, authInfo.password)
-		.then(authUser => ({ state: 'success', user: authUser }))
-		.catch(error => ({ state: 'error', error }));
-
-export const authLogout = () => auth.signOut();
-
 export const getCurrentUser = (userId) =>
 	firestore.collection('users')
 		.doc(userId)
 		.get()
 		.then(user => user);
 
+/* image */
 export const deleteTmpImage = (file) =>
 	storage.ref().child(file.metadata.fullPath)
 		.delete()
@@ -51,6 +46,7 @@ export const uploadImage = (path, file) =>
 		.put(file)
 		.then(res => res);
 
+/* auth */
 export const getToken = (authUser) =>
 	authUser.user.getIdToken()
 		.then(token => {
@@ -60,3 +56,10 @@ export const getToken = (authUser) =>
 			}
 			return true;
 		});
+
+export const authLogin = (authInfo) =>
+	auth.signInWithEmailAndPassword(authInfo.email, authInfo.password)
+		.then(authUser => ({ state: 'success', user: authUser }))
+		.catch(error => ({ state: 'error', error }));
+
+export const authLogout = () => auth.signOut();

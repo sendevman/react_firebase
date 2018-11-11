@@ -58,10 +58,10 @@ class InputEvent extends Component {
     </Tooltip>
   );
 
-  renderGrid = (color, child, xSize = 12, sSize = 12) => (
+  renderGrid = (color, child, style = {}, xSize = 12, sSize = 12) => (
 		<Grid item xs={xSize} sm={sSize}>
-			<Card>
-				<CardContent className={`left-border-${color}`}>
+			<Card style={style}>
+				<CardContent className={color !== '' ? `left-border-${color}` : ''}>
 					{child}
 				</CardContent>
 			</Card>
