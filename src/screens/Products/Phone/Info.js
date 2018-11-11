@@ -11,7 +11,6 @@ import InputEvent from 'components/InputEvent';
 class Info extends InputEvent {
 	render() {
 		const { product } = this.props;
-		console.log(product);
 		return (
 			<div id="products-man-phone-info">
 				<div className="info-container">

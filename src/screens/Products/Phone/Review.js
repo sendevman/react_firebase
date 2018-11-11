@@ -1,20 +1,18 @@
-import React, { Component } from 'react';
-// import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-// import AppBar from '@material-ui/core/AppBar';
-// import Tabs from '@material-ui/core/Tabs';
-// import Tab from '@material-ui/core/Tab';
-// import Typography from '@material-ui/core/Typography';
+import Offer from 'components/Offer';
+import CustomReviews from 'components/CustomReviews';
+import InputEvent from 'components/InputEvent';
 
-// import { getProducts } from 'redux/firebase/actions';
-// import { productsSelector } from 'redux/firebase/selectors';
-
-class Review extends Component {
+class Review extends InputEvent {
 	render() {
+		const { product } = this.props;
+		console.log(product);
 		return (
 			<div id="products-man-phone-review" className="Container-box">
-				Reviews
+				<div className="info-container">
+					{this.renderGrid('white', <CustomReviews customerReviews={product.customerReviews} />)}
+				</div>
 			</div>
 		);
 	}
