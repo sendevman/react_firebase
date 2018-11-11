@@ -19,7 +19,7 @@ class DevicePhone extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			value: 0,
+			value: 1,
 			currentProduct: {},
 		};
 	}
@@ -64,15 +64,15 @@ class DevicePhone extends Component {
 					</Tabs>
 				</AppBar>
 				{value === 0 &&
-					<Typography component="div" style={{ padding: 8 * 3, width: '90%' }}>
+					<Typography component="div" style={{ padding: 24, width: '90%' }}>
 						<Info product={currentProduct} />
 					</Typography>}
 				{value === 1 &&
-					<Typography component="div" style={{ padding: 8 * 3, width: '90%' }}>
+					<Typography component="div" style={{ padding: 24, width: '90%' }}>
 						<Review product={currentProduct} />
 					</Typography>}
 				{value === 2 &&
-					<Typography component="div" style={{ padding: 8 * 3, width: '90%' }}>
+					<Typography component="div" style={{ padding: 24, width: '90%' }}>
 						<Cost product={currentProduct} />
 					</Typography>}
 			</div>
