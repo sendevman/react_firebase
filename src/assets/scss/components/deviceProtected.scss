@@ -1,0 +1,51 @@
+.component-device-protected-container {
+	.content-box {
+		.device-protected-container {
+			.device-protected-item-container {
+				padding-top: 1rem;
+				padding-bottom: 1rem;
+				.device-protected-item-title {
+					font-size: 1.2rem;
+					margin-bottom: 0.3rem;
+					.device-protected-item-description {
+						font-size: 0.875rem;
+						color: gray;
+						margin-bottom: 0.3rem;
+					}
+				}
+				.device-protected-item-price-container {
+					display: flex;
+					justify-content: space-between;
+					.device-protected-item-content {
+						display: flex;
+						flex-flow: column;
+						align-items: center;
+						width: 33%;
+					}
+					.device-protected-item-monthlyCost,
+					.device-protected-item-deviceProtected {
+						font-size: 1.5rem;
+						color: rgb(60, 106, 231);
+						margin-bottom: 0.6rem;
+					}
+				}
+				.device-protected-item-storage {
+					font-size: 1.2rem;
+					margin-bottom: 0.5rem;
+				}
+				.device-protected-item-price {
+					font-size: 1.2rem;
+					color: gray;
+				}
+				.device-protected-expand,
+				.device-protected-collapse {
+					margin-top: 2rem;
+					text-align: center;
+					font-size: 1.2rem;
+					cursor: pointer;
+					color: #4d74e8;
+				}
+			}
+		}
+	}
+}
