@@ -27,11 +27,11 @@ class Costs extends InputEvent {
 				<div className="content-box">
 					<div className="cost-container">
 						{costValue.map((item, index) => (
-							<div>
+							<div key={index}>
 								{((index === 0 && !expandEnable) || expandEnable) &&
 									<div className="info-container">
 										{this.renderGrid('white',
-											<div className="cost-item-container" key={index}>
+											<div className="cost-item-container">
 												<div className="cost-item-title">
 													{`AT&T${costKey[index]}`}
 													<div className="cost-item-description">
