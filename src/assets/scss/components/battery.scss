@@ -13,13 +13,16 @@
 			justify-content: center;
 			z-index: 1;
 			position: relative;
-			padding-top: 8vw;
+			padding-top: 4vw;
 			.battery-content-item {
 				display: flex;
     			flex-flow: column;
     			align-items: center;
-				margin-left: 1rem;
-				margin-right: 1rem;
+				margin-left: 0.3rem;
+				margin-right: 0.3rem;
+				.battery-inner-text {
+					font-size: 0.625rem;
+				}
 				.battery-header {
 					background: #4CA90C;
 					width: 2.5rem;
@@ -30,9 +33,9 @@
 					margin: 0.1875rem;
 					margin-top: 0;
 					flex-grow: 1;
-					height: 5.3125rem;
-					min-width: 4rem;
-					max-width: 4rem;
+					height: 4vw;
+					min-width: 3.2rem;
+					max-width: 3.2rem;
 					border-radius: 0;
 					display: flex;
 					flex-flow: column;

@@ -28,6 +28,12 @@
 						color: rgb(60, 106, 231);
 						margin-bottom: 0.6rem;
 					}
+					.device-protected-item-monthlyCost-title,
+					.device-protected-item-deviceProtected-title {
+						white-space: normal;
+    					word-break: break-word;
+						text-align: center;
+					}
 				}
 				.device-protected-item-storage {
 					font-size: 1.2rem;
