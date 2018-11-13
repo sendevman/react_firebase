@@ -7,8 +7,25 @@ import ProductProp from './ProductProp';
 import Phone from './Phone';
 
 class ProductPreview extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			currentProduct: props.currentProduct,
+		};
+	}
+
+	componentWillReceiveProps(nextProps) {
+		if (this.props.currentProduct !== nextProps.currentProduct) {
+			this.setState({ currentProduct: nextProps.currentProduct });
+		}
+	}
+
+	updateCurrentProduct = (currentProduct) => {
+		this.setState({ currentProduct });
+	}
+
 	render() {
-		const { currentProduct } = this.props;
+		const { currentProduct } = this.state;
 		return (
 		<Grid item xs={12}>
 			<div className="label-products-table select-text">Info & Specs</div>
@@ -18,7 +35,9 @@ class ProductPreview extends Component {
 					<Phone currentProduct={currentProduct} />
 				</Grid>
 				<Grid item xs={12} sm={6}>
-					<ProductProp />
+					<ProductProp
+						currentProduct={currentProduct}
+						updateCurrentProduct={this.updateCurrentProduct} />
 				</Grid>
 			</Grid>
 		</Grid>

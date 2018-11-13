@@ -1,9 +1,10 @@
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 import Grid from '@material-ui/core/Grid';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControl from '@material-ui/core/FormControl';
 import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
 
 import ArchivelIcon from '@material-ui/icons/Archive';
 import SaveIcon from '@material-ui/icons/Save';
@@ -17,6 +18,7 @@ class ProductProp extends InputEvent {
 		super(props);
 
 		this.state = {
+			currentProduct: props.currentProduct,
 			footer: '',
 			displaySize: '',
 			displayText: '',
@@ -29,6 +31,12 @@ class ProductProp extends InputEvent {
 			imgColorSrc: '',
 			imageNameColorSrc: '',
 		};
+	}
+
+	componentWillReceiveProps(nextProps) {
+		if (this.props.currentProduct !== nextProps.currentProduct) {
+			this.setState({ currentProduct: nextProps.currentProduct });
+		}
 	}
 
 	handleInputFileChange = (event) => {
@@ -50,16 +58,28 @@ class ProductProp extends InputEvent {
 		}
 	}
 
+	handleOnChange = (e) => {
+		const currentProduct = Object.assign({}, this.state.currentProduct);
+		currentProduct.description = e.target.value;
+		this.setState({ currentProduct });
+		this.props.updateCurrentProduct(currentProduct);
+	}
+
 	render() {
 		// const {} = this.state;
-		// const {} = this.props;
+		const { currentProduct } = this.state;
 		return (
 			<Grid item xs={12}>
-
-
 				<FormGroup>
-					{/* <div className="summary-fields">
-					</div> */}
+					<div className="summary-fields">
+						<TextField
+							className="summary-description"
+							multiline
+							rows={4}
+							value={currentProduct.description}
+							onChange={this.handleOnChange}
+						/>
+					</div>
 					<div className="color-fields">
 						<input
 							id="flat-button-color-field"
@@ -105,10 +125,13 @@ class ProductProp extends InputEvent {
 	}
 }
 
-// ProductProp.propTypes = {
-// };
+ProductProp.propTypes = {
+	currentProduct: PropTypes.object,
+	updateCurrentProduct: PropTypes.func.isRequired,
+};
 
-// ProductProp.defaultProps = {
-// };
+ProductProp.defaultProps = {
+	currentProduct: {},
+};
 
 export default ProductProp;
