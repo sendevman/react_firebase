@@ -1,15 +1,10 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import _ from 'lodash';
 
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
-
-import { getProducts } from 'redux/firebase/actions';
-import { productsSelector } from 'redux/firebase/selectors';
 
 import Info from './Info';
 import Review from './Review';
@@ -19,20 +14,8 @@ class DevicePhone extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			value: 2,
-			currentProduct: {},
+			value: 0,
 		};
-	}
-
-	componentDidMount() {
-		this.props.getProducts();
-	}
-
-	componentWillReceiveProps(nextProps) {
-		if (this.props.products !== nextProps.products) {
-			const index = _.findIndex(nextProps.products, product => product.fbId === this.props.match.params.store_id);
-			this.setState({ currentProduct: nextProps.products[index] });
-		}
 	}
 
 	handleChange = (e, value) => {
@@ -40,7 +23,8 @@ class DevicePhone extends Component {
 	};
 
 	render() {
-		const { currentProduct, value } = this.state;
+		const { value } = this.state;
+		const { currentProduct } = this.props;
 		return (
 			<div
 				id="products-man-phone"
@@ -80,22 +64,12 @@ class DevicePhone extends Component {
 	}
 }
 
-const mapStateToProps = state => ({
-	products: productsSelector(state),
-});
-
-const mapDispatchToProps = dispatch => ({
-	getProducts: () => dispatch(getProducts()),
-});
-
 DevicePhone.propTypes = {
-	products: PropTypes.array.isRequired,
-	getProducts: PropTypes.func.isRequired,
-	match: PropTypes.object.isRequired,
+	currentProduct: PropTypes.object,
 };
 
-// DevicePhone.defaultProps = {
+DevicePhone.defaultProps = {
+	currentProduct: {},
+};
 
-// }
-
-export default connect(mapStateToProps, mapDispatchToProps)(DevicePhone);
+export default DevicePhone;
