@@ -12,7 +12,7 @@
 			justify-content: center;
 			z-index: 1;
 			position: relative;
-			padding-top: 8vw;
+			padding-top: 4vw;
 			.color-item-container {
 				margin-left: 1vw;
 				margin-right: 1vw;
@@ -21,9 +21,10 @@
 					max-width: 10vw;
 					white-space: normal;
 					word-break: break-word;
+					font-size: 0.7rem;
 				}
 				.color-item-image {
-					max-height: 14vw;
+					max-height: 7vw;
 				}
 			}
 		}
