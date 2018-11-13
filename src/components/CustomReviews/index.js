@@ -82,7 +82,7 @@ class Customreviews extends Component {
 						</div>
 						{!expandEnable &&
 							<div className="customreviews-expand" onClick={this.handleClickExpand}>
-								+ expand
+								+ Expand
 							</div>}
 					</div>
 					{expandEnable &&
@@ -94,7 +94,7 @@ class Customreviews extends Component {
 								{this.subRender()}
 							</div>
 							<div className="customreviews-collapse" onClick={this.handleClickExpand}>
-								- collapse
+								- Collapse
 							</div>
 						</div>
 					}

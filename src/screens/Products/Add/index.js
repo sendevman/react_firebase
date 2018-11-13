@@ -1,10 +1,8 @@
 // import React, { Component } from 'react';
 
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
 import Grid from '@material-ui/core/Grid';
 
-import ProductForm from '../Components/ProductForm';
+import ProductPreview from '../Components/ProductPreview';
 import ProductImport from '../Components/ProductImport';
 import InputEvent from 'components/InputEvent';
 import TableList from 'components/TableList';
@@ -64,7 +62,7 @@ class ProductsAdd extends InputEvent {
               handleEdit={this.saveEdit}
               handleDelete={this.saveDelete} />)}
 
-          <ProductImport />
+          {this.renderGrid('dark-green', <ProductImport />)}
 
 					{this.renderGrid('dark-green',
 						<HomeView
@@ -75,23 +73,7 @@ class ProductsAdd extends InputEvent {
               handleSave={this.handleCardSave}
               handleCancel={this.handleCardCancel} />)}
 
-          <Grid item xs={12}>
-            <Card>
-              <CardContent className="left-border-dark-green single">
-                <div className="label-products-table select-text">Info & Specs</div>
-
-                <Grid container spacing={24}>
-                  <Grid item xs={12} sm={6}>
-                    <div>Mostrando el Preview</div>
-                  </Grid>
-
-                  <Grid item xs={12} sm={6}>
-                    <ProductForm />
-                  </Grid>
-                </Grid>
-              </CardContent>
-            </Card>
-          </Grid>
+          {this.renderGrid('dark-green', <ProductPreview />)}
         </Grid>
       </div>
     );

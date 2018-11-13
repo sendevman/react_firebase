@@ -1,0 +1,52 @@
+.component-cost-container {
+	.content-box {
+		.cost-container {
+			.cost-item-container {
+				padding-top: 1rem;
+				padding-bottom: 1rem;
+				.cost-item-title {
+					font-size: 1.2rem;
+					margin-bottom: 0.3rem;
+					.cost-item-description {
+						font-size: 0.875rem;
+						color: gray;
+						margin-bottom: 0.3rem;
+					}
+				}
+				.cost-item-price-container {
+					display: flex;
+					justify-content: space-between;
+					.cost-item-content {
+						display: flex;
+						flex-flow: column;
+						align-items: center;
+						width: 33%;
+					}
+					.cost-item-today,
+					.cost-item-monthly,
+					.cost-item-tradein {
+						font-size: 1.5rem;
+						color: rgb(60, 106, 231);
+						margin-bottom: 0.6rem;
+					}
+				}
+				.cost-item-storage {
+					font-size: 1.2rem;
+					margin-bottom: 0.5rem;
+				}
+				.cost-item-price {
+					font-size: 1.2rem;
+					color: gray;
+				}
+				.costs-expand,
+				.costs-collapse {
+					margin-top: 2rem;
+					text-align: center;
+					font-size: 1.2rem;
+					cursor: pointer;
+					color: #4d74e8;
+				}
+			}
+		}
+	}
+}
