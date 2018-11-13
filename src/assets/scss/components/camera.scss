@@ -1,7 +1,7 @@
 .component-camera-container {
 	.content-box {
 		position: relative;
-		min-height: 16vw;
+		min-height: 8vw;
 		.camera-bg {
 			position: absolute;
 			width: calc(100% + 48px);
@@ -13,7 +13,7 @@
 			justify-content: center;
 			z-index: 1;
 			position: relative;
-			padding-top: 8vw;
+			padding-top: 4vw;
 			.camera-content {
 				display: flex;
 				flex-wrap: wrap;

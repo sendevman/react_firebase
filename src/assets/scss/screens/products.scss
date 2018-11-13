@@ -13,6 +13,7 @@
   min-height: 270px;
 }
 
+.color-fields,
 .upload-box {
   position: relative;
 
@@ -103,3 +104,8 @@
 	}
 }
 
+.color-fields,
+.display-fields,
+.camera-fields {
+  margin-bottom: 1.5rem;
+}

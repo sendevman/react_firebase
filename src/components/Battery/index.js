@@ -20,8 +20,8 @@ class Battery extends Component {
 							<div className="battery-content-item">
 								<div className="battery-header" />
 								<div className="battery-body">
-									<div>CALLING</div>
-									<div>{life.talkTime}</div>
+									<div className="battery-inner-text">CALLING</div>
+									<div className="battery-inner-text">{life.talkTime}</div>
 									<div>hours</div>
 								</div>
 							</div>}
@@ -29,45 +29,45 @@ class Battery extends Component {
 							<div className="battery-content-item">
 								<div className="battery-header" />
 								<div className="battery-body">
-									<div>VIDEO</div>
-									<div>{life.video}</div>
-									<div>hours</div>
+									<div className="battery-inner-text">VIDEO</div>
+									<div className="battery-inner-text">{life.video}</div>
+									<div className="battery-inner-text">hours</div>
 								</div>
 							</div>}
 						{audio &&
 							<div className="battery-content-item">
 								<div className="battery-header" />
 								<div className="battery-body">
-									<div>AUDIO</div>
-									<div>{life.audio.replace(' hrs', '')}</div>
-									<div>hours</div>
+									<div className="battery-inner-text">AUDIO</div>
+									<div className="battery-inner-text">{life.audio.replace(' hrs', '')}</div>
+									<div className="battery-inner-text">hours</div>
 								</div>
 							</div>}
 						{wifi &&
 							<div className="battery-content-item">
 								<div className="battery-header" />
 								<div className="battery-body">
-									<div>Wi-Fi</div>
-									<div>{life.internetWifi}</div>
-									<div>hours</div>
+									<div className="battery-inner-text">Wi-Fi</div>
+									<div className="battery-inner-text">{life.internetWifi}</div>
+									<div className="battery-inner-text">hours</div>
 								</div>
 							</div>}
 						{lte &&
 							<div className="battery-content-item">
 								<div className="battery-header" />
 								<div className="battery-body">
-									<div>LTE</div>
-									<div>{life.internetL4G}</div>
-									<div>hours</div>
+									<div className="battery-inner-text">LTE</div>
+									<div className="battery-inner-text">{life.internetL4G}</div>
+									<div className="battery-inner-text">hours</div>
 								</div>
 							</div>}
 						{workout &&
 							<div className="battery-content-item">
 								<div className="battery-header" />
 								<div className="battery-body">
-									<div>WORKOUT</div>
-									<div>{life.workout}</div>
-									<div>hours</div>
+									<div className="battery-inner-text">WORKOUT</div>
+									<div className="battery-inner-text">{life.workout}</div>
+									<div className="battery-inner-text">hours</div>
 								</div>
 							</div>}
 					</div>
