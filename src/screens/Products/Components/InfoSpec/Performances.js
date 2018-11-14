@@ -7,13 +7,13 @@ class Performances extends InputEvent {
 		super(props);
 
 		this.state = {
-			processor: {},
-			memory: '',
-			expandableStorage: {},
-			'processor long': '',
-			'processor short': '',
-			'expandableStorage available': false,
-			'expandableStorage type': '',
+			processor: props.processor,
+			memory: props.memory,
+			expandableStorage: props.expandableStorage,
+			'processor long': props.processor.long,
+			'processor short': props.processor.short,
+			'expandableStorage available': props.expandableStorage.available,
+			'expandableStorage type': props.expandableStorage.type,
 		};
 	}
 
