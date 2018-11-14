@@ -23,6 +23,19 @@ export const addCollection = (field, id, childCollection, user) =>
 		.add(user)
 		.then(res => res);
 
+export const getSubCollection = (field, id, childCollection) =>
+	firestore
+		.collection(field).doc(id)
+		.collection(childCollection)
+		.get()
+		.then(res => {
+			const response = [];
+			res.forEach(item => {
+				response.push({ ...item.data(), fbId: item.id });
+			});
+			return response;
+		});
+
 export const updateDoc = (field, id, data) =>
 	firestore
 		.collection(field).doc(id).set(data)

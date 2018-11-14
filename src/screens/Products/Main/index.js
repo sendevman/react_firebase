@@ -9,7 +9,7 @@ import InputEvent from 'components/InputEvent';
 import TableList from 'components/TableList';
 import SelectZone from 'components/SelectZone';
 
-import { getProducts } from 'redux/firebase/actions';
+import { getProducts, getSubCollection } from 'redux/firebase/actions';
 import { productsSelector } from 'redux/firebase/selectors';
 
 class ProductsMain extends InputEvent {
@@ -18,6 +18,7 @@ class ProductsMain extends InputEvent {
 	}
 
 	handleOnClick = (row) => {
+		this.props.getSubCollection('products', row.fbId, 'web-reviews');
 		this.props.history.push(`/products/manage/device/${row.subType}/${row.fbId}`);
 	}
 
@@ -106,6 +107,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
 	getProducts: () => dispatch(getProducts()),
+	getSubCollection: (parent, id, child) => dispatch(getSubCollection(parent, id, child)),
 });
 
 ProductsMain.propTypes = {

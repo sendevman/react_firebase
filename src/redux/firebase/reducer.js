@@ -1,5 +1,6 @@
-import { fromJS, List } from 'immutable';
+import { fromJS, List, Map } from 'immutable';
 import { handleActions } from 'redux-actions';
+import _ from 'lodash';
 
 import {
 	SET_STORE_USERS,
@@ -7,6 +8,7 @@ import {
 	SET_STORE_PRODUCTS,
 	SET_STORE_AERAS,
 	SET_STORE_VOD,
+	SET_SUB_COLLECTION,
 	SET_CURRENT_USER,
 	SET_USER_ERROR,
 } from './constants';
@@ -27,6 +29,13 @@ export default handleActions({
 	[SET_STORE_PRODUCTS]: (state, action) => state.update('products', () => List(action.payload.products.map(item => item))),
 	[SET_STORE_AERAS]: (state, action) => state.update('areas', () => List(action.payload.areas.map(item => item))),
 	[SET_STORE_VOD]: (state, action) => state.update('vod', () => List(action.payload.vod.map(item => item))),
+	[SET_SUB_COLLECTION]: (state, { payload: { parent, id, child, subCollection } }) =>
+		state
+			.updateIn([parent, _.findIndex(state.get(parent).toJS(), item => item.fbId === id)], data => {
+				data.subCollection = {};
+				data.subCollection[child] = subCollection;
+				return Map(data);
+			}),
 	[SET_CURRENT_USER]: (state, action) =>
 		state
 			.set('currentUser', { ...action.payload.currentUser, res: 'User' })
