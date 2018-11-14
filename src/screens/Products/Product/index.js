@@ -12,7 +12,7 @@ import TableList from 'components/TableList';
 
 import HomeView from 'components/HomeView';
 
-import { getProducts } from 'redux/firebase/actions';
+import { getProducts, getSubCollection } from 'redux/firebase/actions';
 import { productsSelector } from 'redux/firebase/selectors';
 
 class Product extends InputEvent {
@@ -36,6 +36,9 @@ class Product extends InputEvent {
 		if (this.props.products !== nextProps.products) {
 			const index = _.findIndex(nextProps.products, product => product.fbId === this.props.match.params.store_id);
 			this.setState({ currentProduct: nextProps.products[index] });
+			if (this.props.products.length === 0) {
+				this.props.getSubCollection('products', this.props.match.params.store_id, 'web-reviews');
+			}
 		}
 	}
 
@@ -119,6 +122,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
 	getProducts: () => dispatch(getProducts()),
+	getSubCollection: (parent, id, child) => dispatch(getSubCollection(parent, id, child)),
 });
 
 Product.propTypes = {

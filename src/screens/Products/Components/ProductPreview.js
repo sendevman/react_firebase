@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+
+// import _ from 'lodash';
 
 import Grid from '@material-ui/core/Grid';
 
-// import ProductProp from './ProductProp';
 import ProductForm from './ProductForm';
 import Phone from './Phone';
+
+import { updateDoc } from 'redux/firebase/actions';
+// import { addCollection } from 'redux/firebase/actions';
 
 class ProductPreview extends Component {
 	constructor(props) {
@@ -25,6 +30,21 @@ class ProductPreview extends Component {
 		this.setState({ currentProduct: { ...this.state.currentProduct, ...updatedProduct } });
 	}
 
+	handleSave = () => {
+		const data = Object.assign({}, this.state.currentProduct);
+		delete data.fbId;
+		delete data.subCollection;
+		// const subCollectionKeys = _.keys(this.state.currentProduct.subCollection);
+		this.props.updateDoc('products', this.state.currentProduct.fbId, this.state.currentProduct);
+		// this.props.addCollection('products', this.state.currentProduct.fbId, subCollectionKeys[0], this.state.currentProduct.subCollection[subCollectionKeys[0]]);
+	}
+
+	handleCancel = () => {
+		this.setState = {
+			currentProduct: this.props.currentProduct,
+		};
+	}
+
 	render() {
 		const { currentProduct } = this.state;
 		return (
@@ -39,7 +59,9 @@ class ProductPreview extends Component {
 						<Grid item xs={12} sm={6}>
 							<ProductForm
 								currentProduct={currentProduct}
-								updateCurrentProduct={this.updateCurrentProduct} />
+								updateCurrentProduct={this.updateCurrentProduct}
+								handleSave={this.handleSave}
+								handleCancel={this.handleCancel} />
 						</Grid>
 					</Grid>}
 			</Grid>
@@ -47,12 +69,19 @@ class ProductPreview extends Component {
 	}
 }
 
+const mapDispatchToProps = dispatch => ({
+	updateDoc: (collection, id, data) => dispatch(updateDoc(collection, id, data)),
+	// addCollection: (field, id, childCollection, user) => dispatch(addCollection(field, id, childCollection, user)),
+});
+
 ProductPreview.propTypes = {
 	currentProduct: PropTypes.object,
+	updateDoc: PropTypes.func.isRequired,
+	// addCollection: PropTypes.func.isRequired,
 };
 
 ProductPreview.defaultProps = {
 	currentProduct: {},
 };
 
-export default ProductPreview;
+export default connect(null, mapDispatchToProps)(ProductPreview);

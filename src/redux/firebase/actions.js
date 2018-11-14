@@ -6,11 +6,13 @@ import {
 	GET_FB_AERAS,
 	GET_FB_VOD,
 	GET_CURRENT_USER,
+	GET_FB_SUB_COLLECTION,
 	SET_STORE_USERS,
 	SET_STORE_LOCATIONS,
 	SET_STORE_PRODUCTS,
 	SET_STORE_AERAS,
 	SET_STORE_VOD,
+	SET_SUB_COLLECTION,
 	SET_CURRENT_USER,
 	SET_USER_ERROR,
 	FB_AUTH_LOGIN,
@@ -47,6 +49,11 @@ export const getVod = createAction(
 	GET_FB_VOD,
 );
 
+export const getSubCollection = createAction(
+	GET_FB_SUB_COLLECTION,
+	(parent, id, child) => ({ parent, id, child }),
+);
+
 /* add data */
 export const addLocations = createAction(
 	ADD_FB_LOCATIONS,
@@ -54,6 +61,11 @@ export const addLocations = createAction(
 );
 
 /* set all data */
+export const setSubCollection = createAction(
+	SET_SUB_COLLECTION,
+	(parent, id, child, subCollection) => ({ parent, id, child, subCollection }),
+);
+
 export const setUsers = createAction(
 	SET_STORE_USERS,
 	(users) => ({ users }),
