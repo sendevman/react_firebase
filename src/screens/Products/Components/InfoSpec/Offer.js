@@ -6,10 +6,10 @@ class Offer extends InputEvent {
 		super(props);
 
 		this.state = {
-			title: '',
-			description: '',
-			opusCode: '',
-			img: '',
+			title: props.offer.title,
+			description: props.offer.description,
+			opusCode: props.offer.opusCode,
+			img: props.offer.img,
 		};
 	}
 

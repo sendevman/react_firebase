@@ -23,6 +23,7 @@ class Colors extends InputEvent {
 		super(props);
 
 		this.state = {
+			...props.colors,
 		};
 	}
 

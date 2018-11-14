@@ -7,7 +7,7 @@ class Description extends InputEvent {
 		super(props);
 
 		this.state = {
-			description: '',
+			description: props.description,
 		};
 	}
 
