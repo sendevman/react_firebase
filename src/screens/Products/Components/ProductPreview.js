@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 
 import Grid from '@material-ui/core/Grid';
 
-import ProductProp from './ProductProp';
+// import ProductProp from './ProductProp';
+import ProductForm from './ProductForm';
 import Phone from './Phone';
 
 class ProductPreview extends Component {
@@ -20,27 +21,28 @@ class ProductPreview extends Component {
 		}
 	}
 
-	updateCurrentProduct = (currentProduct) => {
-		this.setState({ currentProduct });
+	updateCurrentProduct = (updatedProduct) => {
+		this.setState({ currentProduct: { ...this.state.currentProduct, ...updatedProduct } });
 	}
 
 	render() {
 		const { currentProduct } = this.state;
 		return (
-		<Grid item xs={12}>
-			<div className="label-products-table select-text">Info & Specs</div>
+			<Grid item xs={12}>
+				<div className="label-products-table select-text">Info & Specs</div>
 
-			<Grid container spacing={24}>
-				<Grid item xs={12} sm={6}>
-					<Phone currentProduct={currentProduct} />
-				</Grid>
-				<Grid item xs={12} sm={6}>
-					<ProductProp
-						currentProduct={currentProduct}
-						updateCurrentProduct={this.updateCurrentProduct} />
-				</Grid>
+				{currentProduct.fbId !== undefined &&
+					<Grid container spacing={24}>
+						<Grid item xs={12} sm={6}>
+							<Phone currentProduct={currentProduct} />
+						</Grid>
+						<Grid item xs={12} sm={6}>
+							<ProductForm
+								currentProduct={currentProduct}
+								updateCurrentProduct={this.updateCurrentProduct} />
+						</Grid>
+					</Grid>}
 			</Grid>
-		</Grid>
 		);
 	}
 }

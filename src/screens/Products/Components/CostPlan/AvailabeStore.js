@@ -4,16 +4,15 @@ import InputEvent from 'components/InputEvent';
 class AvailabeStore extends InputEvent {
 	constructor(props) {
 		super(props);
-
 		this.state = {
 			releaseDate: props.releaseDate,
 		};
 	}
 
 	componentWillReceiveProps(nextProps) {
-		if (this.props.insurance !== nextProps.insurance) {
+		if (this.props.releaseDate !== nextProps.releaseDate) {
 			this.setState({
-				releaseDate: nextProps.releaseDate,
+				releaseDate: new Date(nextProps.releaseDate),
 			});
 		}
 	}
@@ -34,12 +33,12 @@ class AvailabeStore extends InputEvent {
 }
 
 AvailabeStore.propTypes = {
-	releaseDate: PropTypes.date,
+	releaseDate: PropTypes.string,
 	updateReleaseDate: PropTypes.func.isRequired,
 };
 
 AvailabeStore.defaultProps = {
-	releaseDate: new Date(),
+	releaseDate: '',
 };
 
 export default AvailabeStore;
