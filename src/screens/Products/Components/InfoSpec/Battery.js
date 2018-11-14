@@ -7,15 +7,15 @@ class Battery extends InputEvent {
 		super(props);
 
 		this.state = {
-			capacity: '',
-			life: {},
-			'life internetL4G': '',
-			'life internetWifi': '',
-			'life talkTime': '',
-			'life audio': '',
-			'life video': '',
-			'life chargingWired': false,
-			'life chargingWireless': false,
+			capacity: props.battery.capacity,
+			life: props.battery.life,
+			'life internetL4G': props.battery.life.internetL4G,
+			'life internetWifi': props.battery.life.internetWifi,
+			'life talkTime': props.battery.life.talkTime,
+			'life audio': props.battery.life.audio,
+			'life video': props.battery.life.video,
+			'life chargingWired': props.battery.life.chargingWired,
+			'life chargingWireless': props.battery.life.chargingWireless,
 		};
 	}
 

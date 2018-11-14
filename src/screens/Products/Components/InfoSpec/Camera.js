@@ -8,17 +8,17 @@ class Camera extends InputEvent {
 		super(props);
 
 		this.state = {
-			features: [],
-			front: {},
-			rear: {},
-			'features 0': '',
-			'features 1': '',
-			'features 2': '',
-			'features 3': '',
-			'front aperture': '',
-			'front sensor': '',
-			'rear aperture': '',
-			'rear sensor': '',
+			features: props.camera.features,
+			front: props.camera.front,
+			rear: props.camera.rear,
+			'features 0': props.camera.features[0],
+			'features 1': props.camera.features[1],
+			'features 2': props.camera.features[2],
+			// 'features 3': props.camera.features[3],
+			'front aperture': props.camera.front.aperture,
+			'front sensor': props.camera.front.sensor,
+			'rear aperture': props.camera.rear.aperture,
+			'rear sensor': props.camera.rear.sensor,
 		};
 	}
 

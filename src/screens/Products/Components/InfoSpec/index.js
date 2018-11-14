@@ -5,7 +5,6 @@ import Offer from './Offer';
 import Description from './Description';
 import Colors from './Colors';
 import Display from './Display';
-import Fitness from './Fitness';
 import Camera from './Camera';
 import Performances from './Performances';
 import Battery from './Battery';
@@ -57,10 +56,6 @@ class InfoSpec extends Component {
 				<Display
 					display={currentProduct.display}
 					updateDisplay={this.updateInfoSpec} />
-
-				<Fitness
-					fitness={currentProduct.fitness}
-					updateFitness={this.updateInfoSpec} />
 
 				<Camera
 					camera={currentProduct.camera}
