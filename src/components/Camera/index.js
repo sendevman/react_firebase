@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Grid from '@material-ui/core/Grid';
 import camerabg from 'assets/images/camera.png';
 
 class Camera extends Component {
@@ -11,9 +12,21 @@ class Camera extends Component {
 					<img className="camera-bg" src={camerabg} alt="" />
 					<div className="camera-content-container">
 						<div className="camera-content">
-							{camera.features !== undefined && camera.features.map((feature, index) => (
-								<div key={index}>{feature}</div>
-							))}
+							<Grid container>
+								<Grid item xs={12} md={6}>
+									<div className="text-align-center">{camera.front.aperture}</div>
+									<div className="text-align-center">{camera.front.sensor}</div>
+								</Grid>
+								<Grid item xs={12} md={6}>
+									<div className="text-align-center">{camera.rear.aperture}</div>
+									<div className="text-align-center">{camera.rear.sensor}</div>
+								</Grid>
+								<Grid item xs={12}>
+									{camera.features !== undefined && camera.features.map((feature, index) => (
+										<div key={index}>{`- ${feature}`}</div>
+									))}
+								</Grid>
+							</Grid>
 						</div>
 					</div>
 				</div>
