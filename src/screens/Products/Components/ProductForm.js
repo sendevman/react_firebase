@@ -66,8 +66,8 @@ class ProductForm extends InputEvent {
 				</Grid>
 
 				<div className="buttons-box mt-block">
-					{this.renderButton('Save', 'green', () => {}, <SaveIcon />, 'contained', 'small')}
-					{this.renderButton('Cancel', 'red', () => {}, <CancelIcon />, 'contained', 'small')}
+					{this.renderButton('Save', 'green', this.props.handleSave, <SaveIcon />, 'contained', 'small')}
+					{this.renderButton('Cancel', 'red', this.props.handleCancel, <CancelIcon />, 'contained', 'small')}
 				</div>
 			</div>
 		);
@@ -77,6 +77,8 @@ class ProductForm extends InputEvent {
 ProductForm.propTypes = {
 	currentProduct: PropTypes.object,
 	updateCurrentProduct: PropTypes.func.isRequired,
+	handleSave: PropTypes.func.isRequired,
+	handleCancel: PropTypes.func.isRequired,
 };
 
 ProductForm.defaultProps = {

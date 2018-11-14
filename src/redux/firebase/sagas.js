@@ -7,6 +7,7 @@ import {
   GET_FB_AERAS,
   GET_FB_VOD,
   GET_CURRENT_USER,
+  GET_FB_SUB_COLLECTION,
   FB_AUTH_LOGIN,
   FB_AUTH_LOGOUT,
   FB_TMP_UPLOAD_IMAGE,
@@ -25,6 +26,7 @@ import {
   uploadImage,
   deleteTmpImage,
   getAddDataId,
+  getSubCollection,
   addCollection,
   updateDoc,
 } from './api';
@@ -37,6 +39,7 @@ import {
   setVod,
   setCurrentUser,
   setUserError,
+  setSubCollection,
 } from './actions';
 
 function* asyncUpdateDoc(param) {
@@ -50,6 +53,12 @@ function* asyncAddLocations(param) {
     call(addCollection, 'locations', id, 'users', user),
   );
   yield all(requests);
+}
+
+function* asyncGetSubCollection(param) {
+  const { parent, id, child } = param.payload;
+  const res = yield call(getSubCollection, parent, id, child);
+  yield put(setSubCollection(parent, id, child, res));
 }
 
 function* asyncGetUsers() {
@@ -124,6 +133,7 @@ export function* sagaWatcher() {
   yield takeLatest(FB_UPLOAD_IMAGE, asyncUploadImage);
   yield takeLatest(ADD_FB_LOCATIONS, asyncAddLocations);
   yield takeLatest(UPDATE_FB_DOC, asyncUpdateDoc);
+  yield takeLatest(GET_FB_SUB_COLLECTION, asyncGetSubCollection);
 }
 
 export default [
