@@ -7,9 +7,9 @@ class ExtraInfo extends InputEvent {
 		super(props);
 
 		this.state = {
-			model: '',
-			manufacture: '',
-			powerAdapterType: '',
+			model: props.model,
+			manufacture: props.manufacture,
+			powerAdapterType: props.powerAdapterType,
 		};
 	}
 

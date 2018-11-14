@@ -7,10 +7,10 @@ class Display extends InputEvent {
 		super(props);
 
 		this.state = {
-			ppi: '',
-			description: '',
-			resolution: '',
-			size: '',
+			ppi: props.display.ppi,
+			description: props.display.description,
+			resolution: props.display.resolution,
+			size: props.display.size,
 		};
 	}
 
