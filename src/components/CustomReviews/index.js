@@ -13,14 +13,15 @@ class Customreviews extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			avg: 0,
+			avg: this.calculateAvg(props.customerReviews),
 			expandEnable: false,
+			nExpands: props.customerReviews.map(() => false),
 		};
 	}
 
 	componentWillReceiveProps(nextProps) {
 		if (nextProps.customerReviews.length > 0) {
-			this.calculateAvg(nextProps.customerReviews);
+			this.setState({ avg: this.calculateAvg(nextProps.customerReviews) });
 		}
 	}
 
@@ -29,7 +30,7 @@ class Customreviews extends Component {
 		customerReviews.forEach(customerReview => {
 			avg += parseInt(customerReview.stars, 10);
 		});
-		this.setState({ avg });
+		return avg;
 	}
 
 	handleClickExpand = () => {
@@ -38,7 +39,13 @@ class Customreviews extends Component {
 		});
 	}
 
-	subRender = () => {
+	handleClicknExpand = (index) => {
+		const nExpands = this.state.nExpands.slice();
+		nExpands[index] = !nExpands[index];
+		this.setState({	nExpands });
+	}
+
+	barRender = () => {
 		const { customerReviews } = this.props;
 		const bars = [];
 		for (let i = 0; i < 5; i++) {
@@ -60,7 +67,7 @@ class Customreviews extends Component {
 
 	render() {
 		const { customerReviews } = this.props;
-		const { avg, expandEnable } = this.state;
+		const { avg, expandEnable, nExpands } = this.state;
 		return (
 			<div id="components-customreviews" className="component-customreviews-container">
 				<div className="content-box">
@@ -71,33 +78,52 @@ class Customreviews extends Component {
 					<div className="customreviews-content">
 						<div className="content-stars">
 							<Rating
-								placeholderRating={avg / customerReviews.length}
+								initialRating={avg / customerReviews.length}
 								emptySymbol={<img src={greyStar} className="icon" alt="" />}
-								placeholderSymbol={<img src={redStar} className="icon" alt="" />}
-								fullSymbol={<img src={yellowStar} className="icon" alt="" />}
+								placeholderSymbol={<img src={yellowStar} className="icon" alt="" />}
+								fullSymbol={<img src={redStar} className="icon" alt="" />}
+								readonly
 							/>
 							<div className="stars-value">
 								{`${Math.round(avg / customerReviews.length * 100) / 100}stars`}
 							</div>
 						</div>
-						{!expandEnable &&
-							<div className="customreviews-expand" onClick={this.handleClickExpand}>
-								+ Expand
-							</div>}
-					</div>
-					{expandEnable &&
-						<div className="content-expand">
-							<div className="expand-label">
-								{`Rating Distribution (${customerReviews.length} reviews)}`}
-							</div>
-							<div className="expand-bars-content">
-								{this.subRender()}
-							</div>
-							<div className="customreviews-collapse" onClick={this.handleClickExpand}>
-								- Collapse
-							</div>
+						<div className="expand-label">
+							{`Rating Distribution (${customerReviews.length} reviews)}`}
 						</div>
-					}
+						<div className="expand-bars-content">
+							{this.barRender()}
+						</div>
+						<div className="customreviews-expand" onClick={this.handleClickExpand}>
+							{!expandEnable ? '+ Read more' : '- Collapse'}
+						</div>
+						{expandEnable &&
+							<div className="content-expand">
+								{_.map(customerReviews, (customerReview, index) => (
+									<div className="content-expand-each" key={index}>
+										<div className="customreviewer-title">
+											<div className="customreviewer-name">{customerReview.name}</div>
+											<Rating
+												initialRating={customerReview.stars}
+												emptySymbol={<img src={greyStar} className="icon" alt="" />}
+												placeholderSymbol={<img src={redStar} className="icon" alt="" />}
+												fullSymbol={<img src={yellowStar} className="icon" alt="" />}
+												readonly
+												className="each-rating"
+											/>
+										</div>
+										<div className={!nExpands[index] ? 'customreviewer-content' : ''}>
+											{customerReview.review}
+										</div>
+										{!nExpands[index] && <div>...</div>}
+										<div className="customreviews-expand" onClick={() => this.handleClicknExpand(index)}>
+											{!nExpands[index] ? '+ Read more' : '- Collapse'}
+										</div>
+									</div>
+								))}
+							</div>
+						}
+					</div>
 				</div>
 			</div>
 		);

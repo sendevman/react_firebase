@@ -9,6 +9,8 @@ import Accessories from 'components/Accessories';
 import InputEvent from 'components/InputEvent';
 
 class Info extends InputEvent {
+	handleClickSurvey =() => {}
+
 	render() {
 		const { product } = this.props;
 		return (
@@ -41,6 +43,9 @@ class Info extends InputEvent {
 					<div className="info-container">
 						{this.renderGrid('', <Accessories accessories={product.accessories} />, { background: 'rgb(255,255,255, 0)' })}
 					</div>}
+				<div style={{ textAlign: 'center' }}>
+					{this.renderButton('', 'blue', this.handleClickSurvey, 'Feedback Survey', 'contained', 'large')}
+				</div>
 			</div>
 		);
 	}

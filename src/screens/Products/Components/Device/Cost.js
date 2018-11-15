@@ -14,7 +14,7 @@ class Cost extends InputEvent {
 			<div id="products-man-phone-cost" className="Container-box">
 				{product.deviceOptions &&
 					<div className="info-container">
-						{this.renderGrid('', <DeviceOptions deviceOptions={product.deviceOptions} />, { background: 'rgb(255,255,255, 0)', boxShadow: 'none' })}
+						<DeviceOptions deviceOptions={product.deviceOptions} />
 					</div>}
 				{product.cost &&
 					<div className="info-container" style={{ marginTop: 0 }}>
@@ -22,6 +22,7 @@ class Cost extends InputEvent {
 					</div>}
 				{product.insurance &&
 					<div className="info-container" style={{ marginTop: 0 }}>
+						<div className="device-protection-title">Device Protection</div>
 						<DeviceProtected insurance={product.insurance} />
 					</div>}
 				{this.renderButton('', 'blue', this.handleClickSurvey, 'Feedback Survey', 'contained', 'large')}
