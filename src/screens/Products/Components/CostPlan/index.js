@@ -41,21 +41,25 @@ class CostPlan extends InputEvent {
 
 		return (
 			<div>
-				<AvailabeStore
-					releaseDate={currentProduct.releaseDate}
-					updateReleaseDate={this.updateCostPlan} />
+				{currentProduct.releaseDate &&
+					<AvailabeStore
+						releaseDate={currentProduct.releaseDate}
+						updateReleaseDate={this.updateCostPlan} />}
 
-				<DeviceOptions
-					deviceOptions={currentProduct.deviceOptions}
-					updateDeviceOptions={this.updateCostPlan} />
+				{currentProduct.deviceOptions &&
+					<DeviceOptions
+						deviceOptions={currentProduct.deviceOptions}
+						updateDeviceOptions={this.updateCostPlan} />}
 
-				<Plans
-					cost={currentProduct.cost}
-					updateCost={this.updateCostPlan} />
+				{currentProduct.cost &&
+					<Plans
+						cost={currentProduct.cost}
+						updateCost={this.updateCostPlan} />}
 
-				<DeviceProtection
-					insurance={currentProduct.insurance}
-					updateInsurance={this.updateCostPlan} />
+				{currentProduct.insurance &&
+					<DeviceProtection
+						insurance={currentProduct.insurance}
+						updateInsurance={this.updateCostPlan} />}
 
 			</div>
 		);

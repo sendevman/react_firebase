@@ -42,29 +42,35 @@ class InfoSpec extends Component {
 
 		return (
 			<div>
-				<Offer
-					offer={currentProduct.offer}
-					updateOffer={this.updateInfoSpec} />
+				{currentProduct.offer &&
+					<Offer
+						offer={currentProduct.offer}
+						updateOffer={this.updateInfoSpec} />}
 
-				<Description
-					description={currentProduct.description}
-					updateDescription={this.updateInfoSpec} />
+				{currentProduct.description &&
+					<Description
+						description={currentProduct.description}
+						updateDescription={this.updateInfoSpec} />}
 
-				<Colors
-					colors={currentProduct.colors}
-					updateColors={this.updateInfoSpec} />
+				{currentProduct.colors &&
+					<Colors
+						colors={currentProduct.colors}
+						updateColors={this.updateInfoSpec} />}
 
-				<Display
-					display={currentProduct.display}
-					updateDisplay={this.updateInfoSpec} />
+				{currentProduct.display &&
+					<Display
+						display={currentProduct.display}
+						updateDisplay={this.updateInfoSpec} />}
 
-				<Fitness
-					fitness={currentProduct.fitness}
-					updateFitness={this.updateInfoSpec} />
+				{currentProduct.fitness &&
+					<Fitness
+						fitness={currentProduct.fitness}
+						updateFitness={this.updateInfoSpec} />}
 
-				<Camera
-					camera={currentProduct.camera}
-					updateCamera={this.updateInfoSpec} />
+				{currentProduct.camera &&
+					<Camera
+						camera={currentProduct.camera}
+						updateCamera={this.updateInfoSpec} />}
 
 				<Performances
 					processor={currentProduct.processor}
@@ -72,9 +78,10 @@ class InfoSpec extends Component {
 					expandableStorage={currentProduct.expandableStorage}
 					updatePerformance={this.updateInfoSpec} />
 
-				<Battery
-					battery={currentProduct.battery}
-					updateBattery={this.updateInfoSpec} />
+				{currentProduct.battery &&
+					<Battery
+						battery={currentProduct.battery}
+						updateBattery={this.updateInfoSpec} />}
 
 				<ExtraInfo
 					model={currentProduct.model}

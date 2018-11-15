@@ -15,11 +15,11 @@ class Plans extends InputEvent {
 			'next monthly': props.cost.next.monthly,
 			'next title': props.cost.next.title,
 			'next tradeIn': props.cost.next.tradeIn,
-			'nextEveryYear description': props.cost.nextEveryYear.description,
-			'nextEveryYear dueToday': props.cost.nextEveryYear.dueToday,
-			'nextEveryYear monthly': props.cost.nextEveryYear.monthly,
-			'nextEveryYear title': props.cost.nextEveryYear.title,
-			'nextEveryYear tradeIn': props.cost.nextEveryYear.tradeIn,
+			// 'nextEveryYear description': props.cost.nextEveryYear.description,
+			// 'nextEveryYear dueToday': props.cost.nextEveryYear.dueToday,
+			// 'nextEveryYear monthly': props.cost.nextEveryYear.monthly,
+			// 'nextEveryYear title': props.cost.nextEveryYear.title,
+			// 'nextEveryYear tradeIn': props.cost.nextEveryYear.tradeIn,
 			'noContract description': props.cost.noContract.description,
 			'noContract dueToday': props.cost.noContract.dueToday,
 			'noContract monthly': props.cost.noContract.monthly,
@@ -37,11 +37,11 @@ class Plans extends InputEvent {
 				'next monthly': nextProps.cost.next.monthly,
 				'next title': nextProps.cost.next.title,
 				'next tradeIn': nextProps.cost.next.tradeIn,
-				'nextEveryYear description': nextProps.cost.nextEveryYear.description,
-				'nextEveryYear dueToday': nextProps.cost.nextEveryYear.dueToday,
-				'nextEveryYear monthly': nextProps.cost.nextEveryYear.monthly,
-				'nextEveryYear title': nextProps.cost.nextEveryYear.title,
-				'nextEveryYear tradeIn': nextProps.cost.nextEveryYear.tradeIn,
+				// 'nextEveryYear description': nextProps.cost.nextEveryYear.description,
+				// 'nextEveryYear dueToday': nextProps.cost.nextEveryYear.dueToday,
+				// 'nextEveryYear monthly': nextProps.cost.nextEveryYear.monthly,
+				// 'nextEveryYear title': nextProps.cost.nextEveryYear.title,
+				// 'nextEveryYear tradeIn': nextProps.cost.nextEveryYear.tradeIn,
 				'noContract description': nextProps.cost.noContract.description,
 				'noContract dueToday': nextProps.cost.noContract.dueToday,
 				'noContract monthly': nextProps.cost.noContract.monthly,
@@ -88,7 +88,7 @@ class Plans extends InputEvent {
 						</Grid>
 					</Grid>
 
-					<div className="subtitle-features">AT&T Next Every Year</div>
+					{/* <div className="subtitle-features">AT&T Next Every Year</div>
 					{this.renderText('nextEveryYear description', 'Description', 'text-field-width', '', 'dense')}
 
 					<Grid container spacing={16}>
@@ -101,7 +101,7 @@ class Plans extends InputEvent {
 							{this.renderText('nextEveryYear tradeIn', 'Trade In', 'text-field-width', '', 'dense')}
 							{this.renderText('nextEveryYear monthly', 'Monthly', 'text-field-width', '', 'dense', 'number')}
 						</Grid>
-					</Grid>
+					</Grid> */}
 
 					<div className="subtitle-features">No annual contract</div>
 					{this.renderText('noContract title', 'Description', 'text-field-width', '', 'dense')}
