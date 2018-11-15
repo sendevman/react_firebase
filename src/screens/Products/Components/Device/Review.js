@@ -8,9 +8,10 @@ class Review extends InputEvent {
 		const { product } = this.props;
 		return (
 			<div id="products-man-phone-review" className="Container-box">
-				<div className="info-container">
-					{this.renderGrid('white', <CustomReviews customerReviews={product.customerReviews} />)}
-				</div>
+				{product.customerReviews &&
+					<div className="info-container">
+						{this.renderGrid('white', <CustomReviews customerReviews={product.customerReviews} />)}
+					</div>}
 			</div>
 		);
 	}
