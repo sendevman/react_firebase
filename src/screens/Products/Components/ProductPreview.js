@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import Grid from '@material-ui/core/Grid';
 
 import ProductForm from './ProductForm';
-import Phone from './Phone';
+import Device from './Device';
 
 import { updateDoc } from 'redux/firebase/actions';
 // import { addCollection } from 'redux/firebase/actions';
@@ -54,7 +54,7 @@ class ProductPreview extends Component {
 				{currentProduct.fbId !== undefined &&
 					<Grid container spacing={24}>
 						<Grid item xs={12} sm={6}>
-							<Phone currentProduct={currentProduct} />
+							<Device currentProduct={currentProduct} />
 						</Grid>
 						<Grid item xs={12} sm={6}>
 							<ProductForm

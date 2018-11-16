@@ -33,7 +33,7 @@ class Costs extends InputEvent {
 										{this.renderGrid('white',
 											<div className="cost-item-container">
 												<div className="cost-item-title">
-													{`AT&T${costKey[index]}`}
+													{`AT&T ${_.capitalize(costKey[index])}`}
 													<div className="cost-item-description">
 														{item.description}
 													</div>
