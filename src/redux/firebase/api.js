@@ -31,7 +31,7 @@ export const getSubCollection = (field, id, childCollection) =>
 		.then(res => {
 			const response = [];
 			res.forEach(item => {
-				response.push({ ...item.data(), fbId: item.id });
+				response.push({ ...item.data() });
 			});
 			return response;
 		});
