@@ -1,36 +1,49 @@
 import PropTypes from 'prop-types';
+import _ from 'lodash';
 import Grid from '@material-ui/core/Grid';
 import InputEvent from 'components/InputEvent';
 
 class Battery extends InputEvent {
 	constructor(props) {
 		super(props);
-
-		this.state = {
-			capacity: props.battery.capacity,
-			life: props.battery.life,
-			'life internetL4G': props.battery.life.internetL4G,
-			'life internetWifi': props.battery.life.internetWifi,
-			'life talkTime': props.battery.life.talkTime,
-			'life audio': props.battery.life.audio,
-			'life video': props.battery.life.video,
-			'life chargingWired': props.battery.life.chargingWired,
-			'life chargingWireless': props.battery.life.chargingWireless,
-		};
+		const { battery } = props;
+		if (battery.life) {
+			const lifeKeys = _.keys(battery.life);
+			const dState = {};
+			_.each(lifeKeys, item => {
+				dState[`life ${item}`] = battery.life[item];
+			});
+			this.state = {
+				capacity: battery.capacity,
+				life: battery.life,
+				...dState,
+			};
+		} else {
+			this.state = {
+				capacity: battery.capacity,
+			};
+		}
 	}
 
 	componentWillReceiveProps(nextProps) {
+		const { battery } = nextProps;
 		if (this.props.battery !== nextProps.battery) {
-			this.setState({
-				...nextProps.battery,
-				'life internetL4G': nextProps.battery.life.internetL4G,
-				'life internetWifi': nextProps.battery.life.internetWifi,
-				'life talkTime': nextProps.battery.life.talkTime,
-				'life audio': nextProps.battery.life.audio,
-				'life video': nextProps.battery.life.video,
-				'life chargingWired': nextProps.battery.life.chargingWired,
-				'life chargingWireless': nextProps.battery.life.chargingWireless,
-			});
+			if (battery.life) {
+				const lifeKeys = _.keys(battery.life);
+				const dState = {};
+				_.each(lifeKeys, item => {
+					dState[`life ${item}`] = battery.life[item];
+				});
+				this.setState({
+					capacity: battery.capacity,
+					life: battery.life,
+					...dState,
+				});
+			} else {
+				this.setState({
+					capacity: battery.capacity,
+				});
+			}
 		}
 	}
 

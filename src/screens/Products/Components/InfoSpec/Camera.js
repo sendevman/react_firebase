@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import _ from 'lodash';
 import InputEvent from 'components/InputEvent';
 
 import Grid from '@material-ui/core/Grid';
@@ -6,36 +7,38 @@ import Grid from '@material-ui/core/Grid';
 class Camera extends InputEvent {
 	constructor(props) {
 		super(props);
-
+		const dState = this.settingState(props.camera);
 		this.state = {
-			features: props.camera.features,
-			front: props.camera.front,
-			rear: props.camera.rear,
-			'features 0': props.camera.features[0],
-			'features 1': props.camera.features[1],
-			'features 2': props.camera.features[2],
-			// 'features 3': props.camera.features[3],
-			'front aperture': props.camera.front.aperture,
-			'front sensor': props.camera.front.sensor,
-			'rear aperture': props.camera.rear.aperture,
-			'rear sensor': props.camera.rear.sensor,
+			...dState,
 		};
 	}
 
 	componentWillReceiveProps(nextProps) {
 		if (this.props.camera !== nextProps.camera) {
+			const dState = this.settingState(nextProps.camera);
 			this.setState({
-				...nextProps.camera,
-				'features 0': nextProps.camera.features[0],
-				'features 1': nextProps.camera.features[1],
-				'features 2': nextProps.camera.features[2],
-				// 'features 3': nextProps.camera.features[3],
-				'front aperture': nextProps.camera.front.aperture,
-				'front sensor': nextProps.camera.front.sensor,
-				'rear aperture': nextProps.camera.rear.aperture,
-				'rear sensor': nextProps.camera.rear.sensor,
+				...dState,
 			});
 		}
+	}
+
+	settingState = (camera) => {
+		const cameraKeys = _.keys(camera);
+		const dState = {};
+		_.each(cameraKeys, item => {
+			dState[item] = camera[item];
+			if (Array.isArray(camera[item] === 'array')) {
+				_.each(camera[item], (sItem, index) => {
+					dState[`${item} ${index}`] = sItem;
+				});
+			} else if (typeof camera[item] === 'object') {
+				const itemKeys = _.keys(camera[item]);
+				_.each(itemKeys, sItem => {
+					dState[`${item} ${sItem}`] = camera[item][sItem];
+				});
+			}
+		});
+		return dState;
 	}
 
 	handleInputChange = (e, type) => {
@@ -59,13 +62,13 @@ class Camera extends InputEvent {
 
 					<Grid container spacing={16}>
 						<Grid item xs={12} md={6}>
-							{this.renderText('features 0', 'Feature #1', 'text-field-width')}
-							{this.renderText('features 2', 'Feature #3', 'text-field-width')}
+							{this.state['features 0'] && this.renderText('features 0', 'Feature #1', 'text-field-width')}
+							{this.state['features 2'] && this.renderText('features 2', 'Feature #3', 'text-field-width')}
 						</Grid>
 
 						<Grid item xs={12} md={6}>
-							{this.renderText('features 1', 'Feature #2', 'text-field-width')}
-							{this.renderText('features 3', 'Feature #4', 'text-field-width')}
+							{this.state['features 1'] && this.renderText('features 1', 'Feature #2', 'text-field-width')}
+							{this.state['features 3'] && this.renderText('features 3', 'Feature #4', 'text-field-width')}
 						</Grid>
 					</Grid>
 

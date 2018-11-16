@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import _ from 'lodash';
 import InputEvent from 'components/InputEvent';
 
 import Grid from '@material-ui/core/Grid';
@@ -6,16 +7,9 @@ import Grid from '@material-ui/core/Grid';
 class Fitness extends InputEvent {
 	constructor(props) {
 		super(props);
-
+		const dState = this.settingState(props.fitness);
 		this.state = {
-			pedometer: false,
-			runTracking: false,
-			heartRateMonitor: false,
-			activityTracker: false,
-			gpsTracking: false,
-			standAloneMusic: false,
-			ekg: false,
-			titnessTracking: false,
+			...dState,
 		};
 	}
 
@@ -25,11 +19,20 @@ class Fitness extends InputEvent {
 		}
 	}
 
+	settingState = (fitness) => {
+		const fitnessKeys = _.keys(fitness);
+		const dState = {};
+		_.each(fitnessKeys, item => {
+			dState[item] = fitness[item];
+		});
+		return dState;
+	}
+
 	handleInputCheckChange = (event, type) => {
 		const stateCopy = Object.assign({}, this.state);
 		stateCopy[type] = event.target.checked;
 		this.setState({ ...stateCopy });
-		// this.props.updateFitness(stateCopy, 'fitness');
+		this.props.updateFitness(stateCopy, 'fitness');
 	}
 
 	render() {
@@ -45,10 +48,10 @@ class Fitness extends InputEvent {
 						</Grid>
 
 						<Grid item xs={12} md={6}>
-							{this.renderCheckBox('gpsTracking', 'GPS Tracking')}
-							{this.renderCheckBox('standAloneMusic', 'Stand Alone Music')}
+							{this.renderCheckBox('gps', 'GPS Tracking')}
+							{this.renderCheckBox('music', 'Stand Alone Music')}
 							{this.renderCheckBox('ekg', 'EKG')}
-							{this.renderCheckBox('titnessTracking', 'Fitness Tracking')}
+							{this.renderCheckBox('fitnessTracking', 'Fitness Tracking')}
 						</Grid>
 					</Grid>
 				</div>)
