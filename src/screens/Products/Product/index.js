@@ -78,7 +78,6 @@ class Product extends InputEvent {
 				accessor: 'subtype',
 			},
 		];
-		console.log(currentProduct);
 		return (
 			<div id="locations-add" className="Container-box">
 				<Grid container spacing={24}>
