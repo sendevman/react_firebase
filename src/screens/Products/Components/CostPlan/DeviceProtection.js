@@ -1,36 +1,39 @@
 import PropTypes from 'prop-types';
+import _ from 'lodash';
 import Grid from '@material-ui/core/Grid';
 import InputEvent from 'components/InputEvent';
 
 class DeviceProtection extends InputEvent {
 	constructor(props) {
 		super(props);
-
+		const { insurance } = props;
+		const dState = this.settingState(insurance);
 		this.state = {
-			mobileInsurance: props.insurance.mobileInsurance,
-			mobileProtection: props.insurance.mobileProtection,
-			mobileProtectionMulit: props.insurance.mobileProtectionMulit,
-			'mobileInsurance deviceProtected': props.insurance.mobileInsurance.deviceProtected,
-			'mobileInsurance monthlyCost': props.insurance.mobileInsurance.monthlyCost,
-			'mobileProtection deviceProtected': props.insurance.mobileProtection.deviceProtected,
-			'mobileProtection monthlyCost': props.insurance.mobileProtection.monthlyCost,
-			'mobileProtectionMulit deviceProtected': props.insurance.mobileProtectionMulit.deviceProtected,
-			'mobileProtectionMulit monthlyCost': props.insurance.mobileProtectionMulit.monthlyCost,
+			...dState,
 		};
 	}
 
 	componentWillReceiveProps(nextProps) {
-		if (this.props.insurance !== nextProps.insurance) {
+		const { insurance } = nextProps;
+		if (this.props.insurance !== insurance) {
+			const dState = this.settingState(insurance);
 			this.setState({
-				...nextProps.insurance,
-				'mobileInsurance deviceProtected': nextProps.insurance.mobileInsurance.deviceProtected,
-				'mobileInsurance monthlyCost': nextProps.insurance.mobileInsurance.monthlyCost,
-				'mobileProtection deviceProtected': nextProps.insurance.mobileProtection.deviceProtected,
-				'mobileProtection monthlyCost': nextProps.insurance.mobileProtection.monthlyCost,
-				'mobileProtectionMulit deviceProtected': nextProps.insurance.mobileProtectionMulit.deviceProtected,
-				'mobileProtectionMulit monthlyCost': nextProps.insurance.mobileProtectionMulit.monthlyCost,
+				...dState,
 			});
 		}
+	}
+
+	settingState = (insurance) => {
+			const insuranceKeys = _.keys(insurance);
+			const dState = {};
+			_.each(insuranceKeys, item => {
+				const itemKeys = _.keys(insurance[item]);
+				dState[item] = insurance[item];
+				_.each(itemKeys, sItem => {
+					dState[`${item} ${sItem}`] = insurance[item][sItem];
+				});
+			});
+		return dState;
 	}
 
 	handleInputChange = (e, type) => {
@@ -55,41 +58,50 @@ class DeviceProtection extends InputEvent {
 		return (
 			this.renderExpansionPanel('Device Protection',
 				<div className="expand-div">
-					<div className="subtitle-features">AT&T Multi-Device Protection Pack</div>
+					{this.state.mobileInsurance &&
+						<div>
+							<div className="subtitle-features">AT&T Multi-Device Protection Pack</div>
 
-					<Grid container spacing={16}>
-						<Grid item xs={12} md={6}>
-							{this.renderText('mobileInsurance deviceProtected', 'Device Protected', 'text-field-width', '', 'dense', 'number')}
-						</Grid>
+							<Grid container spacing={16}>
+								<Grid item xs={12} md={6}>
+									{this.renderText('mobileInsurance deviceProtected', 'Device Protected', 'text-field-width', '', 'dense', 'number')}
+								</Grid>
 
-						<Grid item xs={12} md={6}>
-							{this.renderText('mobileInsurance monthlyCost', 'Monthly Cost', 'text-field-width', '', 'dense', 'number')}
-						</Grid>
-					</Grid>
+								<Grid item xs={12} md={6}>
+									{this.renderText('mobileInsurance monthlyCost', 'Monthly Cost', 'text-field-width', '', 'dense', 'number')}
+								</Grid>
+							</Grid>
+						</div>}
 
-					<div className="subtitle-features">AT&T Mobile Protection Pack</div>
+					{this.state.mobileProtection &&
+						<div>
+							<div className="subtitle-features">AT&T Mobile Protection Pack</div>
 
-					<Grid container spacing={16}>
-						<Grid item xs={12} md={6}>
-							{this.renderText('mobileProtection deviceProtected', 'Device Protected', 'text-field-width', '', 'dense', 'number')}
-						</Grid>
+							<Grid container spacing={16}>
+								<Grid item xs={12} md={6}>
+									{this.renderText('mobileProtection deviceProtected', 'Device Protected', 'text-field-width', '', 'dense', 'number')}
+								</Grid>
 
-						<Grid item xs={12} md={6}>
-							{this.renderText('mobileProtection monthlyCost', 'Monthly Cost', 'text-field-width', '', 'dense', 'number')}
-						</Grid>
-					</Grid>
+								<Grid item xs={12} md={6}>
+									{this.renderText('mobileProtection monthlyCost', 'Monthly Cost', 'text-field-width', '', 'dense', 'number')}
+								</Grid>
+							</Grid>
+						</div>}
 
-					<div className="subtitle-features">AT&T Mobile Insurance</div>
+					{this.state.mobileProtectionMulit &&
+						<div>
+							<div className="subtitle-features">AT&T Mobile Insurance</div>
 
-					<Grid container spacing={16}>
-						<Grid item xs={12} md={6}>
-							{this.renderText('mobileProtectionMulit deviceProtected', 'Device Protected', 'text-field-width', '', 'dense', 'number')}
-						</Grid>
+							<Grid container spacing={16}>
+								<Grid item xs={12} md={6}>
+									{this.renderText('mobileProtectionMulit deviceProtected', 'Device Protected', 'text-field-width', '', 'dense', 'number')}
+								</Grid>
 
-						<Grid item xs={12} md={6}>
-							{this.renderText('mobileProtectionMulit monthlyCost', 'Monthly Cost', 'text-field-width', '', 'dense', 'number')}
-						</Grid>
-					</Grid>
+								<Grid item xs={12} md={6}>
+									{this.renderText('mobileProtectionMulit monthlyCost', 'Monthly Cost', 'text-field-width', '', 'dense', 'number')}
+								</Grid>
+							</Grid>
+						</div>}
 				</div>)
 		);
 	}

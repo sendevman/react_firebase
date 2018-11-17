@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import batterybg from 'assets/images/battery.png';
+import emptybg from 'assets/images/empty.png';
 
 class Battery extends Component {
 	render() {
@@ -14,7 +15,10 @@ class Battery extends Component {
 		return (
 			<div id="components-battery" className="component-battery-container">
 				<div className="content-box">
-					<img className="battery-bg" src={batterybg} alt="" />
+					<div className="bg-image">
+						<img className="battery-bg" src={batterybg} alt="" />
+						<img className="empty-bg" src={emptybg} alt="" />
+					</div>
 					<div className="battery-content-container">
 						{talkTime &&
 							<div className="battery-content-item">

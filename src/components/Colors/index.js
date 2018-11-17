@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import colorbg from 'assets/images/color.png';
+import emptybg from 'assets/images/empty.png';
 
 class Colors extends Component {
 	render() {
@@ -8,7 +9,10 @@ class Colors extends Component {
 		return (
 			<div id="components-colors" className="component-colors-container">
 				<div className="content-box">
-					<img className="colors-bg" src={colorbg} alt="" />
+					<div className="bg-image">
+						<img className="colors-bg" src={colorbg} alt="" />
+						<img className="empty-bg" src={emptybg} alt="" />
+					</div>
 					<div className="colors-container">
 						{colors.map((color, index) => (
 							<div className="color-item-container" key={index}>

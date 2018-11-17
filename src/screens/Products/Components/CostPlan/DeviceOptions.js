@@ -10,33 +10,32 @@ import AddIcon from '@material-ui/icons/Add';
 class DeviceOptions extends InputEvent {
 	constructor(props) {
 		super(props);
-		const additionalState = {};
-		_.each(props.deviceOptions, (deviceOption, index) => {
-			const deviceOptionKeys = _.keys(deviceOption);
-			_.each(deviceOptionKeys, deviceOptionKey => {
-				additionalState[`${index} ${deviceOptionKey}`] = deviceOption[deviceOptionKey];
-			});
-		});
+		const dState = this.settingState(props.deviceOptions);
 		this.state = {
 			deviceOptions: props.deviceOptions,
-			...additionalState,
+			...dState,
 		};
 	}
 
 	componentWillReceiveProps(nextProps) {
 		if (this.props.deviceOptions !== nextProps.deviceOptions) {
-			const additionalState = {};
-			_.each(nextProps.deviceOptions, (deviceOption, index) => {
-				const deviceOptionKeys = _.keys(deviceOption);
-				_.each(deviceOptionKeys, deviceOptionKey => {
-					additionalState[`${index} ${deviceOptionKey}`] = deviceOption[deviceOptionKey];
-				});
-			});
+			const dState = this.settingState(nextProps.deviceOptions);
 			this.setState({
 				deviceOptions: nextProps.deviceOptions,
-				...additionalState,
+				...dState,
 			});
 		}
+	}
+
+	settingState = (deviceOptions) => {
+		const dState = {};
+		_.each(deviceOptions, (deviceOption, index) => {
+			const deviceOptionKeys = _.keys(deviceOption);
+			_.each(deviceOptionKeys, deviceOptionKey => {
+				dState[`${index} ${deviceOptionKey}`] = deviceOption[deviceOptionKey];
+			});
+		});
+		return dState;
 	}
 
 	handleInputChange = (e, type) => {
