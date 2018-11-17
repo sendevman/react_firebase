@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import displaybg from 'assets/images/display.png';
+import emptybg from 'assets/images/empty.png';
 
 class Display extends Component {
 	render() {
@@ -8,7 +9,10 @@ class Display extends Component {
 		return (
 			<div id="components-display" className="component-display-container">
 				<div className="content-box">
-					<img className="display-bg" src={displaybg} alt="" />
+					<div className="bg-image">
+						<img className="display-bg" src={displaybg} alt="" />
+						<img className="empty-bg" src={emptybg} alt="" />
+					</div>
 					<div className="display-content-container">
 						<div className="display-size">
 							{`${display.size}"`}
