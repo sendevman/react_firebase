@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Offer from 'components/Offer';
 import Colors from 'components/Colors';
 import Display from 'components/Display';
+import Fitness from 'components/Fitness';
 import Camera from 'components/Camera';
 import Battery from 'components/Battery';
 import Accessories from 'components/Accessories';
@@ -30,6 +31,10 @@ class Info extends InputEvent {
 				{product.display &&
 					<div className="info-container">
 						{this.renderGrid('', <Display display={product.display} />, { background: 'rgb(255,255,255, 0)' })}
+					</div>}
+				{product.fitness &&
+					<div className="info-container">
+						{this.renderGrid('', <Fitness fitness={product.fitness} />, { background: 'rgb(255,255,255, 0)' })}
 					</div>}
 				{product.camera &&
 					<div className="info-container">
