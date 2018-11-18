@@ -64,6 +64,7 @@ class Routes extends Component {
               <AuthRoute exact path="/products/manage/device/phone/:store_id" component={Product} />
               <AuthRoute exact path="/products/manage/device/tablet/:store_id" component={Product} />
               <AuthRoute exact path="/products/manage/device/watch/:store_id" component={Product} />
+              <AuthRoute exact path="/products/manage/device/watch_tv/:store_id" component={Product} />
             </Switch>
           </main>
         </div>
