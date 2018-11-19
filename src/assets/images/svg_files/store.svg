@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="270px" height="170px" viewBox="0 0 270 170" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="270px" height="180px" viewBox="0 0 270 180" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <!-- Generator: sketchtool 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
     <title>CDDA1972-CD13-4E52-872F-BCA21D243746</title>
     <desc>Created with sketchtool.</desc>
@@ -7,8 +7,8 @@
     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <g id="Cost-&amp;-Plans" transform="translate(-107.000000, -453.000000)" fill="#FFFFFF73" fill-rule="nonzero">
             <g id="Group-12" transform="translate(107.000000, 453.000000)">
-                <g id="ic_sd_storage_48px">
-                    <path d="M55.8,0h201.9c6.8,0,12.3,5.5,12.3,12.4v145.2c0,6.8-5.5,12.4-12.3,12.4H12.3C5.5,170,0,164.5,0,157.6V63.9c0-6.4,2.5-12.6,7.1-17.1L42.5,5.5C46,2,50.8,0,55.8,0z" />
+                <g id="ic_store_48px">
+                    <path d="M0,166.9V13.1C0,5.9,5.9,0,13.2,0h243.6c7.3,0,13.2,5.9,13.2,13.1V144c0,7.2-5.9,13.1-13.2,13.1h-74.3c-1.9,0-3.7,0.8-5,2.1l-19.1,19.5c-0.8,0.8-2,1.3-3.2,1.3H134c-2.8,0-5-2.2-5-5v-1.1c0-2.8-2.3-5.1-5.1-5.1h-15.1c-0.8,0-1.6,0.3-2.2,0.8l-10.2,9.1c-0.9,0.8-2.1,1.2-3.3,1.2h-80C5.9,180,0,174.1,0,166.9z"/>
                 </g>
             </g>
         </g>
