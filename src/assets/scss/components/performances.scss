@@ -29,7 +29,8 @@
 				.dev-content {
 					position: absolute;
 					top: 0;
-					padding: 1rem;
+					padding-top: 1rem;
+					width: 100%;
 					display: flex;
 					align-items: center;
 					flex-flow: column;
@@ -46,7 +47,6 @@
 				.dev-content {
 					padding: 0;
 					top: 20%;
-    				width: 100%;
 				}
 			}
 			.performances-storage-content,
@@ -54,7 +54,6 @@
 				.dev-content {
 					padding: 0;
 					top: 10%;
-    				width: 100%;
 				}
 			}
 		}

@@ -19,7 +19,8 @@ class ProductsMain extends InputEvent {
 
 	handleOnClick = (row) => {
 		this.props.getSubCollection('products', row.fbId, 'web-reviews');
-		this.props.history.push(`/products/manage/device/${row.subType}/${row.fbId}`);
+		const type = row.subType === 'watch_tv' ? 'services' : 'devices';
+		this.props.history.push(`/products/manage/${type}/${row.subType}/${row.fbId}`);
 	}
 
 	render() {

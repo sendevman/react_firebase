@@ -9,7 +9,7 @@ import Info from './Info';
 import Review from './Review';
 import Cost from './Cost';
 
-class Service extends Component {
+class Devices extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -51,11 +51,11 @@ class Service extends Component {
 						<Info product={currentProduct} />
 					</div>}
 				{value === 1 &&
-					<div component="div" style={{ padding: 24, width: '90%' }}>
+					<div style={{ padding: 24, width: '90%' }}>
 						<Review product={currentProduct} />
 					</div>}
 				{value === 2 &&
-					<div component="div" style={{ padding: 24, width: '90%' }}>
+					<div style={{ padding: 24, width: '90%' }}>
 						<Cost product={currentProduct} />
 					</div>}
 			</div>
@@ -63,12 +63,12 @@ class Service extends Component {
 	}
 }
 
-Service.propTypes = {
+Devices.propTypes = {
 	currentProduct: PropTypes.object,
 };
 
-Service.defaultProps = {
+Devices.defaultProps = {
 	currentProduct: {},
 };
 
-export default Service;
+export default Devices;
