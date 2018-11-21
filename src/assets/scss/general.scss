@@ -40,6 +40,10 @@ code {
   display: flex;
 }
 
+.align-items-center {
+  align-items: center;
+}
+
 .justify-content-center {
   justify-content: center;
 }
@@ -70,6 +74,11 @@ code {
 
 .mt-block {
   margin-top: 2rem;
+}
+
+.default-inner-container {
+  padding: 1.5rem;
+  width: 90%;
 }
 
 .default-text-color {
