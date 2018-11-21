@@ -5,8 +5,8 @@ import _ from 'lodash';
 
 import Grid from '@material-ui/core/Grid';
 
-import ProductPreview from '../Components/ProductPreview';
-import ProductImport from '../Components/ProductImport';
+import ProductPreview from '../../Components/ProductPreview';
+import ProductImport from '../../Components/ProductImport';
 import InputEvent from 'components/InputEvent';
 import TableList from 'components/TableList';
 
