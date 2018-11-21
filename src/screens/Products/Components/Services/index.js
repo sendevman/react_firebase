@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import WatchTV from './WatchTV';
+import WatchTV from './WatchTV/index';
 
 class Services extends Component {
 	render() {
