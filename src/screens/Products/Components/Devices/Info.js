@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Offer from 'components/Offer';
 import Colors from 'components/Colors';
 import Display from 'components/Display';
+import Performances from 'components/Performances';
 import Fitness from 'components/Fitness';
 import Camera from 'components/Camera';
 import Battery from 'components/Battery';
@@ -14,6 +15,7 @@ class Info extends InputEvent {
 
 	render() {
 		const { product } = this.props;
+		// console.log(product);
 		return (
 			<div id="products-man-phone-info">
 				{product.offer &&
@@ -40,6 +42,14 @@ class Info extends InputEvent {
 					<div className="info-container">
 						{this.renderGrid('', <Camera camera={product.camera} />, { background: 'rgb(255,255,255, 0)' })}
 					</div>}
+				<div className="info-container">
+					{this.renderGrid('',
+						<Performances
+							processor={product.processor}
+							memory={product.memory}
+							expandableStorage={product.expandableStorage}
+							storage={product.deviceOptions} />, { background: 'rgb(255,255,255, 0)' })}
+				</div>
 				{product.battery &&
 					<div className="info-container">
 						{this.renderGrid('', <Battery battery={product.battery} />, { background: 'rgb(255,255,255, 0)' })}

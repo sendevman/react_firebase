@@ -4,13 +4,12 @@ import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import Typography from '@material-ui/core/Typography';
 
 import Info from './Info';
 import Review from './Review';
 import Cost from './Cost';
 
-class DevicePhone extends Component {
+class Devices extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -48,28 +47,28 @@ class DevicePhone extends Component {
 					</Tabs>
 				</AppBar>
 				{value === 0 &&
-					<Typography component="div" style={{ padding: 24, width: '90%' }}>
+					<div style={{ padding: 24, width: '90%' }}>
 						<Info product={currentProduct} />
-					</Typography>}
+					</div>}
 				{value === 1 &&
-					<Typography component="div" style={{ padding: 24, width: '90%' }}>
+					<div style={{ padding: 24, width: '90%' }}>
 						<Review product={currentProduct} />
-					</Typography>}
+					</div>}
 				{value === 2 &&
-					<Typography component="div" style={{ padding: 24, width: '90%' }}>
+					<div style={{ padding: 24, width: '90%' }}>
 						<Cost product={currentProduct} />
-					</Typography>}
+					</div>}
 			</div>
 		);
 	}
 }
 
-DevicePhone.propTypes = {
+Devices.propTypes = {
 	currentProduct: PropTypes.object,
 };
 
-DevicePhone.defaultProps = {
+Devices.defaultProps = {
 	currentProduct: {},
 };
 
-export default DevicePhone;
+export default Devices;
