@@ -15,7 +15,8 @@ import LocationsManage from 'screens/Locations/Manage/index';
 import LocationsManTab from 'screens/Locations/Manage/Manage';
 import ProductsMain from 'screens/Products/Main/index';
 import ProductsAdd from 'screens/Products/Add/index';
-import Product from 'screens/Products/Product/index';
+import Devices from 'screens/Products/Product/Devices/index';
+import Services from 'screens/Products/Product/Services/index';
 
 const AuthRoute = (props) => (
   localStorage.getItem('token') !== null
@@ -61,9 +62,10 @@ class Routes extends Component {
               <AuthRoute exact path="/locations/manage/:store_id/:tab" component={LocationsManTab} />
               <AuthRoute exact path="/products/new" component={ProductsAdd} />
               <AuthRoute exact path="/products/manage" component={ProductsMain} />
-              <AuthRoute exact path="/products/manage/device/phone/:store_id" component={Product} />
-              <AuthRoute exact path="/products/manage/device/tablet/:store_id" component={Product} />
-              <AuthRoute exact path="/products/manage/device/watch/:store_id" component={Product} />
+              <AuthRoute exact path="/products/manage/devices/phone/:store_id" component={Devices} />
+              <AuthRoute exact path="/products/manage/devices/tablet/:store_id" component={Devices} />
+              <AuthRoute exact path="/products/manage/devices/watch/:store_id" component={Devices} />
+              <AuthRoute exact path="/products/manage/services/watch_tv/:store_id" component={Services} />
             </Switch>
           </main>
         </div>

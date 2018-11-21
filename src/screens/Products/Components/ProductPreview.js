@@ -6,8 +6,10 @@ import { connect } from 'react-redux';
 
 import Grid from '@material-ui/core/Grid';
 
-import ProductForm from './ProductForm';
-import Device from './Device';
+import DevicesForm from './DevicesForm';
+import ServicesForm from './ServicesForm';
+import Devices from './Devices';
+import Services from './Services';
 
 import { updateDoc } from 'redux/firebase/actions';
 // import { addCollection } from 'redux/firebase/actions';
@@ -47,6 +49,7 @@ class ProductPreview extends Component {
 
 	render() {
 		const { currentProduct } = this.state;
+		const { type } = this.props;
 		return (
 			<Grid item xs={12}>
 				<div className="label-products-table select-text">Info & Specs</div>
@@ -54,14 +57,22 @@ class ProductPreview extends Component {
 				{currentProduct.fbId !== undefined &&
 					<Grid container spacing={24}>
 						<Grid item xs={12} sm={6}>
-							<Device currentProduct={currentProduct} />
+							{type === 'Device' && <Devices currentProduct={currentProduct} />}
+							{type === 'Service' && <Services currentProduct={currentProduct} />}
 						</Grid>
 						<Grid item xs={12} sm={6}>
-							<ProductForm
-								currentProduct={currentProduct}
-								updateCurrentProduct={this.updateCurrentProduct}
-								handleSave={this.handleSave}
-								handleCancel={this.handleCancel} />
+							{type === 'Device' &&
+								<DevicesForm
+									currentProduct={currentProduct}
+									updateCurrentProduct={this.updateCurrentProduct}
+									handleSave={this.handleSave}
+									handleCancel={this.handleCancel} />}
+							{type === 'Service' &&
+								<ServicesForm
+									currentProduct={currentProduct}
+									updateCurrentProduct={this.updateCurrentProduct}
+									handleSave={this.handleSave}
+									handleCancel={this.handleCancel} />}
 						</Grid>
 					</Grid>}
 			</Grid>
@@ -76,12 +87,14 @@ const mapDispatchToProps = dispatch => ({
 
 ProductPreview.propTypes = {
 	currentProduct: PropTypes.object,
+	type: PropTypes.string,
 	updateDoc: PropTypes.func.isRequired,
 	// addCollection: PropTypes.func.isRequired,
 };
 
 ProductPreview.defaultProps = {
 	currentProduct: {},
+	type: 'Device',
 };
 
 export default connect(null, mapDispatchToProps)(ProductPreview);

@@ -1,8 +1,12 @@
 .component-performances-container {
 	.content-box {
-		.performances-bg {
-			background-image: url('../../assets/images/performance.png');
-			width: 100%;
+		.bg-image {
+			.performances-bg {
+				width: calc(100% + 48px);
+				margin-left: -24px;
+				margin-right: -24px;
+				margin-top: -16px;
+			}
 		}
 		.performances-title {
 			margin-bottom: 2rem;
@@ -10,10 +14,47 @@
 			line-height: initial;
 		}
 		.performances-content-container {
-			.performances-content {
-				display: flex;
-				align-items: center;
-				margin-right: 2rem;
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-around;
+			.performances-sdcard-content,
+			.performances-storage-content,
+			.performances-memory-content,
+			.performances-processor-content {
+				position: relative;
+				margin-top: 2rem;
+				background-size: 100%;
+				width: 45%;
+				padding-top: 45%;
+				.dev-content {
+					position: absolute;
+					top: 0;
+					padding-top: 1rem;
+					width: 100%;
+					display: flex;
+					align-items: center;
+					flex-flow: column;
+					text-align: center;
+					.dev-content-title {
+						font-size: 1rem;
+						margin-bottom: 1rem;
+						margin-top: 0.5rem;
+						font-weight: bold;
+					}
+				}
+			}
+			.performances-memory-content {
+				.dev-content {
+					padding: 0;
+					top: 20%;
+				}
+			}
+			.performances-storage-content,
+			.performances-sdcard-content {
+				.dev-content {
+					padding: 0;
+					top: 10%;
+				}
 			}
 		}
 	}
