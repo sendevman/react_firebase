@@ -5,8 +5,7 @@ import _ from 'lodash';
 
 import Grid from '@material-ui/core/Grid';
 
-import ProductPreview from '../Components/ProductPreview';
-import ProductImport from '../Components/ProductImport';
+import ProductPreview from '../../Components/ProductPreview';
 import InputEvent from 'components/InputEvent';
 import TableList from 'components/TableList';
 
@@ -93,8 +92,6 @@ class Services extends InputEvent {
 							searchEnable
 							handleAdd={this.saveAdd}
 							handleEdit={this.saveEdit} />)}
-
-					{this.renderGrid('dark-blue', <ProductImport />)}
 
 					{this.renderGrid('dark-blue',
 						<HomeView

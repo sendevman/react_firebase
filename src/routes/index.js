@@ -15,8 +15,8 @@ import LocationsManage from 'screens/Locations/Manage/index';
 import LocationsManTab from 'screens/Locations/Manage/Manage';
 import ProductsMain from 'screens/Products/Main/index';
 import ProductsAdd from 'screens/Products/Add/index';
-import Devices from 'screens/Products/Devices/index';
-import Services from 'screens/Products/Services/index';
+import Devices from 'screens/Products/Product/Devices/index';
+import Services from 'screens/Products/Product/Services/index';
 
 const AuthRoute = (props) => (
   localStorage.getItem('token') !== null

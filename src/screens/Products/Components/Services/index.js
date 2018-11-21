@@ -1,18 +1,24 @@
 import React, { Component } from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
+import WatchTV from './WatchTV';
 
 class Services extends Component {
 	render() {
+		const { currentProduct } = this.props;
 		return (
-			<div />
+			<div>
+				{currentProduct.subType === 'watch_tv' && <WatchTV currentProduct={currentProduct} />}
+			</div>
 		);
 	}
 }
 
-// Services.propTypes = {
-// };
+Services.propTypes = {
+	currentProduct: PropTypes.object,
+};
 
-// Services.defaultProps = {
-// };
+Services.defaultProps = {
+	currentProduct: {},
+};
 
 export default Services;
