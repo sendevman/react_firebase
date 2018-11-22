@@ -258,3 +258,62 @@
     }
   }
 }
+
+/* Services/DirectTV */
+#products-services-directtv {
+  #watchtv-livetv {
+    .txtSaveDescription {
+      color: #333;
+      padding-right: 0.625rem;
+      padding-left: 0.625rem;
+      font-size: 1rem;
+      font-weight: 300;
+      line-height: 1.375rem;
+      margin-top: 0.625rem;
+      margin-bottom: 0.625rem;
+    }
+    .title-img-containers {
+      display: flex;
+      margin-top: 0.625rem;
+      align-items: center;
+      justify-content: space-around;
+      .title-img-container {
+        align-items: center;
+        justify-content: center;
+        .left {
+          width: 7.5rem;
+          height: 4.0625rem;
+        }
+        .right {
+          width: 6.25rem;
+          height: 12.5rem;
+        }
+      }
+    }
+    .features {
+      margin-bottom: 1.25rem;
+      .each-feature {
+        display: flex;
+        align-items: center;
+        padding-top: 0.3125rem;
+        padding-bottom: 0.3125rem;
+        padding-right: 0.625rem;
+        padding-left: 0.625rem;
+        .icon-4,
+        .icon-6 {
+          width: 2.375rem;
+          height: 1.25rem;
+        }
+        .icon-5 {
+          width: 2.125rem;
+          height: 1.75rem;
+        }
+        .description {
+          font-size: 0.875rem;
+          font-weight: bold;
+          margin-left: 1.25rem;
+        }
+      }
+    }
+  }
+}
