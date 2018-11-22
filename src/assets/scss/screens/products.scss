@@ -121,37 +121,140 @@
 
 /* Services/WatchTV */
 #products-services-watchtv {
-  .watchtv-topIconView {
-    display: flex;
-    background-color: #0060C4; 
-    width: 100%;
-    height: 3.75rem;
-    justify-content: space-between;
-    align-items: center;
-    padding-right: 0.625rem;
+  background: #009FDB;
+  #watchtv-topicon {
+    .watchtv-topIconView {
+      display: flex;
+      background-color: #0060C4; 
+      width: 100%;
+      height: 3.75rem;
+      justify-content: space-between;
+      align-items: center;
+      padding-right: 0.625rem;
 
-    .watchtv-topicon-1,
-    .watchtv-topicon-2,
-    .watchtv-topicon-3 {
-      width: 1.8125rem;
-      height: 0.9375rem;
-      margin-bottom: 0.3125rem;
-    }
-    .watchtv-topicon-2 {
-      width: 1rem;
-      height: 1rem;
-    }
-    .watchtv-topicon-3 {
-      width: 0.875rem;
-      height: 1rem;
-      margin-bottom: 0.3125rem;
-    }
+      .watchtv-topicon-1,
+      .watchtv-topicon-2,
+      .watchtv-topicon-3 {
+        width: 1.8125rem;
+        height: 0.9375rem;
+        margin-bottom: 0.3125rem;
+      }
+      .watchtv-topicon-2 {
+        width: 1rem;
+        height: 1rem;
+      }
+      .watchtv-topicon-3 {
+        width: 0.875rem;
+        height: 1rem;
+        margin-bottom: 0.3125rem;
+      }
 
-    .watchtv-txtSmall {
-      color: #FFF;
-      font-size: 0.5rem;
+      .watchtv-txtSmall {
+        color: #FFF;
+        font-size: 0.5rem;
+        font-weight: bold;
+        text-align: center;
+      }
+    }
+  }
+  #watchtv-channel,
+  #watchtv-destination,
+  #watchtv-getmore,
+  #watchtv-livetv {
+    .txtSaveDescription {
+      color: #333;
+      padding-right: 0.625rem;
+      padding-left: 0.625rem;
+      font-size: 1rem;
+      font-weight: 300;
+      line-height: 1.375rem;
+      margin-top: 0.625rem;
+      margin-bottom: 0.625rem;
+    }
+    .title-img-containers {
+      display: flex;
+      margin-top: 0.625rem;
+      align-items: center;
+      justify-content: space-around;
+      .title-img-container {
+        align-items: center;
+        justify-content: center;
+        .left {
+          width: 7.5rem;
+          height: 4.0625rem;
+        }
+        .right {
+          width: 6.25rem;
+          height: 12.5rem;
+        }
+      }
+    }
+    .features {
+      margin-bottom: 1.25rem;
+      .each-feature {
+        display: flex;
+        align-items: center;
+        padding-top: 0.3125rem;
+        padding-bottom: 0.3125rem;
+        padding-right: 0.625rem;
+        padding-left: 0.625rem;
+        .icon-4,
+        .icon-6 {
+          width: 2.375rem;
+          height: 1.25rem;
+        }
+        .icon-5 {
+          width: 2.125rem;
+          height: 1.75rem;
+        }
+        .description {
+          font-size: 0.875rem;
+          font-weight: bold;
+          margin-left: 1.25rem;
+        }
+      }
+    }
+  }
+  #watchtv-getmore {
+    .new-perks {
+      padding-right: 0.625rem;
+      padding-left: 0.625rem;
+      margin-top: 0.625rem;
+      font-size: 2rem;
       font-weight: bold;
-      text-align: center;
+      color: #005FC0;
+    }
+    .check-blue {
+      width: 1.375rem;
+      height: 1rem;
+    }
+    .getmore-left {
+      width: 10rem;
+    }
+    .getmore-right {
+      width: 6.25rem;
+    }
+  }
+  #watchtv-destination {
+    .channel-img-containers,
+    .destination-img-containers {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      .destination-img {
+        width: 5.625rem;
+        height: 5.625rem;
+      }
+    }
+    .destination-anywhere {
+      width: 85%;
+      height: 25.5%;
+      margin-top: 0.625rem;
+    }
+  }
+  #watchtv-channel {
+    .channel-img {
+      width: 6.25rem;
     }
   }
 }
