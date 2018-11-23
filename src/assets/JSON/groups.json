@@ -1,0 +1,57 @@
+[
+    {
+        "groupId": "100010_phx",
+        "groupName": "Cinemax",
+        "description": "All the Cinemax channels TK TK",
+        "logoUrl": "https://www.directv.com/images/channel_call_sign/MAX_SD.gif",
+        "channelCount": "8",
+        "channels": [],
+        "promoUrl": "https://www.directv.com/content/dam/dtv/teamsite/cms2/pepod_new/packages/pep_new_free_premiums_promo.png",        
+        "groupPromoOffer": ["980004", "1150002", "1120008", "960010", "1110006", "1310002", "960008"]
+    }, {
+        "groupId": "200006_phx",
+        "groupName": "ENCORE",
+        "description": "",
+        "logoUrl": "https://www.directv.com/images/channel_call_sign/ENCR_SD.gif",
+        "channelCount": "8",
+        "channels": [],
+        "groupPromoOffer": [],
+        "promoUrl": "https://www.directv.com/images/channel_call_sign/ENCR_SD.gif"
+    }, {
+        "groupId": "100008_phx",
+        "groupName": "HBO",
+        "description": "",
+        "logoUrl": "https://www.directv.com//images/channel_call_sign/HBO_SD.gif",
+        "channelCount": "10",
+        "channels": [],
+        "promoUrl": "https://www.directv.com/content/dam/dtv/teamsite/cms2/pepod_new/packages/pep_new_free_premiums_promo.png",
+        "groupPromoOffer": ["980004", "1150002", "1120008", "960010", "1110006", "1310002", "960008"]
+    }, {
+        "groupId": "200008_phx",
+        "groupName": "MUSICCHOICE",
+        "description": "",
+        "logoUrl": "https://www.directv.com//content/dam/dtv/teamsite/images/channel_call_sign/radio/MusicChoice.gif",
+        "channelCount": "84",
+        "channels": [],
+        "promoUrl": "https://www.directv.com/content/dam/dtv/teamsite/cms2/pepod_new/packages/pep_new_free_premiums_promo.png",
+        "groupPromoOffer": []
+    }, {
+        "groupId": "200002_phx",
+        "groupName": "SHOWTIME",
+        "description": "",
+        "logoUrl": "https://www.directv.com//images/channel_call_sign/SHO_SD.gif",
+        "channelCount": "8",
+        "channels": [],
+        "promoUrl": "https://www.directv.com/content/dam/dtv/teamsite/cms2/pepod_new/packages/pep_new_free_premiums_promo.png",
+        "groupPromoOffer": ["980004", "1150002", "1120008", "960010", "1110006", "1310002", "960008"]
+    }, {
+        "groupId": "200004_phx",
+        "groupName": "STARZ",
+        "description": "",
+        "logoUrl": "https://www.directv.com/images/channel_call_sign/STRZw_SD.gif",
+        "channelCount": "7",
+        "channels": [],
+        "promoUrl": "https://www.directv.com/content/dam/dtv/teamsite/cms2/pepod_new/packages/pep_new_free_premiums_promo.png",
+        "groupPromoOffer": ["980004", "1150002", "1120008", "960010", "1110006", "1310002", "960008"]
+    }
+]
