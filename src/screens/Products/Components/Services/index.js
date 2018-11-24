@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import WatchTV from './WatchTV/index';
 import DirectTV from './DirectTV/index';
+import DirectTVNow from './DirectTVNow/index';
 
 class Services extends Component {
 	render() {
@@ -10,6 +11,7 @@ class Services extends Component {
 			<div>
 				{currentProduct.subType === 'watch_tv' && <WatchTV currentProduct={currentProduct} />}
 				{currentProduct.subType === 'directv' && <DirectTV currentProduct={currentProduct} />}
+				{currentProduct.subType === 'directv_now' && <DirectTVNow currentProduct={currentProduct} />}
 			</div>
 		);
 	}
