@@ -443,3 +443,36 @@
   }
 }
 
+#products-services-directvnow {
+  background: black;
+  border-radius: 0.25rem;
+  width: 100%;
+  #directv-now-packages {
+    width: 100%;
+    .directvnow-packages-price-bar {
+      display: flex;
+      .directvnow-packages-price-each {
+        display: flex;
+        flex: 1;
+        flex-flow: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        word-break: break-word;
+        white-space: pre-wrap;
+        font-size: 0.8rem;
+        color: #5c5c5c;
+        background: #333;
+        height: 5rem;
+      }
+    }
+    .channel-images {
+      width: calc(100% - 2rem);
+      height: auto;
+      margin: auto;
+      display: flex;
+      flex-flow: column;
+      align-items: center;
+    }
+  }
+} 
