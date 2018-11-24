@@ -5,7 +5,8 @@ import _ from 'lodash';
 
 import Grid from '@material-ui/core/Grid';
 
-import ProductPreview from '../../Components/ProductPreview';
+import ProductPreview from '../Components/ProductPreview';
+import ProductImport from '../Components/ProductImport';
 import InputEvent from 'components/InputEvent';
 import TableList from 'components/TableList';
 
@@ -14,7 +15,7 @@ import HomeView from 'components/HomeView';
 import { getProducts, getSubCollection } from 'redux/firebase/actions';
 import { productsSelector } from 'redux/firebase/selectors';
 
-class Services extends InputEvent {
+class Product extends InputEvent {
 	constructor(props) {
 		super(props);
 		const currentProduct = props.products.length > 0
@@ -93,6 +94,8 @@ class Services extends InputEvent {
 							handleAdd={this.saveAdd}
 							handleEdit={this.saveEdit} />)}
 
+					{this.renderGrid('dark-blue', <ProductImport />)}
+
 					{this.renderGrid('dark-blue',
 						<HomeView
 							title="Product Card"
@@ -106,7 +109,7 @@ class Services extends InputEvent {
 							handleImport={this.handleTitleImport}
 							handleArchive={this.handleTitleArchive} />)}
 
-					{this.renderGrid('dark-blue', <ProductPreview type="Service" currentProduct={currentProduct} />)}
+					{this.renderGrid('dark-blue', <ProductPreview currentProduct={currentProduct} />)}
 				</Grid>
 			</div>
 		);
@@ -122,14 +125,14 @@ const mapDispatchToProps = dispatch => ({
 	getSubCollection: (parent, id, child) => dispatch(getSubCollection(parent, id, child)),
 });
 
-Services.propTypes = {
+Product.propTypes = {
 	products: PropTypes.array.isRequired,
 	getProducts: PropTypes.func.isRequired,
 	match: PropTypes.object.isRequired,
 };
 
-// Services.defaultProps = {
+// DevicePhone.defaultProps = {
 
 // }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Services);
+export default connect(mapStateToProps, mapDispatchToProps)(Product);

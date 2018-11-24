@@ -49,25 +49,24 @@ class ProductPreview extends Component {
 
 	render() {
 		const { currentProduct } = this.state;
-		const { type } = this.props;
 		return (
 			<Grid item xs={12}>
-				<div className="label-products-table select-text">Info & Specs</div>
+				{currentProduct.type === 'device' && <div className="label-products-table select-text">Info & Specs</div>}
 
 				{currentProduct.fbId !== undefined &&
 					<Grid container spacing={24}>
 						<Grid item xs={12} sm={6}>
-							{type === 'Device' && <Devices currentProduct={currentProduct} />}
-							{type === 'Service' && <Services currentProduct={currentProduct} />}
+							{currentProduct.type === 'device' && <Devices currentProduct={currentProduct} />}
+							{currentProduct.type === 'service' && <Services currentProduct={currentProduct} />}
 						</Grid>
 						<Grid item xs={12} sm={6}>
-							{type === 'Device' &&
+							{currentProduct.type === 'device' &&
 								<DevicesForm
 									currentProduct={currentProduct}
 									updateCurrentProduct={this.updateCurrentProduct}
 									handleSave={this.handleSave}
 									handleCancel={this.handleCancel} />}
-							{type === 'Service' &&
+							{currentProduct.type === 'service' &&
 								<ServicesForm
 									currentProduct={currentProduct}
 									updateCurrentProduct={this.updateCurrentProduct}
@@ -87,14 +86,12 @@ const mapDispatchToProps = dispatch => ({
 
 ProductPreview.propTypes = {
 	currentProduct: PropTypes.object,
-	type: PropTypes.string,
 	updateDoc: PropTypes.func.isRequired,
 	// addCollection: PropTypes.func.isRequired,
 };
 
 ProductPreview.defaultProps = {
 	currentProduct: {},
-	type: 'Device',
 };
 
 export default connect(null, mapDispatchToProps)(ProductPreview);
