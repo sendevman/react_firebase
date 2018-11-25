@@ -444,11 +444,12 @@
 }
 
 #products-services-directvnow {
-  background: black;
   border-radius: 0.25rem;
   width: 100%;
+  background: #009FDB;
   #directv-now-packages {
     width: 100%;
+    background: black;
     .directvnow-packages-price-bar {
       display: flex;
       .directvnow-packages-price-each {
@@ -477,8 +478,18 @@
   }
   #directv-now-get {
     width: 100%;
+    background: transparent;
+    .title-img {
+      width: 100%;
+    }
     .get-streaming {
-      
+      .get-streaming-title {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: white;
+        text-align: center;
+        margin-top: 1rem;
+      }
     }
   }
 } 
