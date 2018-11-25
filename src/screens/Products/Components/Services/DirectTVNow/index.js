@@ -1,31 +1,27 @@
-import React from 'react';
-// import PropTypes from 'prop-types';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
-import Grid from '@material-ui/core/Grid';
-
-import InputEvent from 'components/InputEvent';
+import DirecTVSlider from './DirecTVSlider';
 import BasePackages from './BasePackages';
 
-class DirectTVNow extends InputEvent {
+class DirectTVNow extends Component {
 	render() {
-		// const { currentProduct } = this.props;
+		const { currentProduct } = this.props;
 		return (
 			<div id="products-services-directvnow" className="Container-box">
+				<DirecTVSlider currentProduct={currentProduct} />
 				<BasePackages />
-				{/* <Grid container spacing={24}>
-					{this.renderGrid('black', <BasePackages />, { background: 'black' })}
-				</Grid> */}
 			</div>
 		);
 	}
 }
 
-// DirectTVNow.propTypes = {
-// 	currentProduct: PropTypes.object,
-// };
+DirectTVNow.propTypes = {
+	currentProduct: PropTypes.object,
+};
 
-// DirectTVNow.defaultProps = {
-// 	currentProduct: {},
-// };
+DirectTVNow.defaultProps = {
+	currentProduct: {},
+};
 
 export default DirectTVNow;
