@@ -1,16 +1,17 @@
-import React, { Component } from 'react';
+// import React from 'react';
 import PropTypes from 'prop-types';
 
-import DirecTVSlider from './DirecTVSlider';
+import InputEvent from 'components/InputEvent';
+import DirectTVNowSlider from './DirectTVNowSlider';
 import BasePackages from './BasePackages';
 
-class DirectTVNow extends Component {
+class DirectTVNow extends InputEvent {
 	render() {
 		const { currentProduct } = this.props;
 		return (
 			<div id="products-services-directvnow" className="Container-box">
-				<DirecTVSlider currentProduct={currentProduct} />
-				<BasePackages />
+				<DirectTVNowSlider currentProduct={currentProduct} />
+				{this.renderGrid('black', <BasePackages />, { background: 'black', margin: '1rem' })}
 			</div>
 		);
 	}
