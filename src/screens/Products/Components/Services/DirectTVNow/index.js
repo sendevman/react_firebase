@@ -1,4 +1,3 @@
-// import React from 'react';
 import PropTypes from 'prop-types';
 
 import InputEvent from 'components/InputEvent';
@@ -11,7 +10,7 @@ class DirectTVNow extends InputEvent {
 		return (
 			<div id="products-services-directvnow" className="Container-box">
 				<DirectTVNowSlider currentProduct={currentProduct} />
-				{this.renderGrid('black', <BasePackages />, { background: 'black', margin: '1rem' })}
+				{this.renderGrid('', <BasePackages />, { background: 'black', margin: '1rem' })}
 			</div>
 		);
 	}
