@@ -71,7 +71,7 @@ class LocationsManTab extends Component {
           </div>}
         {value === 2 &&
           <div style={{ padding: 8 * 3, width: '90%' }}>
-            <Zones />
+            <Zones storeId={this.props.match.params.store_id} />
           </div>}
         {value === 3 &&
           <div style={{ padding: 8 * 3 }}>

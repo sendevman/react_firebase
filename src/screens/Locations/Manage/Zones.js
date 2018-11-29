@@ -1,17 +1,17 @@
 import { connect } from 'react-redux';
-// import PropTypes from 'prop-types';
-
+import PropTypes from 'prop-types';
+import _ from 'lodash';
 import Grid from '@material-ui/core/Grid';
-import CardMedia from '@material-ui/core/CardMedia';
+// import CardMedia from '@material-ui/core/CardMedia';
 
 import SelectZone from 'components/SelectZone';
 import HomeView from 'components/HomeView';
 import InputEvent from 'components/InputEvent';
 
-import { getUsers } from 'redux/firebase/actions';
-import { usersSelector } from 'redux/firebase/selectors';
+import { getLocations, getSubCollection } from 'redux/firebase/actions';
+import { locationsSelector } from 'redux/firebase/selectors';
 
-import ImgDefault from 'assets/images/imgDefault.png';
+// import ImgDefault from 'assets/images/imgDefault.png';
 
 class LocationsManZones extends InputEvent {
 	constructor(props) {
@@ -22,7 +22,30 @@ class LocationsManZones extends InputEvent {
 		};
 	}
 
+	componentDidMount() {
+		const { locations, getLocations, getZones, storeId } = this.props;
+		if (locations.length === 0) {
+			getLocations();
+		} else {
+			getZones('locations', storeId, 'zones');
+		}
+	}
+
+	componentWillReceiveProps(nextProps) {
+		const { locations, storeId, getZones } = this.props;
+		if (locations !== nextProps.locations) {
+			getZones('locations', storeId, 'zones');
+		}
+	}
+
+	handleSelectZone = (idx) => {
+		const { locations, storeId } = this.props;
+		const selected = _.find(_.find(locations, { fbId: storeId }).subCollection.zones, { fbId: idx });
+		this.setState({ selected });
+	}
+
 	render() {
+		const { locations, storeId } = this.props;
 		const homeViewComponent = {
 			title: true,
 			subtitle: true,
@@ -44,13 +67,15 @@ class LocationsManZones extends InputEvent {
 				<Grid container spacing={24}>
 					{this.renderGrid('red',
 						<div>
-							<div className="label-products-table select-text">Store Layout</div>
+							{/* <div className="label-products-table select-text">Store Layout</div>
 							<CardMedia
 								className="zones-store-layout"
 								image={ImgDefault}
 								title="Contemplative Reptile"
-							/>
-							<SelectZone />
+							/> */}
+							<SelectZone
+								data={locations.length > 0 ? _.find(locations, { fbId: storeId }) : {}}
+								handleSelectZone={this.handleSelectZone} />
 						</div>)}
 					{this.renderGrid('red',
 						<HomeView
@@ -95,19 +120,20 @@ class LocationsManZones extends InputEvent {
 }
 
 const mapStateToProps = state => ({
-	users: usersSelector(state),
+	locations: locationsSelector(state),
 });
 
 const mapDispatchToProps = dispatch => ({
-	getUsers: () => dispatch(getUsers()),
+	getLocations: () => dispatch(getLocations()),
+	getZones: (parent, id, child) => dispatch(getSubCollection(parent, id, child)),
 });
 
-// LocationsManZones.propTypes = {
-// 	storeId: PropTypes.string,
-// };
+LocationsManZones.propTypes = {
+	storeId: PropTypes.string,
+};
 
-// LocationsManZones.defaultProps = {
-// 	storeId: '',
-// };
+LocationsManZones.defaultProps = {
+	storeId: '',
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(LocationsManZones);
