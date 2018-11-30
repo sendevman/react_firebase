@@ -21,14 +21,29 @@ class HomeView extends InputEvent {
 		super(props);
 
 		this.state = {
-			footer: '',
-			subtitle: '',
-			backTitle: '',
+			footer: props.data.footer || '',
+			title: props.data.title || '',
+			subtitle: props.data.subtitle || '',
+			backTitle: props.data.backTitle || '',
+			imageNameBackSrc: props.data.bgImg || '',
+			imageNameCardSrc: props.data.img || '',
 			imgBackSrc: '',
 			imgCardSrc: '',
-			imageNameBackSrc: '',
-			imageNameCardSrc: '',
 		};
+	}
+
+	componentWillReceiveProps(nextProps) {
+		const { data } = this.props;
+		if (data !== nextProps.data) {
+			this.setState({
+				footer: nextProps.data.footer || '',
+				title: nextProps.data.title || '',
+				subtitle: nextProps.data.subtitle || '',
+				backTitle: nextProps.data.backTitle || '',
+				imageNameBackSrc: nextProps.data.bgImg || '',
+				imageNameCardSrc: nextProps.data.img || '',
+			});
+		}
 	}
 
 	handleInputFileChange = (event, type) => {
@@ -58,7 +73,7 @@ class HomeView extends InputEvent {
 	}
 
 	render() {
-		const { imgBackSrc, imgCardSrc } = this.state;
+		const { imageNameBackSrc, imgBackSrc } = this.state;
 		const {
 			activeComponent,
 			prevbtn,
@@ -77,14 +92,19 @@ class HomeView extends InputEvent {
 						<div className="homeviewer-cardmedia-contaienr">
 							<CardMedia
 								className="homeview-back-media"
-								image={imgBackSrc || ImgDefault}
+								image={imgBackSrc || imageNameBackSrc || ImgDefault}
 								title="Contemplative Reptile"
 							/>
-							{(activeComponent.cardImage && imgCardSrc !== '') && <CardMedia
+							<div className="homeviewer-cardmedia-content">
+								<div className="homeviewer-cardmedia-title">{this.state.title}</div>
+								<div className="homeviewer-cardmedia-subtitle">{this.state.subtitle}</div>
+								<div className="homeviewer-cardmedia-footer">{this.state.footer}</div>
+							</div>
+							{/* {(activeComponent.cardImage && imgCardSrc !== '') && <CardMedia
 								className="homeview-card-media"
 								image={imgCardSrc || ImgDefault}
 								title="Contemplative Reptile"
-							/>}
+							/>} */}
 						</div>
 					</Grid>
 
@@ -152,6 +172,7 @@ class HomeView extends InputEvent {
 }
 
 HomeView.propTypes = {
+	data: PropTypes.object,
 	title: PropTypes.string,
 	activeComponent: PropTypes.object,
 	prevbtn: PropTypes.bool,
@@ -167,6 +188,7 @@ HomeView.propTypes = {
 };
 
 HomeView.defaultProps = {
+	data: {},
 	title: '',
 	activeComponent: {},
 	prevbtn: false,

@@ -18,7 +18,7 @@ class LocationsManZones extends InputEvent {
 		super(props);
 
 		this.state = {
-			selected: [],
+			selectedZone: {},
 		};
 	}
 
@@ -40,25 +40,26 @@ class LocationsManZones extends InputEvent {
 
 	handleSelectZone = (idx) => {
 		const { locations, storeId } = this.props;
-		const selected = _.find(_.find(locations, { fbId: storeId }).subCollection.zones, { fbId: idx });
-		this.setState({ selected });
+		const selectedZone = _.find(_.find(locations, { fbId: storeId }).subCollection.zones, { fbId: idx });
+		this.setState({ selectedZone });
 	}
 
 	render() {
 		const { locations, storeId } = this.props;
+		const { selectedZone } = this.state;
 		const homeViewComponent = {
 			title: true,
 			subtitle: true,
 			footer: true,
-			cardImage: true,
-			backTitle: true,
+			cardImage: false,
+			backTitle: false,
 			backImage: true,
 		};
 		const globalBackComponent = {
 			title: true,
 			subtitle: true,
 			footer: true,
-			cardImage: false,
+			cardImage: true,
 			backTitle: false,
 			backImage: true,
 		};
@@ -77,8 +78,9 @@ class LocationsManZones extends InputEvent {
 								data={locations.length > 0 ? _.find(locations, { fbId: storeId }) : {}}
 								handleSelectZone={this.handleSelectZone} />
 						</div>)}
-					{this.renderGrid('red',
+					{(selectedZone.fbId === undefined || selectedZone.homeCard) && this.renderGrid('red',
 						<HomeView
+							data={selectedZone.homeCard}
 							title="Home Open View"
 							activeComponent={homeViewComponent}
 							prevbtn
@@ -89,8 +91,9 @@ class LocationsManZones extends InputEvent {
 							handleSave={this.handleHomeSave}
 							handleImport={this.handleHomeImport}
 							handleArchive={this.handleHomeArchive} />)}
-					{this.renderGrid('red',
+					{(selectedZone.fbId === undefined || selectedZone.titleCard) && this.renderGrid('red',
 						<HomeView
+							data={selectedZone.titleCard}
 							title="Title Card"
 							activeComponent={globalBackComponent}
 							prevbtn
@@ -101,8 +104,9 @@ class LocationsManZones extends InputEvent {
 							handleSave={this.handleTitleSave}
 							handleImport={this.handleTitleImport}
 							handleArchive={this.handleTitleArchive} />)}
-					{this.renderGrid('red',
+					{(selectedZone.fbId === undefined || selectedZone.popupCard) && this.renderGrid('red',
 						<HomeView
+							data={selectedZone.popupCard}
 							title="Pop Up Card"
 							activeComponent={globalBackComponent}
 							prevbtn

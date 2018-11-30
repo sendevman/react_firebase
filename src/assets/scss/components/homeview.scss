@@ -14,6 +14,28 @@
 		right: 10%;
 		bottom: 10%;
 	}
+	
+	.homeviewer-cardmedia-content {
+		position: absolute;
+		top: 40%;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		display: flex;
+		flex-flow: column;
+		padding: 2rem;
+		padding-top: 0;
+		.homeviewer-cardmedia-title {
+			font-size: 3rem;
+			font-weight: bold;
+			margin-bottom: 0.5rem;
+			color: #009FDB;
+		}
+		.homeviewer-cardmedia-subtitle {
+			margin-bottom: 1rem;
+		}
+		.homeviewer-cardmedia-footer {}
+	}
 }
 
 .homeview-upload-box {
