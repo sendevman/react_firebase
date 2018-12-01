@@ -11,6 +11,9 @@ export const SET_STORE_PRODUCTS = 'firebase/SET_STORE_PRODUCTS';
 export const SET_STORE_AERAS = 'firebase/SET_STORE_AERAS';
 export const SET_STORE_VOD = 'firebase/SET_STORE_VOD';
 export const SET_SUB_COLLECTION = 'firebase/SET_SUB_COLLECTION';
+export const SET_DOWNLOAD_URL = 'firebase/SET_DOWNLOAD_URL';
+
+export const ADD_FB_SUB_COLLECTION_FIELD = 'firebase/ADD_FB_SUB_COLLECTION_FIELD';
 
 export const FB_AUTH_LOGIN = 'firebase/FB_AUTH_LOGIN';
 export const FB_AUTH_LOGOUT = 'firebase/FB_AUTH_LOGOUT';

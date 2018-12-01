@@ -8,6 +8,7 @@ import {
   GET_FB_VOD,
   GET_CURRENT_USER,
   GET_FB_SUB_COLLECTION,
+  ADD_FB_SUB_COLLECTION_FIELD,
   FB_AUTH_LOGIN,
   FB_AUTH_LOGOUT,
   FB_TMP_UPLOAD_IMAGE,
@@ -27,6 +28,7 @@ import {
   deleteTmpImage,
   getAddDataId,
   getSubCollection,
+  addSubCollectionfield,
   addCollection,
   updateDoc,
 } from './api';
@@ -40,6 +42,7 @@ import {
   setCurrentUser,
   setUserError,
   setSubCollection,
+  setTempDownloadURL,
 } from './actions';
 
 function* asyncUpdateDoc(param) {
@@ -59,6 +62,11 @@ function* asyncGetSubCollection(param) {
   const { parent, id, child } = param.payload;
   const res = yield call(getSubCollection, parent, id, child);
   yield put(setSubCollection(parent, id, child, res));
+}
+
+function* asyncAddSubCollectionField(param) {
+  const { parent, id, child, childId, data } = param.payload;
+  yield call(addSubCollectionfield, parent, id, child, childId, data);
 }
 
 function* asyncGetUsers() {
@@ -116,7 +124,8 @@ function* asyncDeleteTmpImage(param) {
 }
 
 function* asyncUploadImage(param) {
-  yield call(uploadImage, 'landing/', param.payload.file);
+  const downloadURL = yield call(uploadImage, param.payload.path, param.payload.file);
+  yield put(setTempDownloadURL(downloadURL));
 }
 
 export function* sagaWatcher() {
@@ -134,6 +143,7 @@ export function* sagaWatcher() {
   yield takeLatest(ADD_FB_LOCATIONS, asyncAddLocations);
   yield takeLatest(UPDATE_FB_DOC, asyncUpdateDoc);
   yield takeLatest(GET_FB_SUB_COLLECTION, asyncGetSubCollection);
+  yield takeLatest(ADD_FB_SUB_COLLECTION_FIELD, asyncAddSubCollectionField);
 }
 
 export default [
