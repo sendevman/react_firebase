@@ -29,11 +29,14 @@ class HomeView extends InputEvent {
 			imageNameCardSrc: props.data.img || '',
 			imgBackSrc: '',
 			imgCardSrc: '',
+			imgBackSrcType: {},
+			imgCardSrcType: {},
+			changeState: false,
 		};
 	}
 
 	componentWillReceiveProps(nextProps) {
-		const { data } = this.props;
+		const { changeState, data } = this.props;
 		if (data !== nextProps.data) {
 			this.setState({
 				footer: nextProps.data.footer || '',
@@ -43,6 +46,9 @@ class HomeView extends InputEvent {
 				imageNameBackSrc: nextProps.data.bgImg || '',
 				imageNameCardSrc: nextProps.data.img || '',
 			});
+		}
+		if (changeState !== nextProps.changeState) {
+			this.setState({ changeState: nextProps.changeState });
 		}
 	}
 
@@ -58,11 +64,15 @@ class HomeView extends InputEvent {
 					this.setState({
 						imgBackSrc: reader.result,
 						imageNameBackSrc: file.name,
+						imgBackSrcType: file,
+						changeState: true,
 					});
 				} else {
 					this.setState({
 						imgCardSrc: reader.result,
 						imageNameCardSrc: file.name,
+						imgCardSrcType: file,
+						changeState: true,
 					});
 				}
 			};
@@ -72,8 +82,31 @@ class HomeView extends InputEvent {
 		}
 	}
 
+	handleInputChange = (e, type) => {
+		const stateCopy = Object.assign({}, this.state);
+		stateCopy[type] = e.target.value;
+		this.setState({
+			...stateCopy,
+			changeState: true,
+		});
+	};
+
+	handleSave = () => {
+		const { footer, title, subtitle, imgBackSrcType, imageNameCardSrc } = this.state;
+		const data = {
+			footer,
+			title,
+			subtitle,
+			img: imageNameCardSrc,
+		};
+		this.props.handleSave(data, imgBackSrcType);
+		this.setState({
+			changeState: false,
+		});
+	}
+
 	render() {
-		const { imageNameBackSrc, imgBackSrc } = this.state;
+		const { changeState, imageNameBackSrc, imgBackSrc } = this.state;
 		const {
 			activeComponent,
 			prevbtn,
@@ -161,7 +194,7 @@ class HomeView extends InputEvent {
 
 				<div className="buttons-box">
 					{prevbtn && this.renderButton('Preview', 'blue', () => {}, <PreviewIcon />)}
-					{savebtn && this.renderButton('Save', 'green', () => {}, <SaveIcon />)}
+					{savebtn && this.renderButton('Save', 'green', () => this.handleSave(), <SaveIcon />, 'contained', 'medium', !changeState)}
 					{importbtn && this.renderButton('Import', 'purple', () => {}, <ImportIcon />)}
 					{archbtn && this.renderButton('Archive', 'orange', () => {}, <ArchivelIcon />)}
 					{cancelbtn && this.renderButton('Cancel', 'red', () => {}, <CloseIcon />)}

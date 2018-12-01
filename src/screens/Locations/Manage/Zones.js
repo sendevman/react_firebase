@@ -8,8 +8,14 @@ import SelectZone from 'components/SelectZone';
 import HomeView from 'components/HomeView';
 import InputEvent from 'components/InputEvent';
 
-import { getLocations, getSubCollection } from 'redux/firebase/actions';
-import { locationsSelector } from 'redux/firebase/selectors';
+import {
+	addSubCollectionField,
+	getLocations,
+	getSubCollection,
+	setTempDownloadURL,
+	uploadImage,
+} from 'redux/firebase/actions';
+import { locationsSelector, downloadURLSelector } from 'redux/firebase/selectors';
 
 // import ImgDefault from 'assets/images/imgDefault.png';
 
@@ -19,6 +25,11 @@ class LocationsManZones extends InputEvent {
 
 		this.state = {
 			selectedZone: {},
+			selectedZoneId: '',
+			homeOpenViewData: {},
+			homeOpenViewDataEnable: false,
+			titleCardData: {},
+			titleCardDataEnable: false,
 		};
 	}
 
@@ -33,15 +44,63 @@ class LocationsManZones extends InputEvent {
 
 	componentWillReceiveProps(nextProps) {
 		const { locations, storeId, getZones } = this.props;
+		const {
+			homeOpenViewData,
+			homeOpenViewDataEnable,
+			titleCardData,
+			titleCardDataEnable,
+			selectedZoneId,
+		} = this.state;
 		if (locations !== nextProps.locations) {
 			getZones('locations', storeId, 'zones');
+		}
+		if (nextProps.downloadURL !== '') {
+			if (homeOpenViewDataEnable) {
+				this.props.addSubCollectionField(
+					'locations',
+					this.props.storeId,
+					'zones',
+					selectedZoneId,
+					{ homeCard: { ...homeOpenViewData, bgImg: nextProps.downloadURL } },
+				);
+				this.setState({ homeOpenViewDataEnable: false });
+			} else if (titleCardDataEnable) {
+				this.props.addSubCollectionField(
+					'locations',
+					this.props.storeId,
+					'zones',
+					selectedZoneId,
+					{ titleCard: { ...titleCardData, bgImg: nextProps.downloadURL } },
+				);
+				this.setState({ titleCardDataEnable: false });
+			}
+			this.props.setTempDownloadURL('');
 		}
 	}
 
 	handleSelectZone = (idx) => {
 		const { locations, storeId } = this.props;
 		const selectedZone = _.find(_.find(locations, { fbId: storeId }).subCollection.zones, { fbId: idx });
-		this.setState({ selectedZone });
+		this.setState({
+			selectedZone,
+			selectedZoneId: idx,
+		});
+	}
+
+	handleHomeSave = (data, imgBackSrcType) => {
+		this.props.uploadImage('zones/', { name: imgBackSrcType.name, data: imgBackSrcType });
+		this.setState({
+			homeOpenViewData: data,
+			homeOpenViewDataEnable: true,
+		});
+	}
+
+	handleTitleSave = (data, imgBackSrcType) => {
+		this.props.uploadImage('zones/', { name: imgBackSrcType.name, data: imgBackSrcType });
+		this.setState({
+			titleCardData: data,
+			titleCardDataEnable: true,
+		});
 	}
 
 	render() {
@@ -125,15 +184,24 @@ class LocationsManZones extends InputEvent {
 
 const mapStateToProps = state => ({
 	locations: locationsSelector(state),
+	downloadURL: downloadURLSelector(state),
 });
 
 const mapDispatchToProps = dispatch => ({
 	getLocations: () => dispatch(getLocations()),
 	getZones: (parent, id, child) => dispatch(getSubCollection(parent, id, child)),
+	uploadImage: (path, file) => dispatch(uploadImage(path, file)),
+	addSubCollectionField: (parent, id, child, childId, data) => dispatch(addSubCollectionField(parent, id, child, childId, data)),
+	setTempDownloadURL: (url) => dispatch(setTempDownloadURL(url)),
 });
 
 LocationsManZones.propTypes = {
+	locations: PropTypes.array.isRequired,
+	downloadURL: PropTypes.string.isRequired,
 	storeId: PropTypes.string,
+	getLocations: PropTypes.func.isRequired,
+	getZones: PropTypes.func.isRequired,
+	uploadImage: PropTypes.func.isRequired,
 };
 
 LocationsManZones.defaultProps = {
