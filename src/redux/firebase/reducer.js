@@ -11,6 +11,7 @@ import {
 	SET_SUB_COLLECTION,
 	SET_CURRENT_USER,
 	SET_USER_ERROR,
+	SET_DOWNLOAD_URL,
 } from './constants';
 
 const initialState = fromJS({
@@ -21,6 +22,7 @@ const initialState = fromJS({
 	vod: [],
 	currentUser: {},
 	userError: {},
+	downloadURL: '',
 });
 
 export default handleActions({
@@ -44,4 +46,6 @@ export default handleActions({
 		state
 			.set('currentUser', { res: 'noUser' })
 			.set('userError', { ...action.payload, res: 'Error' }),
+	[SET_DOWNLOAD_URL]: (state, action) => state.set('downloadURL', action.payload.downloadURL),
+
 }, initialState);
