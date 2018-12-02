@@ -29,8 +29,6 @@ class GeneralInfo extends InputEvent {
       region: '',
       type: '',
       fileName: '',
-      floorId1: '',
-      floorId2: '',
       autoUpdate: false,
       dbID: '',
       cpID: '',
@@ -47,18 +45,31 @@ class GeneralInfo extends InputEvent {
       const { locations } = nextProps;
       const location = _.find(locations, data => this.props.storeId === data.fbId);
       if (location !== 'undefined') {
+        const { storeId, storeInfo } = location;
+        const walkbase = location.walkbase ? { ...location.walkbase } : null;
+        const walkbase_keys = _.keys(walkbase);
+        const walkbase_state = {};
+        _.each(walkbase_keys, key => {
+          if (Array.isArray(walkbase[key])) {
+            _.each(walkbase[key], (item, index) => {
+              walkbase_state[`${key}${index + 1}`] = item;
+            });
+          } else {
+            walkbase_state[key] = walkbase[key];
+          }
+        });
         this.setState({
-          name: location.storeInfo.name,
-          storeId: location.storeId,
-          region: location.storeInfo.region,
-          city: location.storeInfo.city,
-          state: location.storeInfo.state,
-          type: location.storeInfo.type,
-          floorId1: location.walkbase.floorId[0],
-          floorId2: location.walkbase.floorId[1],
-          dbID: location.storeInfo.dbID,
-          cpID: location.storeInfo.cpID,
-          subtype: location.storeInfo.subtype,
+          name: storeInfo.name,
+          storeId: storeId || '',
+          region: storeInfo.region || '',
+          city: storeInfo.city || '',
+          state: storeInfo.state || '',
+          type: storeInfo.type || '',
+          dbID: storeInfo.dbID || '',
+          cpID: storeInfo.cpID || '',
+          subtype: storeInfo.subtype || '',
+          ...walkbase_state,
+          walkbase_state,
         });
       }
     }
@@ -110,6 +121,7 @@ class GeneralInfo extends InputEvent {
 
   render() {
     const { autoUpdate } = this.state;
+    const { locations, storeId } = this.props;
     return (
       <Grid container>
         <Grid item xs={12} sm={6}>
@@ -129,13 +141,23 @@ class GeneralInfo extends InputEvent {
           </div>
         </Grid>
         <Grid item xs={12} sm={6}>
-          <div className="sub-container">
-            <FormLabel component="legend">Walkbase</FormLabel>
-            <FormGroup>
-              {this.renderText('floorId1', 'Floor ID1')}
-              {this.renderText('floorId2', 'Floor ID2')}
-            </FormGroup>
-          </div>
+          {this.state.floorId1 &&
+            <div className="sub-container">
+              <FormLabel component="legend">Walkbase</FormLabel>
+              <FormGroup>
+                {_.find(locations, { fbId: storeId }).walkbase.floorId.map((item, index) => (
+                  <div key={index}>{this.renderText(`floorId${index + 1}`, `Floor ID${index + 1}`)}</div>
+                ))}
+              </FormGroup>
+            </div>}
+          {this.state.zoneId1 &&
+            <div className="sub-container">
+              <FormGroup>
+                {_.find(locations, { fbId: storeId }).walkbase.zoneId.map((item, index) => (
+                  <div key={index}>{this.renderText(`zoneId${index + 1}`, `Zone ID${index + 1}`)}</div>
+                ))}
+              </FormGroup>
+            </div>}
           <div className="sub-container">
             <FormLabel component="legend" className="mt-block">Floorplan Upload</FormLabel>
             <FormGroup>
