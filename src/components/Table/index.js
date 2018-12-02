@@ -7,13 +7,14 @@ import InputEvent from 'components/InputEvent';
 
 class Table extends InputEvent {
   render() {
-    const { tables, columns, pageSize, showPagination } = this.props;
+    const { tables, columns, pageSize, showPagination, updateRowStyle } = this.props;
     return (
       <ReactTable
         className="-striped -highlight"
         data={tables}
         showPagination={showPagination}
         defaultPageSize={pageSize}
+        getTrProps={updateRowStyle}
         sorted={[{
           id: 'name',
           desc: false,
@@ -29,6 +30,7 @@ Table.propTypes = {
   showPagination: PropTypes.bool,
   tables: PropTypes.array,
   columns: PropTypes.array,
+  updateRowStyle: PropTypes.func,
 };
 
 Table.defaultProps = {
@@ -36,6 +38,7 @@ Table.defaultProps = {
   showPagination: false,
   tables: [],
   columns: [],
+  updateRowStyle: () => ({}),
 };
 
 export default Table;

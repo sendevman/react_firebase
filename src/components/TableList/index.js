@@ -43,13 +43,14 @@ class TableList extends InputEvent {
       searchEnable,
       showPagination,
       pageSize,
+      updateRowStyle,
     } = this.props;
     return (
       <Grid item xs={12}>
         <FormLabel component="legend" className="mt-block label-products-table select-text">{label}</FormLabel>
         <FormGroup>
           {searchEnable && this.renderText('search', 'Search')}
-          <Table columns={columns} tables={tables} showPagination={showPagination} pageSize={pageSize} />
+          <Table columns={columns} tables={tables} showPagination={showPagination} pageSize={pageSize} updateRowStyle={updateRowStyle} />
         </FormGroup>
         <div className="buttons-box mt-block">
           {addbtn && this.renderButton(addbtnTooltip, 'green', this.props.handleAdd, <AddIcon />, 'fab')}
@@ -80,6 +81,7 @@ TableList.propTypes = {
   handleSave: PropTypes.func,
   handleEdit: PropTypes.func,
   handleDelete: PropTypes.func,
+  updateRowStyle: PropTypes.func,
 };
 
 TableList.defaultProps = {
@@ -100,6 +102,7 @@ TableList.defaultProps = {
   handleSave: () => {},
   handleEdit: () => {},
   handleDelete: () => {},
+  updateRowStyle: () => ({}),
 };
 
 export default TableList;
