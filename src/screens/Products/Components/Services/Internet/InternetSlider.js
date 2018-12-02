@@ -1,14 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import checkMark from 'assets/images/checkMark.png';
-import IntVietnamese from 'assets/images/IntVietnamese.png';
-import IntBrazilian from 'assets/images/IntBrazilian.png';
-import reimagned1 from 'assets/images/reimagned1.png';
-import reimagned2 from 'assets/images/reimagned2.png';
-import reimagned3 from 'assets/images/reimagned3.png';
-import reimagned4 from 'assets/images/reimagned4.png';
-
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 

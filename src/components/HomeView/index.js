@@ -21,14 +21,35 @@ class HomeView extends InputEvent {
 		super(props);
 
 		this.state = {
-			footer: '',
-			subtitle: '',
-			backTitle: '',
+			footer: props.data.footer || '',
+			title: props.data.title || '',
+			subtitle: props.data.subtitle || '',
+			backTitle: props.data.backTitle || '',
+			imageNameBackSrc: props.data.bgImg || '',
+			imageNameCardSrc: props.data.img || '',
 			imgBackSrc: '',
 			imgCardSrc: '',
-			imageNameBackSrc: '',
-			imageNameCardSrc: '',
+			imgBackSrcType: {},
+			imgCardSrcType: {},
+			changeState: false,
 		};
+	}
+
+	componentWillReceiveProps(nextProps) {
+		const { changeState, data } = this.props;
+		if (data !== nextProps.data) {
+			this.setState({
+				footer: nextProps.data.footer || '',
+				title: nextProps.data.title || '',
+				subtitle: nextProps.data.subtitle || '',
+				backTitle: nextProps.data.backTitle || '',
+				imageNameBackSrc: nextProps.data.bgImg || '',
+				imageNameCardSrc: nextProps.data.img || '',
+			});
+		}
+		if (changeState !== nextProps.changeState) {
+			this.setState({ changeState: nextProps.changeState });
+		}
 	}
 
 	handleInputFileChange = (event, type) => {
@@ -43,11 +64,15 @@ class HomeView extends InputEvent {
 					this.setState({
 						imgBackSrc: reader.result,
 						imageNameBackSrc: file.name,
+						imgBackSrcType: file,
+						changeState: true,
 					});
 				} else {
 					this.setState({
 						imgCardSrc: reader.result,
 						imageNameCardSrc: file.name,
+						imgCardSrcType: file,
+						changeState: true,
 					});
 				}
 			};
@@ -57,8 +82,31 @@ class HomeView extends InputEvent {
 		}
 	}
 
+	handleInputChange = (e, type) => {
+		const stateCopy = Object.assign({}, this.state);
+		stateCopy[type] = e.target.value;
+		this.setState({
+			...stateCopy,
+			changeState: true,
+		});
+	};
+
+	handleSave = () => {
+		const { footer, title, subtitle, imgBackSrcType, imageNameCardSrc } = this.state;
+		const data = {
+			footer,
+			title,
+			subtitle,
+			img: imageNameCardSrc,
+		};
+		this.props.handleSave(data, imgBackSrcType);
+		this.setState({
+			changeState: false,
+		});
+	}
+
 	render() {
-		const { imgBackSrc, imgCardSrc } = this.state;
+		const { changeState, imageNameBackSrc, imgBackSrc } = this.state;
 		const {
 			activeComponent,
 			prevbtn,
@@ -77,14 +125,19 @@ class HomeView extends InputEvent {
 						<div className="homeviewer-cardmedia-contaienr">
 							<CardMedia
 								className="homeview-back-media"
-								image={imgBackSrc || ImgDefault}
+								image={imgBackSrc || imageNameBackSrc || ImgDefault}
 								title="Contemplative Reptile"
 							/>
-							{(activeComponent.cardImage && imgCardSrc !== '') && <CardMedia
+							<div className="homeviewer-cardmedia-content">
+								<div className="homeviewer-cardmedia-title">{this.state.title}</div>
+								<div className="homeviewer-cardmedia-subtitle">{this.state.subtitle}</div>
+								<div className="homeviewer-cardmedia-footer">{this.state.footer}</div>
+							</div>
+							{/* {(activeComponent.cardImage && imgCardSrc !== '') && <CardMedia
 								className="homeview-card-media"
 								image={imgCardSrc || ImgDefault}
 								title="Contemplative Reptile"
-							/>}
+							/>} */}
 						</div>
 					</Grid>
 
@@ -141,7 +194,7 @@ class HomeView extends InputEvent {
 
 				<div className="buttons-box">
 					{prevbtn && this.renderButton('Preview', 'blue', () => {}, <PreviewIcon />)}
-					{savebtn && this.renderButton('Save', 'green', () => {}, <SaveIcon />)}
+					{savebtn && this.renderButton('Save', 'green', () => this.handleSave(), <SaveIcon />, 'contained', 'medium', !changeState)}
 					{importbtn && this.renderButton('Import', 'purple', () => {}, <ImportIcon />)}
 					{archbtn && this.renderButton('Archive', 'orange', () => {}, <ArchivelIcon />)}
 					{cancelbtn && this.renderButton('Cancel', 'red', () => {}, <CloseIcon />)}
@@ -152,6 +205,7 @@ class HomeView extends InputEvent {
 }
 
 HomeView.propTypes = {
+	data: PropTypes.object,
 	title: PropTypes.string,
 	activeComponent: PropTypes.object,
 	prevbtn: PropTypes.bool,
@@ -167,6 +221,7 @@ HomeView.propTypes = {
 };
 
 HomeView.defaultProps = {
+	data: {},
 	title: '',
 	activeComponent: {},
 	prevbtn: false,

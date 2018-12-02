@@ -6,6 +6,7 @@ const locationsSelector = createSelector([firebaseSelector], firebase => firebas
 const productsSelector = createSelector([firebaseSelector], firebase => firebase.get('products').toJS());
 const areasSelector = createSelector([firebaseSelector], firebase => firebase.get('areas').toJS());
 const vodSelector = createSelector([firebaseSelector], firebase => firebase.get('vod').toJS());
+const downloadURLSelector = createSelector([firebaseSelector], firebase => firebase.get('downloadURL'));
 const currentUserSelector = createSelector([firebaseSelector], firebase => firebase.get('currentUser'));
 const userErrorSelector = createSelector([firebaseSelector], firebase => firebase.get('userError'));
 
@@ -16,6 +17,7 @@ export {
   productsSelector,
   areasSelector,
   vodSelector,
+  downloadURLSelector,
   currentUserSelector,
   userErrorSelector,
 };
