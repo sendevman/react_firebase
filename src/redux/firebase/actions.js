@@ -15,12 +15,14 @@ import {
 	SET_SUB_COLLECTION,
 	SET_CURRENT_USER,
 	SET_USER_ERROR,
+	SET_DOWNLOAD_URL,
 	FB_AUTH_LOGIN,
 	FB_AUTH_LOGOUT,
 	FB_TMP_UPLOAD_IMAGE,
 	FB_TMP_DELETE_IMAGE,
 	FB_UPLOAD_IMAGE,
 	ADD_FB_LOCATIONS,
+	ADD_FB_SUB_COLLECTION_FIELD,
 	UPDATE_FB_DOC,
 } from './constants';
 
@@ -58,6 +60,11 @@ export const getSubCollection = createAction(
 export const addLocations = createAction(
 	ADD_FB_LOCATIONS,
 	(locations, users) => ({ locations, users }),
+);
+
+export const addSubCollectionField = createAction(
+	ADD_FB_SUB_COLLECTION_FIELD,
+	(parent, id, child, childId, data) => ({ parent, id, child, childId, data }),
 );
 
 /* set all data */
@@ -120,7 +127,12 @@ export const deleteTmpImage = createAction(
 
 export const uploadImage = createAction(
 	FB_UPLOAD_IMAGE,
-	(file) => ({ file }),
+	(path, file) => ({ path, file }),
+);
+
+export const setTempDownloadURL = createAction(
+	SET_DOWNLOAD_URL,
+	(downloadURL) => ({ downloadURL }),
 );
 
 /* auth */

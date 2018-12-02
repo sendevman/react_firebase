@@ -51,16 +51,19 @@ class InputEvent extends Component {
 		/>
 	);
 
-	renderButton = (title, color, handleOnClick, child, shape = 'contained', size = 'medium') => (
+	renderButton = (title, color, handleOnClick, child, shape = 'contained', size = 'medium', disabled = false) => (
 		<Tooltip title={title} placement="top">
-			<Button
-				variant={shape}
-				size={size}
-				aria-label={title}
-				className={`btn-icon-text att-${color} margin-top margin-left`}
-				onClick={handleOnClick}>
-				{child}
-			</Button>
+			<div>
+				<Button
+					variant={shape}
+					size={size}
+					aria-label={title}
+					className={`btn-icon-text att-${color} margin-top margin-left`}
+					onClick={handleOnClick}
+					disabled={disabled}>
+					{child}
+				</Button>
+			</div>
 		</Tooltip>
 	);
 
