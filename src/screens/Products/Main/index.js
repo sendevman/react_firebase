@@ -7,12 +7,20 @@ import Grid from '@material-ui/core/Grid';
 
 import InputEvent from 'components/InputEvent';
 import TableList from 'components/TableList';
-import SelectZone from 'components/SelectZone';
+// import SelectZone from 'components/SelectZone';
 
 import { getProducts, getSubCollection } from 'redux/firebase/actions';
 import { productsSelector } from 'redux/firebase/selectors';
 
 class ProductsMain extends InputEvent {
+	constructor(props) {
+		super(props);
+		this.state = {
+			catalogProduct: {},
+			catalogProductIndex: null,
+		};
+	}
+
 	componentDidMount() {
 		this.props.getProducts();
 	}
@@ -22,6 +30,23 @@ class ProductsMain extends InputEvent {
 		// const type = row.subType === 'watch_tv' || row.subType === 'watch_tv' || row.subType === 'watch_tv' ? 'services' : 'devices';
 		this.props.history.push(`/products/manage/${row._original.type}/${row.subType}/${row.fbId}`);
 	}
+
+	handleCatalogClick = (row, index) => {
+		this.setState({
+			catalogProduct: row,
+			catalogProductIndex: index,
+		});
+	}
+
+	handleEditProduct = () => {
+		// this.props.history.push(`/products/manage/${row._original.type}/${row.subType}/${row.fbId}`);
+	}
+
+	updateRowStyle = (state, rowInfo) => ({
+		style: {
+			background: rowInfo && rowInfo.index === this.state.catalogProductIndex ? 'green' : null,
+		},
+	});
 
 	render() {
 		const currentProductsColumn = [
@@ -44,23 +69,28 @@ class ProductsMain extends InputEvent {
 		const categoryProductsColumn = [
 			{
 				Header: () => this.renderHeader('Model'),
+				Cell: ({ row, index }) => this.renderCell(row.model, () => this.handleCatalogClick(row, index)),
 				accessor: 'model',
 			},
 			{
 				Header: () => this.renderHeader('Manufacture'),
+				Cell: ({ row, index }) => this.renderCell(row.manufacture, () => this.handleCatalogClick(row, index)),
 				accessor: 'manufacture',
 			},
 			{
-				Header: () => this.renderHeader('id'),
-				accessor: 'id',
+				Header: () => this.renderHeader('ID'),
+				Cell: ({ row, index }) => this.renderCell(row.fbId, () => this.handleCatalogClick(row, index)),
+				accessor: 'fbId',
 			},
 			{
-				Header: () => this.renderHeader('type'),
+				Header: () => this.renderHeader('Type'),
+				Cell: ({ row, index }) => this.renderCell(row.type, () => this.handleCatalogClick(row, index)),
 				accessor: 'type',
 			},
 			{
-				Header: () => this.renderHeader('subtype'),
-				accessor: 'subtype',
+				Header: () => this.renderHeader('SubType'),
+				Cell: ({ row, index }) => this.renderCell(row.subType, () => this.handleCatalogClick(row, index)),
+				accessor: 'subType',
 			},
 		];
 		return (
@@ -68,32 +98,35 @@ class ProductsMain extends InputEvent {
 				<Card className="card-box">
 					<CardContent className="left-border-green">
 						<Grid container spacing={24}>
-							{this.renderGrid('white',
+							{/* {this.renderGrid('white',
 								<div>
 									<SelectZone />
-								</div>)}
+								</div>)} */}
 
 							{this.renderGrid('white',
 								<TableList
 									columns={currentProductsColumn}
 									tables={this.props.currentProducts}
+									pageSize={10}
+									showPagination
 									label="Current Products"
 									deletebtnTooltip="Delete User"
-									pageSize={10}
 									deletebtn
 									searchEnable
-									showPagination
 									handleSave={this.saveUsers} />)}
 
 							{this.renderGrid('white',
 								<TableList
 									columns={categoryProductsColumn}
-									tables={this.props.categoryProducts}
+									tables={this.props.currentProducts}
+									pageSize={10}
+									showPagination
 									label="Products Catalog"
-									addbtnTooltip="Add Product"
-									addbtn
+									editbtnTooltip="Edit Product"
+									editbtn
 									searchEnable
-									handleSave={this.saveUsers} />)}
+									handleEdit={this.handleEditProduct}
+									updateRowStyle={this.updateRowStyle} />)}
 						</Grid>
 					</CardContent>
 				</Card>
@@ -113,13 +146,8 @@ const mapDispatchToProps = dispatch => ({
 
 ProductsMain.propTypes = {
 	currentProducts: PropTypes.array.isRequired,
-	categoryProducts: PropTypes.array,
 	getProducts: PropTypes.func.isRequired,
 	history: PropTypes.object.isRequired,
-};
-
-ProductsMain.defaultProps = {
-	categoryProducts: [],
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductsMain);
