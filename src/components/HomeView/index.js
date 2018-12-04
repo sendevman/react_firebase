@@ -29,8 +29,8 @@ class HomeView extends InputEvent {
 			imageNameCardSrc: props.data.img || '',
 			imgBackSrc: '',
 			imgCardSrc: '',
-			imgBackSrcType: {},
-			imgCardSrcType: {},
+			imgBackSrcType: undefined,
+			imgCardSrcType: undefined,
 			changeState: false,
 		};
 	}
@@ -92,21 +92,28 @@ class HomeView extends InputEvent {
 	};
 
 	handleSave = () => {
-		const { footer, title, subtitle, imgBackSrcType, imageNameCardSrc } = this.state;
+		const { footer, title, subtitle, imgBackSrcType, imageNameBackSrc, imgCardSrcType, imageNameCardSrc } = this.state;
 		const data = {
 			footer,
 			title,
 			subtitle,
 			img: imageNameCardSrc,
+			bgImg: imageNameBackSrc,
 		};
-		this.props.handleSave(data, imgBackSrcType);
+		this.props.handleSave(data, imgBackSrcType, imgCardSrcType);
 		this.setState({
 			changeState: false,
 		});
 	}
 
 	render() {
-		const { changeState, imageNameBackSrc, imgBackSrc } = this.state;
+		const {
+			changeState,
+			imageNameBackSrc,
+			imgBackSrc,
+			imageNameCardSrc,
+			imgCardSrc,
+		} = this.state;
 		const {
 			activeComponent,
 			prevbtn,
@@ -123,21 +130,23 @@ class HomeView extends InputEvent {
 				<Grid container spacing={24}>
 					<Grid item xs={12} sm={6}>
 						<div className="homeviewer-cardmedia-contaienr">
-							<CardMedia
-								className="homeview-back-media"
-								image={imgBackSrc || imageNameBackSrc || ImgDefault}
-								title="Contemplative Reptile"
-							/>
+							{(!activeComponent.cardImage || activeComponent.backImage) &&
+								<CardMedia
+									className="homeview-back-media"
+									image={imgBackSrc || imageNameBackSrc || ImgDefault}
+									title="Contemplative Reptile"
+								/>}
+							{(activeComponent.cardImage && (imgCardSrc !== '' || imageNameCardSrc || !activeComponent.backImage)) &&
+								<CardMedia
+									className={activeComponent.backImage === false ? 'homeview-back-media' : 'homeview-card-media'}
+									image={imgCardSrc || imageNameCardSrc || ImgDefault}
+									title="Contemplative Reptile"
+								/>}
 							<div className="homeviewer-cardmedia-content">
 								<div className="homeviewer-cardmedia-title">{this.state.title}</div>
 								<div className="homeviewer-cardmedia-subtitle">{this.state.subtitle}</div>
 								<div className="homeviewer-cardmedia-footer">{this.state.footer}</div>
 							</div>
-							{/* {(activeComponent.cardImage && imgCardSrc !== '') && <CardMedia
-								className="homeview-card-media"
-								image={imgCardSrc || ImgDefault}
-								title="Contemplative Reptile"
-							/>} */}
 						</div>
 					</Grid>
 
