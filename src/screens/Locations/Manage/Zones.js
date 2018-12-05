@@ -12,10 +12,8 @@ import {
 	addSubCollectionField,
 	getLocations,
 	getSubCollection,
-	setTempDownloadURL,
-	uploadImage,
 } from 'redux/firebase/actions';
-import { locationsSelector, downloadURLSelector } from 'redux/firebase/selectors';
+import { locationsSelector } from 'redux/firebase/selectors';
 
 // import ImgDefault from 'assets/images/imgDefault.png';
 
@@ -44,37 +42,8 @@ class LocationsManZones extends InputEvent {
 
 	componentWillReceiveProps(nextProps) {
 		const { locations, storeId, getZones } = this.props;
-		const {
-			homeOpenViewData,
-			homeOpenViewDataEnable,
-			titleCardData,
-			titleCardDataEnable,
-			selectedZoneId,
-		} = this.state;
 		if (locations !== nextProps.locations) {
 			getZones('locations', storeId, 'zones');
-		}
-		if (nextProps.downloadURL !== '') {
-			if (homeOpenViewDataEnable) {
-				this.props.addSubCollectionField(
-					'locations',
-					this.props.storeId,
-					'zones',
-					selectedZoneId,
-					{ homeCard: { ...homeOpenViewData, bgImg: nextProps.downloadURL } },
-				);
-				this.setState({ homeOpenViewDataEnable: false });
-			} else if (titleCardDataEnable) {
-				this.props.addSubCollectionField(
-					'locations',
-					this.props.storeId,
-					'zones',
-					selectedZoneId,
-					{ titleCard: { ...titleCardData, bgImg: nextProps.downloadURL } },
-				);
-				this.setState({ titleCardDataEnable: false });
-			}
-			this.props.setTempDownloadURL('');
 		}
 	}
 
@@ -87,20 +56,40 @@ class LocationsManZones extends InputEvent {
 		});
 	}
 
-	handleHomeSave = (data, imgBackSrcType) => {
-		this.props.uploadImage('zones/', { name: imgBackSrcType.name, data: imgBackSrcType });
-		this.setState({
-			homeOpenViewData: data,
-			homeOpenViewDataEnable: true,
-		});
+	handleHomeSave = (data, imgBackSrcType, imgCardSrcType) => {
+		const {	selectedZoneId } = this.state;
+		this.props.addSubCollectionField(
+			'locations',
+			this.props.storeId,
+			'zones',
+			selectedZoneId,
+			'homeCard',
+			{
+				data,
+				uploadImg: {
+					imgBackSrcType,
+					imgCardSrcType,
+				},
+			},
+		);
 	}
 
-	handleTitleSave = (data, imgBackSrcType) => {
-		this.props.uploadImage('zones/', { name: imgBackSrcType.name, data: imgBackSrcType });
-		this.setState({
-			titleCardData: data,
-			titleCardDataEnable: true,
-		});
+	handleTitleSave = (data, imgBackSrcType, imgCardSrcType) => {
+		const {	selectedZoneId } = this.state;
+		this.props.addSubCollectionField(
+			'locations',
+			this.props.storeId,
+			'zones',
+			selectedZoneId,
+			'titleCard',
+			{
+				data,
+				uploadImg: {
+					imgBackSrcType,
+					imgCardSrcType,
+				},
+			},
+		);
 	}
 
 	render() {
@@ -110,17 +99,17 @@ class LocationsManZones extends InputEvent {
 			title: true,
 			subtitle: true,
 			footer: true,
-			cardImage: false,
+			cardImage: true,
 			backTitle: false,
 			backImage: true,
 		};
-		const globalBackComponent = {
+		const titleComponent = {
 			title: true,
 			subtitle: true,
 			footer: true,
 			cardImage: true,
 			backTitle: false,
-			backImage: true,
+			backImage: false,
 		};
 		return (
 			<div id="locations-man-info" className="Container-box">
@@ -142,11 +131,9 @@ class LocationsManZones extends InputEvent {
 							data={selectedZone.homeCard}
 							title="Home Open View"
 							activeComponent={homeViewComponent}
-							prevbtn
 							savebtn
 							importbtn
 							archbtn
-							handlePreview={this.handleHomePreview}
 							handleSave={this.handleHomeSave}
 							handleImport={this.handleHomeImport}
 							handleArchive={this.handleHomeArchive} />)}
@@ -154,12 +141,10 @@ class LocationsManZones extends InputEvent {
 						<HomeView
 							data={selectedZone.titleCard}
 							title="Title Card"
-							activeComponent={globalBackComponent}
-							prevbtn
+							activeComponent={titleComponent}
 							savebtn
 							importbtn
 							archbtn
-							handlePreview={this.handleTitlePreview}
 							handleSave={this.handleTitleSave}
 							handleImport={this.handleTitleImport}
 							handleArchive={this.handleTitleArchive} />)}
@@ -167,7 +152,7 @@ class LocationsManZones extends InputEvent {
 						<HomeView
 							data={selectedZone.popupCard}
 							title="Pop Up Card"
-							activeComponent={globalBackComponent}
+							activeComponent={titleComponent}
 							prevbtn
 							savebtn
 							importbtn
@@ -184,24 +169,19 @@ class LocationsManZones extends InputEvent {
 
 const mapStateToProps = state => ({
 	locations: locationsSelector(state),
-	downloadURL: downloadURLSelector(state),
 });
 
 const mapDispatchToProps = dispatch => ({
 	getLocations: () => dispatch(getLocations()),
 	getZones: (parent, id, child) => dispatch(getSubCollection(parent, id, child)),
-	uploadImage: (path, file) => dispatch(uploadImage(path, file)),
-	addSubCollectionField: (parent, id, child, childId, data) => dispatch(addSubCollectionField(parent, id, child, childId, data)),
-	setTempDownloadURL: (url) => dispatch(setTempDownloadURL(url)),
+	addSubCollectionField: (parent, id, child, childId, field, data) => dispatch(addSubCollectionField(parent, id, child, childId, field, data)),
 });
 
 LocationsManZones.propTypes = {
 	locations: PropTypes.array.isRequired,
-	downloadURL: PropTypes.string.isRequired,
 	storeId: PropTypes.string,
 	getLocations: PropTypes.func.isRequired,
 	getZones: PropTypes.func.isRequired,
-	uploadImage: PropTypes.func.isRequired,
 };
 
 LocationsManZones.defaultProps = {
