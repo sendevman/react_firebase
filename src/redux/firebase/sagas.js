@@ -13,7 +13,6 @@ import {
   FB_AUTH_LOGOUT,
   FB_TMP_UPLOAD_IMAGE,
   FB_TMP_DELETE_IMAGE,
-  FB_UPLOAD_IMAGE,
   ADD_FB_LOCATIONS,
   UPDATE_FB_DOC,
 } from './constants';
@@ -42,7 +41,6 @@ import {
   setCurrentUser,
   setUserError,
   setSubCollection,
-  setTempDownloadURL,
 } from './actions';
 
 function* asyncUpdateDoc(param) {
@@ -65,8 +63,16 @@ function* asyncGetSubCollection(param) {
 }
 
 function* asyncAddSubCollectionField(param) {
-  const { parent, id, child, childId, data } = param.payload;
-  yield call(addSubCollectionfield, parent, id, child, childId, data);
+  const { parent, id, child, childId, field, data } = param.payload;
+  const res = {};
+  res[field] = data.data;
+  if (data.uploadImg.imgBackSrcType) {
+    res[field].bgImg = yield call(uploadImage, `${child}/`, { name: `${field}-bg-${childId}-${data.uploadImg.imgBackSrcType.name}`, data: data.uploadImg.imgBackSrcType });
+  }
+  if (data.uploadImg.imgCardSrcType) {
+    res[field].img = yield call(uploadImage, `${child}/`, { name: `${field}-${childId}-${data.uploadImg.imgCardSrcType.name}`, data: data.uploadImg.imgCardSrcType });
+  }
+  yield call(addSubCollectionfield, parent, id, child, childId, res);
 }
 
 function* asyncGetUsers() {
@@ -123,11 +129,6 @@ function* asyncDeleteTmpImage(param) {
   yield call(deleteTmpImage, param.payload.file);
 }
 
-function* asyncUploadImage(param) {
-  const downloadURL = yield call(uploadImage, param.payload.path, param.payload.file);
-  yield put(setTempDownloadURL(downloadURL));
-}
-
 export function* sagaWatcher() {
   yield takeLatest(GET_FB_USERS, asyncGetUsers);
   yield takeLatest(GET_FB_LOCATIONS, asyncGetLocations);
@@ -139,7 +140,6 @@ export function* sagaWatcher() {
   yield takeLatest(GET_CURRENT_USER, asyncGetCurrentUser);
   yield takeLatest(FB_TMP_UPLOAD_IMAGE, asyncUploadTmpImage);
   yield takeLatest(FB_TMP_DELETE_IMAGE, asyncDeleteTmpImage);
-  yield takeLatest(FB_UPLOAD_IMAGE, asyncUploadImage);
   yield takeLatest(ADD_FB_LOCATIONS, asyncAddLocations);
   yield takeLatest(UPDATE_FB_DOC, asyncUpdateDoc);
   yield takeLatest(GET_FB_SUB_COLLECTION, asyncGetSubCollection);
