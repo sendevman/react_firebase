@@ -15,7 +15,6 @@ import RefreshIcon from '@material-ui/icons/Refresh';
 import InputEvent from 'components/InputEvent';
 
 import { getLocations } from 'redux/firebase/actions';
-import { locationsSelector } from 'redux/firebase/selectors';
 
 class GeneralInfo extends InputEvent {
   constructor(props) {
@@ -41,12 +40,10 @@ class GeneralInfo extends InputEvent {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.locations !== nextProps.locations && this.props.storeId !== '') {
-      const { locations } = nextProps;
-      const location = _.find(locations, data => this.props.storeId === data.fbId);
-      if (location !== 'undefined') {
-        const { storeId, storeInfo } = location;
-        const walkbase = location.walkbase ? { ...location.walkbase } : null;
+    if (this.props.data !== nextProps.data && this.props.storeId !== '') {
+      if (nextProps.data.fbId) {
+        const { storeId, storeInfo } = nextProps.data;
+        const walkbase = nextProps.data.walkbase ? { ...nextProps.data.walkbase } : null;
         const walkbase_keys = _.keys(walkbase);
         const walkbase_state = {};
         _.each(walkbase_keys, key => {
@@ -116,12 +113,12 @@ class GeneralInfo extends InputEvent {
         zoneId: [],
       },
     };
-    this.props.genInfoSave(data);
+    // this.props.genInfoSave(data);
   }
 
   render() {
     const { autoUpdate } = this.state;
-    const { locations, storeId } = this.props;
+    const { data } = this.props;
     return (
       <Grid container>
         <Grid item xs={12} sm={6}>
@@ -145,7 +142,7 @@ class GeneralInfo extends InputEvent {
             <div className="sub-container">
               <FormLabel component="legend">Walkbase</FormLabel>
               <FormGroup>
-                {_.find(locations, { fbId: storeId }).walkbase.floorId.map((item, index) => (
+                {data.walkbase.floorId.map((item, index) => (
                   <div key={index}>{this.renderText(`floorId${index + 1}`, `Floor ID${index + 1}`)}</div>
                 ))}
               </FormGroup>
@@ -153,7 +150,7 @@ class GeneralInfo extends InputEvent {
           {this.state.zoneId1 &&
             <div className="sub-container">
               <FormGroup>
-                {_.find(locations, { fbId: storeId }).walkbase.zoneId.map((item, index) => (
+                {data.walkbase.zoneId.map((item, index) => (
                   <div key={index}>{this.renderText(`zoneId${index + 1}`, `Zone ID${index + 1}`)}</div>
                 ))}
               </FormGroup>
@@ -197,26 +194,22 @@ class GeneralInfo extends InputEvent {
   }
 }
 
-const mapStateToProps = state => ({
-  locations: locationsSelector(state),
-});
-
 const mapDispatchToProps = dispatch => ({
   getLocations: () => dispatch(getLocations()),
 });
 
 GeneralInfo.propTypes = {
-  locations: PropTypes.array,
+  data: PropTypes.object,
   storeId: PropTypes.string,
   genInfoSave: PropTypes.func,
   getLocations: PropTypes.func,
 };
 
 GeneralInfo.defaultProps = {
-  locations: [],
+  data: {},
   storeId: '',
   genInfoSave: () => {},
   getLocations: () => {},
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(GeneralInfo);
+export default connect(null, mapDispatchToProps)(GeneralInfo);

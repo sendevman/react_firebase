@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import _ from 'lodash';
 
 import Grid from '@material-ui/core/Grid';
 
@@ -7,20 +8,56 @@ import GeneralInfo from 'components/GeneralInfo';
 import HomeView from 'components/HomeView';
 import InputEvent from 'components/InputEvent';
 
-import { updateDoc } from 'redux/firebase/actions';
+import {
+	updateDoc,
+	addSubCollectionField,
+	getLocations,
+	getSubCollection,
+} from 'redux/firebase/actions';
+import { locationsSelector } from 'redux/firebase/selectors';
 
 class LocationsManInfo extends InputEvent {
-	handleHomePreview = () => {}
+	constructor(props) {
+		super(props);
 
-	handleHomeSave = () => {}
+		const { locations, storeId } = props;
+		this.state = {
+			location: locations.length > 0 ? _.find(locations, { fbId: storeId }) : {},
+			homeData: undefined,
+			globalData: undefined,
+		};
+	}
+
+	componentDidMount() {
+		const { locations, getLocations, getSiteData, storeId } = this.props;
+		if (locations.length === 0) {
+			getLocations();
+		} else {
+			getSiteData('locations', storeId, 'siteData');
+		}
+	}
+
+	componentWillReceiveProps(nextProps) {
+		const { locations, storeId, getSiteData } = this.props;
+		if (locations !== nextProps.locations) {
+			getSiteData('locations', storeId, 'siteData');
+			this.setState({
+				location: nextProps.locations.length > 0 ? _.find(nextProps.locations, { fbId: storeId }) : {},
+			});
+		}
+		if (nextProps.locations.length > 0
+			&& _.find(nextProps.locations, { fbId: storeId }).subCollection
+			&& _.find(nextProps.locations, { fbId: storeId }).subCollection.siteData) {
+			this.setState({
+				homeData: _.find(_.find(nextProps.locations, { fbId: storeId }).subCollection.siteData, { fbId: 'home' }).homeCard,
+				globalData: _.find(_.find(nextProps.locations, { fbId: storeId }).subCollection.siteData, { fbId: 'globalBackground' }).globalCard,
+			});
+		}
+	}
 
 	handleHomeImport = () => {}
 
 	handleHomeArchive = () => {}
-
-	handleGlobalPreview = () => {}
-
-	handleGlobalSave = () => {}
 
 	handleGlobalImport = () => {}
 
@@ -30,7 +67,43 @@ class LocationsManInfo extends InputEvent {
 		this.props.updateDoc('locations', this.props.storeId, data);
 	}
 
+	handleHomeSave = (data, imgBackSrcType, imgCardSrcType) => {
+		this.props.addSubCollectionField(
+			'locations',
+			this.props.storeId,
+			'siteData',
+			'home',
+			'homeCard',
+			{
+				data,
+				uploadImg: {
+					imgBackSrcType,
+					imgCardSrcType,
+				},
+			},
+		);
+	}
+
+	handleGlobalSave = (data, imgBackSrcType, imgCardSrcType) => {
+		this.props.addSubCollectionField(
+			'locations',
+			this.props.storeId,
+			'siteData',
+			'globalBackground',
+			'globalCard',
+			{
+				data,
+				uploadImg: {
+					imgBackSrcType,
+					imgCardSrcType,
+				},
+			},
+		);
+	}
+
 	render() {
+		const { locations, storeId } = this.props;
+		const { homeData, globalData } = this.state;
 		const globalBackComponent = {
 			title: false,
 			subtitle: false,
@@ -44,7 +117,7 @@ class LocationsManInfo extends InputEvent {
 			subtitle: true,
 			footer: true,
 			cardImage: true,
-			backTitle: true,
+			backTitle: false,
 			backImage: true,
 		};
 		return (
@@ -52,30 +125,29 @@ class LocationsManInfo extends InputEvent {
 				<Grid container spacing={24}>
 					{this.renderGrid('orange',
 						<GeneralInfo
+							data={locations.length > 0 ? _.find(locations, { fbId: storeId }) : {}}
 							storeId={this.props.storeId}
 							genInfoSave={this.handleSave}
 						/>)}
 					{this.renderGrid('orange',
 						<HomeView
+							data={homeData || {}}
 							title="Home Open View"
 							activeComponent={homeViewComponent}
-							prevbtn
 							savebtn
 							importbtn
 							archbtn
-							handlePreview={this.handleHomePreview}
 							handleSave={this.handleHomeSave}
 							handleImport={this.handleHomeImport}
 							handleArchive={this.handleHomeArchive} />)}
 					{this.renderGrid('orange',
 						<HomeView
+							data={globalData || {}}
 							title="Global Background"
 							activeComponent={globalBackComponent}
-							prevbtn
 							savebtn
 							importbtn
 							archbtn
-							handlePreview={this.handleGlobalPreview}
 							handleSave={this.handleGlobalSave}
 							handleImport={this.handleGlobalImport}
 							handleArchive={this.handleGlobalArchive} />)}
@@ -85,20 +157,27 @@ class LocationsManInfo extends InputEvent {
 	}
 }
 
-// const mapStateToProps = state => ({
-// 	users: usersSelector(state),
-// });
+const mapStateToProps = state => ({
+	locations: locationsSelector(state),
+});
 
 const mapDispatchToProps = dispatch => ({
+	getLocations: () => dispatch(getLocations()),
 	updateDoc: (field, id, data) => dispatch(updateDoc(field, id, data)),
+	getSiteData: (parent, id, child) => dispatch(getSubCollection(parent, id, child)),
+	addSubCollectionField: (parent, id, child, childId, field, data) => dispatch(addSubCollectionField(parent, id, child, childId, field, data)),
 });
 
 LocationsManInfo.propTypes = {
+	locations: PropTypes.array.isRequired,
 	storeId: PropTypes.string,
+	getSiteData: PropTypes.func.isRequired,
+	getLocations: PropTypes.func.isRequired,
+	updateDoc: PropTypes.func.isRequired,
 };
 
 LocationsManInfo.defaultProps = {
 	storeId: '',
 };
 
-export default connect(null, mapDispatchToProps)(LocationsManInfo);
+export default connect(mapStateToProps, mapDispatchToProps)(LocationsManInfo);
