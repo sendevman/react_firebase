@@ -11,7 +11,6 @@ export const SET_STORE_PRODUCTS = 'firebase/SET_STORE_PRODUCTS';
 export const SET_STORE_AERAS = 'firebase/SET_STORE_AERAS';
 export const SET_STORE_VOD = 'firebase/SET_STORE_VOD';
 export const SET_SUB_COLLECTION = 'firebase/SET_SUB_COLLECTION';
-export const SET_DOWNLOAD_URL = 'firebase/SET_DOWNLOAD_URL';
 
 export const ADD_FB_SUB_COLLECTION_FIELD = 'firebase/ADD_FB_SUB_COLLECTION_FIELD';
 
@@ -24,7 +23,6 @@ export const SET_USER_ERROR = 'firebase/SET_USER_ERROR';
 
 export const FB_TMP_UPLOAD_IMAGE = 'firebase/FB_TMP_UPLOAD_IMAGE';
 export const FB_TMP_DELETE_IMAGE = 'firebase/FB_TMP_DELETE_IMAGE';
-export const FB_UPLOAD_IMAGE = 'firebase/FB_UPLOAD_IMAGE';
 
 export const ADD_FB_LOCATIONS = 'firebase/ADD_FB_LOCATIONS';
 
