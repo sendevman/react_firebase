@@ -75,7 +75,7 @@ class LocationsManTab extends Component {
           </div>}
         {value === 3 &&
           <div style={{ padding: 8 * 3 }}>
-            <Products />
+            <Products storeId={this.props.match.params.store_id} />
           </div>}
       </div>
     );

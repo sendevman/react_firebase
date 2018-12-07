@@ -1,4 +1,4 @@
-import { fromJS, List, Map } from 'immutable';
+import { fromJS, List } from 'immutable';
 import { handleActions } from 'redux-actions';
 import _ from 'lodash';
 
@@ -11,7 +11,6 @@ import {
 	SET_SUB_COLLECTION,
 	SET_CURRENT_USER,
 	SET_USER_ERROR,
-	SET_DOWNLOAD_URL,
 } from './constants';
 
 const initialState = fromJS({
@@ -34,9 +33,12 @@ export default handleActions({
 	[SET_SUB_COLLECTION]: (state, { payload: { parent, id, child, subCollection } }) =>
 		state
 			.updateIn([parent, _.findIndex(state.get(parent).toJS(), item => item.fbId === id)], data => {
-				data.subCollection = {};
-				data.subCollection[child] = subCollection;
-				return Map(data);
+				const res = Object.assign({}, data);
+				if (!res.subCollection) {
+					res.subCollection = {};
+				}
+				res.subCollection[child] = subCollection;
+				return res;
 			}),
 	[SET_CURRENT_USER]: (state, action) =>
 		state
@@ -46,6 +48,5 @@ export default handleActions({
 		state
 			.set('currentUser', { res: 'noUser' })
 			.set('userError', { ...action.payload, res: 'Error' }),
-	[SET_DOWNLOAD_URL]: (state, action) => state.set('downloadURL', action.payload.downloadURL),
 
 }, initialState);
