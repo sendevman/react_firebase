@@ -35,27 +35,27 @@ class SelectZone extends Component {
 	render() {
 		const { selectedZone, zones } = this.state;
 		return (
-		<Grid item xs={12}>
-			<div className="label-products-table select-text">Select Zone</div>
-			<Grid container spacing={24}>
-				<Grid item xs={12} sm={6}>
-					<FormControl className="select-zone-box">
-						<InputLabel htmlFor="zone-name-helper">Zone Name - Walkbase ID</InputLabel>
-						<Select
-							value={selectedZone}
-							onChange={this.handleOnChange}
-							input={<Input id="zone-name-helper" />}>
-								<MenuItem value=""><em>None</em></MenuItem>
-								{zones.map((zone, index) => (
-									<MenuItem key={index} value={zone.fbId}>
-										{zone.name} - {zone.walkbaseId}
-									</MenuItem>
-								))}
-						</Select>
-					</FormControl>
+			<Grid item xs={12}>
+				<div className="label-products-table select-text">Select Zone</div>
+				<Grid container spacing={24}>
+					<Grid item xs={12} sm={6}>
+						<FormControl className="select-zone-box">
+							<InputLabel htmlFor="zone-name-helper">Zone Name - Walkbase ID</InputLabel>
+							<Select
+								value={selectedZone}
+								onChange={this.handleOnChange}
+								input={<Input id="zone-name-helper" />}>
+									<MenuItem value=""><em>None</em></MenuItem>
+									{zones.map((zone, index) => (
+										<MenuItem key={index} value={zone.fbId}>
+											{zone.name} - {zone.walkbaseId}
+										</MenuItem>
+									))}
+							</Select>
+						</FormControl>
+					</Grid>
 				</Grid>
 			</Grid>
-		</Grid>
 		);
 	}
 }

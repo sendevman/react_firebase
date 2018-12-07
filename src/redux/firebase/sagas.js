@@ -66,10 +66,10 @@ function* asyncAddSubCollectionField(param) {
   const { parent, id, child, childId, field, data } = param.payload;
   const res = {};
   res[field] = data.data;
-  if (data.uploadImg.imgBackSrcType) {
+  if (data.uploadImg && data.uploadImg.imgBackSrcType) {
     res[field].bgImg = yield call(uploadImage, `${child}/`, { name: `${field}-bg-${childId}-${data.uploadImg.imgBackSrcType.name}`, data: data.uploadImg.imgBackSrcType });
   }
-  if (data.uploadImg.imgCardSrcType) {
+  if (data.uploadImg && data.uploadImg.imgCardSrcType) {
     res[field].img = yield call(uploadImage, `${child}/`, { name: `${field}-${childId}-${data.uploadImg.imgCardSrcType.name}`, data: data.uploadImg.imgCardSrcType });
   }
   yield call(addSubCollectionfield, parent, id, child, childId, res);
