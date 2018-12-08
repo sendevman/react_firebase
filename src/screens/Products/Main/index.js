@@ -11,8 +11,8 @@ import InputEvent from 'components/InputEvent';
 import TableList from 'components/TableList';
 import HomeView from 'components/HomeView';
 
-import { getProducts, getSubCollection } from 'redux/firebase/actions';
-import { productsSelector } from 'redux/firebase/selectors';
+import { addDocField, getProducts, getProductTypes, getSubCollection } from 'redux/firebase/actions';
+import { cardTypesSelector, productsSelector } from 'redux/firebase/selectors';
 
 class ProductsMain extends InputEvent {
 	constructor(props) {
@@ -44,6 +44,7 @@ class ProductsMain extends InputEvent {
 			editProductEnable: false,
 			editProductIndex: '',
 		});
+		console.log(row._original);
 	}
 
 	handleEditProduct = () => {
@@ -53,6 +54,11 @@ class ProductsMain extends InputEvent {
 			editProductIndex: this.state.currentProductIndex,
 		});
 	}
+
+	handleImportSave = (data) => {
+		const { currentProduct } = this.state;
+		this.props.addDocField('products', currentProduct.fbId, data);
+	};
 
 	updateRowStyle = (state, rowInfo) => ({
 		style: {
@@ -123,7 +129,10 @@ class ProductsMain extends InputEvent {
 							{editProductEnable &&
 								editProductIndex !== '' &&
 								(currentProduct.type === 'service' || currentProduct.type === 'device') &&
-								this.renderGrid('dark-blue', <ProductImport />)}
+								this.renderGrid('dark-blue',
+									<ProductImport
+										handleSave={this.handleImportSave}
+										currentProduct={currentProduct} />)}
 
 							{editProductEnable &&
 								editProductIndex !== '' &&
@@ -156,11 +165,14 @@ class ProductsMain extends InputEvent {
 
 const mapStateToProps = state => ({
 	catalogProducts: productsSelector(state),
+	cardTypes: cardTypesSelector(state),
 });
 
 const mapDispatchToProps = dispatch => ({
 	getProducts: () => dispatch(getProducts()),
+	getProductTypes: () => dispatch(getProductTypes()),
 	getSubCollection: (parent, id, child) => dispatch(getSubCollection(parent, id, child)),
+	addDocField: (parent, id, data) => dispatch(addDocField(parent, id, data)),
 });
 
 ProductsMain.propTypes = {
