@@ -57,20 +57,21 @@ class Performances extends Component {
 									Available
 								</div>
 							</div>}
-						<div
-							className="performances-storage-content"
-							style={{
-								background: "url('/assets/images/svg_files/store.svg')",
-								backgroundRepeat: 'no-repeat',
-								backgroundSize: '100%',
-							}}>
-							<div className="dev-content">
-								<div className="dev-content-title">
-									STORAGE
+						{storage.length > 0 &&
+							<div
+								className="performances-storage-content"
+								style={{
+									background: "url('/assets/images/svg_files/store.svg')",
+									backgroundRepeat: 'no-repeat',
+									backgroundSize: '100%',
+								}}>
+								<div className="dev-content">
+									<div className="dev-content-title">
+										STORAGE
+									</div>
+									{storage.map((item, idx) => (idx === storage.length - 1 ? `${item.storage}GB` : `${item.storage}GB | `))}
 								</div>
-								{`${storage[0].storage}GB | ${storage[1].storage}GB`}
-							</div>
-						</div>
+							</div>}
 					</div>
 				</div>
 			</div>
