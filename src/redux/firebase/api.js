@@ -50,6 +50,13 @@ export const addSubCollectionfield = (parent, id, child, childId, data) =>
 		.update(data)
 		.then(res => res);
 
+export const addDocField = (field, id, data) =>
+	firestore
+		.collection(field)
+		.doc(id)
+		.update(data)
+		.then(res => res);
+
 export const updateDoc = (field, id, data) =>
 	firestore
 		.collection(field)

@@ -4,6 +4,7 @@ import {
   GET_FB_USERS,
   GET_FB_LOCATIONS,
   GET_FB_PRODUCTS,
+  GET_FB_PRODUCT_TYPES,
   GET_FB_AERAS,
   GET_FB_VOD,
   GET_CURRENT_USER,
@@ -14,6 +15,7 @@ import {
   FB_TMP_UPLOAD_IMAGE,
   FB_TMP_DELETE_IMAGE,
   ADD_FB_LOCATIONS,
+  ADD_FB_DOC_FIELD,
   UPDATE_FB_DOC,
 } from './constants';
 
@@ -28,6 +30,7 @@ import {
   getAddDataId,
   getSubCollection,
   addSubCollectionfield,
+  addDocField,
   addCollection,
   updateDoc,
 } from './api';
@@ -36,6 +39,7 @@ import {
   setUsers,
   setLocations,
   setProducts,
+  setCardTypes,
   setAreas,
   setVod,
   setCurrentUser,
@@ -75,6 +79,11 @@ function* asyncAddSubCollectionField(param) {
   yield call(addSubCollectionfield, parent, id, child, childId, res);
 }
 
+function* asyncAddDocField(param) {
+  const { field, id, data } = param.payload;
+  yield call(addDocField, field, id, data);
+}
+
 function* asyncGetUsers() {
   const users = yield call(getData, 'users');
   yield put(setUsers(users));
@@ -88,6 +97,11 @@ function* asyncGetLocations() {
 function* asyncGetProducts() {
   const products = yield call(getData, 'products');
   yield put(setProducts(products));
+}
+
+function* asyncGetProductTypes() {
+  const cardTypes = yield call(getData, 'cardTypes');
+  yield put(setCardTypes(cardTypes));
 }
 
 function* asyncGetAreas() {
@@ -144,6 +158,8 @@ export function* sagaWatcher() {
   yield takeLatest(UPDATE_FB_DOC, asyncUpdateDoc);
   yield takeLatest(GET_FB_SUB_COLLECTION, asyncGetSubCollection);
   yield takeLatest(ADD_FB_SUB_COLLECTION_FIELD, asyncAddSubCollectionField);
+  yield takeLatest(ADD_FB_DOC_FIELD, asyncAddDocField);
+  yield takeLatest(GET_FB_PRODUCT_TYPES, asyncGetProductTypes);
 }
 
 export default [
