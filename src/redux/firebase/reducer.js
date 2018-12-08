@@ -6,6 +6,7 @@ import {
 	SET_STORE_USERS,
 	SET_STORE_LOCATIONS,
 	SET_STORE_PRODUCTS,
+	SET_STORE_CARD_TYPES,
 	SET_STORE_AERAS,
 	SET_STORE_VOD,
 	SET_SUB_COLLECTION,
@@ -28,6 +29,7 @@ export default handleActions({
 	[SET_STORE_USERS]: (state, action) => state.update('users', () => List(action.payload.users.map(item => item))),
 	[SET_STORE_LOCATIONS]: (state, action) => state.update('locations', () => List(action.payload.locations.map(item => item))),
 	[SET_STORE_PRODUCTS]: (state, action) => state.update('products', () => List(action.payload.products.map(item => item))),
+	[SET_STORE_CARD_TYPES]: (state, action) => state.update('cardTypes', () => List(action.payload.users.map(item => item))),
 	[SET_STORE_AERAS]: (state, action) => state.update('areas', () => List(action.payload.areas.map(item => item))),
 	[SET_STORE_VOD]: (state, action) => state.update('vod', () => List(action.payload.vod.map(item => item))),
 	[SET_SUB_COLLECTION]: (state, { payload: { parent, id, child, subCollection } }) =>

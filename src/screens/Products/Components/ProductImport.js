@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import Grid from '@material-ui/core/Grid';
 import FormControl from '@material-ui/core/FormControl';
 
@@ -12,11 +14,23 @@ class ProductImport extends InputEvent {
     super(props);
 
     this.state = {
-      apiUrl: '',
-      manufacture: '',
-      model: '',
-      opusId: '',
+      apiUrl: props.currentProduct.apiUrl || '',
+      manufacture: props.currentProduct.manufacture || '',
+      model: props.currentProduct.model || '',
+      opusId: props.currentProduct.opusId || '',
+      type: props.currentProduct.type || '',
     };
+  }
+
+  handleSave = () => {
+    // const data = [
+    //   { apiUrl: this.state.apiUrl },
+    //   { manufacture: this.state.manufacture },
+    //   { model: this.state.model },
+    //   { opusId: this.state.opusId },
+    //   { type: this.state.type },
+    // ];
+    this.props.handleSave(this.state);
   }
 
   render() {
@@ -29,6 +43,7 @@ class ProductImport extends InputEvent {
             <FormControl className="select-zone-box">
               {this.renderText('manufacture', 'Manufacture')}
               {this.renderText('opusId', 'OPUS ID')}
+              {this.renderText('type', 'Product Type')}
             </FormControl>
           </Grid>
 
@@ -41,13 +56,18 @@ class ProductImport extends InputEvent {
         </Grid>
 
         <div className="buttons-box">
-          {this.renderButton('Import Product', 'blue', this.props.handleSave, <ImportIcon />, 'contained', 'small')}
-          {this.renderButton('Save', 'green', this.props.handleSave, <SaveIcon />, 'contained', 'small')}
-          {this.renderButton('Cancel', 'red', this.props.handleSave, <CancelIcon />, 'contained', 'small')}
+          {this.renderButton('Import Product', 'blue', this.handleImport, <ImportIcon />, 'contained', 'small')}
+          {this.renderButton('Save', 'green', this.handleSave, <SaveIcon />, 'contained', 'small')}
+          {this.renderButton('Cancel', 'red', this.handleCancel, <CancelIcon />, 'contained', 'small')}
         </div>
       </Grid>
     );
   }
 }
+
+ProductImport.propTypes = {
+  currentProduct: PropTypes.object.isRequired,
+  handleSave: PropTypes.func.isRequired,
+};
 
 export default ProductImport;
