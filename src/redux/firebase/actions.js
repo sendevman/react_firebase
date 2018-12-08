@@ -3,6 +3,7 @@ import {
 	GET_FB_USERS,
 	GET_FB_LOCATIONS,
 	GET_FB_PRODUCTS,
+	GET_FB_PRODUCT_TYPES,
 	GET_FB_AERAS,
 	GET_FB_VOD,
 	GET_CURRENT_USER,
@@ -10,6 +11,7 @@ import {
 	SET_STORE_USERS,
 	SET_STORE_LOCATIONS,
 	SET_STORE_PRODUCTS,
+	SET_STORE_CARD_TYPES,
 	SET_STORE_AERAS,
 	SET_STORE_VOD,
 	SET_SUB_COLLECTION,
@@ -20,6 +22,7 @@ import {
 	FB_TMP_UPLOAD_IMAGE,
 	FB_TMP_DELETE_IMAGE,
 	ADD_FB_LOCATIONS,
+	ADD_FB_DOC_FIELD,
 	ADD_FB_SUB_COLLECTION_FIELD,
 	UPDATE_FB_DOC,
 } from './constants';
@@ -39,6 +42,10 @@ export const getLocations = createAction(
 
 export const getProducts = createAction(
 	GET_FB_PRODUCTS,
+);
+
+export const getProductTypes = createAction(
+	GET_FB_PRODUCT_TYPES,
 );
 
 export const getAreas = createAction(
@@ -65,6 +72,11 @@ export const addSubCollectionField = createAction(
 	(parent, id, child, childId, field, data) => ({ parent, id, child, childId, field, data }),
 );
 
+export const addDocField = createAction(
+	ADD_FB_DOC_FIELD,
+	(field, id, data) => ({ field, id, data }),
+);
+
 /* set all data */
 export const setSubCollection = createAction(
 	SET_SUB_COLLECTION,
@@ -84,6 +96,11 @@ export const setLocations = createAction(
 export const setProducts = createAction(
 	SET_STORE_PRODUCTS,
 	(products) => ({ products }),
+);
+
+export const setCardTypes = createAction(
+	SET_STORE_CARD_TYPES,
+	(cardTypes) => ({ cardTypes }),
 );
 
 export const setAreas = createAction(

@@ -5,19 +5,24 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Grid from '@material-ui/core/Grid';
 
+import ProductPreview from '../Components/ProductPreview';
+import ProductImport from '../Components/ProductImport';
 import InputEvent from 'components/InputEvent';
 import TableList from 'components/TableList';
-// import SelectZone from 'components/SelectZone';
+import HomeView from 'components/HomeView';
 
-import { getProducts, getSubCollection } from 'redux/firebase/actions';
-import { productsSelector } from 'redux/firebase/selectors';
+import { addDocField, getProducts, getProductTypes, getSubCollection } from 'redux/firebase/actions';
+import { cardTypesSelector, productsSelector } from 'redux/firebase/selectors';
 
 class ProductsMain extends InputEvent {
 	constructor(props) {
 		super(props);
 		this.state = {
-			catalogProduct: {},
-			catalogProductIndex: null,
+			currentProduct: {},
+			currentProductIndex: '',
+			addProductEnable: false,
+			editProductEnable: false,
+			editProductIndex: '',
 		};
 	}
 
@@ -25,47 +30,45 @@ class ProductsMain extends InputEvent {
 		this.props.getProducts();
 	}
 
-	handleOnClick = (row) => {
-		this.props.getSubCollection('products', row.fbId, 'web-reviews');
-		// const type = row.subType === 'watch_tv' || row.subType === 'watch_tv' || row.subType === 'watch_tv' ? 'services' : 'devices';
-		this.props.history.push(`/products/manage/${row._original.type}/${row.subType}/${row.fbId}`);
-	}
+	// handleOnClick = (row) => {
+	// 	this.props.getSubCollection('products', row.fbId, 'web-reviews');
+	// 	// const type = row.subType === 'watch_tv' || row.subType === 'watch_tv' || row.subType === 'watch_tv' ? 'services' : 'devices';
+	// 	this.props.history.push(`/products/manage/${row._original.type}/${row.subType}/${row.fbId}`);
+	// }
 
 	handleCatalogClick = (row, index) => {
 		this.setState({
-			catalogProduct: row,
-			catalogProductIndex: index,
+			currentProduct: row._original,
+			currentProductIndex: index,
+			addProductEnable: false,
+			editProductEnable: false,
+			editProductIndex: '',
 		});
+		console.log(row._original);
 	}
 
 	handleEditProduct = () => {
 		// this.props.history.push(`/products/manage/${row._original.type}/${row.subType}/${row.fbId}`);
+		this.setState({
+			editProductEnable: true,
+			editProductIndex: this.state.currentProductIndex,
+		});
 	}
+
+	handleImportSave = (data) => {
+		const { currentProduct } = this.state;
+		this.props.addDocField('products', currentProduct.fbId, data);
+	};
 
 	updateRowStyle = (state, rowInfo) => ({
 		style: {
-			background: rowInfo && rowInfo.index === this.state.catalogProductIndex ? 'green' : null,
+			background: rowInfo && rowInfo.index === this.state.currentProductIndex ? 'green' : null,
 		},
 	});
 
 	render() {
-		const currentProductsColumn = [
-			{
-				Header: () => this.renderHeader('Id'),
-				Cell: ({ row }) => this.renderCell(row.fbId, () => this.handleOnClick(row)),
-				accessor: 'fbId',
-			},
-			{
-				Header: () => this.renderHeader('Type'),
-				Cell: ({ row }) => this.renderCell(row.subType, () => this.handleOnClick(row)),
-				accessor: 'subType',
-			},
-			{
-				Header: () => this.renderHeader('Description'),
-				Cell: ({ row }) => this.renderCell(row.description, () => this.handleOnClick(row)),
-				accessor: 'description',
-			},
-		];
+		const { currentProduct, editProductEnable, editProductIndex } = this.state;
+		const { catalogProducts } = this.props;
 		const categoryProductsColumn = [
 			{
 				Header: () => this.renderHeader('Model'),
@@ -93,40 +96,65 @@ class ProductsMain extends InputEvent {
 				accessor: 'subType',
 			},
 		];
+		const cardProductComponent = {
+			title: true,
+			subtitle: true,
+			footer: true,
+			cardImage: false,
+			backTitle: false,
+			backImage: true,
+		};
 		return (
 			<div id="locations-add" className="Container-box">
 				<Card className="card-box">
 					<CardContent className="left-border-green">
 						<Grid container spacing={24}>
-							{/* {this.renderGrid('white',
-								<div>
-									<SelectZone />
-								</div>)} */}
-
-							{this.renderGrid('white',
-								<TableList
-									columns={currentProductsColumn}
-									tables={this.props.currentProducts}
-									pageSize={10}
-									showPagination
-									label="Current Products"
-									deletebtnTooltip="Delete User"
-									deletebtn
-									searchEnable
-									handleSave={this.saveUsers} />)}
 
 							{this.renderGrid('white',
 								<TableList
 									columns={categoryProductsColumn}
-									tables={this.props.currentProducts}
+									tables={catalogProducts}
 									pageSize={10}
 									showPagination
 									label="Products Catalog"
 									editbtnTooltip="Edit Product"
 									editbtn
+									addbtnTooltip="Add Product"
+									addbtn
 									searchEnable
 									handleEdit={this.handleEditProduct}
+									handleAdd={this.handleAddProduct}
 									updateRowStyle={this.updateRowStyle} />)}
+
+							{editProductEnable &&
+								editProductIndex !== '' &&
+								(currentProduct.type === 'service' || currentProduct.type === 'device') &&
+								this.renderGrid('dark-blue',
+									<ProductImport
+										handleSave={this.handleImportSave}
+										currentProduct={currentProduct} />)}
+
+							{editProductEnable &&
+								editProductIndex !== '' &&
+								(currentProduct.type === 'service' || currentProduct.type === 'device') &&
+								this.renderGrid('dark-blue',
+									<HomeView
+										title="Product Card"
+										activeComponent={cardProductComponent}
+										prevbtn
+										savebtn
+										importbtn
+										archbtn
+										handlePreview={this.handleTitlePreview}
+										handleSave={this.handleTitleSave}
+										handleImport={this.handleTitleImport}
+										handleArchive={this.handleTitleArchive} />)}
+
+							{editProductEnable &&
+								editProductIndex !== '' &&
+								(currentProduct.type === 'service' || currentProduct.type === 'device') &&
+								this.renderGrid('dark-blue', <ProductPreview currentProduct={currentProduct} />)}
+
 						</Grid>
 					</CardContent>
 				</Card>
@@ -136,16 +164,19 @@ class ProductsMain extends InputEvent {
 }
 
 const mapStateToProps = state => ({
-	currentProducts: productsSelector(state),
+	catalogProducts: productsSelector(state),
+	cardTypes: cardTypesSelector(state),
 });
 
 const mapDispatchToProps = dispatch => ({
 	getProducts: () => dispatch(getProducts()),
+	getProductTypes: () => dispatch(getProductTypes()),
 	getSubCollection: (parent, id, child) => dispatch(getSubCollection(parent, id, child)),
+	addDocField: (parent, id, data) => dispatch(addDocField(parent, id, data)),
 });
 
 ProductsMain.propTypes = {
-	currentProducts: PropTypes.array.isRequired,
+	catalogProducts: PropTypes.array.isRequired,
 	getProducts: PropTypes.func.isRequired,
 	history: PropTypes.object.isRequired,
 };
