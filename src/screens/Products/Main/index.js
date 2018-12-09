@@ -28,13 +28,8 @@ class ProductsMain extends InputEvent {
 
 	componentDidMount() {
 		this.props.getProducts();
+		this.props.getProductTypes();
 	}
-
-	// handleOnClick = (row) => {
-	// 	this.props.getSubCollection('products', row.fbId, 'web-reviews');
-	// 	// const type = row.subType === 'watch_tv' || row.subType === 'watch_tv' || row.subType === 'watch_tv' ? 'services' : 'devices';
-	// 	this.props.history.push(`/products/manage/${row._original.type}/${row.subType}/${row.fbId}`);
-	// }
 
 	handleCatalogClick = (row, index) => {
 		this.setState({
@@ -44,7 +39,6 @@ class ProductsMain extends InputEvent {
 			editProductEnable: false,
 			editProductIndex: '',
 		});
-		console.log(row._original);
 	}
 
 	handleEditProduct = () => {
@@ -177,6 +171,7 @@ const mapDispatchToProps = dispatch => ({
 
 ProductsMain.propTypes = {
 	catalogProducts: PropTypes.array.isRequired,
+	cardTypes: PropTypes.array.isRequired,
 	getProducts: PropTypes.func.isRequired,
 	history: PropTypes.object.isRequired,
 };

@@ -116,8 +116,10 @@ function* asyncGetVod() {
 
 function* asyncAuthLogin(param) {
   const authUser = yield call(authLogin, param.payload.auth);
+  console.log('here');
   if (authUser.state === 'success') {
     yield call(getToken, authUser.user);
+    console.log('here1', authUser.user);
     yield put(setCurrentUser(authUser.user));
   } else {
     yield put(setUserError(authUser.error));

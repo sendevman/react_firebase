@@ -22,6 +22,7 @@ export const FB_AUTH_LOGOUT = 'firebase/FB_AUTH_LOGOUT';
 export const GET_CURRENT_USER = 'firebase/GET_CURRENT_USER';
 export const SET_CURRENT_USER = 'firebase/SET_CURRENT_USER';
 export const SET_USER_ERROR = 'firebase/SET_USER_ERROR';
+export const SET_ACCESS_USER_LIST = 'firebase/SET_ACCESS_USER_LIST';
 
 export const FB_TMP_UPLOAD_IMAGE = 'firebase/FB_TMP_UPLOAD_IMAGE';
 export const FB_TMP_DELETE_IMAGE = 'firebase/FB_TMP_DELETE_IMAGE';

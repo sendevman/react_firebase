@@ -8,7 +8,7 @@ import Grid from '@material-ui/core/Grid';
 import TableList from 'components/TableList';
 import InputEvent from 'components/InputEvent';
 
-import { getUsers } from 'redux/firebase/actions';
+import { setAccessUserList, getUsers } from 'redux/firebase/actions';
 import { usersSelector } from 'redux/firebase/selectors';
 
 class LocationsManUsers extends InputEvent {
@@ -17,6 +17,10 @@ class LocationsManUsers extends InputEvent {
 
 		this.state = {
 			selected: [],
+			accessUserList: [],
+			rAccessUserList: [],
+			accessUser: {},
+			accessUserIndex: null,
 		};
 	}
 
@@ -34,27 +38,73 @@ class LocationsManUsers extends InputEvent {
 		}
 	}
 
-	saveUsers = () => {}
-
-	handleSelect = (email) => {
-		const selected = JSON.parse(JSON.stringify(this.state.selected));
-		selected[email] = !selected[email];
-		this.setState({ selected });
+	deleteUsers = () => {
+		const { accessUserList, accessUser } = this.state;
+		const data = accessUserList.slice();
+		_.remove(data, { email: accessUser.email });
+		this.setState({
+			accessUserList: data,
+		});
 	}
 
+	saveUsers = () => {
+		const { accessUserList, rAccessUserList } = this.state;
+		if (rAccessUserList.length > 0) {
+			const data = _.uniq(accessUserList.concat(rAccessUserList), 'email');
+			this.setState({
+				accessUserList: data,
+				rAccessUserList: [],
+				selected: [],
+			});
+			this.props.setAccessUserList(data);
+		}
+	}
+
+	handleSelect = (row) => {
+		const selected = JSON.parse(JSON.stringify(this.state.selected));
+		selected[row.email] = !selected[row.email];
+		const data = [];
+		_.each(_.keys(selected), item => {
+			if (selected[item]) {
+				data.push(_.find(this.props.users, { email: item }));
+			}
+		});
+		this.setState({
+			selected,
+			rAccessUserList: data,
+		});
+	}
+
+	handleAccessListClick = (row, index) => {
+		this.setState({
+			accessUser: row,
+			accessUserIndex: index,
+		});
+	}
+
+	updateCurrentRowStyle = (state, rowInfo) => ({
+		style: {
+			background: rowInfo && rowInfo.index === this.state.accessUserIndex ? 'green' : null,
+		},
+	});
+
 	render() {
+		const { accessUserList } = this.state;
 		const accessUsersColumn = [
 			{
 				Header: () => this.renderHeader('Email'),
+				Cell: ({ row, index }) => this.renderCell(row.email, () => this.handleAccessListClick(row, index)),
 				accessor: 'email',
 			},
 			{
 				Header: () => this.renderHeader('Name'),
+				Cell: ({ row, index }) => this.renderCell(row.name, () => this.handleAccessListClick(row, index)),
 				accessor: 'name',
 			},
 			{
 				Header: () => this.renderHeader('User Type'),
-				accessor: 'name',
+				Cell: ({ row, index }) => this.renderCell(row.name, () => this.handleAccessListClick(row, index)),
+				accessor: 'group',
 			},
 		];
 		const locationUsersColumn = [{
@@ -62,10 +112,10 @@ class LocationsManUsers extends InputEvent {
 			/* eslint react/prop-types: 0 */
 			Cell: ({ row }) => (
 				<input
-				type="checkbox"
-				className="checkbox"
-				checked={this.state.selected[row.email] === true}
-				onChange={() => this.handleSelect(row.email)}
+					type="checkbox"
+					className="checkbox"
+					checked={this.state.selected[row.email] === true}
+					onChange={() => this.handleSelect(row)}
 				/>
 			),
 			width: 50,
@@ -76,13 +126,12 @@ class LocationsManUsers extends InputEvent {
 					{this.renderGrid('dark-purple',
 						<TableList
 							label="Users Access"
-							tables={[]}
+							tables={accessUserList}
 							columns={accessUsersColumn}
 							deletebtnTooltip="Delete User"
-							addbtnTooltip="Add User"
 							deletebtn
-							addbtn
 							handleDelete={this.deleteUsers}
+							updateRowStyle={this.updateCurrentRowStyle}
 					/>)}
 					{this.renderGrid('dark-purple',
 						<TableList
@@ -105,6 +154,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
 	getUsers: () => dispatch(getUsers()),
+	setAccessUserList: (data) => dispatch(setAccessUserList(data)),
 });
 
 // LocationsManUsers.propTypes = {

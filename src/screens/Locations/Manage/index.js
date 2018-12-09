@@ -8,7 +8,7 @@ import InputEvent from 'components/InputEvent';
 import TableList from 'components/TableList';
 
 import { getLocations } from 'redux/firebase/actions';
-import { locationsSelector } from 'redux/firebase/selectors';
+import { currentUserSelector, locationsSelector } from 'redux/firebase/selectors';
 
 class Locations extends InputEvent {
   constructor(props) {
@@ -36,7 +36,7 @@ class Locations extends InputEvent {
   }
 
   addLocations = () => {
-    this.props.history.push('/locations/add');
+    // this.props.history.push('/locations/add');
   }
 
   handleOnClick = (row) => {
@@ -85,8 +85,8 @@ class Locations extends InputEvent {
               columns={columns}
               tables={tables}
               label="Select a location to manage"
-              addbtnTooltip="Add New Location"
-              addbtn
+              // addbtnTooltip="Add New Location"
+              // addbtn
               searchEnable
               handleAdd={this.addLocations} />
           </CardContent>
@@ -98,6 +98,7 @@ class Locations extends InputEvent {
 
 const mapStateToProps = state => ({
   locations: locationsSelector(state),
+	currentUser: currentUserSelector(state),
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -105,12 +106,14 @@ const mapDispatchToProps = dispatch => ({
 });
 
 Locations.propTypes = {
+  currentUser: PropTypes.object,
   locations: PropTypes.array,
   history: PropTypes.object.isRequired,
   getLocations: PropTypes.func.isRequired,
 };
 
 Locations.defaultProps = {
+  currentUser: {},
   locations: [],
 };
 
