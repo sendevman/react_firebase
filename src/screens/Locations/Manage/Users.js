@@ -25,7 +25,10 @@ class LocationsManUsers extends InputEvent {
 	}
 
 	componentDidMount() {
-		this.props.getUsers();
+		const { users } = this.props;
+		if (users.length === 0) {
+			this.props.getUsers();
+		}
 	}
 
 	componentWillReceiveProps(nextProps) {
