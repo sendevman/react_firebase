@@ -7,8 +7,9 @@ const productsSelector = createSelector([firebaseSelector], firebase => firebase
 const cardTypesSelector = createSelector([firebaseSelector], firebase => firebase.get('cardTypes').toJS());
 const areasSelector = createSelector([firebaseSelector], firebase => firebase.get('areas').toJS());
 const vodSelector = createSelector([firebaseSelector], firebase => firebase.get('vod').toJS());
-const currentUserSelector = createSelector([firebaseSelector], firebase => firebase.get('currentUser'));
+const currentUserSelector = createSelector([firebaseSelector], firebase => firebase.get('currentUser').toJS());
 const userErrorSelector = createSelector([firebaseSelector], firebase => firebase.get('userError'));
+const accessUserListSelector = createSelector([firebaseSelector], firebase => firebase.get('accessUserList'));
 
 export {
   firebaseSelector,
@@ -20,4 +21,5 @@ export {
   vodSelector,
   currentUserSelector,
   userErrorSelector,
+  accessUserListSelector,
 };
