@@ -24,7 +24,10 @@ class Managers extends Component {
   }
 
   componentDidMount() {
-    this.props.getUsers();
+    const { getUsers, users } = this.props;
+		if (users.length === 0) {
+			getUsers();
+		}
   }
 
   componentWillReceiveProps(nextProps) {
