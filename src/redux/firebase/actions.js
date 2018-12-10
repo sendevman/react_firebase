@@ -17,6 +17,7 @@ import {
 	SET_SUB_COLLECTION,
 	SET_CURRENT_USER,
 	SET_USER_ERROR,
+	SET_ACCESS_USER_LIST,
 	FB_AUTH_LOGIN,
 	FB_AUTH_LOGOUT,
 	FB_TMP_UPLOAD_IMAGE,
@@ -127,6 +128,11 @@ export const setCurrentUser = createAction(
 export const setUserError = createAction(
 	SET_USER_ERROR,
 	(userError) => ({ userError }),
+);
+
+export const setAccessUserList = createAction(
+	SET_ACCESS_USER_LIST,
+	(accessUserList) => ({ accessUserList }),
 );
 
 /* image */
