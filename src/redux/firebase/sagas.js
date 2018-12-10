@@ -116,11 +116,10 @@ function* asyncGetVod() {
 
 function* asyncAuthLogin(param) {
   const authUser = yield call(authLogin, param.payload.auth);
-  console.log('here');
   if (authUser.state === 'success') {
     yield call(getToken, authUser.user);
-    console.log('here1', authUser.user);
     yield put(setCurrentUser(authUser.user));
+    localStorage.setItem('email', param.payload.auth.email);
   } else {
     yield put(setUserError(authUser.error));
   }
@@ -128,6 +127,7 @@ function* asyncAuthLogin(param) {
 
 function* asyncAuthLogout() {
   localStorage.removeItem('token');
+  localStorage.removeItem('email');
   localStorage.removeItem('refreshToken');
   yield call(authLogout);
 }
