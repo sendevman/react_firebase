@@ -15,10 +15,14 @@ class Locations extends InputEvent {
   constructor(props) {
     super(props);
 
+    const { locations, users } = props;
+    let tables = [];
+    if ((users.length !== 0) && (locations.length !== 0)) {
+      tables = this.getTables(locations, users);
+    }
     this.state = {
       search: '',
-      tables: [],
-
+      tables,
     };
   }
 
@@ -33,22 +37,27 @@ class Locations extends InputEvent {
   }
 
   componentWillReceiveProps(nextProps) {
-    if ((this.props.locations.length > 0 && nextProps.users.length > 0) ||
-      (this.props.users.length > 0 && nextProps.locations.length > 0)) {
-      const tables = [];
-      _.each(nextProps.locations, location => {
-        if ((location.users.length > 0 &&
-              _.findIndex(location.users, item => _.find(nextProps.users, { fbId: item }).email === localStorage.getItem('email')) > 0) ||
-              _.find(nextProps.users, { email: localStorage.getItem('email') }).group === 'master') {
-          tables.push({
-            storeId: location.storeId,
-            ...location.storeInfo,
-            fbId: location.fbId,
-          });
-        }
-      });
+    const { locations, users } = nextProps;
+    if (locations.length > 0 && users.length > 0) {
+      const tables = this.getTables(locations, users);
       this.setState({ tables });
     }
+  }
+
+  getTables = (locations, users) => {
+    const tables = [];
+    _.each(locations, location => {
+      if ((location.users.length > 0 &&
+            _.findIndex(location.users, item => _.find(users, { fbId: item }).email === localStorage.getItem('email')) > -1) ||
+            _.find(users, { email: localStorage.getItem('email') }).group === 'master') {
+        tables.push({
+          storeId: location.storeId,
+          ...location.storeInfo,
+          fbId: location.fbId,
+        });
+      }
+    });
+    return tables;
   }
 
   addLocations = () => {
@@ -95,7 +104,7 @@ class Locations extends InputEvent {
     ];
     return (
       <div id="locations-manage" className="Container-box">
-        <Card>
+        <Card style={{ width: '90%' }}>
           <CardContent className="left-border-orange">
             <TableList
               columns={columns}
