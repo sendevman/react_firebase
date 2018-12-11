@@ -12,7 +12,6 @@ import {
 	SET_SUB_COLLECTION,
 	SET_CURRENT_USER,
 	SET_USER_ERROR,
-	SET_ACCESS_USER_LIST,
 } from './constants';
 
 const initialState = fromJS({
@@ -53,6 +52,5 @@ export default handleActions({
 		state
 			.set('currentUser', { res: 'noUser' })
 			.set('userError', { ...action.payload, res: 'Error' }),
-	[SET_ACCESS_USER_LIST]: (state, action) => state.update('accessUserList', () => List(action.payload.accessUserList.map(item => item))),
 
 }, initialState);
