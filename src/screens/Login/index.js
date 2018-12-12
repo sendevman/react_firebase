@@ -90,7 +90,6 @@ class LoginPage extends Component {
   _signIn = () => {
     const { email, password } = this.state;
     const { authLogin } = this.props;
-    localStorage.setItem('email', email);
     if (this.validEmail() && this.validPassword()) {
       authLogin({ email, password });
     }

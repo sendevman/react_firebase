@@ -1,4 +1,4 @@
-import { all, call, put, takeLatest } from 'redux-saga/effects';
+import { call, put, takeLatest } from 'redux-saga/effects';
 
 import {
   GET_FB_USERS,
@@ -14,7 +14,7 @@ import {
   FB_AUTH_LOGOUT,
   FB_TMP_UPLOAD_IMAGE,
   FB_TMP_DELETE_IMAGE,
-  ADD_FB_LOCATIONS,
+  ADD_FB_COLLECTION_DATA,
   ADD_FB_DOC_FIELD,
   UPDATE_FB_DOC,
 } from './constants';
@@ -31,7 +31,6 @@ import {
   getSubCollection,
   addSubCollectionfield,
   addDocField,
-  addCollection,
   updateDoc,
 } from './api';
 
@@ -52,12 +51,13 @@ function* asyncUpdateDoc(param) {
   yield call(updateDoc, field, id, data);
 }
 
-function* asyncAddLocations(param) {
-  const id = yield call(getAddDataId, 'locations', param.payload.locations);
-  const requests = param.payload.users.map(user =>
-    call(addCollection, 'locations', id, 'users', user),
-  );
-  yield all(requests);
+function* asyncAddCollectionData(param) {
+  const { collection, location } = param.payload;
+  yield call(getAddDataId, collection, location);
+  // const requests = param.payload.users.map(user =>
+  //   call(addCollection, collection, id, 'users', user),
+  // );
+  // yield all(requests);
 }
 
 function* asyncGetSubCollection(param) {
@@ -116,11 +116,10 @@ function* asyncGetVod() {
 
 function* asyncAuthLogin(param) {
   const authUser = yield call(authLogin, param.payload.auth);
-  console.log('here');
   if (authUser.state === 'success') {
     yield call(getToken, authUser.user);
-    console.log('here1', authUser.user);
     yield put(setCurrentUser(authUser.user));
+    localStorage.setItem('email', param.payload.auth.email);
   } else {
     yield put(setUserError(authUser.error));
   }
@@ -128,6 +127,7 @@ function* asyncAuthLogin(param) {
 
 function* asyncAuthLogout() {
   localStorage.removeItem('token');
+  localStorage.removeItem('email');
   localStorage.removeItem('refreshToken');
   yield call(authLogout);
 }
@@ -156,7 +156,7 @@ export function* sagaWatcher() {
   yield takeLatest(GET_CURRENT_USER, asyncGetCurrentUser);
   yield takeLatest(FB_TMP_UPLOAD_IMAGE, asyncUploadTmpImage);
   yield takeLatest(FB_TMP_DELETE_IMAGE, asyncDeleteTmpImage);
-  yield takeLatest(ADD_FB_LOCATIONS, asyncAddLocations);
+  yield takeLatest(ADD_FB_COLLECTION_DATA, asyncAddCollectionData);
   yield takeLatest(UPDATE_FB_DOC, asyncUpdateDoc);
   yield takeLatest(GET_FB_SUB_COLLECTION, asyncGetSubCollection);
   yield takeLatest(ADD_FB_SUB_COLLECTION_FIELD, asyncAddSubCollectionField);

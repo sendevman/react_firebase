@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import _ from 'lodash';
 
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -7,36 +8,60 @@ import CardContent from '@material-ui/core/CardContent';
 import InputEvent from 'components/InputEvent';
 import TableList from 'components/TableList';
 
-import { getLocations } from 'redux/firebase/actions';
-import { currentUserSelector, locationsSelector } from 'redux/firebase/selectors';
+import { getLocations, getUsers } from 'redux/firebase/actions';
+import { locationsSelector, usersSelector } from 'redux/firebase/selectors';
 
 class Locations extends InputEvent {
   constructor(props) {
     super(props);
 
+    const { locations, users } = props;
+    let tables = [];
+    if ((users.length !== 0) && (locations.length !== 0)) {
+      tables = this.getTables(locations, users);
+    }
     this.state = {
       search: '',
-      tables: [],
+      tables,
     };
   }
 
   componentDidMount() {
-    this.props.getLocations();
+    const { getLocations, getUsers, locations, users } = this.props;
+    if (users.length === 0) {
+			getUsers();
+		}
+		if (locations.length === 0) {
+			getLocations();
+    }
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.locations !== nextProps.locations) {
-      const tables = nextProps.locations.map(location => ({
-        storeId: location.storeId,
-        ...location.storeInfo,
-        fbId: location.fbId,
-      }));
+    const { locations, users } = nextProps;
+    if (locations.length > 0 && users.length > 0) {
+      const tables = this.getTables(locations, users);
       this.setState({ tables });
     }
   }
 
+  getTables = (locations, users) => {
+    const tables = [];
+    _.each(locations, location => {
+      if ((location.users.length > 0 &&
+            _.findIndex(location.users, item => _.find(users, { fbId: item }).email === localStorage.getItem('email')) > -1) ||
+            _.find(users, { email: localStorage.getItem('email') }).group === 'master') {
+        tables.push({
+          storeId: location.storeId,
+          ...location.storeInfo,
+          fbId: location.fbId,
+        });
+      }
+    });
+    return tables;
+  }
+
   addLocations = () => {
-    // this.props.history.push('/locations/add');
+    this.props.history.push('/locations/add');
   }
 
   handleOnClick = (row) => {
@@ -79,14 +104,14 @@ class Locations extends InputEvent {
     ];
     return (
       <div id="locations-manage" className="Container-box">
-        <Card>
+        <Card style={{ width: '90%' }}>
           <CardContent className="left-border-orange">
             <TableList
               columns={columns}
               tables={tables}
               label="Select a location to manage"
-              // addbtnTooltip="Add New Location"
-              // addbtn
+              addbtnTooltip="Add New Location"
+              addbtn
               searchEnable
               handleAdd={this.addLocations} />
           </CardContent>
@@ -98,22 +123,21 @@ class Locations extends InputEvent {
 
 const mapStateToProps = state => ({
   locations: locationsSelector(state),
-	currentUser: currentUserSelector(state),
+  users: usersSelector(state),
 });
 
 const mapDispatchToProps = dispatch => ({
   getLocations: () => dispatch(getLocations()),
+	getUsers: () => dispatch(getUsers()),
 });
 
 Locations.propTypes = {
-  currentUser: PropTypes.object,
   locations: PropTypes.array,
   history: PropTypes.object.isRequired,
   getLocations: PropTypes.func.isRequired,
 };
 
 Locations.defaultProps = {
-  currentUser: {},
   locations: [],
 };
 

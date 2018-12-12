@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 import _ from 'lodash';
 
@@ -8,16 +8,17 @@ import Grid from '@material-ui/core/Grid';
 import TableList from 'components/TableList';
 import InputEvent from 'components/InputEvent';
 
-import { setAccessUserList, getUsers } from 'redux/firebase/actions';
-import { usersSelector } from 'redux/firebase/selectors';
+import { addDocField, getLocations, getUsers } from 'redux/firebase/actions';
+import { locationsSelector, usersSelector } from 'redux/firebase/selectors';
 
 class LocationsManUsers extends InputEvent {
 	constructor(props) {
 		super(props);
 
+		const { locations, storeId } = props;
 		this.state = {
 			selected: [],
-			accessUserList: [],
+			accessUserList: locations.length > 0 ? _.find(locations, { fbId: storeId }).users : [],
 			rAccessUserList: [],
 			accessUser: {},
 			accessUserIndex: null,
@@ -25,30 +26,45 @@ class LocationsManUsers extends InputEvent {
 	}
 
 	componentDidMount() {
-		this.props.getUsers();
+		const { locations, users } = this.props;
+		if (users.length === 0) {
+			this.props.getUsers();
+		}
+		if (locations.length === 0) {
+			this.props.getLocations();
+		}
 	}
 
 	componentWillReceiveProps(nextProps) {
-		if (this.props.users !== nextProps.users) {
+		const { locations, storeId, users } = nextProps;
+		if (this.props.users !== users && users.length > 0) {
 			const selected = {};
-			_.each(nextProps.users, user => {
+			_.each(users, user => {
 				selected[user.email] = false;
 			});
 			this.setState({ selected });
+		}
+		if (users.length > 0 && locations.length > 0) {
+			this.setState({
+				accessUserList: _.find(locations, { fbId: storeId }).users.map(user => _.find(users, { fbId: user })),
+			});
 		}
 	}
 
 	deleteUsers = () => {
 		const { accessUserList, accessUser } = this.state;
+		const { storeId } = this.props;
 		const data = accessUserList.slice();
 		_.remove(data, { email: accessUser.email });
 		this.setState({
 			accessUserList: data,
 		});
+		this.props.updateAccessUserList('locations', storeId, { users: data.map(item => item.fbId) });
 	}
 
-	saveUsers = () => {
+	addUsers = () => {
 		const { accessUserList, rAccessUserList } = this.state;
+		const { storeId } = this.props;
 		if (rAccessUserList.length > 0) {
 			const data = _.uniq(accessUserList.concat(rAccessUserList), 'email');
 			this.setState({
@@ -56,7 +72,7 @@ class LocationsManUsers extends InputEvent {
 				rAccessUserList: [],
 				selected: [],
 			});
-			this.props.setAccessUserList(data);
+			this.props.updateAccessUserList('locations', storeId, { users: data.map(item => item.fbId) });
 		}
 	}
 
@@ -90,6 +106,7 @@ class LocationsManUsers extends InputEvent {
 
 	render() {
 		const { accessUserList } = this.state;
+		const { users } = this.props;
 		const accessUsersColumn = [
 			{
 				Header: () => this.renderHeader('Email'),
@@ -103,23 +120,37 @@ class LocationsManUsers extends InputEvent {
 			},
 			{
 				Header: () => this.renderHeader('User Type'),
-				Cell: ({ row, index }) => this.renderCell(row.name, () => this.handleAccessListClick(row, index)),
+				Cell: ({ row, index }) => this.renderCell(row.group, () => this.handleAccessListClick(row, index)),
 				accessor: 'group',
 			},
 		];
-		const locationUsersColumn = [{
-			Header: '',
-			/* eslint react/prop-types: 0 */
-			Cell: ({ row }) => (
-				<input
-					type="checkbox"
-					className="checkbox"
-					checked={this.state.selected[row.email] === true}
-					onChange={() => this.handleSelect(row)}
-				/>
-			),
-			width: 50,
-		}].concat(accessUsersColumn);
+		const locationUsersColumn = [
+			{
+				Header: '',
+				/* eslint react/prop-types: 0 */
+				Cell: ({ row }) => (
+					<input
+						type="checkbox"
+						className="checkbox"
+						checked={this.state.selected[row.email] === true}
+						onChange={() => this.handleSelect(row)}
+					/>
+				),
+				width: 50,
+			},
+			{
+				Header: () => this.renderHeader('Email'),
+				accessor: 'email',
+			},
+			{
+				Header: () => this.renderHeader('Name'),
+				accessor: 'name',
+			},
+			{
+				Header: () => this.renderHeader('User Type'),
+				accessor: 'group',
+			},
+		];
 		return (
 			<div id="locations-man-info" className="Container-box">
 				<Grid container spacing={24}>
@@ -136,12 +167,12 @@ class LocationsManUsers extends InputEvent {
 					{this.renderGrid('dark-purple',
 						<TableList
 							columns={locationUsersColumn}
-							tables={this.props.users}
+							tables={users}
 							label="Add Managers / Users to location"
-							savebtnTooltip="Save"
-							savebtn
+							addbtnTooltip="Add User"
+							addbtn
 							searchEnable
-							handleSave={this.saveUsers} />)}
+							handleAdd={this.addUsers} />)}
 				</Grid>
 			</div>
 		);
@@ -150,19 +181,27 @@ class LocationsManUsers extends InputEvent {
 
 const mapStateToProps = state => ({
 	users: usersSelector(state),
+	locations: locationsSelector(state),
 });
 
 const mapDispatchToProps = dispatch => ({
 	getUsers: () => dispatch(getUsers()),
-	setAccessUserList: (data) => dispatch(setAccessUserList(data)),
+	getLocations: () => dispatch(getLocations()),
+	updateAccessUserList: (field, id, accessUserList) => dispatch(addDocField(field, id, accessUserList)),
 });
 
-// LocationsManUsers.propTypes = {
-// 	storeId: PropTypes.string,
-// };
+LocationsManUsers.propTypes = {
+	storeId: PropTypes.string.isRequired,
+	users: PropTypes.array,
+	locations: PropTypes.array,
+	getUsers: PropTypes.func.isRequired,
+	getLocations: PropTypes.func.isRequired,
+	updateAccessUserList: PropTypes.func.isRequired,
+};
 
-// LocationsManUsers.defaultProps = {
-// 	storeId: '',
-// };
+LocationsManUsers.defaultProps = {
+	users: [],
+	locations: [],
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(LocationsManUsers);

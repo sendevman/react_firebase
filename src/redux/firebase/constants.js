@@ -14,6 +14,7 @@ export const SET_STORE_AERAS = 'firebase/SET_STORE_AERAS';
 export const SET_STORE_VOD = 'firebase/SET_STORE_VOD';
 export const SET_SUB_COLLECTION = 'firebase/SET_SUB_COLLECTION';
 
+export const ADD_FB_COLLECTION_DATA = 'firebase/ADD_FB_COLLECTION_DATA';
 export const ADD_FB_SUB_COLLECTION_FIELD = 'firebase/ADD_FB_SUB_COLLECTION_FIELD';
 
 export const FB_AUTH_LOGIN = 'firebase/FB_AUTH_LOGIN';
@@ -22,12 +23,9 @@ export const FB_AUTH_LOGOUT = 'firebase/FB_AUTH_LOGOUT';
 export const GET_CURRENT_USER = 'firebase/GET_CURRENT_USER';
 export const SET_CURRENT_USER = 'firebase/SET_CURRENT_USER';
 export const SET_USER_ERROR = 'firebase/SET_USER_ERROR';
-export const SET_ACCESS_USER_LIST = 'firebase/SET_ACCESS_USER_LIST';
 
 export const FB_TMP_UPLOAD_IMAGE = 'firebase/FB_TMP_UPLOAD_IMAGE';
 export const FB_TMP_DELETE_IMAGE = 'firebase/FB_TMP_DELETE_IMAGE';
-
-export const ADD_FB_LOCATIONS = 'firebase/ADD_FB_LOCATIONS';
 
 export const UPDATE_FB_DOC = 'firebase/UPDATE_FB_DOC';
 export const ADD_FB_DOC_FIELD = 'firebase/ADD_FB_DOC_FIELD';

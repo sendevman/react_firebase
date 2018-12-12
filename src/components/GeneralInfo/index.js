@@ -20,7 +20,7 @@ class GeneralInfo extends InputEvent {
   constructor(props) {
     super(props);
 
-    this.state = {
+    const data = {
       name: '',
       storeId: '',
       city: '',
@@ -33,6 +33,12 @@ class GeneralInfo extends InputEvent {
       cpID: '',
       subtype: '',
     };
+    if (props.type === 'add') {
+      data.floorId1 = '';
+      data.floorId2 = '';
+      data.walkbase = { floorId: ['1', '2'] };
+    }
+    this.state = { ...data };
   }
 
   componentDidMount() {
@@ -66,7 +72,7 @@ class GeneralInfo extends InputEvent {
           cpID: storeInfo.cpID || '',
           subtype: storeInfo.subtype || '',
           ...walkbase_state,
-          walkbase_state,
+          walkbase,
         });
       }
     }
@@ -94,31 +100,73 @@ class GeneralInfo extends InputEvent {
   }
 
   save = () => {
-    const { name, storeId, city, state, region, type, floorId1, floorId2, dbID, cpID, subtype } = this.state;
-    const data = {
+    const {
+      name,
       storeId,
-      storeInfo: {
-        admin: {},
-        name,
-        region,
-        city,
-        state,
-        dbID,
-        cpID,
-        type,
-        subtype,
-      },
-      walkbase: {
-        floorId: [floorId1, floorId2],
-        zoneId: [],
-      },
-    };
-    // this.props.genInfoSave(data);
+      city,
+      state,
+      region,
+      type,
+      floorId1,
+      floorId2,
+      dbID,
+      cpID,
+      subtype,
+      walkbase,
+    } = this.state;
+    if (this.props.type === 'add') {
+      const data = {
+        storeId,
+        storeInfo: {
+          admin: [],
+          name,
+          region,
+          city,
+          state,
+          dbID,
+          cpID,
+          type,
+          subtype,
+        },
+        walkbase: {
+          floorId: [floorId1, floorId2],
+        },
+      };
+      this.props.genInfoSave(data);
+    } else {
+      const walkbase_keys = _.keys(walkbase);
+      const walkbase_state = {};
+      _.each(walkbase_keys, key => {
+        if (Array.isArray(walkbase[key])) {
+          walkbase_state[`${key}`] = [];
+          _.each(walkbase[key], (item, index) => {
+            walkbase_state[`${key}`][index] = parseInt(this.state[`${key}${index + 1}`]) || item;
+          });
+        } else {
+          walkbase_state[key] = this.state[key] || walkbase[key];
+        }
+      });
+      const data = {
+        storeId,
+        storeInfo: {
+          admin: [],
+          name,
+          region,
+          city,
+          state,
+          dbID,
+          cpID,
+          type,
+          subtype,
+        },
+        walkbase: walkbase_state,
+      };
+      this.props.genInfoSave(data);
+    }
   }
 
   render() {
     const { autoUpdate } = this.state;
-    const { data } = this.props;
     return (
       <Grid container>
         <Grid item xs={12} sm={6}>
@@ -138,19 +186,19 @@ class GeneralInfo extends InputEvent {
           </div>
         </Grid>
         <Grid item xs={12} sm={6}>
-          {this.state.floorId1 &&
+          {this.state.floorId1 !== undefined &&
             <div className="sub-container">
               <FormLabel component="legend">Walkbase</FormLabel>
               <FormGroup>
-                {data.walkbase.floorId.map((item, index) => (
+                {this.state.walkbase.floorId.map((item, index) => (
                   <div key={index}>{this.renderText(`floorId${index + 1}`, `Floor ID${index + 1}`)}</div>
                 ))}
               </FormGroup>
             </div>}
-          {this.state.zoneId1 &&
+          {this.state.zoneId1 !== undefined &&
             <div className="sub-container">
               <FormGroup>
-                {data.walkbase.zoneId.map((item, index) => (
+                {this.state.walkbase.zoneId.map((item, index) => (
                   <div key={index}>{this.renderText(`zoneId${index + 1}`, `Zone ID${index + 1}`)}</div>
                 ))}
               </FormGroup>

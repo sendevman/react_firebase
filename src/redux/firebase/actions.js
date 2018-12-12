@@ -17,12 +17,11 @@ import {
 	SET_SUB_COLLECTION,
 	SET_CURRENT_USER,
 	SET_USER_ERROR,
-	SET_ACCESS_USER_LIST,
 	FB_AUTH_LOGIN,
 	FB_AUTH_LOGOUT,
 	FB_TMP_UPLOAD_IMAGE,
 	FB_TMP_DELETE_IMAGE,
-	ADD_FB_LOCATIONS,
+	ADD_FB_COLLECTION_DATA,
 	ADD_FB_DOC_FIELD,
 	ADD_FB_SUB_COLLECTION_FIELD,
 	UPDATE_FB_DOC,
@@ -63,9 +62,9 @@ export const getSubCollection = createAction(
 );
 
 /* add data */
-export const addLocations = createAction(
-	ADD_FB_LOCATIONS,
-	(locations, users) => ({ locations, users }),
+export const addCollectionData = createAction(
+	ADD_FB_COLLECTION_DATA,
+	(collection, location) => ({ collection, location }),
 );
 
 export const addSubCollectionField = createAction(
@@ -128,11 +127,6 @@ export const setCurrentUser = createAction(
 export const setUserError = createAction(
 	SET_USER_ERROR,
 	(userError) => ({ userError }),
-);
-
-export const setAccessUserList = createAction(
-	SET_ACCESS_USER_LIST,
-	(accessUserList) => ({ accessUserList }),
 );
 
 /* image */
