@@ -21,16 +21,21 @@ class HomeView extends InputEvent {
 		super(props);
 
 		this.state = {
+			body: props.data.body || '',
 			footer: props.data.footer || '',
+			legal: props.data.legal || '',
 			title: props.data.title || '',
 			subtitle: props.data.subtitle || '',
 			backTitle: props.data.backTitle || '',
 			imageNameBackSrc: props.data.bgImg || '',
-			imageNameCardSrc: props.data.img || '',
 			imgBackSrc: '',
-			imgCardSrc: '',
 			imgBackSrcType: undefined,
+			imageNameCardSrc: props.data.img || '',
+			imgCardSrc: '',
 			imgCardSrcType: undefined,
+			imageNameHeroSrc: props.data.heroImg || '',
+			imgHeroSrc: '',
+			imgHeroSrcType: undefined,
 			changeState: false,
 		};
 	}
@@ -39,12 +44,15 @@ class HomeView extends InputEvent {
 		const { changeState, data } = this.props;
 		if (data !== nextProps.data) {
 			this.setState({
+				body: nextProps.data.body || '',
 				footer: nextProps.data.footer || '',
+				legal: nextProps.data.legal || '',
 				title: nextProps.data.title || '',
 				subtitle: nextProps.data.subtitle || '',
 				backTitle: nextProps.data.backTitle || '',
 				imageNameBackSrc: nextProps.data.bgImg || '',
 				imageNameCardSrc: nextProps.data.img || '',
+				imageNameHeroSrc: nextProps.data.heroImg || '',
 			});
 		}
 		if (changeState !== nextProps.changeState) {
@@ -67,11 +75,18 @@ class HomeView extends InputEvent {
 						imgBackSrcType: file,
 						changeState: true,
 					});
-				} else {
+				} else if (type === 'card') {
 					this.setState({
 						imgCardSrc: reader.result,
 						imageNameCardSrc: file.name,
 						imgCardSrcType: file,
+						changeState: true,
+					});
+				} else {
+					this.setState({
+						imgHeroSrc: reader.result,
+						imageNameHeroSrc: file.name,
+						imgHeroSrcType: file,
 						changeState: true,
 					});
 				}
@@ -113,6 +128,8 @@ class HomeView extends InputEvent {
 			imgBackSrc,
 			imageNameCardSrc,
 			imgCardSrc,
+			imgHeroSrc,
+			imageNameHeroSrc,
 		} = this.state;
 		const {
 			activeComponent,
@@ -123,6 +140,7 @@ class HomeView extends InputEvent {
 			cancelbtn,
 			title,
 		} = this.props;
+
 		return (
 			<Grid item xs={12}>
 				<div className="label-products-table select-text">{title}</div>
@@ -130,6 +148,12 @@ class HomeView extends InputEvent {
 				<Grid container spacing={24}>
 					<Grid item xs={12} sm={6}>
 						<div className="homeviewer-cardmedia-contaienr">
+							{activeComponent.heroImage &&
+								<CardMedia
+									className="homeview-back-media"
+									image={imgHeroSrc || imageNameHeroSrc || ImgDefault}
+									title="Contemplative Reptile"
+								/>}
 							{(!activeComponent.cardImage || activeComponent.backImage) &&
 								<CardMedia
 									className="homeview-back-media"
@@ -154,6 +178,8 @@ class HomeView extends InputEvent {
 						<FormGroup>
 							{activeComponent.title && this.renderText('title', 'Title')}
 							{activeComponent.subtitle && this.renderText('subtitle', 'Subtitle')}
+							{activeComponent.body && this.renderText('body', 'Body')}
+							{activeComponent.legal && this.renderText('legal', 'Legal')}
 							{activeComponent.footer && this.renderText('footer', 'Footer')}
 						</FormGroup>
 
@@ -196,6 +222,25 @@ class HomeView extends InputEvent {
 
 								<FormControl className="select-zone-box">
 									{this.renderText('imageNameBackSrc', '', 'upload-text-field', 'Background Image')}
+								</FormControl>
+							</div>}
+						{activeComponent.heroImage &&
+							<div className="homeview-upload-box">
+								<input
+									id={`flat-button-file-hero-${title}`}
+									className="file-input"
+									accept="image/*"
+									type="file"
+									onChange={event => this.handleInputFileChange(event, 'hero')} />
+
+								<label className="flat-button-file" htmlFor={`flat-button-file-hero-${title}`}>
+									<Button component="span" variant="contained" size="small" className="upload-button">
+										Upload
+									</Button>
+								</label>
+
+								<FormControl className="select-zone-box">
+									{this.renderText('imageNameHeroSrc', '', 'upload-text-field', 'Hero Image')}
 								</FormControl>
 							</div>}
 					</Grid>
