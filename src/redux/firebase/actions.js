@@ -3,7 +3,7 @@ import {
 	GET_FB_USERS,
 	GET_FB_LOCATIONS,
 	GET_FB_PRODUCTS,
-	GET_FB_PRODUCT_TYPES,
+	GET_FB_CARD_TYPES,
 	GET_FB_AERAS,
 	GET_FB_VOD,
 	GET_CURRENT_USER,
@@ -44,8 +44,8 @@ export const getProducts = createAction(
 	GET_FB_PRODUCTS,
 );
 
-export const getProductTypes = createAction(
-	GET_FB_PRODUCT_TYPES,
+export const getCardTypes = createAction(
+	GET_FB_CARD_TYPES,
 );
 
 export const getAreas = createAction(
