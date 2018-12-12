@@ -107,11 +107,6 @@ class LocationsManInfo extends InputEvent {
 		const { locations, storeId } = this.props;
 		const { homeData, globalData } = this.state;
 		const globalBackComponent = {
-			title: false,
-			subtitle: false,
-			footer: false,
-			cardImage: false,
-			backTitle: false,
 			backImage: true,
 		};
 		const homeViewComponent = {
@@ -119,7 +114,6 @@ class LocationsManInfo extends InputEvent {
 			subtitle: true,
 			footer: true,
 			cardImage: true,
-			backTitle: false,
 			backImage: true,
 		};
 		return (
