@@ -40,18 +40,20 @@ class LocationsManInfo extends InputEvent {
 	componentWillReceiveProps(nextProps) {
 		const { locations, storeId, getSiteData } = this.props;
 		if (locations !== nextProps.locations) {
-			getSiteData('locations', storeId, 'siteData');
-			this.setState({
-				location: nextProps.locations.length > 0 ? _.find(nextProps.locations, { fbId: storeId }) : {},
-			});
+			const location = nextProps.locations.length > 0 ? _.find(nextProps.locations, { fbId: storeId }) : {};
+			if (!(location.subCollection && location.subCollection.siteData)) {
+				getSiteData('locations', storeId, 'siteData');
+			}
+			this.setState({	location });
 		}
-		if (nextProps.locations.length > 0
-			&& _.find(nextProps.locations, { fbId: storeId }).subCollection
-			&& _.find(nextProps.locations, { fbId: storeId }).subCollection.siteData) {
-			this.setState({
-				homeData: _.find(_.find(nextProps.locations, { fbId: storeId }).subCollection.siteData, { fbId: 'home' }).homeCard,
-				globalData: _.find(_.find(nextProps.locations, { fbId: storeId }).subCollection.siteData, { fbId: 'globalBackground' }).globalCard,
-			});
+		if (nextProps.locations.length > 0) {
+			const location = _.find(nextProps.locations, { fbId: storeId });
+			if (location.subCollection && location.subCollection.siteData.length > 0) {
+				this.setState({
+					homeData: _.find(location.subCollection.siteData, { fbId: 'home' }).homeCard,
+					globalData: _.find(location.subCollection.siteData, { fbId: 'globalBackground' }).globalCard,
+				});
+			}
 		}
 	}
 
@@ -126,10 +128,10 @@ class LocationsManInfo extends InputEvent {
 					{this.renderGrid('orange',
 						<GeneralInfo
 							data={locations.length > 0 ? _.find(locations, { fbId: storeId }) : {}}
-							storeId={this.props.storeId}
+							storeId={storeId}
 							genInfoSave={this.handleSave}
 						/>)}
-					{this.renderGrid('orange',
+					{homeData && this.renderGrid('orange',
 						<HomeView
 							data={homeData || {}}
 							title="Home Open View"
@@ -140,7 +142,7 @@ class LocationsManInfo extends InputEvent {
 							handleSave={this.handleHomeSave}
 							handleImport={this.handleHomeImport}
 							handleArchive={this.handleHomeArchive} />)}
-					{this.renderGrid('orange',
+					{globalData && this.renderGrid('orange',
 						<HomeView
 							data={globalData || {}}
 							title="Global Background"
