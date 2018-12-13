@@ -21,9 +21,7 @@ class HomeView extends InputEvent {
 		super(props);
 
 		this.state = {
-			body: props.data.body || '',
 			footer: props.data.footer || '',
-			legal: props.data.legal || '',
 			title: props.data.title || '',
 			subtitle: props.data.subtitle || '',
 			backTitle: props.data.backTitle || '',
@@ -33,9 +31,6 @@ class HomeView extends InputEvent {
 			imageNameCardSrc: props.data.img || '',
 			imgCardSrc: '',
 			imgCardSrcType: undefined,
-			imageNameHeroSrc: props.data.heroImg || '',
-			imgHeroSrc: '',
-			imgHeroSrcType: undefined,
 			changeState: false,
 		};
 	}
@@ -44,15 +39,12 @@ class HomeView extends InputEvent {
 		const { changeState, data } = this.props;
 		if (data !== nextProps.data) {
 			this.setState({
-				body: nextProps.data.body || '',
 				footer: nextProps.data.footer || '',
-				legal: nextProps.data.legal || '',
 				title: nextProps.data.title || '',
 				subtitle: nextProps.data.subtitle || '',
 				backTitle: nextProps.data.backTitle || '',
 				imageNameBackSrc: nextProps.data.bgImg || '',
 				imageNameCardSrc: nextProps.data.img || '',
-				imageNameHeroSrc: nextProps.data.heroImg || '',
 			});
 		}
 		if (changeState !== nextProps.changeState) {
@@ -75,18 +67,11 @@ class HomeView extends InputEvent {
 						imgBackSrcType: file,
 						changeState: true,
 					});
-				} else if (type === 'card') {
+				} else {
 					this.setState({
 						imgCardSrc: reader.result,
 						imageNameCardSrc: file.name,
 						imgCardSrcType: file,
-						changeState: true,
-					});
-				} else {
-					this.setState({
-						imgHeroSrc: reader.result,
-						imageNameHeroSrc: file.name,
-						imgHeroSrcType: file,
 						changeState: true,
 					});
 				}
@@ -128,8 +113,6 @@ class HomeView extends InputEvent {
 			imgBackSrc,
 			imageNameCardSrc,
 			imgCardSrc,
-			imgHeroSrc,
-			imageNameHeroSrc,
 		} = this.state;
 		const {
 			activeComponent,
@@ -148,12 +131,6 @@ class HomeView extends InputEvent {
 				<Grid container spacing={24}>
 					<Grid item xs={12} sm={6}>
 						<div className="homeviewer-cardmedia-contaienr">
-							{activeComponent.heroImage &&
-								<CardMedia
-									className="homeview-back-media"
-									image={imgHeroSrc || imageNameHeroSrc || ImgDefault}
-									title="Contemplative Reptile"
-								/>}
 							{(!activeComponent.cardImage || activeComponent.backImage) &&
 								<CardMedia
 									className="homeview-back-media"
@@ -178,8 +155,6 @@ class HomeView extends InputEvent {
 						<FormGroup>
 							{activeComponent.title && this.renderText('title', 'Title')}
 							{activeComponent.subtitle && this.renderText('subtitle', 'Subtitle')}
-							{activeComponent.body && this.renderText('body', 'Body')}
-							{activeComponent.legal && this.renderText('legal', 'Legal')}
 							{activeComponent.footer && this.renderText('footer', 'Footer')}
 						</FormGroup>
 
@@ -259,6 +234,7 @@ class HomeView extends InputEvent {
 }
 
 HomeView.propTypes = {
+	changeState: PropTypes.bool,
 	data: PropTypes.object,
 	title: PropTypes.string,
 	activeComponent: PropTypes.object,
@@ -275,6 +251,7 @@ HomeView.propTypes = {
 };
 
 HomeView.defaultProps = {
+	changeState: false,
 	data: {},
 	title: '',
 	activeComponent: {},
