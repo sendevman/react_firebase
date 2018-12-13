@@ -12,7 +12,7 @@ import InputEvent from 'components/InputEvent';
 import CostPlan from './CostPlan';
 import InfoSpec from './InfoSpec';
 
-class ProductForm extends InputEvent {
+class DevicesForm extends InputEvent {
 	constructor(props) {
 		super(props);
 
@@ -74,7 +74,7 @@ class ProductForm extends InputEvent {
 	}
 }
 
-ProductForm.propTypes = {
+DevicesForm.propTypes = {
 	type: PropTypes.string,
 	currentProduct: PropTypes.object,
 	updateCurrentProduct: PropTypes.func.isRequired,
@@ -82,9 +82,9 @@ ProductForm.propTypes = {
 	handleCancel: PropTypes.func.isRequired,
 };
 
-ProductForm.defaultProps = {
+DevicesForm.defaultProps = {
 	type: 'edit',
 	currentProduct: {},
 };
 
-export default ProductForm;
+export default DevicesForm;

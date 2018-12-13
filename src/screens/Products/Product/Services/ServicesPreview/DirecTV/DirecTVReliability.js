@@ -1,6 +1,6 @@
 import reliability from 'assets/images/reliability.png';
 
-const DirectTVReliability = () => (
+const DirecTVReliability = () => (
 	<div id="directv-reliability">
 		<img className="reliability-img" src={reliability} alt="" />
 		<div className="reliability-content-title">Get piece of mind with DIRECTV</div>
@@ -12,4 +12,4 @@ const DirectTVReliability = () => (
 	</div>
 );
 
-export default DirectTVReliability;
+export default DirecTVReliability;

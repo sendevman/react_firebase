@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import PropTypes from 'prop-types';
 
 import dtv_logo from 'assets/images/dtv.logo.png';
 import check_blue from 'assets/images/check_blue.png';
@@ -136,13 +135,5 @@ class DirecTVPackage extends Component {
 		);
 	}
 }
-
-// DirecTVPackage.propTypes = {
-// 	currentProduct: PropTypes.object,
-// };
-
-// DirecTVPackage.defaultProps = {
-// 	currentProduct: {},
-// };
 
 export default DirecTVPackage;

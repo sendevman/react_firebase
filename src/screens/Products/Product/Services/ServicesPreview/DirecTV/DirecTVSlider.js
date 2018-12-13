@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
-class DirectTVSlider extends Component {
+class DirecTVSlider extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -48,12 +48,12 @@ class DirectTVSlider extends Component {
 	}
 }
 
-DirectTVSlider.propTypes = {
+DirecTVSlider.propTypes = {
 	currentProduct: PropTypes.object,
 };
 
-DirectTVSlider.defaultProps = {
+DirecTVSlider.defaultProps = {
 	currentProduct: {},
 };
 
-export default DirectTVSlider;
+export default DirecTVSlider;

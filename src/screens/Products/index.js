@@ -5,8 +5,8 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Grid from '@material-ui/core/Grid';
 
-import ProductPreview from '../Components/ProductPreview';
-import ProductImport from '../Components/ProductImport';
+import ProductPreview from './Product/ProductPreview';
+import ProductImport from './Product/ProductImport';
 import InputEvent from 'components/InputEvent';
 import TableList from 'components/TableList';
 import HomeView from 'components/HomeView';
