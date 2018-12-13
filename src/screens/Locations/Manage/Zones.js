@@ -100,7 +100,6 @@ class LocationsManZones extends InputEvent {
 			subtitle: true,
 			footer: true,
 			cardImage: true,
-			backTitle: false,
 			backImage: true,
 		};
 		const titleComponent = {
@@ -108,8 +107,6 @@ class LocationsManZones extends InputEvent {
 			subtitle: true,
 			footer: true,
 			cardImage: true,
-			backTitle: false,
-			backImage: false,
 		};
 		return (
 			<div id="locations-man-info" className="Container-box">

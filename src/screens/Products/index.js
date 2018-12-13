@@ -5,13 +5,13 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Grid from '@material-ui/core/Grid';
 
-import ProductPreview from '../Components/ProductPreview';
-import ProductImport from '../Components/ProductImport';
+import ProductPreview from './Product/ProductPreview';
+import ProductImport from './Product/ProductImport';
 import InputEvent from 'components/InputEvent';
 import TableList from 'components/TableList';
 import HomeView from 'components/HomeView';
 
-import { addDocField, getProducts, getProductTypes, getSubCollection } from 'redux/firebase/actions';
+import { addDocField, getProducts, getCardTypes, getSubCollection } from 'redux/firebase/actions';
 import { cardTypesSelector, productsSelector } from 'redux/firebase/selectors';
 
 class ProductsMain extends InputEvent {
@@ -27,8 +27,13 @@ class ProductsMain extends InputEvent {
 	}
 
 	componentDidMount() {
-		this.props.getProducts();
-		this.props.getProductTypes();
+		const { catalogProducts, cardTypes, getProducts, getCardTypes } = this.props;
+		if (catalogProducts.length === 0) {
+			getProducts();
+		}
+		if (cardTypes.length === 0) {
+			getCardTypes();
+		}
 	}
 
 	handleCatalogClick = (row, index) => {
@@ -41,8 +46,13 @@ class ProductsMain extends InputEvent {
 		});
 	}
 
+	handleAddProduct = () => {
+		this.setState({
+			addProductEnable: true,
+		});
+	}
+
 	handleEditProduct = () => {
-		// this.props.history.push(`/products/manage/${row._original.type}/${row.subType}/${row.fbId}`);
 		this.setState({
 			editProductEnable: true,
 			editProductIndex: this.state.currentProductIndex,
@@ -61,7 +71,7 @@ class ProductsMain extends InputEvent {
 	});
 
 	render() {
-		const { currentProduct, editProductEnable, editProductIndex } = this.state;
+		const { addProductEnable, currentProduct, editProductEnable, editProductIndex } = this.state;
 		const { catalogProducts } = this.props;
 		const categoryProductsColumn = [
 			{
@@ -94,8 +104,6 @@ class ProductsMain extends InputEvent {
 			title: true,
 			subtitle: true,
 			footer: true,
-			cardImage: false,
-			backTitle: false,
 			backImage: true,
 		};
 		return (
@@ -120,16 +128,15 @@ class ProductsMain extends InputEvent {
 									handleAdd={this.handleAddProduct}
 									updateRowStyle={this.updateRowStyle} />)}
 
-							{editProductEnable &&
-								editProductIndex !== '' &&
+							{((editProductEnable && editProductIndex !== '') || addProductEnable) &&
 								(currentProduct.type === 'service' || currentProduct.type === 'device') &&
 								this.renderGrid('dark-blue',
 									<ProductImport
 										handleSave={this.handleImportSave}
-										currentProduct={currentProduct} />)}
+										currentProduct={currentProduct}
+										type={addProductEnable ? 'add' : 'edit'} />)}
 
-							{editProductEnable &&
-								editProductIndex !== '' &&
+							{((editProductEnable && editProductIndex !== '') || addProductEnable) &&
 								(currentProduct.type === 'service' || currentProduct.type === 'device') &&
 								this.renderGrid('dark-blue',
 									<HomeView
@@ -142,12 +149,15 @@ class ProductsMain extends InputEvent {
 										handlePreview={this.handleTitlePreview}
 										handleSave={this.handleTitleSave}
 										handleImport={this.handleTitleImport}
-										handleArchive={this.handleTitleArchive} />)}
+										handleArchive={this.handleTitleArchive}
+										type={addProductEnable ? 'add' : 'edit'} />)}
 
-							{editProductEnable &&
-								editProductIndex !== '' &&
+							{((editProductEnable && editProductIndex !== '') || addProductEnable) &&
 								(currentProduct.type === 'service' || currentProduct.type === 'device') &&
-								this.renderGrid('dark-blue', <ProductPreview currentProduct={currentProduct} />)}
+								this.renderGrid('dark-blue',
+									<ProductPreview
+										currentProduct={currentProduct}
+										type={addProductEnable ? 'add' : 'edit'} />)}
 
 						</Grid>
 					</CardContent>
@@ -164,7 +174,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
 	getProducts: () => dispatch(getProducts()),
-	getProductTypes: () => dispatch(getProductTypes()),
+	getCardTypes: () => dispatch(getCardTypes()),
 	getSubCollection: (parent, id, child) => dispatch(getSubCollection(parent, id, child)),
 	addDocField: (parent, id, data) => dispatch(addDocField(parent, id, data)),
 });
@@ -173,6 +183,9 @@ ProductsMain.propTypes = {
 	catalogProducts: PropTypes.array.isRequired,
 	cardTypes: PropTypes.array.isRequired,
 	getProducts: PropTypes.func.isRequired,
+	getCardTypes: PropTypes.func.isRequired,
+	getSubCollection: PropTypes.func.isRequired,
+	addDocField: PropTypes.func.isRequired,
 	history: PropTypes.object.isRequired,
 };
 
