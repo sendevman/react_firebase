@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import InputEvent from 'components/InputEvent';
-import HomeView from 'components/HomeView';
+import CardView from 'components/CardView';
 
 class Cards extends InputEvent {
 	constructor(props) {
@@ -19,7 +19,7 @@ class Cards extends InputEvent {
 		}
 	}
 
-	updateCards = (data, type) => {
+	handleSave = (data, src, type, index) => {
 		let stateCopy = Object.assign({}, this.state.currentProduct);
 		if (type === '') {
 			stateCopy = { ...stateCopy, ...data };
@@ -27,21 +27,13 @@ class Cards extends InputEvent {
 			stateCopy[type] = data;
 		}
 		this.setState({ currentProduct: stateCopy });
-		this.props.updateCards(stateCopy);
+		this.props.handleSave(stateCopy);
 	}
 
 	// generateFake = element => [0, 1, 2].map(value => React.cloneElement(element, { key: value }));
 
 	render() {
 		const { currentProduct } = this.state;
-		const cardProductComponent = {
-			title: true,
-			subtitle: true,
-			footer: true,
-			body: true,
-			legal: true,
-			heroImage: true,
-		};
 
 		return (
 			<div>
@@ -49,14 +41,13 @@ class Cards extends InputEvent {
 					currentProduct.carouselData.map((item, index) => (
 						<div key={index} style={{ marginBottom: '20px' }}>
 							{this.renderGrid('white',
-								<HomeView
+								<CardView
+									index={index}
 									data={item}
 									title="Carousel Card"
-									activeComponent={cardProductComponent}
-									savebtn
-									handleSave={this.handleTitleSave} />)}
+									handleSave={this.handleSave}
+									handleCancel={this.handleCancel} />)}
 						</div>))}
-
 			</div>
 		);
 	}
@@ -65,6 +56,8 @@ class Cards extends InputEvent {
 Cards.propTypes = {
 	currentProduct: PropTypes.object,
 	updateCards: PropTypes.func.isRequired,
+	handleSave: PropTypes.func.isRequired,
+	handleCancel: PropTypes.func.isRequired,
 };
 
 Cards.defaultProps = {
