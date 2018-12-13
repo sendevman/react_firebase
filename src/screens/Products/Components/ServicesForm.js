@@ -101,7 +101,9 @@ class ProductForm extends Component {
 				<Cards
 					type={type}
 					currentProduct={currentProduct}
-					updateCards={this.updateCards} />
+					updateCards={this.updateCards}
+					handleSave={this.props.handleSave}
+					handleCancel={this.props.handleCancel} />
 			</div>
 		);
 	}
@@ -117,10 +119,12 @@ const mapDispatchToProps = dispatch => ({
 
 ProductForm.propTypes = {
 	type: PropTypes.string,
-	cardTypes: PropTypes.array.isRequired,
 	currentProduct: PropTypes.object,
+	cardTypes: PropTypes.array.isRequired,
 	getCardTypes: PropTypes.func.isRequired,
 	updateCurrentProduct: PropTypes.func.isRequired,
+	handleSave: PropTypes.func.isRequired,
+	handleCancel: PropTypes.func.isRequired,
 };
 
 ProductForm.defaultProps = {
