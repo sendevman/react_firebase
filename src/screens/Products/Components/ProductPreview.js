@@ -49,6 +49,8 @@ class ProductPreview extends Component {
 
 	render() {
 		const { currentProduct } = this.state;
+		const { type } = this.props;
+
 		return (
 			<Grid item xs={12}>
 				{currentProduct.type === 'device' && <div className="label-products-table select-text">Info & Specs</div>}
@@ -59,15 +61,19 @@ class ProductPreview extends Component {
 							{currentProduct.type === 'device' && <Devices currentProduct={currentProduct} />}
 							{currentProduct.type === 'service' && <Services currentProduct={currentProduct} />}
 						</Grid>
+
 						<Grid item xs={12} sm={6}>
 							{currentProduct.type === 'device' &&
 								<DevicesForm
+									type={type}
 									currentProduct={currentProduct}
 									updateCurrentProduct={this.updateCurrentProduct}
 									handleSave={this.handleSave}
 									handleCancel={this.handleCancel} />}
+
 							{currentProduct.type === 'service' &&
 								<ServicesForm
+									type={type}
 									currentProduct={currentProduct}
 									updateCurrentProduct={this.updateCurrentProduct}
 									handleSave={this.handleSave}
@@ -85,12 +91,14 @@ const mapDispatchToProps = dispatch => ({
 });
 
 ProductPreview.propTypes = {
+	type: PropTypes.string,
 	currentProduct: PropTypes.object,
 	updateDoc: PropTypes.func.isRequired,
 	// addCollection: PropTypes.func.isRequired,
 };
 
 ProductPreview.defaultProps = {
+	type: 'edit',
 	currentProduct: {},
 };
 

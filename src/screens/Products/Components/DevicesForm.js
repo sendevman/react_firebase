@@ -75,6 +75,7 @@ class ProductForm extends InputEvent {
 }
 
 ProductForm.propTypes = {
+	type: PropTypes.string,
 	currentProduct: PropTypes.object,
 	updateCurrentProduct: PropTypes.func.isRequired,
 	handleSave: PropTypes.func.isRequired,
@@ -82,6 +83,7 @@ ProductForm.propTypes = {
 };
 
 ProductForm.defaultProps = {
+	type: 'edit',
 	currentProduct: {},
 };
 
