@@ -12,7 +12,7 @@ import reimagned4 from 'assets/images/reimagned4.png';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
-class DirectTVNowSlider extends Component {
+class DirecTVNowSlider extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -116,12 +116,12 @@ class DirectTVNowSlider extends Component {
 	}
 }
 
-DirectTVNowSlider.propTypes = {
+DirecTVNowSlider.propTypes = {
 	currentProduct: PropTypes.object,
 };
 
-DirectTVNowSlider.defaultProps = {
+DirecTVNowSlider.defaultProps = {
 	currentProduct: {},
 };
 
-export default DirectTVNowSlider;
+export default DirecTVNowSlider;

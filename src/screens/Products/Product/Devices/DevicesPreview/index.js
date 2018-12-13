@@ -9,7 +9,7 @@ import Info from './Info';
 import Review from './Review';
 import Cost from './Cost';
 
-class Devices extends Component {
+class DevicesPreview extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -63,12 +63,12 @@ class Devices extends Component {
 	}
 }
 
-Devices.propTypes = {
+DevicesPreview.propTypes = {
 	currentProduct: PropTypes.object,
 };
 
-Devices.defaultProps = {
+DevicesPreview.defaultProps = {
 	currentProduct: {},
 };
 
-export default Devices;
+export default DevicesPreview;
