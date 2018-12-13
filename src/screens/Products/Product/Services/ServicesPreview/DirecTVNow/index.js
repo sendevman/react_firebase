@@ -1,27 +1,27 @@
 import PropTypes from 'prop-types';
 
 import InputEvent from 'components/InputEvent';
-import DirectTVNowSlider from './DirectTVNowSlider';
+import DirecTVNowSlider from './DirecTVNowSlider';
 import BasePackages from './BasePackages';
 
-class DirectTVNow extends InputEvent {
+class DirecTVNow extends InputEvent {
 	render() {
 		const { currentProduct } = this.props;
 		return (
 			<div id="products-services-directvnow" className="Container-box">
-				<DirectTVNowSlider currentProduct={currentProduct} />
+				<DirecTVNowSlider currentProduct={currentProduct} />
 				{this.renderGrid('', <BasePackages />, { background: 'black', margin: '1rem' })}
 			</div>
 		);
 	}
 }
 
-DirectTVNow.propTypes = {
+DirecTVNow.propTypes = {
 	currentProduct: PropTypes.object,
 };
 
-DirectTVNow.defaultProps = {
+DirecTVNow.defaultProps = {
 	currentProduct: {},
 };
 
-export default DirectTVNow;
+export default DirecTVNow;

@@ -26,10 +26,10 @@ class HomeView extends InputEvent {
 			subtitle: props.data.subtitle || '',
 			backTitle: props.data.backTitle || '',
 			imageNameBackSrc: props.data.bgImg || '',
-			imageNameCardSrc: props.data.img || '',
 			imgBackSrc: '',
-			imgCardSrc: '',
 			imgBackSrcType: undefined,
+			imageNameCardSrc: props.data.img || '',
+			imgCardSrc: '',
 			imgCardSrcType: undefined,
 			changeState: false,
 		};
@@ -123,6 +123,7 @@ class HomeView extends InputEvent {
 			cancelbtn,
 			title,
 		} = this.props;
+
 		return (
 			<Grid item xs={12}>
 				<div className="label-products-table select-text">{title}</div>
@@ -198,6 +199,25 @@ class HomeView extends InputEvent {
 									{this.renderText('imageNameBackSrc', '', 'upload-text-field', 'Background Image')}
 								</FormControl>
 							</div>}
+						{activeComponent.heroImage &&
+							<div className="homeview-upload-box">
+								<input
+									id={`flat-button-file-hero-${title}`}
+									className="file-input"
+									accept="image/*"
+									type="file"
+									onChange={event => this.handleInputFileChange(event, 'hero')} />
+
+								<label className="flat-button-file" htmlFor={`flat-button-file-hero-${title}`}>
+									<Button component="span" variant="contained" size="small" className="upload-button">
+										Upload
+									</Button>
+								</label>
+
+								<FormControl className="select-zone-box">
+									{this.renderText('imageNameHeroSrc', '', 'upload-text-field', 'Hero Image')}
+								</FormControl>
+							</div>}
 					</Grid>
 				</Grid>
 
@@ -214,6 +234,7 @@ class HomeView extends InputEvent {
 }
 
 HomeView.propTypes = {
+	changeState: PropTypes.bool,
 	data: PropTypes.object,
 	title: PropTypes.string,
 	activeComponent: PropTypes.object,
@@ -230,6 +251,7 @@ HomeView.propTypes = {
 };
 
 HomeView.defaultProps = {
+	changeState: false,
 	data: {},
 	title: '',
 	activeComponent: {},

@@ -1,7 +1,7 @@
 export const GET_FB_USERS = 'firebase/GET_FB_USERS';
 export const GET_FB_LOCATIONS = 'firebase/GET_FB_LOCATIONS';
 export const GET_FB_PRODUCTS = 'firebase/GET_FB_PRODUCTS';
-export const GET_FB_PRODUCT_TYPES = 'firebase/GET_FB_PRODUCT_TYPES';
+export const GET_FB_CARD_TYPES = 'firebase/GET_FB_CARD_TYPES';
 export const GET_FB_AERAS = 'firebase/GET_FB_AERAS';
 export const GET_FB_VOD = 'firebase/GET_FB_VOD';
 export const GET_FB_SUB_COLLECTION = 'firebase/GET_FB_SUB_COLLECTION';

@@ -6,10 +6,10 @@ import { connect } from 'react-redux';
 
 import Grid from '@material-ui/core/Grid';
 
-import DevicesForm from './DevicesForm';
-import ServicesForm from './ServicesForm';
-import Devices from './Devices';
-import Services from './Services';
+import DevicesForm from './Devices/DevicesForm';
+import DevicesPreview from './Devices/DevicesPreview';
+import ServicesForm from './Services/ServicesForm';
+import ServicesPreview from './Services/ServicesPreview';
 
 import { updateDoc } from 'redux/firebase/actions';
 // import { addCollection } from 'redux/firebase/actions';
@@ -49,6 +49,8 @@ class ProductPreview extends Component {
 
 	render() {
 		const { currentProduct } = this.state;
+		const { type } = this.props;
+
 		return (
 			<Grid item xs={12}>
 				{currentProduct.type === 'device' && <div className="label-products-table select-text">Info & Specs</div>}
@@ -56,18 +58,22 @@ class ProductPreview extends Component {
 				{currentProduct.fbId !== undefined &&
 					<Grid container spacing={24}>
 						<Grid item xs={12} sm={6}>
-							{currentProduct.type === 'device' && <Devices currentProduct={currentProduct} />}
-							{currentProduct.type === 'service' && <Services currentProduct={currentProduct} />}
+							{currentProduct.type === 'device' && <DevicesPreview currentProduct={currentProduct} />}
+							{currentProduct.type === 'service' && <ServicesPreview currentProduct={currentProduct} />}
 						</Grid>
+
 						<Grid item xs={12} sm={6}>
 							{currentProduct.type === 'device' &&
 								<DevicesForm
+									type={type}
 									currentProduct={currentProduct}
 									updateCurrentProduct={this.updateCurrentProduct}
 									handleSave={this.handleSave}
 									handleCancel={this.handleCancel} />}
+
 							{currentProduct.type === 'service' &&
 								<ServicesForm
+									type={type}
 									currentProduct={currentProduct}
 									updateCurrentProduct={this.updateCurrentProduct}
 									handleSave={this.handleSave}
@@ -85,12 +91,14 @@ const mapDispatchToProps = dispatch => ({
 });
 
 ProductPreview.propTypes = {
+	type: PropTypes.string,
 	currentProduct: PropTypes.object,
 	updateDoc: PropTypes.func.isRequired,
 	// addCollection: PropTypes.func.isRequired,
 };
 
 ProductPreview.defaultProps = {
+	type: 'edit',
 	currentProduct: {},
 };
 

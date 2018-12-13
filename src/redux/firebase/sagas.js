@@ -4,7 +4,7 @@ import {
   GET_FB_USERS,
   GET_FB_LOCATIONS,
   GET_FB_PRODUCTS,
-  GET_FB_PRODUCT_TYPES,
+  GET_FB_CARD_TYPES,
   GET_FB_AERAS,
   GET_FB_VOD,
   GET_CURRENT_USER,
@@ -99,7 +99,7 @@ function* asyncGetProducts() {
   yield put(setProducts(products));
 }
 
-function* asyncGetProductTypes() {
+function* asyncGetCardTypes() {
   const cardTypes = yield call(getData, 'cardTypes');
   yield put(setCardTypes(cardTypes));
 }
@@ -161,7 +161,7 @@ export function* sagaWatcher() {
   yield takeLatest(GET_FB_SUB_COLLECTION, asyncGetSubCollection);
   yield takeLatest(ADD_FB_SUB_COLLECTION_FIELD, asyncAddSubCollectionField);
   yield takeLatest(ADD_FB_DOC_FIELD, asyncAddDocField);
-  yield takeLatest(GET_FB_PRODUCT_TYPES, asyncGetProductTypes);
+  yield takeLatest(GET_FB_CARD_TYPES, asyncGetCardTypes);
 }
 
 export default [
