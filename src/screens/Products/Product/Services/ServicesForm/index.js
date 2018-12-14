@@ -14,7 +14,7 @@ import SaveIcon from '@material-ui/icons/Save';
 import InputEvent from 'components/InputEvent';
 import Card from './Card';
 
-import { getCardTypes } from 'redux/firebase/actions';
+import { addDocImageField, getCardTypes } from 'redux/firebase/actions';
 import { cardTypesSelector } from 'redux/firebase/selectors';
 
 class ProductForm extends InputEvent {
@@ -46,8 +46,37 @@ class ProductForm extends InputEvent {
 		});
 	}
 
-	handleSave = (cards) => {
-		this.props.updateCurrentProduct(cards);
+	updateCurrentProduct = (data, index) => {
+		const currentProduct = Object.assign({}, this.state.currentProduct);
+		if (currentProduct.carouselData) {
+			currentProduct.carouselData[index] = data;
+			this.setState({ currentProduct });
+			this.props.updateCurrentProduct(currentProduct);
+		}
+	}
+
+	handleSave = (index, data) => {
+		const { currentProduct } = this.state;
+		const carouselData = currentProduct.carouselData.slice();
+		carouselData[index] = data.data;
+		if (data.uploadImage) {
+			this.props.addDocImageField(
+				'products',
+				currentProduct.fbId,
+				'carouselData',
+				index,
+				carouselData,
+				data.uploadImage,
+			);
+		} else {
+			this.props.addDocImageField(
+				'products',
+				currentProduct.fbId,
+				'carouselData',
+				index,
+				carouselData,
+			);
+		}
 	}
 
 	render() {
@@ -100,8 +129,10 @@ class ProductForm extends InputEvent {
 								index={index}
 								type={type}
 								cardData={item}
+								storeId={currentProduct.fbId}
 								title="Carousel Card"
-								handleSave={this.handleSave} />, index))}
+								handleSave={this.handleSave}
+								updateCurrentProduct={this.updateCurrentProduct} />, index))}
 
 				<div className="buttons-box mt-block">
 					{this.renderButton('Save', 'green', this.props.handleSave, <SaveIcon />, 'contained', 'small')}
@@ -118,6 +149,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
 	getCardTypes: () => dispatch(getCardTypes()),
+	addDocImageField: (parent, id, field, index, data, img) => dispatch(addDocImageField(parent, id, field, index, data, img)),
 });
 
 ProductForm.propTypes = {
