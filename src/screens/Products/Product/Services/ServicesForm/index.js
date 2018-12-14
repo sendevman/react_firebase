@@ -1,4 +1,3 @@
-import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -7,17 +6,18 @@ import InputLabel from '@material-ui/core/InputLabel';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
-import Tooltip from '@material-ui/core/Tooltip';
-import Button from '@material-ui/core/Button';
 
 import AddIcon from '@material-ui/icons/Add';
+import CancelIcon from '@material-ui/icons/Close';
+import SaveIcon from '@material-ui/icons/Save';
 
-import Cards from './Cards';
+import InputEvent from 'components/InputEvent';
+import Card from './Card';
 
 import { getCardTypes } from 'redux/firebase/actions';
 import { cardTypesSelector } from 'redux/firebase/selectors';
 
-class ProductForm extends Component {
+class ProductForm extends InputEvent {
 	constructor(props) {
 		super(props);
 
@@ -46,7 +46,7 @@ class ProductForm extends Component {
 		});
 	}
 
-	updateCards = (cards) => {
+	handleSave = (cards) => {
 		this.props.updateCurrentProduct(cards);
 	}
 
@@ -57,18 +57,13 @@ class ProductForm extends Component {
 		return (
 			<div>
 				<div style={{ marginBottom: '20px' }}>
-					<Tooltip title="Add Card" placement="bottom">
-						<div>
-							<Button
-								variant="contained"
-								size="medium"
-								aria-label="Add Card"
-								className="att-white margin-top margin-left"
-								onClick={this.handleOnClick}>
-								<AddIcon /> Card
-							</Button>
-						</div>
-					</Tooltip>
+					{this.renderButton(
+						'Add Card',
+						'white',
+						this.handleOnClick,
+						<div className="d-flex align-items-center">
+							<AddIcon /> Card
+						</div>)}
 				</div>
 
 				<FormControl variant="outlined" style={{ width: '75%', marginBottom: '20px' }}>
@@ -98,12 +93,20 @@ class ProductForm extends Component {
 					</Select>
 				</FormControl>
 
-				<Cards
-					type={type}
-					currentProduct={currentProduct}
-					updateCards={this.updateCards}
-					handleSave={this.props.handleSave}
-					handleCancel={this.props.handleCancel} />
+				{currentProduct.carouselData.length > 0 &&
+					currentProduct.carouselData.map((item, index) =>
+						this.renderExpansionPanel(`Carousel Card ${index}`,
+							<Card
+								index={index}
+								type={type}
+								cardData={item}
+								title="Carousel Card"
+								handleSave={this.handleSave} />, index))}
+
+				<div className="buttons-box mt-block">
+					{this.renderButton('Save', 'green', this.props.handleSave, <SaveIcon />, 'contained', 'small')}
+					{this.renderButton('Cancel', 'red', this.props.handleCancel, <CancelIcon />, 'contained', 'small')}
+				</div>
 			</div>
 		);
 	}
