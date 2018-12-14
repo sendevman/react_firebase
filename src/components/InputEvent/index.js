@@ -77,8 +77,8 @@ class InputEvent extends Component {
 		</Grid>
 	);
 
-	renderExpansionPanel = (title, child) => (
-		<ExpansionPanel>
+	renderExpansionPanel = (title, child, index = 0) => (
+		<ExpansionPanel key={index}>
 			<ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
 				<div className="title-features margin-zero item-box">{title}</div>
 			</ExpansionPanelSummary>
