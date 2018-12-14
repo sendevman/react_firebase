@@ -19,20 +19,9 @@ class Card extends InputEvent {
 		}
 	}
 
-	handleSave = (data, src, type) => {
-		let stateCopy = Object.assign({}, this.state.cardData);
-		if (type === '') {
-			stateCopy = { ...stateCopy, ...data };
-		} else {
-			stateCopy[type] = data;
-		}
-		this.setState({ cardData: stateCopy });
-		this.props.handleSave(stateCopy);
-	}
-
 	render() {
 		const { cardData } = this.state;
-		const { index, type } = this.props;
+		const { index, storeId, type, updateCurrentProduct } = this.props;
 
 		return (
 			<div id="services-card">
@@ -40,8 +29,10 @@ class Card extends InputEvent {
 					index={index}
 					type={type}
 					data={cardData}
-					handleSave={this.handleSave}
-					handleCancel={this.handleCancel} />
+					storeId={storeId}
+					handleSave={this.props.handleSave}
+					handleCancel={this.handleCancel}
+					updateCurrentProduct={updateCurrentProduct} />
 			</div>
 		);
 	}
@@ -51,8 +42,10 @@ Card.propTypes = {
 	index: PropTypes.number.isRequired,
 	type: PropTypes.string,
 	cardData: PropTypes.object,
+	storeId: PropTypes.string.isRequired,
 	title: PropTypes.string.isRequired,
 	handleSave: PropTypes.func.isRequired,
+	updateCurrentProduct: PropTypes.func.isRequired,
 };
 
 Card.defaultProps = {
