@@ -1,6 +1,8 @@
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
+import _ from 'lodash';
+
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
@@ -8,8 +10,6 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 
 import AddIcon from '@material-ui/icons/Add';
-import CancelIcon from '@material-ui/icons/Close';
-import SaveIcon from '@material-ui/icons/Save';
 
 import InputEvent from 'components/InputEvent';
 import Card from './Card';
@@ -21,28 +21,28 @@ class ProductForm extends InputEvent {
 	constructor(props) {
 		super(props);
 
+		const cardTypeValue = _.findIndex(props.cardTypes, cardType => cardType.subType === props.currentProduct.carouselData[0].type);
 		this.state = {
 			currentProduct: props.currentProduct,
-			cardType: '',
+			cardTypeValue,
 		};
 	}
 
-	componentDidMount() {
-		const { cardTypes, getCardTypes } = this.props;
-		if (cardTypes.length === 0) {
-			getCardTypes();
-		}
-	}
-
-	componentWillReceiveProps(nextProps) {
-		if (this.props.currentProduct !== nextProps.currentProduct) {
-			this.setState({ currentProduct: nextProps.currentProduct });
+	handleOnClick = () => {
+		const { cardTypes } = this.props;
+		const { cardTypeValue } = this.state;
+		if (cardTypeValue > 0) {
+			const currentProduct = Object.assign({}, this.state.currentProduct);
+			currentProduct.carouselData.push({ ...cardTypes[cardTypeValue - 1].field, type: cardTypes[cardTypeValue - 1].subType });
+			this.setState({
+				currentProduct,
+			});
 		}
 	}
 
 	handleChange = (event) => {
 		this.setState({
-			cardType: event.target.value,
+			cardTypeValue: event.target.value,
 		});
 	}
 
@@ -81,7 +81,7 @@ class ProductForm extends InputEvent {
 
 	render() {
 		const { cardTypes, type } = this.props;
-		const { cardType, currentProduct } = this.state;
+		const { cardTypeValue, currentProduct } = this.state;
 
 		return (
 			<div>
@@ -105,7 +105,7 @@ class ProductForm extends InputEvent {
 						Card Type
 					</InputLabel>
 					<Select
-						value={cardType}
+						value={cardTypeValue}
 						onChange={this.handleChange}
 						input={
 							<OutlinedInput
@@ -117,7 +117,7 @@ class ProductForm extends InputEvent {
 					>
 						<MenuItem value=""><em>None</em></MenuItem>
 						{cardTypes.map((item, index) => (
-							<MenuItem key={index} value={(index + 1) * 10}>{item.subType}</MenuItem>
+							<MenuItem key={index} value={index}>{item.subType}</MenuItem>
 						))}
 					</Select>
 				</FormControl>
@@ -133,11 +133,6 @@ class ProductForm extends InputEvent {
 								title="Carousel Card"
 								handleSave={this.handleSave}
 								updateCurrentProduct={this.updateCurrentProduct} />, index))}
-
-				<div className="buttons-box mt-block">
-					{this.renderButton('Save', 'green', this.props.handleSave, <SaveIcon />, 'contained', 'small')}
-					{this.renderButton('Cancel', 'red', this.props.handleCancel, <CancelIcon />, 'contained', 'small')}
-				</div>
 			</div>
 		);
 	}
