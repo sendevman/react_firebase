@@ -33,7 +33,7 @@ class ProductForm extends InputEvent {
 		const { cardTypeValue } = this.state;
 		if (cardTypeValue > 0) {
 			const currentProduct = Object.assign({}, this.state.currentProduct);
-			currentProduct.carouselData.push({ ...cardTypes[cardTypeValue - 1].field, type: cardTypes[cardTypeValue - 1].subType });
+			currentProduct.carouselData.push({ ...cardTypes[cardTypeValue].fields, type: cardTypes[cardTypeValue].subType });
 			this.setState({
 				currentProduct,
 			});
