@@ -29,7 +29,7 @@ class DirecTVNowSlider extends Component {
 			<img className="carousel-list-img" src={carouselData.heroImg} alt="" />
 			<div className="carousel-list-content">
 				<div className="carousel-list-content-title">
-					<span style={{ color: '#009FDB' }}>LET'S GET</span> STREAMING!
+					<span style={{ color: '#009FDB' }}>{carouselData.title}</span>
 				</div>
 				{carouselData.bullets.map((bullet, index) => (
 					<div className="d-flex align-items-center" key={index}>

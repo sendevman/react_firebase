@@ -75,14 +75,13 @@ class CardView extends InputEvent {
 	updateCurrentProduct = () => {
 		const { body, heroImg, legal, subtitle, title, type } = this.state;
 		const { index } = this.props;
-		const data = {
-			title,
-			subtitle,
-			body,
-			legal,
-			heroImg,
-			type,
-		};
+		const data = Object.assign({}, this.props.data);
+		data.title = this.props.data.title !== undefined ? title : data.title;
+		data.subtitle = this.props.data.subtitle !== undefined ? subtitle : data.subtitle;
+		data.body = this.props.data.body !== undefined ? body : data.body;
+		data.legal = this.props.data.legal !== undefined ? legal : data.legal;
+		data.heroImg = heroImg;
+		data.type = type;
 		this.props.updateCurrentProduct(data, index);
 		this.setState({
 			changeState: false,
@@ -91,15 +90,14 @@ class CardView extends InputEvent {
 
 	handleSave = () => {
 		const { index, handleSave } = this.props;
-		const { body, imgHeroSrcType, legal, subtitle, title, type } = this.state;
-		const data = {
-			title,
-			subtitle,
-			body,
-			legal,
-			heroImg: '',
-			type,
-		};
+		const { body, heroImg, imgHeroSrcType, legal, subtitle, title, type } = this.state;
+		const data = Object.assign({}, this.props.data);
+		data.title = this.props.data.title !== undefined ? title : data.title;
+		data.subtitle = this.props.data.subtitle !== undefined ? subtitle : data.subtitle;
+		data.body = this.props.data.body !== undefined ? body : data.body;
+		data.legal = this.props.data.legal !== undefined ? legal : data.legal;
+		data.heroImg = imgHeroSrcType ? '' : heroImg;
+		data.type = type;
 		handleSave(
 			index,
 			{
@@ -116,6 +114,7 @@ class CardView extends InputEvent {
 
 	render() {
 		const { index } = this.props;
+		const { title, subtitle, body, legal } = this.props.data;
 
 		return (
 			<Grid item xs={12}>
@@ -123,10 +122,10 @@ class CardView extends InputEvent {
 				<Grid container spacing={24}>
 					<Grid item xs={12} sm={12}>
 						<FormGroup>
-							{this.renderText('title', 'Title')}
-							{this.renderText('subtitle', 'Subtitle')}
-							{this.renderText('body', 'Body')}
-							{this.renderText('legal', 'Legal')}
+							{title !== undefined && this.renderText('title', 'Title')}
+							{subtitle !== undefined && this.renderText('subtitle', 'Subtitle')}
+							{body !== undefined && this.renderText('body', 'Body')}
+							{legal !== undefined && this.renderText('legal', 'Legal')}
 						</FormGroup>
 
 						<div className="cardview-upload-box">
