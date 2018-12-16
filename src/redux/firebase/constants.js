@@ -29,4 +29,5 @@ export const FB_TMP_DELETE_IMAGE = 'firebase/FB_TMP_DELETE_IMAGE';
 
 export const UPDATE_FB_DOC = 'firebase/UPDATE_FB_DOC';
 export const ADD_FB_DOC_FIELD = 'firebase/ADD_FB_DOC_FIELD';
+export const ADD_FB_DOC_SUB_IMAGE_FIELD = 'firebase/ADD_FB_DOC_SUB_IMAGE_FIELD';
 export const ADD_FB_DOC_IMAGE_FIELD = 'firebase/ADD_FB_DOC_IMAGE_FIELD';

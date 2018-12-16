@@ -23,6 +23,7 @@ import {
 	FB_TMP_DELETE_IMAGE,
 	ADD_FB_COLLECTION_DATA,
 	ADD_FB_DOC_FIELD,
+	ADD_FB_DOC_SUB_IMAGE_FIELD,
 	ADD_FB_DOC_IMAGE_FIELD,
 	ADD_FB_SUB_COLLECTION_FIELD,
 	UPDATE_FB_DOC,
@@ -81,6 +82,11 @@ export const addDocField = createAction(
 export const addDocImageField = createAction(
 	ADD_FB_DOC_IMAGE_FIELD,
 	(parent, id, field, index, data, img) => ({ parent, id, field, index, data, img }),
+);
+
+export const addDocSubImageField = createAction(
+	ADD_FB_DOC_SUB_IMAGE_FIELD,
+	(parent, id, field, index, subField, subIndex, data, img) => ({ parent, id, field, index, subField, subIndex, data, img }),
 );
 
 /* set all data */
