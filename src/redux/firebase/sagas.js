@@ -16,6 +16,7 @@ import {
   FB_TMP_DELETE_IMAGE,
   ADD_FB_COLLECTION_DATA,
   ADD_FB_DOC_FIELD,
+  ADD_FB_DOC_SUB_IMAGE_FIELD,
   ADD_FB_DOC_IMAGE_FIELD,
   UPDATE_FB_DOC,
 } from './constants';
@@ -91,6 +92,16 @@ function* asyncAddDocImageField(param) {
   res[field] = data;
   if (img) {
     res[field][index].heroImg = yield call(uploadImage, `${parent}/${id}/carouselData/`, { name: `directv_section${index + 1}`, data: img });
+  }
+  yield call(addDocField, parent, id, res);
+}
+
+function* asyncAddDocSubImageField(param) {
+  const { parent, id, field, index, subField, subIndex, data, img } = param.payload;
+  const res = {};
+  res[field] = data;
+  if (img) {
+    res[field][index][subField][subIndex].heroImg = yield call(uploadImage, `${parent}/${id}/carouselData/subCards/`, { name: `directv_section${index + 1}`, data: img });
   }
   yield call(addDocField, parent, id, res);
 }
@@ -172,6 +183,7 @@ export function* sagaWatcher() {
   yield takeLatest(GET_FB_SUB_COLLECTION, asyncGetSubCollection);
   yield takeLatest(ADD_FB_SUB_COLLECTION_FIELD, asyncAddSubCollectionField);
   yield takeLatest(ADD_FB_DOC_FIELD, asyncAddDocField);
+  yield takeLatest(ADD_FB_DOC_SUB_IMAGE_FIELD, asyncAddDocSubImageField);
   yield takeLatest(ADD_FB_DOC_IMAGE_FIELD, asyncAddDocImageField);
   yield takeLatest(GET_FB_CARD_TYPES, asyncGetCardTypes);
 }
