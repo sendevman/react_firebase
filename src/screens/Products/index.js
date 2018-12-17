@@ -36,6 +36,14 @@ class ProductsMain extends InputEvent {
 		}
 	}
 
+	componentWillReceiveProps(nextProps) {
+		if (this.props.catalogProducts !== nextProps.catalogProducts) {
+			if (this.state.currentProductIndex !== '') {
+				this.setState({ currentProduct: nextProps.catalogProducts[this.state.currentProductIndex] });
+			}
+		}
+	}
+
 	handleCatalogClick = (row, index) => {
 		this.setState({
 			currentProduct: row._original,
@@ -106,6 +114,7 @@ class ProductsMain extends InputEvent {
 			footer: true,
 			backImage: true,
 		};
+
 		return (
 			<div id="locations-add" className="Container-box">
 				<Card className="card-box">
