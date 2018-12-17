@@ -148,7 +148,7 @@ class CardView extends InputEvent {
 						</div>
 					</Grid>
 				</Grid>
-				<div className="buttons-box">
+				<div className="buttons-box" style={{ marginBottom: '20px' }}>
 					{this.renderButton('Save', 'green', this.handleSave, <SaveIcon />, 'contained', 'small')}
 					{this.renderButton('Cancel', 'red', this.handleCancel, <CloseIcon />)}
 				</div>
