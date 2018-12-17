@@ -25,7 +25,15 @@ class ProductForm extends InputEvent {
 		this.state = {
 			currentProduct: props.currentProduct,
 			cardTypeValue,
+			changeState: false,
+			changeIndex: -1,
 		};
+	}
+
+	componentWillReceiveProps(nextProps) {
+		if (this.props.currentProduct !== nextProps.currentProduct) {
+			this.setState({ currentProduct: nextProps.currentProduct });
+		}
 	}
 
 	handleOnClick = () => {
@@ -112,9 +120,13 @@ class ProductForm extends InputEvent {
 		}
 	}
 
+	handleChangeState = (changeState, changeIndex) => {
+		this.setState({ changeState, changeIndex });
+	}
+
 	render() {
 		const { cardTypes, type } = this.props;
-		const { cardTypeValue, currentProduct } = this.state;
+		const { cardTypeValue, changeIndex, changeState, currentProduct } = this.state;
 
 		return (
 			<div>
@@ -164,10 +176,12 @@ class ProductForm extends InputEvent {
 								cardData={item}
 								storeId={currentProduct.fbId}
 								title="Carousel Card"
+								changeState={!changeState || (changeIndex === index && changeState)}
 								handleSave={this.handleSave}
 								handleBulletSave={this.handleBulletSave}
 								handleSubCardSave={this.handleSubCardSave}
-								updateCurrentProduct={this.updateCurrentProduct} />, index))}
+								updateCurrentProduct={this.updateCurrentProduct}
+								handleChangeState={this.handleChangeState} />, index))}
 			</div>
 		);
 	}
