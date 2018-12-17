@@ -34,7 +34,7 @@ class SubCard extends InputEvent {
 			this.setState({
 				body: nextProps.data.body || '',
 				title: nextProps.data.title || '',
-				imageNameSrc: this.state.imageNameSrc !== '' ? this.state.imageNameSrc : nextProps.data.img || '',
+				imageNameSrc: nextProps.data.img || '',
 				img: nextProps.data.img || '',
 			});
 		}
@@ -56,6 +56,7 @@ class SubCard extends InputEvent {
 				}, () => this.updateCurrentProduct());
 			};
 			reader.readAsDataURL(file);
+			this.props.handleChangeState(true, this.props.cardIndex);
 		}
 	}
 
@@ -72,8 +73,12 @@ class SubCard extends InputEvent {
 		const { body, img, title } = this.state;
 		const { cardIndex } = this.props;
 		const data = Object.assign({}, this.props.data);
-		data.title = this.props.data.title !== undefined ? title : data.title;
-		data.body = this.props.data.body !== undefined ? body : data.body;
+		if (this.props.data.title !== undefined) {
+			data.title = title;
+		}
+		if (this.props.data.body !== undefined) {
+			data.body = body;
+		}
 		data.img = img;
 		this.props.updateCurrentProduct(data, cardIndex);
 		this.setState({
@@ -85,8 +90,12 @@ class SubCard extends InputEvent {
 		const { index, cardIndex, handleSave } = this.props;
 		const { body, img, imgSrcType, title } = this.state;
 		const data = Object.assign({}, this.props.data);
-		data.title = this.props.data.title !== undefined ? title : data.title;
-		data.body = this.props.data.body !== undefined ? body : data.body;
+		if (this.props.data.title !== undefined) {
+			data.title = title;
+		}
+		if (this.props.data.body !== undefined) {
+			data.body = body;
+		}
 		data.img = imgSrcType ? '' : img;
 		handleSave(
 			index,
@@ -96,7 +105,8 @@ class SubCard extends InputEvent {
 				uploadImage: imgSrcType,
 			},
 		);
-		this.setState({ imageNameSrc: imgSrcType ? '' : this.props.data.img });
+		// this.setState({ imageNameSrc: this.props.data.img });
+		this.props.handleChangeState(false, -1);
 	}
 
 	handleCancel = () => {
@@ -104,7 +114,7 @@ class SubCard extends InputEvent {
 	}
 
 	render() {
-		const { index, cardIndex } = this.props;
+		const { index, cardIndex, changeState } = this.props;
 
 		return (
 			<Grid item xs={12}>
@@ -122,10 +132,10 @@ class SubCard extends InputEvent {
 								className="file-input"
 								accept="image/*"
 								type="file"
-								onChange={event => this.handleInputFileChange(event)} />
+								onChange={event => (changeState ? this.handleInputFileChange(event) : {})} />
 
 							<label className="flat-button-file" htmlFor={`flat-button-file-subCard-${index}-${cardIndex}`}>
-								<Button component="span" variant="contained" size="small" className="upload-button">
+								<Button component="span" variant="contained" size="small" className="upload-button" disabled={!changeState}>
 									Upload
 								</Button>
 							</label>
@@ -137,7 +147,7 @@ class SubCard extends InputEvent {
 					</Grid>
 				</Grid>
 				<div className="buttons-box">
-					{this.renderButton('Save', 'green', this.handleSave, <SaveIcon />, 'contained', 'small')}
+					{this.renderButton('Save', 'green', this.handleSave, <SaveIcon />, 'contained', 'small', !changeState)}
 					{this.renderButton('Cancel', 'red', this.handleCancel, <CloseIcon />)}
 				</div>
 
@@ -153,15 +163,18 @@ const mapDispatchToProps = dispatch => ({
 SubCard.propTypes = {
 	index: PropTypes.number.isRequired,
 	cardIndex: PropTypes.number.isRequired,
+	changeState: PropTypes.bool,
 	data: PropTypes.object,
 	handleSave: PropTypes.func,
 	handleCancel: PropTypes.func,
 	addSubCollectionField: PropTypes.func.isRequired,
 	updateCurrentProduct: PropTypes.func,
+	handleChangeState: PropTypes.func.isRequired,
 };
 
 SubCard.defaultProps = {
 	type: 'edit',
+	changeState: true,
 	data: {},
 	handleSave: () => {},
 	handleCancel: () => {},
