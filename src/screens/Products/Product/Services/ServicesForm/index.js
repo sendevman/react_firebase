@@ -14,7 +14,7 @@ import AddIcon from '@material-ui/icons/Add';
 import InputEvent from 'components/InputEvent';
 import Card from './Card';
 
-import { addDocImageField, getCardTypes } from 'redux/firebase/actions';
+import { addDocField, addDocImageField, addDocSubImageField, getCardTypes } from 'redux/firebase/actions';
 import { cardTypesSelector } from 'redux/firebase/selectors';
 
 class ProductForm extends InputEvent {
@@ -79,6 +79,39 @@ class ProductForm extends InputEvent {
 		}
 	}
 
+	handleBulletSave = () => {
+		const { addDocField, currentProduct } = this.props;
+		addDocField('products', currentProduct.fbId, { carouselData: this.state.currentProduct.carouselData });
+	}
+
+	handleSubCardSave = (index, subIndex, data) => {
+		const { currentProduct } = this.state;
+		const carouselData = currentProduct.carouselData.slice();
+		carouselData[index].subCards[subIndex] = data.data;
+		if (data.uploadImage) {
+			this.props.addDocSubImageField(
+				'products',
+				currentProduct.fbId,
+				'carouselData',
+				index,
+				'subCards',
+				subIndex,
+				carouselData,
+				data.uploadImage,
+			);
+		} else {
+			this.props.addDocSubImageField(
+				'products',
+				currentProduct.fbId,
+				'carouselData',
+				index,
+				'subCards',
+				subIndex,
+				carouselData,
+			);
+		}
+	}
+
 	render() {
 		const { cardTypes, type } = this.props;
 		const { cardTypeValue, currentProduct } = this.state;
@@ -132,6 +165,8 @@ class ProductForm extends InputEvent {
 								storeId={currentProduct.fbId}
 								title="Carousel Card"
 								handleSave={this.handleSave}
+								handleBulletSave={this.handleBulletSave}
+								handleSubCardSave={this.handleSubCardSave}
 								updateCurrentProduct={this.updateCurrentProduct} />, index))}
 			</div>
 		);
@@ -145,6 +180,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
 	getCardTypes: () => dispatch(getCardTypes()),
 	addDocImageField: (parent, id, field, index, data, img) => dispatch(addDocImageField(parent, id, field, index, data, img)),
+	addDocSubImageField: (parent, id, field, index, subField, subIndex, data, img) => dispatch(addDocSubImageField(parent, id, field, index, subField, subIndex, data, img)),
+	addDocField: (field, id, data) => dispatch(addDocField(field, id, data)),
 });
 
 ProductForm.propTypes = {
