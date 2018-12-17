@@ -12,6 +12,9 @@ class Card extends InputEvent {
 
 		this.state = {
 			cardData: props.cardData,
+			ownSelector: false,
+			changeSubCardState: false,
+			changeSubCardIndex: -1,
 		};
 	}
 
@@ -37,9 +40,31 @@ class Card extends InputEvent {
 		this.props.updateCurrentProduct(cardData, index);
 	}
 
+	handleChangeState = (changeState, changeIndex) => {
+		this.setState({ ownSelector: changeState });
+		this.props.handleChangeState(changeState, changeIndex);
+	}
+
+	handleChangeSubCardState = (changeSubCardState, changeSubCardIndex) => {
+		this.setState({ changeSubCardState, changeSubCardIndex });
+		this.props.handleChangeState(changeSubCardState, changeSubCardState ? this.props.index : -1);
+	}
+
 	render() {
-		const { cardData } = this.state;
-		const { index, storeId, type, handleBulletSave, handleSubCardSave, updateCurrentProduct } = this.props;
+		const {
+			cardData,
+			changeSubCardState,
+			changeSubCardIndex,
+			ownSelector,
+		} = this.state;
+		const {
+			changeState,
+			index,
+			type,
+			handleBulletSave,
+			handleSubCardSave,
+			updateCurrentProduct,
+		} = this.props;
 
 		return (
 			<div id="services-card">
@@ -47,17 +72,19 @@ class Card extends InputEvent {
 					index={index}
 					type={type}
 					data={cardData}
-					storeId={storeId}
+					changeState={changeState && !changeSubCardState}
 					handleSave={this.props.handleSave}
 					handleCancel={this.handleCancel}
-					updateCurrentProduct={updateCurrentProduct} />
+					updateCurrentProduct={updateCurrentProduct}
+					handleChangeState={this.handleChangeState} />
 
 				{(cardData.bullets && cardData.bullets.length > 0) &&
 					this.renderExpansionPanel('Bullets',
 						<Bullet
 							data={cardData.bullets}
 							updateCurrentProduct={this.updateBullet}
-							handleSave={handleBulletSave} />, 10 + index)}
+							handleSave={handleBulletSave}
+							changeState={changeState && !changeSubCardState} />, 10 + index)}
 
 				{(cardData.subCards && cardData.subCards.length > 0) &&
 					cardData.subCards.map((item, cardIndex) => (
@@ -67,7 +94,9 @@ class Card extends InputEvent {
 								data={item}
 								cardIndex={cardIndex}
 								handleSave={handleSubCardSave}
-								updateCurrentProduct={this.updateSubCards} />, 10 * (index + 1) + cardIndex)))}
+								changeState={!ownSelector && changeState && (!changeSubCardState || (changeSubCardIndex === cardIndex && changeSubCardState))}
+								updateCurrentProduct={this.updateSubCards}
+								handleChangeState={this.handleChangeSubCardState} />, 10 * (index + 1) + cardIndex)))}
 			</div>
 		);
 	}
@@ -77,17 +106,19 @@ Card.propTypes = {
 	index: PropTypes.number.isRequired,
 	type: PropTypes.string,
 	cardData: PropTypes.object,
-	storeId: PropTypes.string.isRequired,
+	changeState: PropTypes.bool,
 	title: PropTypes.string.isRequired,
 	handleSave: PropTypes.func.isRequired,
 	handleBulletSave: PropTypes.func.isRequired,
 	handleSubCardSave: PropTypes.func.isRequired,
 	updateCurrentProduct: PropTypes.func.isRequired,
+	handleChangeState: PropTypes.func.isRequired,
 };
 
 Card.defaultProps = {
 	type: 'edit',
 	cardData: {},
+	changeState: true,
 };
 
 export default Card;

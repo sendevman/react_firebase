@@ -38,7 +38,7 @@ class CardView extends InputEvent {
 				legal: nextProps.data.legal || '',
 				title: nextProps.data.title || '',
 				subtitle: nextProps.data.subtitle || '',
-				imageNameHeroSrc: this.state.imageNameHeroSrc !== '' ? this.state.imageNameHeroSrc : nextProps.data.heroImg || '',
+				imageNameHeroSrc: nextProps.data.heroImg || '',
 				heroImg: nextProps.data.heroImg || '',
 			});
 		}
@@ -60,6 +60,7 @@ class CardView extends InputEvent {
 				}, () => this.updateCurrentProduct());
 			};
 			reader.readAsDataURL(file);
+			this.props.handleChangeState(true, this.props.index);
 		}
 	}
 
@@ -76,10 +77,18 @@ class CardView extends InputEvent {
 		const { body, heroImg, legal, subtitle, title, type } = this.state;
 		const { index } = this.props;
 		const data = Object.assign({}, this.props.data);
-		data.title = this.props.data.title !== undefined ? title : data.title;
-		data.subtitle = this.props.data.subtitle !== undefined ? subtitle : data.subtitle;
-		data.body = this.props.data.body !== undefined ? body : data.body;
-		data.legal = this.props.data.legal !== undefined ? legal : data.legal;
+		if (this.props.data.title !== undefined) {
+			data.title = title;
+		}
+		if (this.props.data.subtitle !== undefined) {
+			data.subtitle = subtitle;
+		}
+		if (this.props.data.body !== undefined) {
+			data.body = body;
+		}
+		if (this.props.data.legal !== undefined) {
+			data.legal = legal;
+		}
 		data.heroImg = heroImg;
 		data.type = type;
 		this.props.updateCurrentProduct(data, index);
@@ -92,10 +101,18 @@ class CardView extends InputEvent {
 		const { index, handleSave } = this.props;
 		const { body, heroImg, imgHeroSrcType, legal, subtitle, title, type } = this.state;
 		const data = Object.assign({}, this.props.data);
-		data.title = this.props.data.title !== undefined ? title : data.title;
-		data.subtitle = this.props.data.subtitle !== undefined ? subtitle : data.subtitle;
-		data.body = this.props.data.body !== undefined ? body : data.body;
-		data.legal = this.props.data.legal !== undefined ? legal : data.legal;
+		if (this.props.data.title !== undefined) {
+			data.title = title;
+		}
+		if (this.props.data.subtitle !== undefined) {
+			data.subtitle = subtitle;
+		}
+		if (this.props.data.body !== undefined) {
+			data.body = body;
+		}
+		if (this.props.data.legal !== undefined) {
+			data.legal = legal;
+		}
 		data.heroImg = imgHeroSrcType ? '' : heroImg;
 		data.type = type;
 		handleSave(
@@ -105,7 +122,8 @@ class CardView extends InputEvent {
 				uploadImage: imgHeroSrcType,
 			},
 		);
-		this.setState({ imageNameHeroSrc: imgHeroSrcType ? '' : this.props.data.heroImg });
+		// this.setState({ imageNameHeroSrc: this.props.data.heroImg });
+		this.props.handleChangeState(false, -1);
 	}
 
 	handleCancel = () => {
@@ -113,7 +131,7 @@ class CardView extends InputEvent {
 	}
 
 	render() {
-		const { index } = this.props;
+		const { index, changeState } = this.props;
 		const { title, subtitle, body, legal } = this.props.data;
 
 		return (
@@ -134,10 +152,10 @@ class CardView extends InputEvent {
 								className="file-input"
 								accept="image/*"
 								type="file"
-								onChange={event => this.handleInputFileChange(event)} />
+								onChange={event => (changeState ? this.handleInputFileChange(event) : {})} />
 
 							<label className="flat-button-file" htmlFor={`flat-button-file-hero-${index}`}>
-								<Button component="span" variant="contained" size="small" className="upload-button">
+								<Button component="span" variant="contained" size="small" className="upload-button" disabled={!changeState}>
 									Upload
 								</Button>
 							</label>
@@ -149,7 +167,7 @@ class CardView extends InputEvent {
 					</Grid>
 				</Grid>
 				<div className="buttons-box" style={{ marginBottom: '20px' }}>
-					{this.renderButton('Save', 'green', this.handleSave, <SaveIcon />, 'contained', 'small')}
+					{this.renderButton('Save', 'green', this.handleSave, <SaveIcon />, 'contained', 'small', !changeState)}
 					{this.renderButton('Cancel', 'red', this.handleCancel, <CloseIcon />)}
 				</div>
 
@@ -165,14 +183,17 @@ const mapDispatchToProps = dispatch => ({
 CardView.propTypes = {
 	index: PropTypes.number.isRequired,
 	data: PropTypes.object,
+	changeState: PropTypes.bool,
 	handleSave: PropTypes.func,
 	handleCancel: PropTypes.func,
 	addSubCollectionField: PropTypes.func.isRequired,
 	updateCurrentProduct: PropTypes.func,
+	handleChangeState: PropTypes.func.isRequired,
 };
 
 CardView.defaultProps = {
 	type: 'edit',
+	changeState: true,
 	data: {},
 	handleSave: () => {},
 	handleCancel: () => {},
