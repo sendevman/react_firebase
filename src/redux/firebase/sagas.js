@@ -91,9 +91,11 @@ function* asyncAddDocImageField(param) {
   const res = {};
   res[field] = data;
   if (img) {
-    res[field][index].heroImg = yield call(uploadImage, `${parent}/${id}/carouselData/`, { name: `directv_section${index + 1}`, data: img });
+    res[field][index].heroImg = yield call(uploadImage, `${parent}/${id}/${field}/`, { name: `directv_section${index + 1}`, data: img });
   }
   yield call(addDocField, parent, id, res);
+  const products = yield call(getData, 'products');
+  yield put(setProducts(products));
 }
 
 function* asyncAddDocSubImageField(param) {
@@ -101,9 +103,11 @@ function* asyncAddDocSubImageField(param) {
   const res = {};
   res[field] = data;
   if (img) {
-    res[field][index][subField][subIndex].heroImg = yield call(uploadImage, `${parent}/${id}/carouselData/subCards/`, { name: `directv_section${index + 1}`, data: img });
+    res[field][index][subField][subIndex].img = yield call(uploadImage, `${parent}/${id}/${field}/${subField}/`, { name: `directv_section${index + 1}`, data: img });
   }
   yield call(addDocField, parent, id, res);
+  const products = yield call(getData, 'products');
+  yield put(setProducts(products));
 }
 
 function* asyncGetUsers() {
