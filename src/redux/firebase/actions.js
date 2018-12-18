@@ -81,7 +81,7 @@ export const addDocField = createAction(
 
 export const addDocImageField = createAction(
 	ADD_FB_DOC_IMAGE_FIELD,
-	(parent, id, field, index, data, img) => ({ parent, id, field, index, data, img }),
+	(parent, id, field, index, data, imgItem, img) => ({ parent, id, field, index, data, imgItem, img }),
 );
 
 export const addDocSubImageField = createAction(
