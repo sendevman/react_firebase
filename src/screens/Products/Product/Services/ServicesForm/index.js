@@ -74,6 +74,7 @@ class ProductForm extends InputEvent {
 				'carouselData',
 				index,
 				carouselData,
+				'heroImg',
 				data.uploadImage,
 			);
 		} else {
@@ -82,6 +83,7 @@ class ProductForm extends InputEvent {
 				currentProduct.fbId,
 				'carouselData',
 				index,
+				'heroImg',
 				carouselData,
 			);
 		}
@@ -193,7 +195,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
 	getCardTypes: () => dispatch(getCardTypes()),
-	addDocImageField: (parent, id, field, index, data, img) => dispatch(addDocImageField(parent, id, field, index, data, img)),
+	addDocImageField: (parent, id, field, index, data, imgItem, img) => dispatch(addDocImageField(parent, id, field, index, data, imgItem, img)),
 	addDocSubImageField: (parent, id, field, index, subField, subIndex, data, img) => dispatch(addDocSubImageField(parent, id, field, index, subField, subIndex, data, img)),
 	addDocField: (field, id, data) => dispatch(addDocField(field, id, data)),
 });
