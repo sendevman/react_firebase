@@ -87,11 +87,21 @@ function* asyncAddDocField(param) {
 }
 
 function* asyncAddDocImageField(param) {
-  const { parent, id, field, index, data, img } = param.payload;
-  const res = {};
-  res[field] = data;
+  const { parent, id, field, index, data, imgItem, img } = param.payload;
+  let res = {};
+  if (field !== '') {
+    res[field] = data;
+  } else {
+    res = data;
+  }
   if (img) {
-    res[field][index].heroImg = yield call(uploadImage, `${parent}/${id}/${field}/`, { name: `directv_section${index + 1}`, data: img });
+    if (index) {
+      res[field][index][imgItem] = yield call(uploadImage, `${parent}/${id}/${field}/`, { name: `directv_section${index + 1}`, data: img });
+    } else if (field !== '') {
+      res[field][imgItem] = yield call(uploadImage, `${parent}/${id}/${field}/`, { name: `directv_section${index + 1}`, data: img });
+    } else {
+      res[imgItem] = yield call(uploadImage, `${parent}/${id}/${field}/`, { name: `directv_section${index + 1}`, data: img });
+    }
   }
   yield call(addDocField, parent, id, res);
   const products = yield call(getData, 'products');
