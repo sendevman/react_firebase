@@ -23,13 +23,6 @@ class ProductImport extends InputEvent {
   }
 
   handleSave = () => {
-    // const data = [
-    //   { apiUrl: this.state.apiUrl },
-    //   { manufacture: this.state.manufacture },
-    //   { model: this.state.model },
-    //   { opusId: this.state.opusId },
-    //   { type: this.state.type },
-    // ];
     this.props.handleSave(this.state);
   }
 

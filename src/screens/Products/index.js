@@ -7,9 +7,10 @@ import Grid from '@material-ui/core/Grid';
 
 import ProductPreview from './Product/ProductPreview';
 import ProductImport from './Product/ProductImport';
+import ProductCard from './Product/ProductCard';
 import InputEvent from 'components/InputEvent';
 import TableList from 'components/TableList';
-import HomeView from 'components/HomeView';
+// import HomeView from 'components/HomeView';
 
 import { addDocField, getProducts, getCardTypes, getSubCollection } from 'redux/firebase/actions';
 import { cardTypesSelector, productsSelector } from 'redux/firebase/selectors';
@@ -33,6 +34,14 @@ class ProductsMain extends InputEvent {
 		}
 		if (cardTypes.length === 0) {
 			getCardTypes();
+		}
+	}
+
+	componentWillReceiveProps(nextProps) {
+		if (this.props.catalogProducts !== nextProps.catalogProducts) {
+			if (this.state.currentProductIndex !== '') {
+				this.setState({ currentProduct: nextProps.catalogProducts[this.state.currentProductIndex] });
+			}
 		}
 	}
 
@@ -100,12 +109,7 @@ class ProductsMain extends InputEvent {
 				accessor: 'subType',
 			},
 		];
-		const cardProductComponent = {
-			title: true,
-			subtitle: true,
-			footer: true,
-			backImage: true,
-		};
+
 		return (
 			<div id="locations-add" className="Container-box">
 				<Card className="card-box">
@@ -137,20 +141,29 @@ class ProductsMain extends InputEvent {
 										type={addProductEnable ? 'add' : 'edit'} />)}
 
 							{((editProductEnable && editProductIndex !== '') || addProductEnable) &&
-								(currentProduct.type === 'service' || currentProduct.type === 'device') &&
+								currentProduct.type === 'service' &&
 								this.renderGrid('dark-blue',
-									<HomeView
-										title="Product Card"
-										activeComponent={cardProductComponent}
-										prevbtn
-										savebtn
-										importbtn
-										archbtn
-										handlePreview={this.handleTitlePreview}
-										handleSave={this.handleTitleSave}
-										handleImport={this.handleTitleImport}
-										handleArchive={this.handleTitleArchive}
-										type={addProductEnable ? 'add' : 'edit'} />)}
+									<ProductCard
+										img={currentProduct.img}
+										subtitle={currentProduct.subtitle}
+										title={currentProduct.title}
+										type={currentProduct.type}
+									/>)}
+
+							{((editProductEnable && editProductIndex !== '') || addProductEnable) &&
+								currentProduct.type === 'device' &&
+								this.renderGrid('dark-blue',
+									<ProductCard
+										camera={currentProduct.camera}
+										firstnet
+										img={currentProduct.img}
+										manufacture={currentProduct.manufacture}
+										memory={currentProduct.memory}
+										model={currentProduct.model}
+										storage={currentProduct.deviceOptions}
+										fbId={currentProduct.fbId}
+										type={currentProduct.type}
+									/>)}
 
 							{((editProductEnable && editProductIndex !== '') || addProductEnable) &&
 								(currentProduct.type === 'service' || currentProduct.type === 'device') &&
