@@ -3,22 +3,36 @@ import {
 	GET_FB_USERS,
 	GET_FB_LOCATIONS,
 	GET_FB_PRODUCTS,
+	GET_FB_CARD_TYPES,
 	GET_FB_AERAS,
 	GET_FB_VOD,
 	GET_CURRENT_USER,
+	GET_FB_SUB_COLLECTION,
 	SET_STORE_USERS,
 	SET_STORE_LOCATIONS,
 	SET_STORE_PRODUCTS,
+	SET_STORE_CARD_TYPES,
 	SET_STORE_AERAS,
 	SET_STORE_VOD,
+	SET_SUB_COLLECTION,
 	SET_CURRENT_USER,
 	SET_USER_ERROR,
 	FB_AUTH_LOGIN,
 	FB_AUTH_LOGOUT,
 	FB_TMP_UPLOAD_IMAGE,
 	FB_TMP_DELETE_IMAGE,
-	FB_UPLOAD_IMAGE,
+	ADD_FB_COLLECTION_DATA,
+	ADD_FB_DOC_FIELD,
+	ADD_FB_DOC_SUB_IMAGE_FIELD,
+	ADD_FB_DOC_IMAGE_FIELD,
+	ADD_FB_SUB_COLLECTION_FIELD,
+	UPDATE_FB_DOC,
 } from './constants';
+
+export const updateDoc = createAction(
+	UPDATE_FB_DOC,
+	(field, id, data) => ({ field, id, data }),
+);
 
 export const getUsers = createAction(
 	GET_FB_USERS,
@@ -32,12 +46,53 @@ export const getProducts = createAction(
 	GET_FB_PRODUCTS,
 );
 
+export const getCardTypes = createAction(
+	GET_FB_CARD_TYPES,
+);
+
 export const getAreas = createAction(
 	GET_FB_AERAS,
 );
 
 export const getVod = createAction(
 	GET_FB_VOD,
+);
+
+export const getSubCollection = createAction(
+	GET_FB_SUB_COLLECTION,
+	(parent, id, child) => ({ parent, id, child }),
+);
+
+/* add data */
+export const addCollectionData = createAction(
+	ADD_FB_COLLECTION_DATA,
+	(collection, location) => ({ collection, location }),
+);
+
+export const addSubCollectionField = createAction(
+	ADD_FB_SUB_COLLECTION_FIELD,
+	(parent, id, child, childId, field, data) => ({ parent, id, child, childId, field, data }),
+);
+
+export const addDocField = createAction(
+	ADD_FB_DOC_FIELD,
+	(field, id, data) => ({ field, id, data }),
+);
+
+export const addDocImageField = createAction(
+	ADD_FB_DOC_IMAGE_FIELD,
+	(parent, id, field, index, data, imgItem, img) => ({ parent, id, field, index, data, imgItem, img }),
+);
+
+export const addDocSubImageField = createAction(
+	ADD_FB_DOC_SUB_IMAGE_FIELD,
+	(parent, id, field, index, subField, subIndex, data, img) => ({ parent, id, field, index, subField, subIndex, data, img }),
+);
+
+/* set all data */
+export const setSubCollection = createAction(
+	SET_SUB_COLLECTION,
+	(parent, id, child, subCollection) => ({ parent, id, child, subCollection }),
 );
 
 export const setUsers = createAction(
@@ -55,6 +110,11 @@ export const setProducts = createAction(
 	(products) => ({ products }),
 );
 
+export const setCardTypes = createAction(
+	SET_STORE_CARD_TYPES,
+	(cardTypes) => ({ cardTypes }),
+);
+
 export const setAreas = createAction(
 	SET_STORE_AERAS,
 	(areas) => ({ areas }),
@@ -65,15 +125,7 @@ export const setVod = createAction(
 	(vod) => ({ vod }),
 );
 
-export const authLogin = createAction(
-	FB_AUTH_LOGIN,
-	(auth) => ({ auth }),
-);
-
-export const authLogout = createAction(
-	FB_AUTH_LOGOUT,
-);
-
+/* user */
 export const getCurrentUser = createAction(
 	GET_CURRENT_USER,
 	(userId) => ({ userId }),
@@ -89,6 +141,7 @@ export const setUserError = createAction(
 	(userError) => ({ userError }),
 );
 
+/* image */
 export const uploadTmpImage = createAction(
 	FB_TMP_UPLOAD_IMAGE,
 	(file) => ({ file }),
@@ -99,7 +152,12 @@ export const deleteTmpImage = createAction(
 	(file) => ({ file }),
 );
 
-export const uploadImage = createAction(
-	FB_UPLOAD_IMAGE,
-	(file) => ({ file }),
+/* auth */
+export const authLogin = createAction(
+	FB_AUTH_LOGIN,
+	(auth) => ({ auth }),
+);
+
+export const authLogout = createAction(
+	FB_AUTH_LOGOUT,
 );

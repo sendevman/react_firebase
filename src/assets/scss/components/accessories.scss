@@ -1,0 +1,26 @@
+.component-accessories-container {
+	.content-box {
+		// position: relative;
+		.accessories-bg {
+			// position: absolute;
+			width: calc(100% + 48px);
+			margin: -24px;
+		}
+		.accessories-title {
+			margin-bottom: 2rem;
+			font-size: 4.5rem;
+			line-height: initial;
+		}
+		.accessories-container {
+			display: flex;
+			flex-flow: column;
+			.accessorie-item-container {
+				margin-left: 1.5rem;
+				margin-right: 1.5rem;
+				.accessorie-item-title {
+					text-align: left;
+				}
+			}
+		}
+	}
+}

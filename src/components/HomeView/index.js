@@ -1,185 +1,270 @@
 import PropTypes from 'prop-types';
 
 import Button from '@material-ui/core/Button';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Grid from '@material-ui/core/Grid';
 import FormControl from '@material-ui/core/FormControl';
-import TextField from '@material-ui/core/TextField';
-import Tooltip from '@material-ui/core/Tooltip';
 import FormGroup from '@material-ui/core/FormGroup';
 
 import ArchivelIcon from '@material-ui/icons/Archive';
 import SaveIcon from '@material-ui/icons/Save';
 import PreviewIcon from '@material-ui/icons/Streetview';
 import ImportIcon from '@material-ui/icons/ImportExport';
+import CloseIcon from '@material-ui/icons/Close';
 
 import InputEvent from 'components/InputEvent';
 
-import imgDefault from 'assets/images/imgDefault.png';
+import ImgDefault from 'assets/images/imgDefault.png';
 
 class HomeView extends InputEvent {
 	constructor(props) {
 		super(props);
 
 		this.state = {
-			footer: '',
-			image: '',
-			subtitle: '',
-			title: '',
-			backTitle: '',
+			footer: props.data.footer || '',
+			title: props.data.title || '',
+			subtitle: props.data.subtitle || '',
+			backTitle: props.data.backTitle || '',
+			imageNameBackSrc: props.data.bgImg || '',
+			imgBackSrc: '',
+			imgBackSrcType: undefined,
+			imageNameCardSrc: props.data.img || '',
+			imgCardSrc: '',
+			imgCardSrcType: undefined,
+			changeState: false,
 		};
 	}
 
-	handleInputFileChange = (event) => {
+	componentWillReceiveProps(nextProps) {
+		const { changeState, data } = this.props;
+		if (data !== nextProps.data) {
+			this.setState({
+				footer: nextProps.data.footer || '',
+				title: nextProps.data.title || '',
+				subtitle: nextProps.data.subtitle || '',
+				backTitle: nextProps.data.backTitle || '',
+				imageNameBackSrc: nextProps.data.bgImg || '',
+				imageNameCardSrc: nextProps.data.img || '',
+			});
+		}
+		if (changeState !== nextProps.changeState) {
+			this.setState({ changeState: nextProps.changeState });
+		}
+	}
+
+	handleInputFileChange = (event, type) => {
 		const target = event.target;
 		const file = target.files[0];
 
-		if (file) this.setState({ image: file.name });
-		else this.setState({ image: '' });
+		if (file) {
+			this.setState({ });
+			const reader = new FileReader();
+			reader.onload = () => {
+				if (type === 'back') {
+					this.setState({
+						imgBackSrc: reader.result,
+						imageNameBackSrc: file.name,
+						imgBackSrcType: file,
+						changeState: true,
+					});
+				} else {
+					this.setState({
+						imgCardSrc: reader.result,
+						imageNameCardSrc: file.name,
+						imgCardSrcType: file,
+						changeState: true,
+					});
+				}
+			};
+			reader.readAsDataURL(file);
+		} else {
+			this.setState({ image: '' });
+		}
+	}
+
+	handleInputChange = (e, type) => {
+		const stateCopy = Object.assign({}, this.state);
+		stateCopy[type] = e.target.value;
+		this.setState({
+			...stateCopy,
+			changeState: true,
+		});
+	};
+
+	handleSave = () => {
+		const { footer, title, subtitle, imgBackSrcType, imageNameBackSrc, imgCardSrcType, imageNameCardSrc } = this.state;
+		const data = {
+			footer,
+			title,
+			subtitle,
+			img: imageNameCardSrc,
+			bgImg: imageNameBackSrc,
+		};
+		this.props.handleSave(data, imgBackSrcType, imgCardSrcType);
+		this.setState({
+			changeState: false,
+		});
 	}
 
 	render() {
-		const { footer, image, subtitle, title, backTitle } = this.state;
-		const { activeComponent } = this.props;
+		const {
+			changeState,
+			imageNameBackSrc,
+			imgBackSrc,
+			imageNameCardSrc,
+			imgCardSrc,
+		} = this.state;
+		const {
+			activeComponent,
+			prevbtn,
+			savebtn,
+			importbtn,
+			archbtn,
+			cancelbtn,
+			title,
+		} = this.props;
+
 		return (
 			<Grid item xs={12}>
-				<Card>
-					<CardContent className="left-border-orange single">
-						<div className="label-products-table select-text">{this.props.title}</div>
+				<div className="label-products-table select-text">{title}</div>
 
-						<Grid container spacing={24}>
-							<Grid item xs={12} sm={6}>
+				<Grid container spacing={24}>
+					<Grid item xs={12} sm={6}>
+						<div className="homeviewer-cardmedia-contaienr">
+							{(!activeComponent.cardImage || activeComponent.backImage) &&
 								<CardMedia
-									className="homeview-card-media"
-									image={imgDefault}
+									className="homeview-back-media"
+									image={imgBackSrc || imageNameBackSrc || ImgDefault}
 									title="Contemplative Reptile"
-								/>
-							</Grid>
-
-							<Grid item xs={12} sm={6}>
-								<FormGroup>
-									{activeComponent.title && this.subrender('title', 'Title', title)}
-									{activeComponent.subtitle && this.subrender('subtitle', 'Subtitle', subtitle)}
-									{activeComponent.footer && this.subrender('footer', 'Footer', footer)}
-								</FormGroup>
-
-								{activeComponent.cardImage &&
-									<div className="homeview-upload-box">
-										<input
-											id="flat-button-file"
-											className="file-input"
-											accept="image/*"
-											type="file"
-											onChange={this.handleInputFileChange} />
-
-										<label className="flat-button-file" htmlFor="flat-button-file">
-											<Button component="span" variant="contained" size="small" className="upload-button">
-												Upload
-											</Button>
-										</label>
-
-										<FormControl className="select-zone-box">
-											<TextField
-												className="upload-text-field"
-												type="text"
-												placeholder="Card Image"
-												value={image}
-												required
-												margin="normal"
-											/>
-										</FormControl>
-									</div>}
-								{activeComponent.backTitle &&
-									<FormGroup>
-										{this.subrender('backTitle', 'Background Title', backTitle)}
-									</FormGroup>}
-								{activeComponent.backImage &&
-									<div className="homeview-upload-box">
-										<input
-											id="flat-button-file"
-											className="file-input"
-											accept="image/*"
-											type="file"
-											onChange={this.handleInputFileChange} />
-
-										<label className="flat-button-file" htmlFor="flat-button-file">
-											<Button component="span" variant="contained" size="small" className="upload-button">
-												Upload
-											</Button>
-										</label>
-
-										<FormControl className="select-zone-box">
-											<TextField
-												className="upload-text-field"
-												type="text"
-												placeholder="Background Image"
-												value={image}
-												required
-												margin="normal"
-											/>
-										</FormControl>
-									</div>}
-							</Grid>
-						</Grid>
-
-						<div className="buttons-box">
-							<Tooltip title="Preview" placement="top">
-								<Button
-									variant="contained"
-									size="small"
-									aria-label="Preview"
-									className="btn-icon-text att-blue margin-top margin-left">
-									<PreviewIcon />
-								</Button>
-							</Tooltip>
-
-							<Tooltip title="Save" placement="top">
-								<Button
-									variant="contained"
-									size="small"
-									aria-label="Save"
-									className="btn-icon-text att-red margin-top margin-left">
-									<SaveIcon />
-								</Button>
-							</Tooltip>
-
-							<Tooltip title="Import" placement="top">
-								<Button
-									variant="contained"
-									size="small"
-									aria-label="Import"
-									className="btn-icon-text att-green margin-top margin-left">
-									<ImportIcon />
-								</Button>
-							</Tooltip>
-
-							<Tooltip title="Archive" placement="top">
-								<Button
-									variant="contained"
-									size="small"
-									aria-label="Archive"
-									className="btn-icon-text att-orange margin-top margin-left">
-									<ArchivelIcon />
-								</Button>
-							</Tooltip>
+								/>}
+							{(activeComponent.cardImage && (imgCardSrc !== '' || imageNameCardSrc || !activeComponent.backImage)) &&
+								<CardMedia
+									className={activeComponent.backImage === false ? 'homeview-back-media' : 'homeview-card-media'}
+									image={imgCardSrc || imageNameCardSrc || ImgDefault}
+									title="Contemplative Reptile"
+								/>}
+							<div className="homeviewer-cardmedia-content">
+								<div className="homeviewer-cardmedia-title">{this.state.title}</div>
+								<div className="homeviewer-cardmedia-subtitle">{this.state.subtitle}</div>
+								<div className="homeviewer-cardmedia-footer">{this.state.footer}</div>
+							</div>
 						</div>
-					</CardContent>
-				</Card>
+					</Grid>
+
+					<Grid item xs={12} sm={6}>
+						<FormGroup>
+							{activeComponent.title && this.renderText('title', 'Title')}
+							{activeComponent.subtitle && this.renderText('subtitle', 'Subtitle')}
+							{activeComponent.footer && this.renderText('footer', 'Footer')}
+						</FormGroup>
+
+						{activeComponent.cardImage &&
+							<div className="homeview-upload-box">
+								<input
+									id={`flat-button-file-card-${title}`}
+									className="file-input"
+									accept="image/*"
+									type="file"
+									onChange={event => this.handleInputFileChange(event, 'card')} />
+
+								<label className="flat-button-file" htmlFor={`flat-button-file-card-${title}`}>
+									<Button component="span" variant="contained" size="small" className="upload-button">
+										Upload
+									</Button>
+								</label>
+								<FormControl className="select-zone-box">
+									{this.renderText('imageNameCardSrc', '', 'upload-text-field', 'Card Image')}
+								</FormControl>
+							</div>}
+						{activeComponent.backTitle &&
+							<FormGroup>
+								{this.renderText('backTitle', 'Background Title')}
+							</FormGroup>}
+						{activeComponent.backImage &&
+							<div className="homeview-upload-box">
+								<input
+									id={`flat-button-file-back-${title}`}
+									className="file-input"
+									accept="image/*"
+									type="file"
+									onChange={event => this.handleInputFileChange(event, 'back')} />
+
+								<label className="flat-button-file" htmlFor={`flat-button-file-back-${title}`}>
+									<Button component="span" variant="contained" size="small" className="upload-button">
+										Upload
+									</Button>
+								</label>
+
+								<FormControl className="select-zone-box">
+									{this.renderText('imageNameBackSrc', '', 'upload-text-field', 'Background Image')}
+								</FormControl>
+							</div>}
+						{activeComponent.heroImage &&
+							<div className="homeview-upload-box">
+								<input
+									id={`flat-button-file-hero-${title}`}
+									className="file-input"
+									accept="image/*"
+									type="file"
+									onChange={event => this.handleInputFileChange(event, 'hero')} />
+
+								<label className="flat-button-file" htmlFor={`flat-button-file-hero-${title}`}>
+									<Button component="span" variant="contained" size="small" className="upload-button">
+										Upload
+									</Button>
+								</label>
+
+								<FormControl className="select-zone-box">
+									{this.renderText('imageNameHeroSrc', '', 'upload-text-field', 'Hero Image')}
+								</FormControl>
+							</div>}
+					</Grid>
+				</Grid>
+
+				<div className="buttons-box">
+					{prevbtn && this.renderButton('Preview', 'blue', () => {}, <PreviewIcon />)}
+					{savebtn && this.renderButton('Save', 'green', () => this.handleSave(), <SaveIcon />, 'contained', 'medium', !changeState)}
+					{importbtn && this.renderButton('Import', 'purple', () => {}, <ImportIcon />)}
+					{archbtn && this.renderButton('Archive', 'orange', () => {}, <ArchivelIcon />)}
+					{cancelbtn && this.renderButton('Cancel', 'red', () => {}, <CloseIcon />)}
+				</div>
 			</Grid>
 		);
 	}
 }
 
 HomeView.propTypes = {
+	changeState: PropTypes.bool,
+	data: PropTypes.object,
 	title: PropTypes.string,
 	activeComponent: PropTypes.object,
+	prevbtn: PropTypes.bool,
+	savebtn: PropTypes.bool,
+	importbtn: PropTypes.bool,
+	archbtn: PropTypes.bool,
+	cancelbtn: PropTypes.bool,
+	handlePreview: PropTypes.func,
+	handleSave: PropTypes.func,
+	handleImport: PropTypes.func,
+	handleArchive: PropTypes.func,
+	handleCancel: PropTypes.func,
 };
 
 HomeView.defaultProps = {
+	changeState: false,
+	data: {},
 	title: '',
 	activeComponent: {},
+	prevbtn: false,
+	savebtn: false,
+	importbtn: false,
+	archbtn: false,
+	cancelbtn: false,
+	handlePreview: () => {},
+	handleSave: () => {},
+	handleImport: () => {},
+	handleArchive: () => {},
+	handleCancel: () => {},
 };
 
 export default HomeView;

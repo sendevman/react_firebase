@@ -11,7 +11,9 @@
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "react-hot-loader": "^4.3.11",
+    "react-rating": "^1.5.0",
     "react-redux": "^5.0.7",
+    "react-responsive-carousel": "^3.1.43",
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.0.5",
     "react-table": "^6.8.6",
@@ -19,7 +21,8 @@
     "redux-actions": "^2.6.1",
     "redux-immutable": "^4.0.0",
     "redux-saga": "^0.16.2",
-    "reselect": "^4.0.0"
+    "reselect": "^4.0.0",
+    "resolve-url-loader": "^3.0.0"
   },
   "devDependencies": {
     "ava": "^0.18.2",
@@ -53,6 +56,7 @@
     "react-addons-test-utils": "^15.6.2",
     "react-hot-loader": "^3.1.2",
     "react-test-renderer": "^15.6.2",
+    "rimraf": "^2.6.2",
     "sass-lint": "^1.12.1",
     "sass-loader": "^6.0.6",
     "serve": "^10.0.2",
@@ -75,10 +79,7 @@
   "eslintConfig": {
     "extends": "react-app"
   },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ]
+  "engines": {
+    "yarn": ">=1.0.0"
+  }
 }

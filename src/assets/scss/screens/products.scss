@@ -13,6 +13,7 @@
   min-height: 270px;
 }
 
+.color-fields,
 .upload-box {
   position: relative;
 
@@ -79,4 +80,620 @@
 .expand-div {
   width: 100%;
   margin-top: -14px;
+}
+
+#products-manage,
+#products-man-phone,
+#products-add {
+	margin: auto;
+	max-width: 62.5rem;
+}
+
+#products-man-tab {
+	.info {
+		border-left: 5px solid $orange;
+	}
+	.users {
+		border-left: 5px solid $dark-purple;
+	}
+	.zones {
+		border-left: 5px solid $red;
+	}
+	.products {
+		border-left: 5px solid $green;
+	}
+}
+
+.color-fields,
+.display-fields,
+.camera-fields {
+  margin-bottom: 1.5rem;
+}
+
+.summary-fields {
+  .summary-description {
+    width: 100%;
+    border-radius: 0.25rem;
+    border: 1px solid;
+    margin-bottom: 1.5rem;
+  }
+}
+
+/* Services/WatchTV */
+#products-services-watchtv {
+  background: #009FDB;
+  #watchtv-topicon {
+    .watchtv-topIconView {
+      display: flex;
+      background-color: #0060C4; 
+      width: 100%;
+      height: 3.75rem;
+      justify-content: space-between;
+      align-items: center;
+      padding-right: 0.625rem;
+
+      .watchtv-topicon-1,
+      .watchtv-topicon-2,
+      .watchtv-topicon-3 {
+        width: 1.8125rem;
+        height: 0.9375rem;
+        margin-bottom: 0.3125rem;
+      }
+      .watchtv-topicon-2 {
+        width: 1rem;
+        height: 1rem;
+      }
+      .watchtv-topicon-3 {
+        width: 0.875rem;
+        height: 1rem;
+        margin-bottom: 0.3125rem;
+      }
+
+      .watchtv-txtSmall {
+        color: #FFF;
+        font-size: 0.5rem;
+        font-weight: bold;
+        text-align: center;
+      }
+    }
+  }
+  #watchtv-channel,
+  #watchtv-destination,
+  #watchtv-getmore,
+  #watchtv-livetv {
+    .txtSaveDescription {
+      color: #333;
+      padding-right: 0.625rem;
+      padding-left: 0.625rem;
+      font-size: 1rem;
+      font-weight: 300;
+      line-height: 1.375rem;
+      margin-top: 0.625rem;
+      margin-bottom: 0.625rem;
+    }
+    .title-img-containers {
+      display: flex;
+      margin-top: 0.625rem;
+      align-items: center;
+      justify-content: space-around;
+      .title-img-container {
+        align-items: center;
+        justify-content: center;
+        .left {
+          width: 7.5rem;
+          height: 4.0625rem;
+        }
+        .right {
+          width: 6.25rem;
+          height: 12.5rem;
+        }
+      }
+    }
+    .features {
+      margin-bottom: 1.25rem;
+      .each-feature {
+        display: flex;
+        align-items: center;
+        padding-top: 0.3125rem;
+        padding-bottom: 0.3125rem;
+        padding-right: 0.625rem;
+        padding-left: 0.625rem;
+        .icon-4,
+        .icon-6 {
+          width: 2.375rem;
+          height: 1.25rem;
+        }
+        .icon-5 {
+          width: 2.125rem;
+          height: 1.75rem;
+        }
+        .description {
+          font-size: 0.875rem;
+          font-weight: bold;
+          margin-left: 1.25rem;
+        }
+      }
+    }
+  }
+  #watchtv-getmore {
+    .new-perks {
+      padding-right: 0.625rem;
+      padding-left: 0.625rem;
+      margin-top: 0.625rem;
+      font-size: 2rem;
+      font-weight: bold;
+      color: #005FC0;
+    }
+    .check-blue {
+      width: 1.375rem;
+      height: 1rem;
+    }
+    .getmore-left {
+      width: 10rem;
+    }
+    .getmore-right {
+      width: 6.25rem;
+    }
+  }
+  #watchtv-destination {
+    .channel-img-containers,
+    .destination-img-containers {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      .destination-img {
+        width: 5.625rem;
+        height: 5.625rem;
+      }
+    }
+    .destination-anywhere {
+      width: 85%;
+      height: 25.5%;
+      margin-top: 0.625rem;
+    }
+  }
+  #watchtv-channel {
+    .channel-img {
+      width: 6.25rem;
+    }
+  }
+}
+
+/* Services/DirecTV */
+#products-services-directv {
+  background: #009FDB;
+  #directv-slider {
+    // .carousel {
+    //   display: none;
+    // }
+    .carousel.carousel-slider {
+      display: block;
+      .slider-wrapper {
+        ul {
+          li.slide {
+            // position: relative;
+            min-width: 85% !important;
+            margin-left: 2.5%;
+            margin-right: 2.5%;
+            background: transparent;
+            .carousel-list {
+              .carousel-list-img {
+                width: 45%;
+              }
+              .carousel-list-content {
+                background: white;
+                margin-top: -24%;
+                border-radius: .5rem;
+                padding: 0.5rem;
+                padding-top: 30%;
+                .carousel-list-content-title {
+                  margin-top: 1rem;
+                  margin-bottom: 0.6rem;
+                  font-size: 1.6rem;
+                  font-weight: bold;
+                }
+                .carousel-list-content-desc {
+                  text-align: start;
+                  font-size: 0.9rem;              
+                }
+              }
+            }
+          }
+          li.slide:first-child {
+            min-width: 85% !important;
+            margin-left: 7.5%;
+            margin-right: 2.5%;
+          }
+          li.slide:last-child {
+            min-width: 85% !important;
+            margin-left: 2.5%;
+            margin-right: 7.5%;
+          }
+        }
+      }
+      button.control-arrow.control-next,
+      button.control-arrow.control-prev {
+        display: none;
+      }
+    }
+    .carousel-list-legal {
+      background: transparent;
+      color: white;
+      font-size: 0.8rem;
+      margin: auto;
+      margin-top: 1.2rem;
+    }
+  }
+  .service-directv-txtTitle {
+    width: 80%;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+    color: white;
+    margin: auto;
+    margin-top: 1.5rem;
+    margin-bottom: 0.3125rem;
+  }
+  #directv-reliability {
+    .reliability-img {
+      width: 100%;
+      margin-top: 1.2rem;
+      margin-bottom: 1.2rem;
+    }
+    .reliability-content-title {
+      text-align: center;
+      margin-top: 1rem;
+      margin-bottom: 0.6rem;
+      font-size: 0.9rem;
+    }
+    .reliability-content {
+      font-size: 0.8rem;
+    }
+  }
+  #directv-package {
+    margin-right: -1.5rem;
+    margin-left: -1.5rem;
+    padding-top: 0.5rem;
+    background: white;
+    .directv-package-logo {
+      display: flex;
+      flex-flow: column;
+      align-items: center;
+      margin-bottom: 0.5rem;
+    }
+    .directv-pages-container {
+      width: 100%;
+      height: 4.75rem;
+      background: white;
+      display: flex;
+      .directv-package-search {
+        // width: 3.25rem;
+        display: flex;
+        flex: 1;
+        justify-content: center;
+        align-items: center;
+        background: white;
+        color: black;
+        font-size: 0.9em;
+        // padding-right: 0.3rem;
+        // padding-left: 0.3rem;
+      }
+      .directv-each-package {
+        display: flex;
+        align-items: center;
+        flex-flow: column;
+        flex: 1;
+        justify-content: center;
+        .directv-each-package-price {
+          color: white;
+          font-weight: bold;
+          font-size: 0.6875rem;
+        }
+        .directv-each-package-desc {
+          color: white;
+          font-size: 0.5rem;
+        }
+      }
+    }
+    .directv-search-text {
+      width: calc(100% - 0.125rem);
+      height: 2.5rem;
+      background: white;
+      border-color: gray;
+      border-width: 0.0625rem;
+      display: flex;
+      justify-content: center;
+      flex-flow: column;
+      padding: 0;
+    }
+    .directv-packages-state {
+      background: #efefef;
+      width: 100%;
+      .directv-99-local {
+        display: flex;
+        height: 4.75rem;
+        .directv-99-local-channel-first {
+          color: #666;
+          font-size: 0.5rem;
+          display: flex;
+          flex-flow: column;
+          justify-content: center;
+          align-items: center;
+          word-break: break-word;
+          white-space: pre-wrap;
+          text-align: center;
+          flex: 1;
+          border-right: 1px solid #d4d4d4;
+          margin-top: 0.4rem;
+          margin-bottom: 0.4rem;
+        }
+        .directv-99-local-channel {
+          color: #666;
+          display: flex;
+          flex-flow: column;
+          justify-content: center;
+          align-items: center;
+          flex: 1;
+          border-right: 1px solid #d4d4d4;
+          margin-top: 0.4rem;
+          margin-bottom: 0.4rem;
+        }
+      }
+    }
+  }
+}
+
+#products-services-internet,
+#products-services-directvnow {
+  border-radius: 0.25rem;
+  width: 100%;
+  background: #009FDB;
+  #directv-now-packages {
+    width: calc(100% + 3rem);
+    background: black;
+    margin: -1.5rem;
+    margin-top: -1rem;
+    .directvnow-packages-price-bar {
+      display: flex;
+      .directvnow-packages-price-each {
+        display: flex;
+        flex: 1;
+        flex-flow: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        word-break: break-word;
+        white-space: pre-wrap;
+        font-size: 0.8rem;
+        color: #5c5c5c;
+        background: #333;
+        height: 5rem;
+      }
+    }
+    .channel-images {
+      width: calc(100% - 2rem);
+      height: auto;
+      margin: auto;
+      display: flex;
+      flex-flow: column;
+      align-items: center;
+    }
+  }
+  .learn-more {
+    color: #009FDB;
+    background: black;
+    padding: 2rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin-top: 2rem;
+  }
+  #internet-slider,
+  #directv-now-get {
+    width: 100%;
+    margin-top: 2rem;
+    // position: relative;
+    // .title-img {
+    //   position: absolute;
+    //   width: 100%;
+    // }
+    // .get-streaming {
+    //   .get-streaming-title {
+    //     font-size: 1.5rem;
+    //     font-weight: bold;
+    //     color: white;
+    //     text-align: center;
+    //     margin-top: 1rem;
+    //   }
+    // }
+    .carousel.carousel-slider {
+      display: block;
+      .slider-wrapper {
+        ul {
+          li.slide {
+            // position: relative;
+            min-width: 85% !important;
+            margin-left: 2.5%;
+            margin-right: 2.5%;
+            background: transparent;
+            .carousel-list {
+              .carousel-list-img {
+                width: 90%;
+                border-radius: .5rem;
+              }
+              .carousel-list-content {
+                background: white;
+                margin-top: -25%;
+                border-radius: .5rem;
+                padding: 0.75rem;
+                padding-top: 30%;
+                .carousel-list-body {
+                  font-size: 0.9rem;
+                  text-align: center;
+                  margin-bottom: 1rem;
+                }
+                .carousel-list-content-title {
+                  font-size: 1.5rem;
+                  font-weight: bold;
+                  text-align: center;
+                  margin-bottom: 0.6rem;
+                }
+                .carousel-list-content-desc {
+                  font-size: 0.9rem;
+                  text-align: left;
+                  margin-bottom: 0.6rem;
+                }
+                .each-bullets {
+                  margin-left: 1rem;
+                  font-size: 1.2rem;            
+                }
+                .check-blue-img {
+                  width: 1.125rem;
+                  height: 1.125rem;
+                }
+                .subcards-container {
+                  display: flex;
+                  justify-content: space-around;
+                  flex-wrap: wrap;
+                  .each-subcards {
+                    width: 40%;
+                    background: black;
+                    color: white;
+                    text-align: left;
+                    margin-bottom: 1rem;
+                    padding: 0.7rem;
+                    border-radius: 0.25rem;
+                    .subCards-title {
+                      font-size: 0.9rem;
+                      font-weight: bold;
+                      margin-top: 0.5rem;
+                      margin-bottom: 0.5rem;
+                    }
+                    .subCards-inter-title {
+                      font-size: 0.9rem;
+                      margin-bottom: 0.5rem;
+                      text-align: center;
+                    }
+                    .subCards-content {
+                      font-size: 0.8rem;
+                    }
+                    .subCards-each-bullets {
+                      font-size: 0.8rem;
+                    }
+                    .subCards-legal {
+                      font-size: 0.8rem;
+                    }
+                    .subCards-price {
+                      display: flex;
+                      justify-content: center;
+                      margin-bottom: 0.5rem;
+                    }
+                    .subCards-channels {
+                      text-align: center;
+                      font-size: 1rem;
+                      margin-bottom: 0.5rem;
+                    }
+                    .subCards-desc {
+                      font-size: 0.5rem;
+                      text-align: center;
+                    }
+                  }
+                }
+              }
+            }
+          }
+          li.slide:first-child {
+            min-width: 85% !important;
+            margin-left: 7.5%;
+            margin-right: 2.5%;
+          }
+          li.slide:last-child {
+            min-width: 85% !important;
+            margin-left: 2.5%;
+            margin-right: 7.5%;
+          }
+        }
+      }
+      button.control-arrow.control-next,
+      button.control-arrow.control-prev {
+        display: none;
+      }
+    }
+    .carousel-list-legal {
+      background: transparent;
+      color: white;
+      font-size: 0.8rem;
+      margin: auto;
+      margin-top: 1.2rem;
+    }
+  }
+}
+
+#products-services-internet {
+  #internet-slider {
+    .carousel.carousel-slider {
+      .slider-wrapper {
+        ul {
+          li.slide {
+            .carousel-list {
+              .slider-container {
+                .carousel-list-content {
+                  .carousel-list-body {
+                    .subcards-container {
+                      .each-subcards {
+                        width: 100%;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+#services-card {
+  width: 100%;
+  margin-bottom: 1.25rem;
+  .cardview-upload-box {
+    position: relative;
+  
+    .file-input {
+      display: none;
+    }
+  
+    .flat-button-file {
+      position: absolute;
+      bottom: 9px;
+      z-index: 1;
+  
+      .upload-button {
+        font-size: 14px;
+        background-color: #FFF;
+        color: black;
+        
+        &:hover {
+          background-color: rgba(240, 240, 240, 0.87);
+        }
+      }
+    }
+  
+    .flat-button-colors {
+      position: absolute;
+      top: 6px;
+      right: 0px;
+    }
+  
+    .device-options-button {
+      position: absolute;
+      bottom: -33px;
+      right: 12px;
+    }
+  
+    .upload-text-field input {
+      padding-left: 120px;
+    }
+  }
 }
