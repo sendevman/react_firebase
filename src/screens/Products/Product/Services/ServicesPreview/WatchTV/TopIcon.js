@@ -1,3 +1,9 @@
+/**
+ * Conexus-Tech - Retail Companion Web Interface AT&T
+ * https://conexustech.com/
+ * @flow
+ */
+
 import watchtv from 'assets/images/watchtv.jpeg';
 import icon1 from 'assets/images/icon1.png';
 import icon2 from 'assets/images/icon2.png';

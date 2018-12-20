@@ -1,3 +1,9 @@
+/**
+ * Conexus-Tech - Retail Companion Web Interface AT&T
+ * https://conexustech.com/
+ * @flow
+ */
+
 import { createAction } from 'redux-actions';
 import {
 	GET_FB_USERS,

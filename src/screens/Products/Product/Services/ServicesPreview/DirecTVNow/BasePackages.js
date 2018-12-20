@@ -1,3 +1,9 @@
+/**
+ * Conexus-Tech - Retail Companion Web Interface AT&T
+ * https://conexustech.com/
+ * @flow
+ */
+
 import React, { Component } from 'react';
 
 import channel1_1 from 'assets/images/now/1/1.png';
