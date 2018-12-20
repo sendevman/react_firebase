@@ -1,3 +1,9 @@
+/**
+ * Conexus-Tech - Retail Companion Web Interface AT&T
+ * https://conexustech.com/
+ * @flow
+ */
+
 import reliability from 'assets/images/reliability.png';
 
 const DirecTVReliability = () => (

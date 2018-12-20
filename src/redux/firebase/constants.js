@@ -1,3 +1,9 @@
+/**
+ * Conexus-Tech - Retail Companion Web Interface AT&T
+ * https://conexustech.com/
+ * @flow
+ */
+
 export const GET_FB_USERS = 'firebase/GET_FB_USERS';
 export const GET_FB_LOCATIONS = 'firebase/GET_FB_LOCATIONS';
 export const GET_FB_PRODUCTS = 'firebase/GET_FB_PRODUCTS';

@@ -1,3 +1,9 @@
+/**
+ * Conexus-Tech - Retail Companion Web Interface AT&T
+ * https://conexustech.com/
+ * @flow
+ */
+
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ArrowRight from 'assets/images/svg_files/arrowRight.svg';

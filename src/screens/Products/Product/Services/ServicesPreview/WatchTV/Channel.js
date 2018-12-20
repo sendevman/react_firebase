@@ -1,3 +1,9 @@
+/**
+ * Conexus-Tech - Retail Companion Web Interface AT&T
+ * https://conexustech.com/
+ * @flow
+ */
+
 import ae from 'assets/images/channels/original/ae.jpg';
 import amc from 'assets/images/channels/original/amc.jpg';
 import animal_planet from 'assets/images/channels/original/animal-planet.jpg';
