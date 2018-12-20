@@ -1,0 +1,33 @@
+.component-display-container {
+	.content-box {
+		position: relative;
+		.bg-image {
+			position: absolute;
+			.display-bg {
+				width: calc(100% + 48px);
+				margin-left: -24px;
+				margin-right: -24px;
+				margin-top: -16px;
+			}
+			.empty-bg {
+				width: calc(100% + 48px);
+				height: 20vh;
+				margin-right: -1.5rem;
+				margin-left: -1.5rem;
+				margin-top: -0.1875rem;
+			}
+		}
+		.display-content-container {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: center;
+			z-index: 1;
+			position: relative;
+			padding-top: 4vw;
+			.display-size {
+				margin-right: 1.5rem;
+				font-size: 1.5rem;
+			}
+		}
+	}
+}

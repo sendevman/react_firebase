@@ -1,0 +1,2874 @@
+[
+  {
+    "name": "A&E",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/A&E_SD.gif",
+    "chLogoId": "3440006",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "A&E HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/A&E_HD.gif",
+    "chLogoId": "3440012",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "AMC",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/AMC_SD.gif",
+    "chLogoId": "3440022",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "AMC HD ",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/AMC_HD.gif",
+    "chLogoId": "4030006",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "American Heroes Channel",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/MILT_SD.gif",
+    "chLogoId": "3460184",
+    "promoOfferUrl": null,
+    "grpName": null,
+    "initial": true
+  },
+  {
+    "name": "Animal Planet HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/APL_HD.gif",
+    "chLogoId": "3440030",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "Animal Planet",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/APL_SD.gif",
+    "chLogoId": "3440024",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "ASPiRE HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/ASPHD.png",
+    "chLogoId": "4640005",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "AUDIENCE®",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/directv_marketing/packages/directv_packages/Logos/Audience.gif",
+    "chLogoId": "3460098",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "AUDIENCE® HD",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/directv_marketing/packages/directv_packages/Logos/Audience.gif",
+    "chLogoId": "3550002",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "AWE",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/AWE_SD.gif",
+    "chLogoId": "4730003",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "AWE HD ",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/AWE_HD.gif",
+    "chLogoId": "4730002",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "AXS TV HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/AXSTV_HD.gif",
+    "chLogoId": "3450230",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "BabyFirst TV",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/BABY_SD.gif",
+    "chLogoId": "4450006",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "BabyFirst TV",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/BABY_SD.gif",
+    "chLogoId": "4040002",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "BBC America HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/BBCA_HD.gif",
+    "chLogoId": "4160003",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "BBC World News HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/BBCW_SD.gif",
+    "chLogoId": "4520001",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "BBC America",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/BBCA_SD.gif",
+    "chLogoId": "3440032",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "BET",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/BET_SD.gif",
+    "chLogoId": "3440044",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "BET HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/BET_HD.gif",
+    "chLogoId": "3680002",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "BET Her",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/BETher_SD.gif",
+    "chLogoId": "3440034",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "Bloomberg TV HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/BTV_HD.gif",
+    "chLogoId": "4270001",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "Boomerang",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/BOOM_SD.gif",
+    "chLogoId": "3440052",
+    "promoOfferUrl": null,
+    "grpName": null,
+    "initial": true
+  },
+  {
+    "name": "Bravo HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/BRVOHD_HD.gif",
+    "chLogoId": "3440056",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "Bravo",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/BRVO_SD.gif",
+    "chLogoId": "3440054",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "BTN ",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/BTN_SD.gif",
+    "chLogoId": "3440040",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "BTN HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/BTN_HD.gif",
+    "chLogoId": "3440038",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "Bloomberg TV",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/BTV_SD.gif",
+    "chLogoId": "3440046",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "BYUtv",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/BYU_SD.gif",
+    "chLogoId": "3440060",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "CANAL ONCE",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/ONCE_SD.gif",
+    "chLogoId": "3460272",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "Cartoon Network East HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/CNe_HD.gif",
+    "chLogoId": "3440064",
+    "promoOfferUrl": null,
+    "grpName": null,
+    "initial": true
+  },
+  {
+    "name": "Cartoon Network West",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/TOON2_SD.gif",
+    "chLogoId": "3440066",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "CBS Sports Network HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/CBSC_SD.gif",
+    "chLogoId": "3450014",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "CBS Sports Network",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/CBSC_SD.gif",
+    "chLogoId": "3450010",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "CCTVN",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/directv_marketing/packages/directv_packages/Logos/CCTV4.gif",
+    "chLogoId": "3840002",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "CTN",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/CTN.gif",
+    "chLogoId": "3520006",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "Church Channel",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/TCC_SD.gif",
+    "chLogoId": "3460104",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "5StarMAX HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/5MAX_HD.gif",
+    "chLogoId": "3990004",
+    "promoOfferUrl": "/cms2/pepod_new/packages/pep_new_free_premiums_promo.png",
+    "grpName": "Cinemax"
+  },
+  {
+    "name": "ActionMAX HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/AMAX_HD.gif",
+    "chLogoId": "3970008",
+    "promoOfferUrl": "cms2/pepod_new/packages/pep_new_free_premiums_promo.png",
+    "grpName": "Cinemax"
+  },
+  {
+    "name": "Cinemax East HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/MAXE_HD.gif",
+    "chLogoId": "3450028",
+    "promoOfferUrl": "cms2/pepod_new/packages/pep_new_free_premiums_promo.png",
+    "grpName": "Cinemax"
+  },
+  {
+    "name": "Cinemax West HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/MAXW_HD.gif",
+    "chLogoId": "3450032",
+    "promoOfferUrl": "cms2/pepod_new/packages/pep_new_free_premiums_promo.png",
+    "grpName": "Cinemax"
+  },
+  {
+    "name": "CINEMÁX HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/MxLat.gif",
+    "chLogoId": "3990008",
+    "promoOfferUrl": "cms2/pepod_new/packages/pep_new_free_premiums_promo.png",
+    "grpName": "Cinemax"
+  },
+  {
+    "name": "MoreMAX HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/MMAX_HD.gif",
+    "chLogoId": "3970006",
+    "promoOfferUrl": "cms2/pepod_new/packages/pep_new_free_premiums_promo.png",
+    "grpName": "Cinemax"
+  },
+  {
+    "name": "MovieMAX HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/MovieMax_HD.gif",
+    "chLogoId": "3990006",
+    "promoOfferUrl": "cms2/pepod_new/packages/pep_new_free_premiums_promo.png",
+    "grpName": "Cinemax"
+  },
+  {
+    "name": "ThrillerMAX HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/Thrillermax_HD.gif",
+    "chLogoId": "3970010",
+    "promoOfferUrl": "cms2/pepod_new/packages/pep_new_free_premiums_promo.png",
+    "grpName": "Cinemax"
+  },
+  {
+    "name": "CMT",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/CMT_SD.gif",
+    "chLogoId": "3450052",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "CMT HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/CMT_HD.gif",
+    "chLogoId": "3450054",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "CNBC",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/CNBC_SD.gif",
+    "chLogoId": "3450034",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "CNBC HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/CNBCHD_HD.gif",
+    "chLogoId": "3450036",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "CNBC World",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/CNBW_SD.gif",
+    "chLogoId": "3450038",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "Cartoon Network East",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/TOON1_SD.gif",
+    "chLogoId": "3440062",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "CNN",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/CNN_SD.gif",
+    "chLogoId": "3450040",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "CNN HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/CNNHD_HD.gif",
+    "chLogoId": "3450042",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "Comedy Central",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/COM_SD.gif",
+    "chLogoId": "3450044",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "Comedy Central HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/COM_HD.gif",
+    "chLogoId": "3680006",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "COMTVH ",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/COMTVH.gif",
+    "chLogoId": "4690003",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "Contemporary Christian",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/radio/MusicChoice.gif",
+    "chLogoId": "4630001",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "Cooking Channel",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/COOK_SD.gif",
+    "chLogoId": "3450138",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "Cooking Channel HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/COOK_HD.gif",
+    "chLogoId": "3790014",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "CSPAN",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/CSP1_SD.gif",
+    "chLogoId": "3450058",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "CSPAN 2",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/CSP2_SD.gif",
+    "chLogoId": "3450060",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "Cowboy Channel",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/CowboyChannel_SD.gif",
+    "chLogoId": "4760005",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "Daystar",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/DSTR_SD.gif",
+    "chLogoId": "3450062",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "Destination America",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/DAME_SD.gif",
+    "chLogoId": "3460278",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "Destination America HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/DAME_HD.gif",
+    "chLogoId": "3460266",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "Disney XD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/DISXD_SD.gif",
+    "chLogoId": "3460128",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "Disney XD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/DISXD_SD.gif",
+    "chLogoId": "3470106",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "Discovery Family Channel",
+    "logoUrl": "https://www.directv.com/images/channels/logo_discoveryFamily.gif",
+    "chLogoId": "3450088",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "Discovery HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/DSCHD_SD.gif",
+    "chLogoId": "3450082",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "Discovery Life",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/DLIF_SD.gif",
+    "chLogoId": "3450140",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "Disney Channel East",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/DIS1_SD.gif",
+    "chLogoId": "3450094",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "Disney Channel East HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/DIS1HD_HD.gif",
+    "chLogoId": "3450096",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "Disney Channel West",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/DIS2_SD.gif",
+    "chLogoId": "3450102",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "Disney Junior HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/DSJR_HD.gif",
+    "chLogoId": "4160004",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "Disney XD HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/DXDHD_HD.gif",
+    "chLogoId": "3460130",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "DIY Network",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/DIY_SD.gif",
+    "chLogoId": "3450108",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "DIY Network HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/DIY_HD.gif",
+    "chLogoId": "4180006",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "Disney Junior Channel",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/DSJR_SD.gif",
+    "chLogoId": "4140001",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "E!",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/E!_SD.gif",
+    "chLogoId": "3450112",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "E! HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/E!_HD.gif",
+    "chLogoId": "4080011",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "ESPN Classic Sports",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/ESL_SD.gif",
+    "chLogoId": "3450122",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "El Rey",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/ELREY.gif",
+    "chLogoId": "4360001",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "El Rey HD",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/ELREY_HD.gif",
+    "chLogoId": "4730009",
+    "promoOfferUrl": null,
+    "grpName": null,
+    "initial": true
+  },
+  {
+    "name": "Eleven Sports Network",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/Channel%2011.gif",
+    "chLogoId": "4700004",
+    "promoOfferUrl": null,
+    "grpName": null,
+    "initial": true
+  },
+  {
+    "name": "STARZ ENCORE Suspense",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/SESU.gif",
+    "chLogoId": "3460042",
+    "promoOfferUrl": null,
+    "grpName": "ENCORE"
+  },
+  {
+    "name": "STARZ ENCORE Action HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/SEACHD.gif",
+    "chLogoId": "4240004",
+    "promoOfferUrl": null,
+    "grpName": "ENCORE"
+  },
+  {
+    "name": "STARZ ENCORE Black",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/SEBK.gif",
+    "chLogoId": "3460032",
+    "promoOfferUrl": null,
+    "grpName": "ENCORE"
+  },
+  {
+    "name": "STARZ ENCORE Classic",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/SECL.gif",
+    "chLogoId": "3460036",
+    "promoOfferUrl": null,
+    "grpName": "ENCORE"
+  },
+  {
+    "name": "STARZ ENCORE East HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/SENCHD.gif",
+    "chLogoId": "3810004",
+    "promoOfferUrl": null,
+    "grpName": "ENCORE"
+  },
+  {
+    "name": "STARZ ENCORE Family",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/SEFM.gif",
+    "chLogoId": "3460044",
+    "promoOfferUrl": null,
+    "grpName": "ENCORE"
+  },
+  {
+    "name": "STARZ ENCORE West",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/SENC.gif",
+    "chLogoId": "3460018",
+    "promoOfferUrl": null,
+    "grpName": "ENCORE"
+  },
+  {
+    "name": "STARZ ENCORE Westerns",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/SEWS.gif",
+    "chLogoId": "3460048",
+    "promoOfferUrl": null,
+    "grpName": "ENCORE"
+  },
+  {
+    "name": "Enlace",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/ENLC_SD.gif",
+    "chLogoId": "3710002",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "ESPNEWS",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/ESN_SD.gif",
+    "chLogoId": "3450130",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "ESPN",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/ESPN_SD.gif",
+    "chLogoId": "3450118",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "ESPN Buzzer Beater HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/ESPNBB.gif",
+    "chLogoId": "4490002",
+    "promoOfferUrl": null,
+    "grpName": null,
+    "initial": true
+  },
+  {
+    "name": "ESPN Classic",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/ESL_SD.gif",
+    "chLogoId": "4460002",
+    "promoOfferUrl": null,
+    "grpName": null,
+    "initial": true
+  },
+  {
+    "name": "ESPN HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/ESPN_HD.gif",
+    "chLogoId": "3450114",
+    "promoOfferUrl": null,
+    "grpName": null,
+    "initial": true
+  },
+  {
+    "name": "ESPN2",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/ESN2_SD.gif",
+    "chLogoId": "3450124",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "ESPN2 HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/ESN2_HD.gif",
+    "chLogoId": "3450128",
+    "promoOfferUrl": null,
+    "grpName": null,
+    "initial": true
+  },
+  {
+    "name": "ESPNEWS HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/ESNHD_HD.gif",
+    "chLogoId": "3450132",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "ESPNU HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/ESPU_HD.gif",
+    "chLogoId": "3790008",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "ESPNU",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/ESPU_SD.gif",
+    "chLogoId": "3450134",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "EVINE",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/EVINE_SD.gif",
+    "chLogoId": "3460248",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "EWTN",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/EWTN_SD.gif",
+    "chLogoId": "3450136",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "SHOWTIME EXTREME®",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/EXTR_SD.gif",
+    "chLogoId": "3460308",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "Fox Business Network",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/FBN_SD.gif",
+    "chLogoId": "3550016",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "Family Entertainment Television",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/FETV.gif",
+    "chLogoId": "4740001",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "Flix",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/FLIX_SD.gif",
+    "chLogoId": "3450142",
+    "promoOfferUrl": null,
+    "grpName": null,
+    "initial": true
+  },
+  {
+    "name": "FM",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/FM__SD.gif",
+    "chLogoId": "4690001",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "Fox News Channel",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/FNC_HD.gif",
+    "chLogoId": "3450150",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "Food Network",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/FOOD_SD.gif",
+    "chLogoId": "3450144",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "Food Network HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/FOOD_SD.gif",
+    "chLogoId": "3450146",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "Fox Business Network HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/FBNHD_HD.gif",
+    "chLogoId": "3550014",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "Fox News Channel HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/FNC_HD.gif",
+    "chLogoId": "3700002",
+    "promoOfferUrl": null,
+    "grpName": null,
+    "initial": true
+  },
+  {
+    "name": "FOX Sports 1 HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/FS1.gif",
+    "chLogoId": "3460006",
+    "promoOfferUrl": null,
+    "grpName": null,
+    "initial": true
+  },
+  {
+    "name": "FOX Sports 2 HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/FS2.gif",
+    "chLogoId": "3450170",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "Free Speech TV",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/FSTV_SD.gif",
+    "chLogoId": "3810032",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "Freeform HD- Elnus",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/Freeform_SD.gif",
+    "chLogoId": "3440016",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "Freeform",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/Freeform_SD.gif",
+    "chLogoId": "3440014",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "FOX Sports 1",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/FS1.gif",
+    "chLogoId": "3460004",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "Fox Sports 2",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/FS2.gif",
+    "chLogoId": "3450168",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "Fuse",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/Fuse_SD.gif",
+    "chLogoId": "3450174",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "Fusion HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/FUSN_SD.gif",
+    "chLogoId": "4490004",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "FX",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/FX_SD.gif",
+    "chLogoId": "3450176",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "FX HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/FXHD_HD.gif",
+    "chLogoId": "3450178",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "FXX",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/FXX.gif",
+    "chLogoId": "3450156",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "FXX HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/FXX.gif",
+    "chLogoId": "3870004",
+    "promoOfferUrl": null,
+    "grpName": null,
+    "initial": true
+  },
+  {
+    "name": "FYI",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/FYI_SD.gif",
+    "chLogoId": "3460100",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "FYI HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/FYIHD_HD.gif",
+    "chLogoId": "3460102",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "Galavisión",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/GALA_SD.gif",
+    "chLogoId": "3470052",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "Galavisión HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/GALA_SD.gif",
+    "chLogoId": "3450182",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "GEB America",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/GEB_SD.gif",
+    "chLogoId": "3810030",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "Gem Shopping Network ",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/GEM.gif",
+    "chLogoId": "4570001",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "GOD TV",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/GTV_SD.gif",
+    "chLogoId": "3450188",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "Golf Channel",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/GOLF_HD.gif",
+    "chLogoId": "3450192",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "Golf Channel HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/GOLF_HD.gif",
+    "chLogoId": "3910002",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "Great American Country",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/GAC_SD.gif",
+    "chLogoId": "3450198",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "GSN",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/GSN_SD.gif",
+    "chLogoId": "3450200",
+    "promoOfferUrl": null,
+    "grpName": null,
+    "initial": true
+  },
+  {
+    "name": "Hallmark Channel",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/HALL_SD.gif",
+    "chLogoId": "3450202",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "Hallmark Channel HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/HALL_HD.gif",
+    "chLogoId": "3810002",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "Hallmark Movies & Mysteries HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/HLMK_HD.gif",
+    "chLogoId": "3790002",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "HBO 2 (East)",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/HBO2_SD.gif",
+    "chLogoId": "3450224",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "HBO 2 (West)",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/HBO2W_SD.gif",
+    "chLogoId": "3450226",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "HBO Family (East)",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/HBOF_SD.gif",
+    "chLogoId": "3450218",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "HBO 2 East HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/HB2e_HD.gif",
+    "chLogoId": "4450007",
+    "promoOfferUrl": "/cms2/pepod_new/packages/pep_new_free_premiums_promo.png",
+    "grpName": "HBO"
+  },
+  {
+    "name": "HBO 2 West HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/HBO2_West_HD.gif",
+    "chLogoId": "3990002",
+    "promoOfferUrl": "/cms2/pepod_new/packages/pep_new_free_premiums_promo.png",
+    "grpName": "HBO"
+  },
+  {
+    "name": "HBO Comedy HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/HBOComedy_HD.gif",
+    "chLogoId": "3970012",
+    "promoOfferUrl": "/cms2/pepod_new/packages/pep_new_free_premiums_promo.png",
+    "grpName": "HBO"
+  },
+  {
+    "name": "HBO East HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/HBOHD_HD.gif",
+    "chLogoId": "3450208",
+    "promoOfferUrl": "/cms2/pepod_new/packages/pep_new_free_premiums_promo.png",
+    "grpName": "HBO"
+  },
+  {
+    "name": "HBO Family East HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/HBOF_SD.gif",
+    "chLogoId": "3950002",
+    "promoOfferUrl": "/cms2/pepod_new/packages/pep_new_free_premiums_promo.png",
+    "grpName": "HBO"
+  },
+  {
+    "name": "HBO Family West",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/HBOFW_SD.gif",
+    "chLogoId": "3450220",
+    "promoOfferUrl": "/cms2/pepod_new/packages/pep_new_free_premiums_promo.png",
+    "grpName": "HBO"
+  },
+  {
+    "name": "HBO Latino HD ",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/HBOLatino_HD.gif",
+    "chLogoId": "3970016",
+    "promoOfferUrl": "/cms2/pepod_new/packages/pep_new_free_premiums_promo.png",
+    "grpName": "HBO"
+  },
+  {
+    "name": "HBO Signature HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/HBOS_HD.gif",
+    "chLogoId": "3950004",
+    "promoOfferUrl": "/cms2/pepod_new/packages/pep_new_free_premiums_promo.png",
+    "grpName": "HBO"
+  },
+  {
+    "name": "HBO West HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/HBOHD_HD.gif",
+    "chLogoId": "3450216",
+    "promoOfferUrl": "/cms2/pepod_new/packages/pep_new_free_premiums_promo.png",
+    "grpName": "HBO"
+  },
+  {
+    "name": "HBO Zone HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/HBOZ_HD.gif",
+    "chLogoId": "3810008",
+    "promoOfferUrl": "/cms2/pepod_new/packages/pep_new_free_premiums_promo.png",
+    "grpName": "HBO"
+  },
+  {
+    "name": "HBO (East)",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/HBO_SD.gif",
+    "chLogoId": "3450204",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "HBO Latino",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/HBOL_SD.gif",
+    "chLogoId": "511",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "HBO Signature",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/HBOS_SD.gif",
+    "chLogoId": "3450222",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "HBO (West)",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/HBOW_SD.gif",
+    "chLogoId": "3450210",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "HGTV",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/HGTV_SD.gif",
+    "chLogoId": "3450244",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "HGTV HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/HGTVHD_HD.gif",
+    "chLogoId": "3450246",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "History",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/HIST_SD.gif",
+    "chLogoId": "3450234",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "History HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/HIST_HD.gif",
+    "chLogoId": "3450236",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "HITN TV",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/HITN_SD.gif",
+    "chLogoId": "3450240",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "Headline News",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/HLN_SD.gif",
+    "chLogoId": "3450232",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "HLN HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/HLN_SD.gif",
+    "chLogoId": "4240003",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "Hope Channel",
+    "logoUrl": "https://www.directv.com/images/channels/logo_hope.gif",
+    "chLogoId": "3590002",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "HSN",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/HSN_SD.gif",
+    "chLogoId": "3450248",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "Investigation Discovery",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/ID_SD.gif",
+    "chLogoId": "3450252",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "IFC",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/IFC_SD.gif",
+    "chLogoId": "3450250",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "IFC HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/IFC_HD.gif",
+    "chLogoId": "4240005",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "INCTV",
+    "logoUrl": "https://www.directv.com/cms2/content_modules/international/channels/Filipino/GEM_SD.gif",
+    "chLogoId": "2068",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "INSP",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/INSP_SD.gif",
+    "chLogoId": "3670002",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "Investigation Discovery HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/ID_HD.gif",
+    "chLogoId": "4230003",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "ION Television East",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/ION_SD.gif",
+    "chLogoId": "3450254",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "ION Television East HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/ION_SD.gif",
+    "chLogoId": "4180005",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "ION Television West",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/ION_SD.gif",
+    "chLogoId": "3630006",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "JC HD",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/JC%20HD.gif",
+    "chLogoId": "4690002",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "Jewelry Television",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/JTV_SD.gif",
+    "chLogoId": "3450256",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "Jewish Life Television",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/JLTV_SD.gif",
+    "chLogoId": "3680004",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "Lifetime",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/LIFE_SD.gif",
+    "chLogoId": "3450258",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "Lifetime HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/LIFE_HD.gif",
+    "chLogoId": "3810010",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "Link TV",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/LINK_SD.gif",
+    "chLogoId": "3450262",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "Lifetime Movie Network",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/LMN_SD.gif",
+    "chLogoId": "3450260",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "LMN HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/LMN_HD.gif",
+    "chLogoId": "4230004",
+    "promoOfferUrl": null,
+    "grpName": null,
+    "initial": true
+  },
+  {
+    "name": "Logo",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/LOGO_SD.gif",
+    "chLogoId": "3450264",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "MAVTV",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/MATV_SD.gif",
+    "chLogoId": "4510003",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "Cinemax East",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/MAXE_SD.gif",
+    "chLogoId": "3450026",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "Cinemax West",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/MAXW_SD.gif",
+    "chLogoId": "3450030",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "MHz WORLDVIEW",
+    "logoUrl": "https://www.directv.com/cms2/content_modules/international/channels/Bonus/MHZW_SD.gif",
+    "chLogoId": "2183",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "MLB Network HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/MLBN_HD.gif",
+    "chLogoId": "3550008",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "MLB Network",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/MLBN_SD.gif",
+    "chLogoId": "3550006",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "MoreMAX",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/MMAX_SD.gif",
+    "chLogoId": "3460204",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "MSNBC",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/MSNBC_SD.gif",
+    "chLogoId": "3460232",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "MSNBC HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/MSNBC_SD.gif",
+    "chLogoId": "3790006",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "MTV",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/MTV_SD.gif",
+    "chLogoId": "3460206",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "MTV Classic",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/VH1C_SD.gif",
+    "chLogoId": "3460158",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "MTV HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/MTV_SD.gif",
+    "chLogoId": "3460192",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "MTV2 HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/MTV2_SD.gif",
+    "chLogoId": "3460228",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": " Pop Hits",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/radio/MusicChoice.gif",
+    "chLogoId": "3730044",
+    "promoOfferUrl": null,
+    "grpName": "MUSICCHOICE"
+  },
+  {
+    "name": " '60s Movement",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/radio/MusicChoice.gif",
+    "chLogoId": "3730008",
+    "promoOfferUrl": null,
+    "grpName": "MUSICCHOICE"
+  },
+  {
+    "name": " '70s",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/radio/MusicChoice.gif",
+    "chLogoId": "3730010",
+    "promoOfferUrl": null,
+    "grpName": "MUSICCHOICE"
+  },
+  {
+    "name": " '80s",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/radio/MusicChoice.gif",
+    "chLogoId": "3730012",
+    "promoOfferUrl": null,
+    "grpName": "MUSICCHOICE"
+  },
+  {
+    "name": "'80s Rock",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/radio/MusicChoice.gif",
+    "chLogoId": "3730060",
+    "promoOfferUrl": null,
+    "grpName": "MUSICCHOICE"
+  },
+  {
+    "name": "90's",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/radio/MusicChoice.gif",
+    "chLogoId": "3730014",
+    "promoOfferUrl": null,
+    "grpName": "MUSICCHOICE"
+  },
+  {
+    "name": "Adult Alternative",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/radio/MusicChoice.gif",
+    "chLogoId": "3730068",
+    "promoOfferUrl": null,
+    "grpName": "MUSICCHOICE"
+  },
+  {
+    "name": "All Xmas",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/radio/MusicChoice.gif",
+    "chLogoId": "3730120",
+    "promoOfferUrl": null,
+    "grpName": "MUSICCHOICE"
+  },
+  {
+    "name": "Alternative",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/radio/MusicChoice.gif",
+    "chLogoId": "3730072",
+    "promoOfferUrl": null,
+    "grpName": "MUSICCHOICE"
+  },
+  {
+    "name": "Americana",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/radio/MusicChoice.gif",
+    "chLogoId": "3730022",
+    "promoOfferUrl": null,
+    "grpName": "MUSICCHOICE"
+  },
+  {
+    "name": "Big Band",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/radio/MusicChoice.gif",
+    "chLogoId": "3730004",
+    "promoOfferUrl": null,
+    "grpName": "MUSICCHOICE"
+  },
+  {
+    "name": "Bluegrass",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/radio/MusicChoice.gif",
+    "chLogoId": "3730026",
+    "promoOfferUrl": null,
+    "grpName": "MUSICCHOICE"
+  },
+  {
+    "name": "Blues",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/radio/MusicChoice.gif",
+    "chLogoId": "3730112",
+    "promoOfferUrl": null,
+    "grpName": "MUSICCHOICE"
+  },
+  {
+    "name": "Brazilian Pop",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/radio/MusicChoice.gif",
+    "chLogoId": "3460298",
+    "promoOfferUrl": null,
+    "grpName": "MUSICCHOICE"
+  },
+  {
+    "name": "Broadway",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/radio/MusicChoice.gif",
+    "chLogoId": "3730048",
+    "promoOfferUrl": null,
+    "grpName": "MUSICCHOICE"
+  },
+  {
+    "name": "Classic Alternative",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/radio/MusicChoice.gif",
+    "chLogoId": "3730080",
+    "promoOfferUrl": null,
+    "grpName": "MUSICCHOICE"
+  },
+  {
+    "name": "Classic Country",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/radio/MusicChoice.gif",
+    "chLogoId": "3730018",
+    "promoOfferUrl": null,
+    "grpName": "MUSICCHOICE"
+  },
+  {
+    "name": "Classic Dance",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/radio/MusicChoice.gif",
+    "chLogoId": "3730094",
+    "promoOfferUrl": null,
+    "grpName": "MUSICCHOICE"
+  },
+  {
+    "name": "Classic Rock",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/radio/MusicChoice.gif",
+    "chLogoId": "3730070",
+    "promoOfferUrl": null,
+    "grpName": "MUSICCHOICE"
+  },
+  {
+    "name": "Classical Masterpieces",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/radio/MusicChoice.gif",
+    "chLogoId": "3730134",
+    "promoOfferUrl": null,
+    "grpName": "MUSICCHOICE"
+  },
+  {
+    "name": "Coffer Shop Cuts",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/radio/MusicChoice.gif",
+    "chLogoId": "3730076",
+    "promoOfferUrl": null,
+    "grpName": "MUSICCHOICE"
+  },
+  {
+    "name": "Contemporary Instrumentals",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/radio/MusicChoice.gif",
+    "chLogoId": "3730042",
+    "promoOfferUrl": null,
+    "grpName": "MUSICCHOICE"
+  },
+  {
+    "name": "Country Hits",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/radio/MusicChoice.gif",
+    "chLogoId": "3730020",
+    "promoOfferUrl": null,
+    "grpName": "MUSICCHOICE"
+  },
+  {
+    "name": "Dance/EDM",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/radio/MusicChoice.gif",
+    "chLogoId": "3730122",
+    "promoOfferUrl": null,
+    "grpName": "MUSICCHOICE"
+  },
+  {
+    "name": "Easy Listening",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/radio/MusicChoice.gif",
+    "chLogoId": "3730110",
+    "promoOfferUrl": null,
+    "grpName": "MUSICCHOICE"
+  },
+  {
+    "name": "Folk",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/radio/MusicChoice.gif",
+    "chLogoId": "3730028",
+    "promoOfferUrl": null,
+    "grpName": "MUSICCHOICE"
+  },
+  {
+    "name": "Funk",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/radio/MusicChoice.gif",
+    "chLogoId": "3730092",
+    "promoOfferUrl": null,
+    "grpName": "MUSICCHOICE"
+  },
+  {
+    "name": "Gosepl Hallelujah",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/radio/MusicChoice.gif",
+    "chLogoId": "3730058",
+    "promoOfferUrl": null,
+    "grpName": "MUSICCHOICE"
+  },
+  {
+    "name": "Hard Rock",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/radio/MusicChoice.gif",
+    "chLogoId": "3730074",
+    "promoOfferUrl": null,
+    "grpName": "MUSICCHOICE"
+  },
+  {
+    "name": "Hip-Hop And R&B",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/radio/MusicChoice.gif",
+    "chLogoId": "3730052",
+    "promoOfferUrl": null,
+    "grpName": "MUSICCHOICE"
+  },
+  {
+    "name": "Hit List",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/radio/MusicChoice.gif",
+    "chLogoId": "3730034",
+    "promoOfferUrl": null,
+    "grpName": "MUSICCHOICE"
+  },
+  {
+    "name": "Honky Tonk",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/radio/MusicChoice.gif",
+    "chLogoId": "3730024",
+    "promoOfferUrl": null,
+    "grpName": "MUSICCHOICE"
+  },
+  {
+    "name": "Indie",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/radio/MusicChoice.gif",
+    "chLogoId": "3730064",
+    "promoOfferUrl": null,
+    "grpName": "MUSICCHOICE"
+  },
+  {
+    "name": "Irish Favorites",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/radio/MusicChoice.gif",
+    "chLogoId": "3730150",
+    "promoOfferUrl": null,
+    "grpName": "MUSICCHOICE"
+  },
+  {
+    "name": "Italian Favorites",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/radio/MusicChoice.gif",
+    "chLogoId": "3730148",
+    "promoOfferUrl": null,
+    "grpName": "MUSICCHOICE"
+  },
+  {
+    "name": "Jazz",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/radio/MusicChoice.gif",
+    "chLogoId": "3730108",
+    "promoOfferUrl": null,
+    "grpName": "MUSICCHOICE"
+  },
+  {
+    "name": "Jazz Vocal Hits",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/radio/MusicChoice.gif",
+    "chLogoId": "3730104",
+    "promoOfferUrl": null,
+    "grpName": "MUSICCHOICE"
+  },
+  {
+    "name": "Jazz Vocal Standards",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/radio/MusicChoice.gif",
+    "chLogoId": "3730114",
+    "promoOfferUrl": null,
+    "grpName": "MUSICCHOICE"
+  },
+  {
+    "name": "K-Pop",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/radio/MusicChoice.gif",
+    "chLogoId": "3730126",
+    "promoOfferUrl": null,
+    "grpName": "MUSICCHOICE"
+  },
+  {
+    "name": "Kidz Only!",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/radio/MusicChoice.gif",
+    "chLogoId": "3730140",
+    "promoOfferUrl": null,
+    "grpName": "MUSICCHOICE"
+  },
+  {
+    "name": "Latin Jazz",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/radio/MusicChoice.gif",
+    "chLogoId": "3460332",
+    "promoOfferUrl": null,
+    "grpName": "MUSICCHOICE"
+  },
+  {
+    "name": "Light Classical",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/radio/MusicChoice.gif",
+    "chLogoId": "3730136",
+    "promoOfferUrl": null,
+    "grpName": "MUSICCHOICE"
+  },
+  {
+    "name": "Lounge",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/radio/MusicChoice.gif",
+    "chLogoId": "3730050",
+    "promoOfferUrl": null,
+    "grpName": "MUSICCHOICE"
+  },
+  {
+    "name": "Love Songs",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/radio/MusicChoice.gif",
+    "chLogoId": "3730040",
+    "promoOfferUrl": null,
+    "grpName": "MUSICCHOICE"
+  },
+  {
+    "name": "Mainstream Rap",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/radio/MusicChoice.gif",
+    "chLogoId": "3730098",
+    "promoOfferUrl": null,
+    "grpName": "MUSICCHOICE"
+  },
+  {
+    "name": "Malt Shop Favorites",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/radio/MusicChoice.gif",
+    "chLogoId": "3730006",
+    "promoOfferUrl": null,
+    "grpName": "MUSICCHOICE"
+  },
+  {
+    "name": "Max",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/radio/MusicChoice.gif",
+    "chLogoId": "3730038",
+    "promoOfferUrl": null,
+    "grpName": "MUSICCHOICE"
+  },
+  {
+    "name": "Metal",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/radio/MusicChoice.gif",
+    "chLogoId": "3730062",
+    "promoOfferUrl": null,
+    "grpName": "MUSICCHOICE"
+  },
+  {
+    "name": "Mexicana",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/radio/MusicChoice.gif",
+    "chLogoId": "3460316",
+    "promoOfferUrl": null,
+    "grpName": "MUSICCHOICE"
+  },
+  {
+    "name": "Movie Scores",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/radio/MusicChoice.gif",
+    "chLogoId": "3730046",
+    "promoOfferUrl": null,
+    "grpName": "MUSICCHOICE"
+  },
+  {
+    "name": "Musica Urbana",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/radio/MusicChoice.gif",
+    "chLogoId": "3460286",
+    "promoOfferUrl": null,
+    "grpName": "MUSICCHOICE"
+  },
+  {
+    "name": "Nature Sounds",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/radio/MusicChoice.gif",
+    "chLogoId": "3730152",
+    "promoOfferUrl": null,
+    "grpName": "MUSICCHOICE"
+  },
+  {
+    "name": "New Age",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/radio/MusicChoice.gif",
+    "chLogoId": "3730116",
+    "promoOfferUrl": null,
+    "grpName": "MUSICCHOICE"
+  },
+  {
+    "name": "New Wave",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/radio/MusicChoice.gif",
+    "chLogoId": "3730082",
+    "promoOfferUrl": null,
+    "grpName": "MUSICCHOICE"
+  },
+  {
+    "name": "Party Favorites",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/radio/MusicChoice.gif",
+    "chLogoId": "3730144",
+    "promoOfferUrl": null,
+    "grpName": "MUSICCHOICE"
+  },
+  {
+    "name": "Pop & Country",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/radio/MusicChoice.gif",
+    "chLogoId": "3730084",
+    "promoOfferUrl": null,
+    "grpName": "MUSICCHOICE"
+  },
+  {
+    "name": "Pop Latino",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/radio/MusicChoice.gif",
+    "chLogoId": "3460306",
+    "promoOfferUrl": null,
+    "grpName": "MUSICCHOICE"
+  },
+  {
+    "name": "R&B Classics",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/radio/MusicChoice.gif",
+    "chLogoId": "3730088",
+    "promoOfferUrl": null,
+    "grpName": "MUSICCHOICE"
+  },
+  {
+    "name": "R&B Soul",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/radio/MusicChoice.gif",
+    "chLogoId": "3730090",
+    "promoOfferUrl": null,
+    "grpName": "MUSICCHOICE"
+  },
+  {
+    "name": "Rap",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/radio/MusicChoice.gif",
+    "chLogoId": "3730096",
+    "promoOfferUrl": null,
+    "grpName": "MUSICCHOICE"
+  },
+  {
+    "name": "Reggae",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/radio/MusicChoice.gif",
+    "chLogoId": "3730130",
+    "promoOfferUrl": null,
+    "grpName": "MUSICCHOICE"
+  },
+  {
+    "name": "Retro Workout",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/radio/MusicChoice.gif",
+    "chLogoId": "3730128",
+    "promoOfferUrl": null,
+    "grpName": "MUSICCHOICE"
+  },
+  {
+    "name": "Rock",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/radio/MusicChoice.gif",
+    "chLogoId": "3730086",
+    "promoOfferUrl": null,
+    "grpName": "MUSICCHOICE"
+  },
+  {
+    "name": "Rock Hits",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/radio/MusicChoice.gif",
+    "chLogoId": "3730078",
+    "promoOfferUrl": null,
+    "grpName": "MUSICCHOICE"
+  },
+  {
+    "name": "Rock Latino",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/radio/MusicChoice.gif",
+    "chLogoId": "3460342",
+    "promoOfferUrl": null,
+    "grpName": "MUSICCHOICE"
+  },
+  {
+    "name": "Romances",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/radio/MusicChoice.gif",
+    "chLogoId": "3460314",
+    "promoOfferUrl": null,
+    "grpName": "MUSICCHOICE"
+  },
+  {
+    "name": "Singers & Swing",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/radio/MusicChoice.gif",
+    "chLogoId": "3730016",
+    "promoOfferUrl": null,
+    "grpName": "MUSICCHOICE"
+  },
+  {
+    "name": "Smooth Jazz",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/radio/MusicChoice.gif",
+    "chLogoId": "3730106",
+    "promoOfferUrl": null,
+    "grpName": "MUSICCHOICE"
+  },
+  {
+    "name": "Soft Rock",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/radio/MusicChoice.gif",
+    "chLogoId": "3730102",
+    "promoOfferUrl": null,
+    "grpName": "MUSICCHOICE"
+  },
+  {
+    "name": "Sounds Of The Seasons",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/radio/MusicChoice.gif",
+    "chLogoId": "3730032",
+    "promoOfferUrl": null,
+    "grpName": "MUSICCHOICE"
+  },
+  {
+    "name": "Soundscapes",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/radio/MusicChoice.gif",
+    "chLogoId": "3730118",
+    "promoOfferUrl": null,
+    "grpName": "MUSICCHOICE"
+  },
+  {
+    "name": "Symphony",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/radio/MusicChoice.gif",
+    "chLogoId": "3730132",
+    "promoOfferUrl": null,
+    "grpName": "MUSICCHOICE"
+  },
+  {
+    "name": "Taste Of Italy",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/radio/MusicChoice.gif",
+    "chLogoId": "3730146",
+    "promoOfferUrl": null,
+    "grpName": "MUSICCHOICE"
+  },
+  {
+    "name": "Teen Beats",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/radio/MusicChoice.gif",
+    "chLogoId": "3730138",
+    "promoOfferUrl": null,
+    "grpName": "MUSICCHOICE"
+  },
+  {
+    "name": "Throwback Jamz",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/radio/MusicChoice.gif",
+    "chLogoId": "3730100",
+    "promoOfferUrl": null,
+    "grpName": "MUSICCHOICE"
+  },
+  {
+    "name": "Today's Country",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/radio/MusicChoice.gif",
+    "chLogoId": "3730030",
+    "promoOfferUrl": null,
+    "grpName": "MUSICCHOICE"
+  },
+  {
+    "name": "Toddler Tunes",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/radio/MusicChoice.gif",
+    "chLogoId": "3730142",
+    "promoOfferUrl": null,
+    "grpName": "MUSICCHOICE"
+  },
+  {
+    "name": "Tropicales",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/radio/MusicChoice.gif",
+    "chLogoId": "3460312",
+    "promoOfferUrl": null,
+    "grpName": "MUSICCHOICE"
+  },
+  {
+    "name": "Workout",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/radio/MusicChoice.gif",
+    "chLogoId": "3730124",
+    "promoOfferUrl": null,
+    "grpName": "MUSICCHOICE"
+  },
+  {
+    "name": "Y2K",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/radio/MusicChoice.gif",
+    "chLogoId": "3730036",
+    "promoOfferUrl": null,
+    "grpName": "MUSICCHOICE"
+  },
+  {
+    "name": "NASA TV",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/NASA_SD.gif",
+    "chLogoId": "3460198",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "Nat Geo WILD HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/NGW_HD.gif",
+    "chLogoId": "4160002",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "National Geographic Channel HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/NGCHD_HD.gif",
+    "chLogoId": "3460210",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "NBA TV",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/NBA_SD.gif",
+    "chLogoId": "3460216",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "NBA TV HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/NBAHD_HD.gif",
+    "chLogoId": "3460188",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "NBC Sports Network HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/NBCS_HD.gif",
+    "chLogoId": "3460156",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "NBC Universo",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/UVSO_SD.gif",
+    "chLogoId": "3470120",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "NBC Sports Network",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/NBCS_SD.gif",
+    "chLogoId": "3460154",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "Newsmax",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/NEWSX.gif",
+    "chLogoId": "3450076",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "NFL Network",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/NFL_SD.gif",
+    "chLogoId": "3460200",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "NFL Network HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/NFL_SD.gif",
+    "chLogoId": "3460230",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "National Geographic Channel",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/NGC_SD.gif",
+    "chLogoId": "3460220",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "Nat Geo WILD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/NGW_SD.gif",
+    "chLogoId": "3450152",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "NHL Network ",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/NHL_SD.gif",
+    "chLogoId": "3460202",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "NHL Network HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/NHL_HD.gif",
+    "chLogoId": "3460234",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "Nick Jr. HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/NKJR_SD.gif",
+    "chLogoId": "4560002",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "Nickelodeon East",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/NIK1_SD.gif",
+    "chLogoId": "3460218",
+    "promoOfferUrl": null,
+    "grpName": null,
+    "initial": true
+  },
+  {
+    "name": "Nickelodeon HD East",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/NIK1HD_HD.gif",
+    "chLogoId": "3460226",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "Nickelodeon West",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/NIK2_SD.gif",
+    "chLogoId": "3460208",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "Nicktoons",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/NKTN_SD.gif",
+    "chLogoId": "3460264",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "Nick Jr.",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/NKJR_SD.gif",
+    "chLogoId": "3460254",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "NRB",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/directv_marketing/packages/directv_packages/NRB.gif",
+    "chLogoId": "3460252",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "OAN",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/OAN_SD.gif",
+    "chLogoId": "4730005",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "OAN HD ",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/OAN_HD.gif",
+    "chLogoId": "4730004",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "Olympic Channel",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/OLYC_HD.gif",
+    "chLogoId": "4730007",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "Outdoor Channel",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/OUT_SD.gif",
+    "chLogoId": "3460280",
+    "promoOfferUrl": null,
+    "grpName": null,
+    "initial": true
+  },
+  {
+    "name": "Ovation HD",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/directv_marketing/packages/directv_packages/OVATION.gif",
+    "chLogoId": "4430001",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "Ovation TV",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/directv_marketing/packages/directv_packages/OVATION.gif",
+    "chLogoId": "3460256",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "OWN",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/OWN_SD.gif",
+    "chLogoId": "3450086",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "OWN HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/OWN_HD.gif",
+    "chLogoId": "4260001",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "Oxygen",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/OXGN_SD.gif",
+    "chLogoId": "3460250",
+    "promoOfferUrl": null,
+    "grpName": null,
+    "initial": true
+  },
+  {
+    "name": "Paramount Network",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/paramount_SD.gif",
+    "chLogoId": "3460008",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "Paramount Network HD",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/paramount_HD.gif",
+    "chLogoId": "3460012",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "POP",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/POP.gif",
+    "chLogoId": "3460140",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "Pursuit Channel",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/PRST_SD.gif",
+    "chLogoId": "4510001",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "QVC",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/QVC_SD.gif",
+    "chLogoId": "3460238",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "QVC HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/QVC_HD.gif",
+    "chLogoId": "4320003",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "QVC Plus",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/QVCPLUS.gif",
+    "chLogoId": "4340001",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "Reelz",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/REEL_SD.gif",
+    "chLogoId": "3460236",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "ReelzChannel HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/REEL_SD.gif",
+    "chLogoId": "4430002",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "REVOLT HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/REVOLT.gif",
+    "chLogoId": "4660001",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "RFD TV",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/RFD_SD.gif",
+    "chLogoId": "3460240",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "STARZ InBlack",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/StzInBlack_SD.gif ",
+    "chLogoId": "3460066",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "Sonlife Broadcasting Network",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/SBN.gif",
+    "chLogoId": "4500003",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "Science",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/SCI_SD.gif",
+    "chLogoId": "284",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "Science HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/SCIHD_HD.gif",
+    "chLogoId": "3540012",
+    "promoOfferUrl": null,
+    "grpName": null,
+    "initial": true
+  },
+  {
+    "name": "SEC Network HD",
+    "logoUrl": "https://www.directv.com/images/channels/SECESPN.gif",
+    "chLogoId": "4420001",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "STARZ Edge",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/StzEdge_SD.gif",
+    "chLogoId": "3460064",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "STARZ ENCORE East",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/SENC.gif",
+    "chLogoId": "3460016",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "SHOWTIME 2®",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/SHO2_SD.gif",
+    "chLogoId": "3460328",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "SHOWTIME® SHOWCASE",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/SHO3_SD.gif",
+    "chLogoId": "3460318",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "SHOWTIME® EAST",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/SHO_SD.gif",
+    "chLogoId": "3460244",
+    "promoOfferUrl": "/cms2/pepod_new/packages/pep_new_free_premiums_promo.png",
+    "grpName": null
+  },
+  {
+    "name": "SHOWTIME® WEST",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/SHOw_SD.gif",
+    "chLogoId": "3460274",
+    "promoOfferUrl": "/cms2/pepod_new/packages/pep_new_free_premiums_promo.png",
+    "grpName": null
+  },
+  {
+    "name": "SHOWTIME 2 HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/SHO2HD_HD.gif",
+    "chLogoId": "3460294",
+    "promoOfferUrl": "/cms2/pepod_new/packages/pep_new_free_premiums_promo.png",
+    "grpName": "SHOWTIME"
+  },
+  {
+    "name": "SHOWTIME BEYOND HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/SHBY_HD.gif",
+    "chLogoId": "3810014",
+    "promoOfferUrl": "/cms2/pepod_new/packages/pep_new_free_premiums_promo.png",
+    "grpName": "SHOWTIME"
+  },
+  {
+    "name": "SHOWTIME EAST HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/SHOHD_HD.gif",
+    "chLogoId": "3460276",
+    "promoOfferUrl": "/cms2/pepod_new/packages/pep_new_free_premiums_promo.png",
+    "grpName": "SHOWTIME"
+  },
+  {
+    "name": "SHOWTIME EXTREME HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/EXTR_SD.gif",
+    "chLogoId": "3460296",
+    "promoOfferUrl": "/cms2/pepod_new/packages/pep_new_free_premiums_promo.png",
+    "grpName": "SHOWTIME"
+  },
+  {
+    "name": "SHOWTIME NEXT HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/SHNX_HD.gif",
+    "chLogoId": "3810012",
+    "promoOfferUrl": "/cms2/pepod_new/packages/pep_new_free_premiums_promo.png",
+    "grpName": "SHOWTIME"
+  },
+  {
+    "name": "SHOWTIME SHOWCASE HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/SHO3_HD.gif",
+    "chLogoId": "3460340",
+    "promoOfferUrl": "/cms2/pepod_new/packages/pep_new_free_premiums_promo.png",
+    "grpName": "SHOWTIME"
+  },
+  {
+    "name": "SHOWTIME WEST HD ",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/SHOw_HD.gif",
+    "chLogoId": "3460242",
+    "promoOfferUrl": "/cms2/pepod_new/packages/pep_new_free_premiums_promo.png",
+    "grpName": "SHOWTIME"
+  },
+  {
+    "name": "SHOWTIME WOMEN HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/ShWm_HD.gif",
+    "chLogoId": "3810016",
+    "promoOfferUrl": "/cms2/pepod_new/packages/pep_new_free_premiums_promo.png",
+    "grpName": "SHOWTIME"
+  },
+  {
+    "name": "Sportsman Channel",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/SPMN.gif",
+    "chLogoId": "3510014",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "STARZ Cinema HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/StzCinema_HD.gif",
+    "chLogoId": "3810018",
+    "promoOfferUrl": "/cms2/pepod_new/packages/pep_new_free_premiums_promo.png",
+    "grpName": "STARZ"
+  },
+  {
+    "name": "STARZ Comedy HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/StzComedy_HD.gif",
+    "chLogoId": "3460062",
+    "promoOfferUrl": "/cms2/pepod_new/packages/pep_new_free_premiums_promo.png",
+    "grpName": "STARZ"
+  },
+  {
+    "name": "STARZ East HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/Stz_HD.gif",
+    "chLogoId": "3460054",
+    "promoOfferUrl": "/cms2/pepod_new/packages/pep_new_free_premiums_promo.png",
+    "grpName": "STARZ"
+  },
+  {
+    "name": "STARZ Edge HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/StzEdge_HD.gif",
+    "chLogoId": "522",
+    "promoOfferUrl": "/cms2/pepod_new/packages/pep_new_free_premiums_promo.png",
+    "grpName": "STARZ"
+  },
+  {
+    "name": "STARZ in Black HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/StzInBlack_HD.gif",
+    "chLogoId": "3810020",
+    "promoOfferUrl": "/cms2/pepod_new/packages/pep_new_free_premiums_promo.png",
+    "grpName": "STARZ"
+  },
+  {
+    "name": "STARZ Kids & Family HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/StzKidsFam_HD.gif",
+    "chLogoId": "3460068",
+    "promoOfferUrl": "/cms2/pepod_new/packages/pep_new_free_premiums_promo.png",
+    "grpName": "STARZ"
+  },
+  {
+    "name": "STARZ West HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/Stz_HD.gif",
+    "chLogoId": "3460060",
+    "promoOfferUrl": "/cms2/pepod_new/packages/pep_new_free_premiums_promo.png",
+    "grpName": "STARZ"
+  },
+  {
+    "name": "STARZ (East)",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/Stz_SD.gif",
+    "chLogoId": "3460052",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "STARZ (West)",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/Stz_SD.gif",
+    "chLogoId": "3460058",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "SundanceTV",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/SUND_SD.gif",
+    "chLogoId": "3460078",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "SundanceTV HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/SUND_HD.gif",
+    "chLogoId": "4520003",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "SYFY",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/SYFY_SD.gif",
+    "chLogoId": "3460258",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "SYFY HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/SYFYHD_HD.gif",
+    "chLogoId": "3460270",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "TBS",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/TBS.gif",
+    "chLogoId": "3460084",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "TBS HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/TBS.gif",
+    "chLogoId": "3460086",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "TCM",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/TCM_SD.gif",
+    "chLogoId": "3460138",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "TCM HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/TCM_HD.gif",
+    "chLogoId": "4150001",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "TCT Network",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/TCT_SD.gif",
+    "chLogoId": "3460088",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "TeenNick",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/TNCK_SD.gif",
+    "chLogoId": "3460112",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "Tennis Channel HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/TNNSHD_HD.gif",
+    "chLogoId": "3460096",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "MOVIE CHANNEL",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/TMC_SD.gif",
+    "chLogoId": "3460106",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "THE MOVIE CHANNEL EAST HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/TMC_HD.gif",
+    "chLogoId": "4430007",
+    "promoOfferUrl": null,
+    "grpName": null,
+    "initial": true
+  },
+  {
+    "name": "THE MOVIE CHANNEL WEST",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/TMC_SD.gif",
+    "chLogoId": "3460108",
+    "promoOfferUrl": null,
+    "grpName": null,
+    "initial": true
+  },
+  {
+    "name": "THE MOVIE CHANNEL WEST",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/TMCw_SD.gif",
+    "chLogoId": "3460110",
+    "promoOfferUrl": null,
+    "grpName": null,
+    "initial": true
+  },
+  {
+    "name": "THE MOVIE CHANNEL XTRA EAST HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/TMCX_HD.gif",
+    "chLogoId": "4610003",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "THE MOVIE CHANNEL Xtra HD East",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/TMCX_HD.gif",
+    "chLogoId": "3810022",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "The Weather Channel HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/TWCHD_HD.gif",
+    "chLogoId": "3460116",
+    "promoOfferUrl": null,
+    "grpName": null,
+    "initial": true
+  },
+  {
+    "name": "The Word Network",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/WORD_SD.gif",
+    "chLogoId": "3460118",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "TLC",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/TLC_SD.gif",
+    "chLogoId": "3460120",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "TLC HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/TLCHD_HD.gif",
+    "chLogoId": "3460122",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "Tennis Channel",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/TNNS_SD.gif",
+    "chLogoId": "3460092",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "TNT",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/TNT_SD.gif",
+    "chLogoId": "3460124",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "TNT HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/TNTH_HD.gif",
+    "chLogoId": "3460126",
+    "promoOfferUrl": null,
+    "grpName": null,
+    "initial": true
+  },
+  {
+    "name": "Travel Channel",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/TRAV_SD.gif",
+    "chLogoId": "3460132",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "Travel Channel HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/TRAV_SD.gif",
+    "chLogoId": "3790010",
+    "promoOfferUrl": null,
+    "grpName": null,
+    "initial": true
+  },
+  {
+    "name": "Trinity Broadcasting Network (TBN)",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/TBN_SD.gif",
+    "chLogoId": "3460134",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "truTV",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/tru_SD.gif",
+    "chLogoId": "3460136",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "truTV HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/tru_SD.gif",
+    "chLogoId": "4070002",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "TV Land HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/TVLD_SD.gif",
+    "chLogoId": "4230005",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "TV One",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/directv_marketing/packages/directv_packages/TVONE.gif",
+    "chLogoId": "3460144",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "TVG",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/TVG_SD.gif",
+    "chLogoId": "3460146",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "TV Land",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/TVLD_SD.gif",
+    "chLogoId": "3460142",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "The Weather Channel",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/TWC_SD.gif",
+    "chLogoId": "3460114",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "Univision Deportes Network",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/UDN_SD.gif",
+    "chLogoId": "4250004",
+    "promoOfferUrl": null,
+    "grpName": null,
+    "initial": true
+  },
+  {
+    "name": "Univision (Este)",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/UNIVe_HD.gif",
+    "chLogoId": "3470110",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "UniMás",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/UMAS_SD.gif",
+    "chLogoId": "4290001",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "Universal Kids",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/UKIDS.gif",
+    "chLogoId": "3460284",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "Universal Kids HD",
+    "logoUrl": "https://www.directv.com/content/dam/dtv/teamsite/images/channel_call_sign/UKIDS.gif",
+    "chLogoId": "4730008",
+    "promoOfferUrl": null,
+    "grpName": null,
+    "initial": true
+  },
+  {
+    "name": "Univision Deportes Network HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/UDN_HD.gif",
+    "chLogoId": "4250003",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "Univision Este HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/UNIVe_HD.gif",
+    "chLogoId": "3780010",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "UP",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/UP_SD.gif",
+    "chLogoId": "3450196",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "Uplift",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/UPLFT_SD.gif",
+    "chLogoId": "4490017",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "USA Network",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/USA_SD.gif",
+    "chLogoId": "3460150",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "USA Network HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/USAHD_HD.gif",
+    "chLogoId": "3460152",
+    "promoOfferUrl": null,
+    "grpName": null,
+    "initial": true
+  },
+  {
+    "name": "Velocity HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/VelocityHD.gif",
+    "chLogoId": "3450228",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "VH1",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/VH1_SD.gif",
+    "chLogoId": "3460160",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "VH1 HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/VH1_HD.gif",
+    "chLogoId": "3460162",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "VICELAND",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/Viceland.gif",
+    "chLogoId": "4680001",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "VICELAND HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/Viceland.gif",
+    "chLogoId": "4680002",
+    "promoOfferUrl": null,
+    "grpName": null,
+    "initial": true
+  },
+  {
+    "name": "Vme",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/VME_SD.gif",
+    "chLogoId": "3470114",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "WE tv HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/WE_SD.gif",
+    "chLogoId": "4520002",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "WE tv",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/WE_SD.gif",
+    "chLogoId": "3460176",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "WGN America",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/WGNA.gif",
+    "chLogoId": "3460178",
+    "promoOfferUrl": null,
+    "grpName": null
+  },
+  {
+    "name": "WGN America HD",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/WGNA.gif",
+    "chLogoId": "3790012",
+    "promoOfferUrl": null,
+    "grpName": null,
+    "initial": true
+  },
+  {
+    "name": "World Harvest Television",
+    "logoUrl": "https://www.directv.com/images/channel_call_sign/WHT_SD.gif",
+    "chLogoId": "3460180",
+    "promoOfferUrl": null,
+    "grpName": null
+  }
+]

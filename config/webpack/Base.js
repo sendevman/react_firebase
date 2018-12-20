@@ -91,7 +91,7 @@ class WebpackBaseConfig {
 						loader: 'babel-loader',
 					},
 					{
-						test: /\.(png|jpg|gif|mp4|ogg|svg|woff|woff2|ttf|eot|ico)$/,
+						test: /\.(png|jpg|jpeg|gif|mp4|ogg|svg|woff|woff2|ttf|eot|ico|svg)$/,
 						loader: 'file-loader',
 					},
 					{

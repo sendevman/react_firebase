@@ -1,27 +1,46 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import Typography from '@material-ui/core/Typography';
 
 import Info from './Info';
+import Users from './Users';
+import Zones from './Zones';
+import Products from './Products';
 
 class LocationsManTab extends Component {
   constructor(props) {
     super(props);
-
+    const { match } = this.props;
+    let value = 0;
+    if (match.params.tab === 'info') {
+      value = 0;
+    } else if (match.params.tab === 'users') {
+      value = 1;
+    } else if (match.params.tab === 'zones') {
+      value = 2;
+    } else if (match.params.tab === 'products') {
+      value = 3;
+    }
     this.state = {
-      value: 0,
+      value,
     };
   }
 
-  handleChange = (event, value) => {
+  handleChange = (e, value) => {
+    const { history, match } = this.props;
     this.setState({ value });
-  };
-
-  handleChangeIndex = index => {
-    this.setState({ value: index });
+    if (value === 0) {
+      history.push(`/locations/manage/${match.params.store_id}/info`);
+    } else if (value === 1) {
+      history.push(`/locations/manage/${match.params.store_id}/users`);
+    } else if (value === 2) {
+      history.push(`/locations/manage/${match.params.store_id}/zones`);
+    } else if (value === 3) {
+      history.push(`/locations/manage/${match.params.store_id}/products`);
+    }
   };
 
   render() {
@@ -36,31 +55,36 @@ class LocationsManTab extends Component {
             textColor="primary"
             fullWidth
           >
-            <Tab label="Info" />
-            <Tab label="Users" />
-            <Tab label="Zones" />
-            <Tab label="Products" />
+            <Tab className={value === 0 ? 'info' : ''} label="Info" />
+            <Tab className={value === 1 ? 'users' : ''} label="Users" />
+            <Tab className={value === 2 ? 'zones' : ''} label="Zones" />
+            <Tab className={value === 3 ? 'products' : ''} label="Products" />
           </Tabs>
         </AppBar>
         {value === 0 &&
-          <Typography component="div" style={{ padding: 8 * 3, width: '90%' }}>
-            <Info />
-          </Typography>}
+          <div style={{ padding: 8 * 3, width: '90%' }}>
+            <Info storeId={this.props.match.params.store_id} />
+          </div>}
         {value === 1 &&
-          <Typography component="div" style={{ padding: 8 * 3 }}>
-            Users
-          </Typography>}
+          <div style={{ padding: 8 * 3, width: '90%' }}>
+            <Users storeId={this.props.match.params.store_id} />
+          </div>}
         {value === 2 &&
-          <Typography component="div" style={{ padding: 8 * 3 }}>
-            Zones
-          </Typography>}
-        {value === 2 &&
-          <Typography component="div" style={{ padding: 8 * 3 }}>
-            Products
-          </Typography>}
+          <div style={{ padding: 8 * 3, width: '90%' }}>
+            <Zones storeId={this.props.match.params.store_id} />
+          </div>}
+        {value === 3 &&
+          <div style={{ padding: 8 * 3 }}>
+            <Products storeId={this.props.match.params.store_id} />
+          </div>}
       </div>
     );
   }
 }
+
+LocationsManTab.propTypes = {
+  match: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired,
+};
 
 export default LocationsManTab;

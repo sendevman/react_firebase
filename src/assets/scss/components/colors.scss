@@ -1,0 +1,47 @@
+.component-colors-container {
+	.content-box {
+		position: relative;
+		.bg-image {
+			position: absolute;
+			.colors-bg {
+				width: calc(100% + 48px);
+				margin-left: -24px;
+				margin-right: -24px;
+				margin-top: -16px;
+			}
+			.empty-bg {
+				width: calc(100% + 48px);
+				height: 20vh;
+				margin-right: -1.5rem;
+				margin-left: -1.5rem;
+				margin-top: -0.1875rem;
+			}
+		}
+		.colors-container {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: center;
+			z-index: 1;
+			position: relative;
+			padding-top: 20%;
+			.color-item-container {
+				display: flex;
+				flex-flow: column;
+				align-items: center;
+				width: 22%;
+				margin-right: 1%;
+				margin-left: 1%;
+				.color-item-title {
+					text-align: center;
+					max-width: 80%;
+					white-space: normal;
+					word-break: break-word;
+					font-size: 0.7rem;
+				}
+				.color-item-image {
+					max-width: 100%;
+				}
+			}
+		}
+	}
+}

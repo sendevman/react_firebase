@@ -4,14 +4,21 @@ import {
   GET_FB_USERS,
   GET_FB_LOCATIONS,
   GET_FB_PRODUCTS,
+  GET_FB_CARD_TYPES,
   GET_FB_AERAS,
   GET_FB_VOD,
   GET_CURRENT_USER,
+  GET_FB_SUB_COLLECTION,
+  ADD_FB_SUB_COLLECTION_FIELD,
   FB_AUTH_LOGIN,
   FB_AUTH_LOGOUT,
   FB_TMP_UPLOAD_IMAGE,
   FB_TMP_DELETE_IMAGE,
-  FB_UPLOAD_IMAGE,
+  ADD_FB_COLLECTION_DATA,
+  ADD_FB_DOC_FIELD,
+  ADD_FB_DOC_SUB_IMAGE_FIELD,
+  ADD_FB_DOC_IMAGE_FIELD,
+  UPDATE_FB_DOC,
 } from './constants';
 
 import {
@@ -22,17 +29,96 @@ import {
   authLogout,
   uploadImage,
   deleteTmpImage,
+  getAddDataId,
+  getSubCollection,
+  addSubCollectionfield,
+  addDocField,
+  updateDoc,
 } from './api';
 
 import {
   setUsers,
   setLocations,
   setProducts,
+  setCardTypes,
   setAreas,
   setVod,
   setCurrentUser,
   setUserError,
+  setSubCollection,
 } from './actions';
+
+function* asyncUpdateDoc(param) {
+  const { field, id, data } = param.payload;
+  yield call(updateDoc, field, id, data);
+}
+
+function* asyncAddCollectionData(param) {
+  const { collection, location } = param.payload;
+  yield call(getAddDataId, collection, location);
+  // const requests = param.payload.users.map(user =>
+  //   call(addCollection, collection, id, 'users', user),
+  // );
+  // yield all(requests);
+}
+
+function* asyncGetSubCollection(param) {
+  const { parent, id, child } = param.payload;
+  const res = yield call(getSubCollection, parent, id, child);
+  yield put(setSubCollection(parent, id, child, res));
+}
+
+function* asyncAddSubCollectionField(param) {
+  const { parent, id, child, childId, field, data } = param.payload;
+  const res = {};
+  res[field] = data.data;
+  if (data.uploadImg && data.uploadImg.imgBackSrcType) {
+    res[field].bgImg = yield call(uploadImage, `${child}/`, { name: `${field}-bg-${childId}-${data.uploadImg.imgBackSrcType.name}`, data: data.uploadImg.imgBackSrcType });
+  }
+  if (data.uploadImg && data.uploadImg.imgCardSrcType) {
+    res[field].img = yield call(uploadImage, `${child}/`, { name: `${field}-${childId}-${data.uploadImg.imgCardSrcType.name}`, data: data.uploadImg.imgCardSrcType });
+  }
+  yield call(addSubCollectionfield, parent, id, child, childId, res);
+}
+
+function* asyncAddDocField(param) {
+  const { field, id, data } = param.payload;
+  yield call(addDocField, field, id, data);
+}
+
+function* asyncAddDocImageField(param) {
+  const { parent, id, field, index, data, imgItem, img } = param.payload;
+  let res = {};
+  if (field !== '') {
+    res[field] = data;
+  } else {
+    res = data;
+  }
+  if (img) {
+    if (index) {
+      res[field][index][imgItem] = yield call(uploadImage, `${parent}/${id}/${field}/`, { name: `directv_section${index + 1}`, data: img });
+    } else if (field !== '') {
+      res[field][imgItem] = yield call(uploadImage, `${parent}/${id}/${field}/`, { name: `directv_section${index + 1}`, data: img });
+    } else {
+      res[imgItem] = yield call(uploadImage, `${parent}/${id}/${field}/`, { name: `directv_section${index + 1}`, data: img });
+    }
+  }
+  yield call(addDocField, parent, id, res);
+  const products = yield call(getData, 'products');
+  yield put(setProducts(products));
+}
+
+function* asyncAddDocSubImageField(param) {
+  const { parent, id, field, index, subField, subIndex, data, img } = param.payload;
+  const res = {};
+  res[field] = data;
+  if (img) {
+    res[field][index][subField][subIndex].img = yield call(uploadImage, `${parent}/${id}/${field}/${subField}/`, { name: `directv_section${index + 1}`, data: img });
+  }
+  yield call(addDocField, parent, id, res);
+  const products = yield call(getData, 'products');
+  yield put(setProducts(products));
+}
 
 function* asyncGetUsers() {
   const users = yield call(getData, 'users');
@@ -40,13 +126,18 @@ function* asyncGetUsers() {
 }
 
 function* asyncGetLocations() {
-  const users = yield call(getData, 'locations');
-  yield put(setLocations(users));
+  const locations = yield call(getData, 'locations');
+  yield put(setLocations(locations));
 }
 
 function* asyncGetProducts() {
   const products = yield call(getData, 'products');
   yield put(setProducts(products));
+}
+
+function* asyncGetCardTypes() {
+  const cardTypes = yield call(getData, 'cardTypes');
+  yield put(setCardTypes(cardTypes));
 }
 
 function* asyncGetAreas() {
@@ -64,6 +155,7 @@ function* asyncAuthLogin(param) {
   if (authUser.state === 'success') {
     yield call(getToken, authUser.user);
     yield put(setCurrentUser(authUser.user));
+    localStorage.setItem('email', param.payload.auth.email);
   } else {
     yield put(setUserError(authUser.error));
   }
@@ -71,6 +163,7 @@ function* asyncAuthLogin(param) {
 
 function* asyncAuthLogout() {
   localStorage.removeItem('token');
+  localStorage.removeItem('email');
   localStorage.removeItem('refreshToken');
   yield call(authLogout);
 }
@@ -88,10 +181,6 @@ function* asyncDeleteTmpImage(param) {
   yield call(deleteTmpImage, param.payload.file);
 }
 
-function* asyncUploadImage(param) {
-  yield call(uploadImage, 'landing/', param.payload.file);
-}
-
 export function* sagaWatcher() {
   yield takeLatest(GET_FB_USERS, asyncGetUsers);
   yield takeLatest(GET_FB_LOCATIONS, asyncGetLocations);
@@ -103,7 +192,14 @@ export function* sagaWatcher() {
   yield takeLatest(GET_CURRENT_USER, asyncGetCurrentUser);
   yield takeLatest(FB_TMP_UPLOAD_IMAGE, asyncUploadTmpImage);
   yield takeLatest(FB_TMP_DELETE_IMAGE, asyncDeleteTmpImage);
-  yield takeLatest(FB_UPLOAD_IMAGE, asyncUploadImage);
+  yield takeLatest(ADD_FB_COLLECTION_DATA, asyncAddCollectionData);
+  yield takeLatest(UPDATE_FB_DOC, asyncUpdateDoc);
+  yield takeLatest(GET_FB_SUB_COLLECTION, asyncGetSubCollection);
+  yield takeLatest(ADD_FB_SUB_COLLECTION_FIELD, asyncAddSubCollectionField);
+  yield takeLatest(ADD_FB_DOC_FIELD, asyncAddDocField);
+  yield takeLatest(ADD_FB_DOC_SUB_IMAGE_FIELD, asyncAddDocSubImageField);
+  yield takeLatest(ADD_FB_DOC_IMAGE_FIELD, asyncAddDocImageField);
+  yield takeLatest(GET_FB_CARD_TYPES, asyncGetCardTypes);
 }
 
 export default [

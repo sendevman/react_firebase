@@ -1,5 +1,41 @@
-.homeview-card-media {
-	min-height: 270px;
+.homeviewer-cardmedia-contaienr {
+	position: relative;
+	height: 100%;
+
+	.homeview-back-media {
+		min-height: 270px;
+		height: 100%;
+	}
+
+	.homeview-card-media {
+		position: absolute;
+		top: 200px;
+		left: 10%;
+		right: 10%;
+		bottom: 10%;
+		background-size: 100% 100%;
+	}
+	
+	.homeviewer-cardmedia-content {
+		position: absolute;
+		top: 20%;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		display: flex;
+		flex-flow: column;
+		padding: 2rem;
+		padding-top: 0;
+		.homeviewer-cardmedia-title {
+			font-size: 3rem;
+			font-weight: bold;
+			margin-bottom: 0.5rem;
+			color: #009FDB;
+		}
+		.homeviewer-cardmedia-subtitle {
+			margin-bottom: 1rem;
+		}
+	}
 }
 
 .homeview-upload-box {
@@ -11,7 +47,7 @@
 
 	.flat-button-file {
 		position: absolute;
-		bottom: 22px;
+		bottom: 9px;
 		z-index: 1;
 
 		.upload-button {

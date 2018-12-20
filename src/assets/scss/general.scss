@@ -32,8 +32,28 @@ code {
   font-size: 1.25rem;
 }
 
+.text-align-center {
+  text-align: center;
+}
+
 .d-flex {
   display: flex;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.justify-content-center {
+  justify-content: center;
+}
+
+.justify-cotent-around {
+  justify-content: space-around;
+}
+
+.justify-cotent-between {
+  justify-content: space-between;
 }
 
 .w-25 {
@@ -56,6 +76,11 @@ code {
   margin-top: 2rem;
 }
 
+.default-inner-container {
+  padding: 1.5rem;
+  width: 90%;
+}
+
 .default-text-color {
   color: rgba(0, 0, 0, 0.54)
 }
@@ -68,6 +93,7 @@ code {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
+  align-items: center;
 }
 
 .left-border-dark-blue,
@@ -77,6 +103,19 @@ code {
   &.single {
     padding-left: 11px !important;
   }
+}
+
+.left-border-white {
+  border-left: 5px solid $white;
+}
+
+.left-border-green {
+  border-left: 5px solid $green;
+}
+
+.left-border-dark-red,
+.left-border-red {
+  border-left: 5px solid $red;
 }
 
 .left-border-dark-purple {
@@ -93,6 +132,22 @@ code {
 
 .left-border-orange {
   border-left: 5px solid $orange;
+}
+
+.left-border-black {
+  border-left: 5px solid black;
+}
+
+.top-border-dark-red {
+  border-top: 5px solid $red;
+}
+
+.top-border-dark-blue {
+  border-top: 5px solid $dark-blue;
+}
+
+.top-border-dark-green {
+  border-top: 5px solid $dark-green;
 }
 
 .label-products-table {
@@ -152,4 +207,18 @@ code {
   &.margin-top-30 {
     margin-top: 1.875rem;
   }
+}
+
+.empty-hline-grey {
+  height: 0;
+  border: 1px solid rgb(189, 187, 187);
+  width: 100%;
+  margin-top: 0.8rem;
+  margin-bottom: 0.8rem;
+}
+
+.empty-vline-grey {
+  width: 0;
+  border: 1px solid rgb(189, 187, 187);
+  height: 2.6rem;
 }

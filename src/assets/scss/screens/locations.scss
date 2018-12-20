@@ -3,7 +3,26 @@
 #locations-add {
 	margin: auto;
 	max-width: 62.5rem;
-	.MuiTab-selected-100 {
+}
+
+#locations-man-tab {
+	.info {
+		border-left: 5px solid $orange;
+	}
+	.users {
 		border-left: 5px solid $dark-purple;
+	}
+	.zones {
+		border-left: 5px solid $red;
+	}
+	.products {
+		border-left: 5px solid $green;
+	}
+}
+
+#locations-man-info {
+	.zones-store-layout {
+		height: 30vh;
+		margin-bottom: 30px;
 	}
 }
