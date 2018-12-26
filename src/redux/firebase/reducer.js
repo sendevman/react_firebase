@@ -1,3 +1,9 @@
+/**
+ * Conexus-Tech - Retail Companion Web Interface AT&T
+ * https://conexustech.com/
+ * @flow
+ */
+
 import { fromJS, List } from 'immutable';
 import { handleActions } from 'redux-actions';
 import _ from 'lodash';

@@ -1,3 +1,48 @@
+## Instructions for installing MUI-DataTables
+
+[Package:](https://yarnpkg.com/en/package/mui-datatables)
+
+> **Step 1:**
+```bash
+$ npm install mui-datatables --save
+$ # or
+$ yarn add mui-datatables
+```
+
+> **Step 2:** Edit the code of the file `node_modules/mui-datatables/dist/index.js`, and save the changes.
+
+> Search the text: `Provided options.page of` that is inside a conditional (If).
+
+> We must comment on all the conditional.
+
+Example:
+
+### `Code`
+
+```js
+// ...
+
+if(l<a&&0!==l)throw new Error("Provided options.page of `"+a+"` is greater than the total available page length of `"+l+"`");
+
+// ...
+```
+
+### `Code commented`
+
+```js
+// ...
+
+/* if(l<a&&0!==l)throw new Error("Provided options.page of `"+a+"` is greater than the total available page length of `"+l+"`"); */
+
+// ...
+```
+
+> **Note:** When we are on a distant page (Pages `0 - 8`, and we are on page `'6' - 8`)<br>
+> and try to perform a `'search'` that returns very few results, this triggers the error.<br>
+> (Package error)
+
+- - - - - 
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>

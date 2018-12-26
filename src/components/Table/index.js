@@ -1,44 +1,54 @@
-import PropTypes from 'prop-types';
+/**
+ * Conexus-Tech - Retail Companion Web Interface AT&T
+ * https://conexustech.com/
+ * @flow
+ */
 
-import ReactTable from 'react-table';
-import 'react-table/react-table.css';
+import PropTypes from 'prop-types';
 
 import InputEvent from 'components/InputEvent';
 
+import MUIDataTable from "mui-datatables";
+
 class Table extends InputEvent {
   render() {
-    const { tables, columns, pageSize, showPagination, updateRowStyle } = this.props;
+    const { columns, tables, title, pageSize, searchEnable } = this.props;
+
+    const options = {
+      filterType: 'dropdown',
+      responsive: 'scroll',
+      rowsPerPageOptions: [5, 10, 20],
+      rowsPerPage: pageSize,
+      print: false,
+      selectableRows: false,
+      search: searchEnable,
+    };
+
     return (
-      <ReactTable
-        className="-striped -highlight"
-        data={tables}
-        showPagination={showPagination}
-        defaultPageSize={pageSize}
-        getTrProps={updateRowStyle}
-        sorted={[{
-          id: 'name',
-          desc: false,
-        }]}
+      <MUIDataTable
         columns={columns}
+        data={tables}
+        options={options}
+        title={title}
       />
     );
   }
 }
 
 Table.propTypes = {
-  pageSize: PropTypes.number,
-  showPagination: PropTypes.bool,
-  tables: PropTypes.array,
   columns: PropTypes.array,
-  updateRowStyle: PropTypes.func,
+  tables: PropTypes.array,
+  title: PropTypes.string,
+  pageSize: PropTypes.number,
+  searchEnable: PropTypes.bool,
 };
 
 Table.defaultProps = {
-  pageSize: 5,
-  showPagination: false,
-  tables: [],
   columns: [],
-  updateRowStyle: () => ({}),
+  tables: [],
+  title: '',
+  pageSize: 5,
+  searchEnable: false,
 };
 
 export default Table;
