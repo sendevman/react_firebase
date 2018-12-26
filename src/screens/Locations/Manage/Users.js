@@ -15,10 +15,10 @@ class LocationsManUsers extends InputEvent {
 	constructor(props) {
 		super(props);
 
-		const { locations, storeId } = props;
+		const { locations, storeId, users } = props;
 		this.state = {
 			selected: [],
-			accessUserList: locations.length > 0 ? _.find(locations, { fbId: storeId }).users : [],
+			accessUserList: locations.length > 0 ? _.find(locations, { fbId: storeId }).users.map(user => _.find(users, { fbId: user })) : [],
 			rAccessUserList: [],
 			accessUser: {},
 			accessUserIndex: null,
