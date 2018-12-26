@@ -22,14 +22,13 @@ class Locations extends InputEvent {
     super(props);
 
     const { locations, users } = props;
+
     let tables = [];
     if ((users.length !== 0) && (locations.length !== 0)) {
       tables = this.getTables(locations, users);
     }
-    this.state = {
-      search: '',
-      tables,
-    };
+
+    this.state = { tables };
   }
 
   componentDidMount() {
@@ -54,71 +53,65 @@ class Locations extends InputEvent {
     const tables = [];
     _.each(locations, location => {
       if ((location.users.length > 0 &&
-            _.findIndex(location.users, item => _.find(users, { fbId: item }).email === localStorage.getItem('email')) > -1) ||
-            _.find(users, { email: localStorage.getItem('email') }).group === 'master') {
-        tables.push({
-          storeId: location.storeId,
-          ...location.storeInfo,
-          fbId: location.fbId,
-        });
+          _.findIndex(location.users, item => _.find(users, { fbId: item }).email === localStorage.getItem('email')) > -1) ||
+          _.find(users, { email: localStorage.getItem('email') }).group === 'master') {
+        tables.push({ storeId: location.storeId, ...location.storeInfo, fbId: location.fbId});
       }
     });
     return tables;
-  }
+  };
 
   addLocations = () => {
     this.props.history.push('/locations/add');
-  }
+  };
 
   handleOnClick = (row) => {
     this.props.history.push(`/locations/manage/${row._original.fbId}/info`);
-  }
+  };
+
+  getLocationList = () => {
+    const { locations } = this.props;
+
+    var newList = [];
+    locations.forEach(item => {
+      let newItem = [
+        item.storeInfo.name || '',
+        item.storeId || '',
+        item.storeInfo.city || '',
+        item.storeInfo.state || '',
+        item.storeInfo.region || '',
+        item.storeInfo.type || ''
+      ];
+      newList.push(newItem);
+    });
+
+    return newList;
+  };
 
   render() {
-    const { tables } = this.state;
     const columns = [
-      {
-        Header: () => this.renderHeader('Name'),
-        Cell: ({ row }) => this.renderCell(row.name, () => this.handleOnClick(row)),
-        accessor: 'name',
-      },
-      {
-        Header: () => this.renderHeader('Store ID'),
-        Cell: ({ row }) => this.renderCell(row.storeId, () => this.handleOnClick(row)),
-        accessor: 'storeId',
-      },
-      {
-        Header: () => this.renderHeader('City'),
-        Cell: ({ row }) => this.renderCell(row.city, () => this.handleOnClick(row)),
-        accessor: 'city',
-      },
-      {
-        Header: () => this.renderHeader('State'),
-        Cell: ({ row }) => this.renderCell(row.state, () => this.handleOnClick(row)),
-        accessor: 'state',
-      },
-      {
-        Header: () => this.renderHeader('Region'),
-        Cell: ({ row }) => this.renderCell(row.region, () => this.handleOnClick(row)),
-        accessor: 'region',
-      },
-      {
-        Header: () => this.renderHeader('Type'),
-        Cell: ({ row }) => this.renderCell(row.type, () => this.handleOnClick(row)),
-        accessor: 'type',
-      },
+      { name: 'Name' },
+      { name: 'Store ID' },
+      { name: 'City' },
+      { name: 'State' },
+      { name: 'Region' },
+      { name: 'Type' }
     ];
+
+    const locationList = this.getLocationList();
+
     return (
       <div id="locations-manage" className="Container-box">
         <Card style={{ width: '90%' }}>
           <CardContent className="left-border-orange">
             <TableList
               columns={columns}
-              tables={tables}
-              label="Select a location to manage"
-              addbtnTooltip="Add New Location"
+              tables={locationList}
+              title="Select a location to manage"
+              pageSize={10}
+              searchEnable={true}
               addbtn
-              searchEnable
+              addbtnTooltip="Add New Location"
               handleAdd={this.addLocations} />
           </CardContent>
         </Card>
