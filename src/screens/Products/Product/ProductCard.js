@@ -1,3 +1,9 @@
+/**
+ * Conexus-Tech - Retail Companion Web Interface AT&T
+ * https://conexustech.com/
+ * @flow
+ */
+
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 

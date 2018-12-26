@@ -1,3 +1,9 @@
+/**
+ * Conexus-Tech - Retail Companion Web Interface AT&T
+ * https://conexustech.com/
+ * @flow
+ */
+
 import React, { Component } from 'react';
 
 import dtv_logo from 'assets/images/dtv.logo.png';

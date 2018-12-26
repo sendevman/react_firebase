@@ -1,3 +1,9 @@
+/**
+ * Conexus-Tech - Retail Companion Web Interface AT&T
+ * https://conexustech.com/
+ * @flow
+ */
+
 import icon_livetv from 'assets/images/icon_livetv.png';
 import device_md from 'assets/images/device_md.png';
 import icon4 from 'assets/images/icon4.png';

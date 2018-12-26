@@ -1,3 +1,9 @@
+/**
+ * Conexus-Tech - Retail Companion Web Interface AT&T
+ * https://conexustech.com/
+ * @flow
+ */
+
 import icon_getmore from 'assets/images/icon_getmore.png';
 import watch_mark from 'assets/images/watch_mark.png';
 import check_blue from 'assets/images/check_blue.png';
