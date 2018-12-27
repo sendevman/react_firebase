@@ -69,7 +69,7 @@ class ProductsMain extends InputEvent {
     }
   };
 
-  handleSelectedRows = (dataRows) => {
+  handleSelectedRows = (tableState, dataRows) => {
     this.setState({ selectedRows: dataRows });
   };
 
@@ -108,14 +108,14 @@ class ProductsMain extends InputEvent {
   getProductList = () => {
     const { catalogProducts } = this.props;
 
-    var newList = [];
+    const newList = [];
     catalogProducts.forEach(item => {
-      let newItem = [
+      const newItem = [
         item.model || '',
         item.manufacture || '',
         item.fbId || '',
         item.type || '',
-        item.subType || ''
+        item.subType || '',
       ];
       newList.push(newItem);
     });
@@ -139,7 +139,7 @@ class ProductsMain extends InputEvent {
       { name: 'Manufacture' },
       { name: 'ID' },
       { name: 'Type' },
-      { name: 'SubType' }
+      { name: 'SubType' },
     ];
 
     const catalogProductList = this.getProductList();
@@ -161,7 +161,7 @@ class ProductsMain extends InputEvent {
                   multiSelectEnable={multiSelectEnable}
                   pageSize={pageSize}
                   rowsSelected={productIndex}
-                  searchEnable={true}
+                  searchEnable
                   selectableRowsEnable={false}
                   selectedRows={selectedRows}
                   handlePageSizeSelected={this.handlePageSizeSelected}
