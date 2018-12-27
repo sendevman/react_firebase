@@ -228,3 +228,19 @@ code {
   border: 1px solid rgb(189, 187, 187);
   height: 2.6rem;
 }
+
+.table-row {
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgba(0, 159, 219, 1) !important;
+
+    & > td { color: #fff; }
+  }
+
+  &.selected {
+    background-color: rgba(76, 169, 12, 1) !important;
+
+    & > td { color: #fff; }
+  }
+}

@@ -28,8 +28,12 @@ class TableList extends InputEvent {
       columns,
       tables,
       title,
+      multiSelectEnable,
       pageSize,
+      rowsSelected,
       searchEnable,
+      selectableRowsEnable,
+      selectedRows,
       addbtn,
       addbtnTooltip,
       savebtn,
@@ -37,12 +41,23 @@ class TableList extends InputEvent {
       editbtn,
       editbtnTooltip,
       deletebtn,
-      deletebtnTooltip,
-    } = this.props;
+      deletebtnTooltip } = this.props;
 
     return (
       <Grid item xs={12}>
-        <Table columns={columns} tables={tables} title={title} pageSize={pageSize} searchEnable={searchEnable} />
+        <Table
+          columns={columns}
+          tables={tables}
+          title={title}
+          multiSelectEnable={multiSelectEnable}
+          pageSize={pageSize}
+          rowsSelected={rowsSelected}
+          searchEnable={searchEnable}
+          selectableRowsEnable={selectableRowsEnable}
+          selectedRows={selectedRows}
+          handlePageSizeSelected={this.props.handlePageSizeSelected}
+          handleRowsSelected={this.props.handleRowsSelected}
+          handleSelectedRows={this.props.handleSelectedRows} />
 
         <div className="buttons-box mt-block">
           {addbtn && this.renderButton(addbtnTooltip, 'green', this.props.handleAdd, <AddIcon />, 'fab')}
