@@ -49,6 +49,7 @@ class GeneralInfo extends InputEvent {
 
   componentDidMount() {
     this.props.getLocations();
+    this.save();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -83,6 +84,12 @@ class GeneralInfo extends InputEvent {
       }
     }
   }
+
+  handleInputChange = (e, type) => {
+		const stateCopy = Object.assign({}, this.state);
+		stateCopy[type] = e.target.value;
+		this.setState({ ...stateCopy }, () => this.save());
+  };
 
   upload = () => {
     // const target = event.target;
@@ -240,7 +247,6 @@ class GeneralInfo extends InputEvent {
           </div>
           <div className="buttons-box mt-block">
             {this.renderButton('Refresh Ipog Data', 'blue', this.refresh, <RefreshIcon />)}
-            {this.renderButton('Save', 'orange', this.save, <SaveIcon />)}
           </div>
         </Grid>
       </Grid>
