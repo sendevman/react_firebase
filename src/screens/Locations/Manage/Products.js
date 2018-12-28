@@ -34,11 +34,11 @@ class Products extends InputEvent {
 		this.state = {
 			selectedZone: {},
 			selectedZoneId: '',
-			catalogProduct: {},
-			catalogProductIndex: null,
 			currentProduct: '',
-			currentProductIndex: null,
+			currentProductIndex: [],
 		};
+		this.selected = {};
+		this.rProductsList = [];
 	}
 
 	componentDidMount() {
@@ -79,12 +79,48 @@ class Products extends InputEvent {
 		}
 	}
 
+	getCategoryProductsList = () => {
+		const { categoryProducts } = this.props;
+
+		const newList = [];
+		if (categoryProducts.length > 0) {
+			categoryProducts.forEach(item => {
+				const newItem = [
+					item.fbId || '',
+					item.type || '',
+					item.subType || '',
+				];
+				newList.push(newItem);
+			});
+		}
+		return newList;
+	};
+
+	getCurrentProductsList = () => {
+		const { selectedZoneId } = this.state;
+		const { locations, storeId } = this.props;
+
+		const products = selectedZoneId !== '' ? _.find(_.find(locations, { fbId: storeId }).subCollection.zones, { fbId: selectedZoneId }).products : [];
+		const newList = [];
+		if (products.length > 0) {
+			products.forEach(item => {
+				if (item !== 'titleCard') {
+					const newItem = [
+						item || '',
+					];
+					newList.push(newItem);
+				}
+			});
+		}
+		return newList;
+	}
+
 	handleDeleteProducts = () => {
 		const { addSubCollectionField, getZones, storeId } = this.props;
 		const {	currentProduct, selectedZone, selectedZoneId } = this.state;
 		if (selectedZoneId !== '') {
 			const products = selectedZone.products.slice();
-			_.remove(products, product => product === currentProduct);
+			_.remove(products, product => product === currentProduct[0]);
 			addSubCollectionField(
 				'locations',
 				storeId,
@@ -101,8 +137,9 @@ class Products extends InputEvent {
 
 	handleAddProducts = () => {
 		const { addSubCollectionField, getZones, storeId } = this.props;
-		const {	catalogProduct, selectedZone, selectedZoneId } = this.state;
+		const {	selectedZone, selectedZoneId } = this.state;
 		if (selectedZoneId !== '') {
+			const products = _.uniq(selectedZone.products.concat(this.rProductsList.map(item => item.fbId)));
 			addSubCollectionField(
 				'locations',
 				storeId,
@@ -110,7 +147,7 @@ class Products extends InputEvent {
 				selectedZoneId,
 				'products',
 				{
-					data: selectedZone.products.concat([catalogProduct.fbId]),
+					data: products,
 				},
 			);
 			getZones('locations', storeId, 'zones');
@@ -126,69 +163,48 @@ class Products extends InputEvent {
 		});
 	}
 
-	handleCurrentClick = (row, index) => {
+	handlePageSizeSelected = size => {
+		this.setState({ pageSize: size });
+	};
+
+	handleRowsSelected = index => {
 		this.setState({
-			currentProduct: row._original,
-			currentProductIndex: index,
+			currentProduct: this.getCurrentProductsList()[index],
+			currentProductIndex: [index],
 		});
 	}
 
-	handleCatalogClick = (row, index) => {
-		this.setState({
-			catalogProduct: row,
-			catalogProductIndex: index,
+	handleSelectedRows = (dataRows, selectedRows) => {
+		const selected = {};
+		_.each(selectedRows.data, item => {
+			selected[dataRows.data[item.index].data[0]] = true;
 		});
-	}
-
-	updateCurrentRowStyle = (state, rowInfo) => ({
-		style: {
-			background: rowInfo && rowInfo.index === this.state.currentProductIndex ? 'green' : null,
-		},
-	});
-
-	updateCatalogRowStyle = (state, rowInfo) => ({
-		style: {
-			background: rowInfo && rowInfo.index === this.state.catalogProductIndex ? 'green' : null,
-		},
-	});
+		const data = [];
+		_.each(_.keys(selected), item => {
+			if (selected[item]) {
+				data.push(_.find(this.props.categoryProducts, { fbId: item }));
+			}
+		});
+		this.selected = selected;
+		this.rProductsList = data;
+	};
 
 	render() {
-		const { locations, categoryProducts, storeId } = this.props;
-		const { selectedZoneId } = this.state;
+		const { locations, storeId } = this.props;
+		const { currentProductIndex } = this.state;
+
 		const currentProductsColumn = [
-			{
-				Header: () => this.renderHeader('id'),
-				Cell: ({ row, index }) => this.renderCell(row._original, () => this.handleCurrentClick(row, index)),
-				accessor: '',
-			},
+			{ name: 'id' },
 		];
 		const catalogProductsColumn = [
-			{
-				Header: () => this.renderHeader('Model'),
-				Cell: ({ row, index }) => this.renderCell(row.model, () => this.handleCatalogClick(row, index)),
-				accessor: 'model',
-			},
-			{
-				Header: () => this.renderHeader('Manufacture'),
-				Cell: ({ row, index }) => this.renderCell(row.manufacture, () => this.handleCatalogClick(row, index)),
-				accessor: 'manufacture',
-			},
-			{
-				Header: () => this.renderHeader('id'),
-				Cell: ({ row, index }) => this.renderCell(row.fbId, () => this.handleCatalogClick(row, index)),
-				accessor: 'fbId',
-			},
-			{
-				Header: () => this.renderHeader('type'),
-				Cell: ({ row, index }) => this.renderCell(row.type, () => this.handleCatalogClick(row, index)),
-				accessor: 'type',
-			},
-			{
-				Header: () => this.renderHeader('subtype'),
-				Cell: ({ row, index }) => this.renderCell(row.subtype, () => this.handleCatalogClick(row, index)),
-				accessor: 'subtype',
-			},
+			{ name: 'id' },
+			{ name: 'type' },
+			{ name: 'subtype' },
 		];
+
+		const categoryProductsList = this.getCategoryProductsList();
+		const currentProductsList = this.getCurrentProductsList();
+
 		return (
 			<div id="locations-add" className="Container-box">
 				<Card className="card-box">
@@ -204,28 +220,35 @@ class Products extends InputEvent {
 							{this.renderGrid('white',
 								<TableList
 									columns={currentProductsColumn}
-									tables={selectedZoneId !== '' ? _.find(_.find(locations, { fbId: storeId }).subCollection.zones, { fbId: selectedZoneId }).products : []}
+									tables={currentProductsList}
 									pageSize={10}
 									showPagination
 									label="Current Products"
 									deletebtnTooltip="Delete User"
 									deletebtn
 									searchEnable
-									handleDelete={this.handleDeleteProducts}
-									updateRowStyle={this.updateCurrentRowStyle} />)}
+									multiSelectEnable={false}
+									selectableRowsEnable={false}
+									rowsSelected={currentProductIndex}
+									handlePageSizeSelected={this.handlePageSizeSelected}
+									handleRowsSelected={this.handleRowsSelected}
+									handleDelete={this.handleDeleteProducts} />)}
 
 							{this.renderGrid('white',
 								<TableList
 									columns={catalogProductsColumn}
-									tables={categoryProducts}
+									tables={categoryProductsList}
 									pageSize={10}
 									showPagination
 									label="Products Catalog"
 									addbtnTooltip="Add Product"
 									addbtn
 									searchEnable
-									handleAdd={this.handleAddProducts}
-									updateRowStyle={this.updateCatalogRowStyle} />)}
+									selectableRowsEnable
+									// selectedRows={selectedRows}
+									handlePageSizeSelected={this.handlePageSizeSelected}
+									handleSelectedRows={this.handleSelectedRows}
+									handleAdd={this.handleAddProducts} />)}
 						</Grid>
 					</CardContent>
 				</Card>

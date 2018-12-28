@@ -31,6 +31,9 @@ class ProductsMain extends InputEvent {
       addProductEnable: false,
       editProductEnable: false,
       editProductIndex: '',
+      multiSelectEnable: false, // You have to use with "Table Prop: selectableRowsEnable", both give a specific use.
+      pageSize: 10,
+      selectedRows: { data: [], lookup: {} },
     };
   }
 
@@ -51,6 +54,24 @@ class ProductsMain extends InputEvent {
       }
     }
   }
+
+  handlePageSizeSelected = (size) => {
+    this.setState({ pageSize: size });
+  };
+
+  handleRowsSelected = (index) => {
+    const { catalogProducts } = this.props;
+
+    if (this.state.currentProductIndex === index) {
+      this.setState({ currentProductIndex: '', currentProduct: {} });
+    } else {
+      this.setState({ currentProductIndex: index, currentProduct: catalogProducts[index] });
+    }
+  };
+
+  handleSelectedRows = (tableState, dataRows) => {
+    this.setState({ selectedRows: dataRows });
+  };
 
   handleCatalogClick = (row, index) => {
     this.setState({
@@ -87,14 +108,14 @@ class ProductsMain extends InputEvent {
   getProductList = () => {
     const { catalogProducts } = this.props;
 
-    var newList = [];
+    const newList = [];
     catalogProducts.forEach(item => {
-      let newItem = [
+      const newItem = [
         item.model || '',
         item.manufacture || '',
         item.fbId || '',
         item.type || '',
-        item.subType || ''
+        item.subType || '',
       ];
       newList.push(newItem);
     });
@@ -103,17 +124,28 @@ class ProductsMain extends InputEvent {
   };
 
   render() {
-    const { addProductEnable, currentProduct, editProductEnable, editProductIndex } = this.state;
+    const {
+      currentProductIndex,
+      addProductEnable,
+      currentProduct,
+      editProductEnable,
+      editProductIndex,
+      multiSelectEnable,
+      pageSize,
+      selectedRows } = this.state;
 
     const columns = [
       { name: 'Model' },
       { name: 'Manufacture' },
       { name: 'ID' },
       { name: 'Type' },
-      { name: 'SubType' }
+      { name: 'SubType' },
     ];
 
     const catalogProductList = this.getProductList();
+
+    // We can improve when multiSelectEnable is True.
+    const productIndex = (currentProductIndex === '') ? [] : [parseInt(currentProductIndex)];
 
     return (
       <div id="locations-add" className="Container-box">
@@ -126,15 +158,18 @@ class ProductsMain extends InputEvent {
                   columns={columns}
                   tables={catalogProductList}
                   title="Products Catalog"
-                  pageSize={10}
-                  searchEnable={true}
+                  multiSelectEnable={multiSelectEnable}
+                  pageSize={pageSize}
+                  rowsSelected={productIndex}
+                  searchEnable
+                  selectableRowsEnable={false}
+                  selectedRows={selectedRows}
+                  handlePageSizeSelected={this.handlePageSizeSelected}
+                  handleRowsSelected={this.handleRowsSelected}
+                  handleSelectedRows={this.handleSelectedRows}
                   addbtn
                   addbtnTooltip="Add Product"
-                  editbtn
-                  editbtnTooltip="Edit Product"
-                  handleEdit={this.handleEditProduct}
-                  handleAdd={this.handleAddProduct}
-                  updateRowStyle={this.updateRowStyle} />)}
+                  handleAdd={this.handleAddProduct} />)}
 
               {((editProductEnable && editProductIndex !== '') || addProductEnable) &&
                 (currentProduct.type === 'service' || currentProduct.type === 'device') &&

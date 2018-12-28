@@ -127,6 +127,7 @@ class LocationsManInfo extends InputEvent {
 				<Grid container spacing={24}>
 					{this.renderGrid('orange',
 						<GeneralInfo
+							type="edit"
 							data={locations.length > 0 ? _.find(locations, { fbId: storeId }) : {}}
 							storeId={storeId}
 							genInfoSave={this.handleSave}
