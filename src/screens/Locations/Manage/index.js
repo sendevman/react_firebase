@@ -56,7 +56,7 @@ class Locations extends InputEvent {
   getTables = (locations, users) => {
     const tables = [];
     _.each(locations, location => {
-      if ((location.users.length > 0 &&
+      if ((location.users && location.users.length > 0 &&
           _.findIndex(location.users, item => _.find(users, { fbId: item }).email === localStorage.getItem('email')) > -1) ||
           _.find(users, { email: localStorage.getItem('email') }).group === 'master') {
         tables.push({ storeId: location.storeId, storeInfo: location.storeInfo, ...location.storeInfo, fbId: location.fbId });
