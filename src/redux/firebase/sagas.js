@@ -24,6 +24,8 @@ import {
   ADD_FB_DOC_FIELD,
   ADD_FB_DOC_SUB_IMAGE_FIELD,
   ADD_FB_DOC_IMAGE_FIELD,
+  ADD_FB_DOC,
+  UPDATE_FB_DOC_NEW,
   UPDATE_FB_DOC,
 } from './constants';
 
@@ -39,10 +41,14 @@ import {
   getSubCollection,
   addSubCollectionfield,
   addDocField,
+  addDoc,
+  updateDocNew,
   updateDoc,
 } from './api';
 
 import {
+  setNewDocId,
+  setNewDocError,
   setUsers,
   setLocations,
   setProducts,
@@ -126,6 +132,27 @@ function* asyncAddDocSubImageField(param) {
   yield put(setProducts(products));
 }
 
+function* asyncAddDoc(param) {
+  const { collection, data } = param.payload;
+  const addDocRes = yield call(addDoc, collection, data);
+  if (addDocRes.state === 'success') {
+    yield call(updateDocNew, collection, addDocRes.docId, { fbId: addDocRes.docId });
+    const products = yield call(getData, 'products');
+    yield put(setProducts(products));
+    yield put(setNewDocId(addDocRes.docId));
+  } else {
+    yield put(setNewDocError(addDocRes.error));
+  }
+}
+
+function* asyncUpdateDocNew(param) {
+  const { collection, id, data } = param.payload;
+  yield call(updateDocNew, collection, id, data);
+  const products = yield call(getData, 'products');
+  yield put(setProducts(products));
+  yield put(setNewDocId(id));
+}
+
 function* asyncGetUsers() {
   const users = yield call(getData, 'users');
   yield put(setUsers(users));
@@ -205,6 +232,8 @@ export function* sagaWatcher() {
   yield takeLatest(ADD_FB_DOC_FIELD, asyncAddDocField);
   yield takeLatest(ADD_FB_DOC_SUB_IMAGE_FIELD, asyncAddDocSubImageField);
   yield takeLatest(ADD_FB_DOC_IMAGE_FIELD, asyncAddDocImageField);
+  yield takeLatest(ADD_FB_DOC, asyncAddDoc);
+  yield takeLatest(UPDATE_FB_DOC_NEW, asyncUpdateDocNew);
   yield takeLatest(GET_FB_CARD_TYPES, asyncGetCardTypes);
 }
 

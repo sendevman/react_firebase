@@ -20,6 +20,9 @@ export const SET_STORE_AERAS = 'firebase/SET_STORE_AERAS';
 export const SET_STORE_VOD = 'firebase/SET_STORE_VOD';
 export const SET_SUB_COLLECTION = 'firebase/SET_SUB_COLLECTION';
 
+export const SET_NEW_DOC_ID = 'firebase/SET_NEW_DOC_ID';
+export const SET_NEW_DOC_ERROR = 'firebase/SET_NEW_DOC_ERROR';
+
 export const ADD_FB_COLLECTION_DATA = 'firebase/ADD_FB_COLLECTION_DATA';
 export const ADD_FB_SUB_COLLECTION_FIELD = 'firebase/ADD_FB_SUB_COLLECTION_FIELD';
 
@@ -37,3 +40,6 @@ export const UPDATE_FB_DOC = 'firebase/UPDATE_FB_DOC';
 export const ADD_FB_DOC_FIELD = 'firebase/ADD_FB_DOC_FIELD';
 export const ADD_FB_DOC_SUB_IMAGE_FIELD = 'firebase/ADD_FB_DOC_SUB_IMAGE_FIELD';
 export const ADD_FB_DOC_IMAGE_FIELD = 'firebase/ADD_FB_DOC_IMAGE_FIELD';
+
+export const ADD_FB_DOC = 'firebase/ADD_FB_DOC';
+export const UPDATE_FB_DOC_NEW = 'firebase/UPDATE_FB_DOC_NEW';

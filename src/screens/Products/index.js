@@ -14,12 +14,14 @@ import Grid from '@material-ui/core/Grid';
 import ProductPreview from './Product/ProductPreview';
 import ProductImport from './Product/ProductImport';
 import ProductCard from './Product/ProductCard';
+import ProductCardNew from './Product/ProductCardNew';
+
 import InputEvent from 'components/InputEvent';
 import TableList from 'components/TableList';
 // import HomeView from 'components/HomeView';
 
-import { addDocField, getProducts, getCardTypes, getSubCollection } from 'redux/firebase/actions';
-import { cardTypesSelector, productsSelector } from 'redux/firebase/selectors';
+import { addDoc, getProducts, getCardTypes, getSubCollection, updateDocNew } from 'redux/firebase/actions';
+import { cardTypesSelector, productsSelector, newDocIdSelector, newDocErrorSelector } from 'redux/firebase/selectors';
 
 class ProductsMain extends InputEvent {
   constructor(props) {
@@ -53,6 +55,27 @@ class ProductsMain extends InputEvent {
         this.setState({ currentProduct: nextProps.catalogProducts[this.state.currentProductIndex] });
       }
     }
+
+    if (nextProps.newDocError.res === 'noError') {
+      this.placeNewDocAsCurrentDoc(nextProps.newDocId);
+    }
+  }
+
+  placeNewDocAsCurrentDoc = (newDocId) => {
+    const { catalogProducts } = this.props;
+
+    const index = catalogProducts.findIndex(i => i.fbId === newDocId.newDocId)
+
+    if (index < 0) {
+      this.setState({
+        addProductEnable: false,
+        currentProduct: {},
+        currentProductIndex: '',
+        editProductEnable: false,
+      });
+    } else {
+      this.handleRowsSelected(index);
+    }
   }
 
   handlePageSizeSelected = (size) => {
@@ -63,9 +86,19 @@ class ProductsMain extends InputEvent {
     const { catalogProducts } = this.props;
 
     if (this.state.currentProductIndex === index) {
-      this.setState({ currentProductIndex: '', currentProduct: {} });
+      this.setState({
+        addProductEnable: false,
+        currentProduct: {},
+        currentProductIndex: '',
+        editProductEnable: false,
+      });
     } else {
-      this.setState({ currentProductIndex: index, currentProduct: catalogProducts[index] });
+      this.setState({
+        addProductEnable: false,
+        currentProduct: catalogProducts[index],
+        currentProductIndex: index,
+        editProductEnable: true,
+      });
     }
   };
 
@@ -84,7 +117,12 @@ class ProductsMain extends InputEvent {
   };
 
   handleAddProduct = () => {
-    this.setState({ addProductEnable: true });
+    this.setState({
+      currentProduct: {},
+      currentProductIndex: '',
+      editProductEnable: false,
+      addProductEnable: true,
+    });
   };
 
   handleEditProduct = () => {
@@ -94,9 +132,23 @@ class ProductsMain extends InputEvent {
     });
   };
 
+  handleImportCancel = () => {
+    this.setState({
+      currentProduct: {},
+      currentProductIndex: '',
+      editProductEnable: false,
+      addProductEnable: false,
+    });
+  };
+
   handleImportSave = (data) => {
-    const { currentProduct } = this.state;
-    this.props.addDocField('products', currentProduct.fbId, data);
+    const { currentProduct, editProductEnable } = this.state;
+
+    if (editProductEnable) {
+      this.props.updateDocNew('products', currentProduct.fbId, data);
+    } else {
+      this.props.addDoc('products', data);
+    }
   };
 
   updateRowStyle = (state, rowInfo) => ({
@@ -171,15 +223,21 @@ class ProductsMain extends InputEvent {
                   addbtnTooltip="Add Product"
                   handleAdd={this.handleAddProduct} />)}
 
-              {((editProductEnable && editProductIndex !== '') || addProductEnable) &&
-                (currentProduct.type === 'service' || currentProduct.type === 'device') &&
+              {(addProductEnable || editProductEnable) &&
                 this.renderGrid('dark-blue',
                   <ProductImport
-                    handleSave={this.handleImportSave}
                     currentProduct={currentProduct}
-                    type={addProductEnable ? 'add' : 'edit'} />)}
+                    handleCancel={this.handleImportCancel}
+                    handleSave={this.handleImportSave} />)}
 
-              {((editProductEnable && editProductIndex !== '') || addProductEnable) &&
+              {editProductEnable &&
+                this.renderGrid('dark-blue',
+                  <ProductCardNew
+                    currentProduct={currentProduct}
+                    handleCancel={this.handleImportCancel}
+                    handleSave={this.handleImportSave} />)}
+
+              {/* ((editProductEnable && editProductIndex !== '') || addProductEnable) &&
                 currentProduct.type === 'service' &&
                 this.renderGrid('dark-blue',
                   <ProductCard
@@ -187,9 +245,9 @@ class ProductsMain extends InputEvent {
                     subtitle={currentProduct.subtitle}
                     title={currentProduct.title}
                     type={currentProduct.type}
-                  />)}
+                  />)*/}
 
-              {((editProductEnable && editProductIndex !== '') || addProductEnable) &&
+              {/* ((editProductEnable && editProductIndex !== '') || addProductEnable) &&
                 currentProduct.type === 'device' &&
                 this.renderGrid('dark-blue',
                   <ProductCard
@@ -202,14 +260,14 @@ class ProductsMain extends InputEvent {
                     storage={currentProduct.deviceOptions}
                     fbId={currentProduct.fbId}
                     type={currentProduct.type}
-                  />)}
+                  />) */}
 
-              {((editProductEnable && editProductIndex !== '') || addProductEnable) &&
+              {/* ((editProductEnable && editProductIndex !== '') || addProductEnable) &&
                 (currentProduct.type === 'service' || currentProduct.type === 'device') &&
                 this.renderGrid('dark-blue',
                   <ProductPreview
                     currentProduct={currentProduct}
-                    type={addProductEnable ? 'add' : 'edit'} />)}
+                    type={addProductEnable ? 'add' : 'edit'} />) */}
 
             </Grid>
           </CardContent>
@@ -222,22 +280,28 @@ class ProductsMain extends InputEvent {
 const mapStateToProps = state => ({
   catalogProducts: productsSelector(state),
   cardTypes: cardTypesSelector(state),
+  newDocId: newDocIdSelector(state),
+  newDocError: newDocErrorSelector(state),
 });
 
 const mapDispatchToProps = dispatch => ({
   getProducts: () => dispatch(getProducts()),
   getCardTypes: () => dispatch(getCardTypes()),
   getSubCollection: (parent, id, child) => dispatch(getSubCollection(parent, id, child)),
-  addDocField: (parent, id, data) => dispatch(addDocField(parent, id, data)),
+  addDoc: (collection, data) => dispatch(addDoc(collection, data)),
+  updateDocNew: (collection, id, data) => dispatch(updateDocNew(collection, id, data)),
 });
 
 ProductsMain.propTypes = {
   catalogProducts: PropTypes.array.isRequired,
   cardTypes: PropTypes.array.isRequired,
+  newDocId: PropTypes.object.isRequired,
+  newDocError: PropTypes.object.isRequired,
   getProducts: PropTypes.func.isRequired,
   getCardTypes: PropTypes.func.isRequired,
   getSubCollection: PropTypes.func.isRequired,
-  addDocField: PropTypes.func.isRequired,
+  addDoc: PropTypes.func.isRequired,
+  updateDocNew: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired,
 };
 

@@ -23,6 +23,8 @@ import {
 	SET_SUB_COLLECTION,
 	SET_CURRENT_USER,
 	SET_USER_ERROR,
+	SET_NEW_DOC_ID,
+	SET_NEW_DOC_ERROR,
 	FB_AUTH_LOGIN,
 	FB_AUTH_LOGOUT,
 	FB_TMP_UPLOAD_IMAGE,
@@ -32,6 +34,8 @@ import {
 	ADD_FB_DOC_SUB_IMAGE_FIELD,
 	ADD_FB_DOC_IMAGE_FIELD,
 	ADD_FB_SUB_COLLECTION_FIELD,
+	ADD_FB_DOC,
+	UPDATE_FB_DOC_NEW,
 	UPDATE_FB_DOC,
 } from './constants';
 
@@ -70,6 +74,16 @@ export const getSubCollection = createAction(
 );
 
 /* add data */
+export const addDoc = createAction(
+	ADD_FB_DOC,
+	(collection, data) => ({ collection, data }),
+);
+
+export const updateDocNew = createAction(
+	UPDATE_FB_DOC_NEW,
+	(collection, id, data) => ({ collection, id, data }),
+);
+
 export const addCollectionData = createAction(
 	ADD_FB_COLLECTION_DATA,
 	(collection, location) => ({ collection, location }),
@@ -129,6 +143,16 @@ export const setAreas = createAction(
 export const setVod = createAction(
 	SET_STORE_VOD,
 	(vod) => ({ vod }),
+);
+
+export const setNewDocId = createAction(
+	SET_NEW_DOC_ID,
+	(newDocId) => ({ newDocId }),
+);
+
+export const setNewDocError = createAction(
+	SET_NEW_DOC_ERROR,
+	(newDocError) => ({ newDocError }),
 );
 
 /* user */

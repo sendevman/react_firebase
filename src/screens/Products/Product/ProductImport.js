@@ -24,15 +24,106 @@ class ProductImport extends InputEvent {
       manufacture: props.currentProduct.manufacture || '',
       model: props.currentProduct.model || '',
       opusId: props.currentProduct.opusId || '',
+      subType: props.currentProduct.subType || '',
       type: props.currentProduct.type || '',
+      typeChildren: [
+        { value: 'accessory', name: 'Accessory' },
+        { value: 'device', name: 'Device' },
+        { value: 'experience', name: 'Experience' },
+        { value: 'service', name: 'Service' }
+      ],
     };
   }
 
-  handleSave = () => {
-    this.props.handleSave(this.state);
+  componentWillReceiveProps(nextProps) {
+    if (this.props.currentProduct !== nextProps.currentProduct) {
+      this.setState({
+        apiUrl: nextProps.currentProduct.apiUrl || '',
+        manufacture: nextProps.currentProduct.manufacture || '',
+        model: nextProps.currentProduct.model || '',
+        opusId: nextProps.currentProduct.opusId || '',
+        subType: nextProps.currentProduct.subType || '',
+        type: nextProps.currentProduct.type || '',
+      });
+    }
   }
 
+  handleCancel = () => {
+    this.props.handleCancel();
+  };
+
+  handleImport = () => {
+    console.log('Handle Import');
+  };
+
+  handleSave = () => {
+    const { apiUrl, manufacture, model, opusId, subType, type } = this.state;
+    this.props.handleSave({ apiUrl, manufacture, model, opusId, subType, type });
+  };
+
+  handleTypeChange = (e, type) => {
+    this.handleInputChange(e, type);
+
+    const value = e.target.value;
+
+    if (!value || value === 'experience' || value === 'service') {
+      this.setState({ apiUrl: '', manufacture: '', model: '', opusId: '', subType: '' });
+    } else {
+      this.setState({ subType: '' });
+    }
+  };
+
+  handleSubTypeChange = (e, type) => {
+    this.handleInputChange(e, type);
+  };
+
+  setSubTypeFromType = () => {
+    const { type } = this.state;
+
+    switch (type) {
+      case 'accessory':
+        return ([
+          { value: 'entertainment', name: 'Entertainment' },
+          { value: 'power', name: 'Power' },
+          { value: 'protection', name: 'Protection' },
+        ]);
+        break;
+      case 'device':
+        return ([
+          { value: 'phone', name: 'Phone' },
+          { value: 'tablet', name: 'Tablet' },
+          { value: 'watch', name: 'Watch' },
+        ]);
+        break;
+      case 'experience':
+        return ([]);
+        break;
+      case 'service':
+        return ([
+          { value: 'directv', name: 'DirecTV' },
+          { value: 'directv_now', name: 'DirecTV Now' },
+          { value: 'directv_watch', name: 'DirecTV Watch' },
+          { value: 'internet', name: 'Internet' },
+        ]);
+        break;
+    }
+  };
+
+  setDisableSaveBtn = () => {
+    const { manufacture, model, subType, type } = this.state;
+    const showInput = (type === 'accessory' || type === 'device');
+
+    if (!type || !subType) return true;
+    if (showInput && (!manufacture || !model)) return true;
+    return false;
+  };
+
   render() {
+    const { type } = this.state;
+    const subTypeChildren = this.setSubTypeFromType();
+    const showInput = (type === 'accessory' || type === 'device');
+    const disableSaveBtn = this.setDisableSaveBtn();
+
     return (
       <Grid item xs={12}>
         <div className="label-products-table select-text">Import Product</div>
@@ -40,23 +131,24 @@ class ProductImport extends InputEvent {
         <Grid container spacing={24}>
           <Grid item xs={12} sm={6}>
             <FormControl className="select-zone-box">
-              {this.renderText('manufacture', 'Manufacture')}
+              {this.renderSelect('type', 'Product Type', this.handleTypeChange, this.state.typeChildren)}
+              {showInput && this.renderText('manufacture', 'Manufacture')}
               {this.renderText('opusId', 'OPUS ID')}
-              {this.renderText('type', 'Product Type')}
             </FormControl>
           </Grid>
 
           <Grid item xs={12} sm={6}>
             <FormControl className="select-zone-box">
-              {this.renderText('model', 'Model')}
+              {this.renderSelect('subType', 'Product SubType', this.handleSubTypeChange, subTypeChildren)}
+              {showInput && this.renderText('model', 'Model')}
               {this.renderText('apiUrl', 'API Url to Import')}
             </FormControl>
           </Grid>
         </Grid>
 
         <div className="buttons-box">
-          {this.renderButton('Import Product', 'blue', this.handleImport, <ImportIcon />, 'contained', 'small')}
-          {this.renderButton('Save', 'green', this.handleSave, <SaveIcon />, 'contained', 'small')}
+          {this.renderButton('Import Product', 'blue', this.handleImport, <ImportIcon />, 'contained', 'small', true)}
+          {this.renderButton('Save', 'green', this.handleSave, <SaveIcon />, 'contained', 'small', disableSaveBtn)}
           {this.renderButton('Cancel', 'red', this.handleCancel, <CancelIcon />, 'contained', 'small')}
         </div>
       </Grid>
@@ -66,6 +158,7 @@ class ProductImport extends InputEvent {
 
 ProductImport.propTypes = {
   currentProduct: PropTypes.object.isRequired,
+  handleCancel: PropTypes.func.isRequired,
   handleSave: PropTypes.func.isRequired,
 };
 
