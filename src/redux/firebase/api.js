@@ -63,6 +63,20 @@ export const addDocField = (field, id, data) =>
 		.update(data)
 		.then(res => res);
 
+export const addDoc = (collection, data) =>
+	firestore
+		.collection(collection)
+		.add(data)
+		.then(res => ({ state: 'success', docId: res.id }))
+		.catch(error => ({ state: 'error', error }));
+
+export const updateDocNew = (collection, id, data) =>
+	firestore
+		.collection(collection)
+		.doc(id)
+		.update(data)
+		.then(res => res);
+
 export const updateDoc = (field, id, data) =>
 	firestore
 		.collection(field)

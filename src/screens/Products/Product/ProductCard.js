@@ -164,7 +164,7 @@ class ProductCard extends InputEvent {
 
 		return (
 			<Grid item xs={12}>
-				<div className="label-products-table select-text">{title}</div>
+				<div className="label-products-table select-text">Product Card</div>
 
 				<Grid container spacing={24}>
 					<Grid item xs={12} sm={6}>
@@ -210,8 +210,8 @@ class ProductCard extends InputEvent {
 				</Grid>
 
 				<div className="buttons-box">
-					{this.renderButton('Save', 'green', () => this.handleSave(), <SaveIcon />, 'contained', 'medium', !changeState)}
-					{this.renderButton('Cancel', 'red', () => {}, <CloseIcon />)}
+					{this.renderButton('Save', 'green', this.handleSave, <SaveIcon />, 'contained', 'medium', !changeState)}
+					{this.renderButton('Cancel', 'red', this.handleCancel, <CloseIcon />)}
 				</div>
 			</Grid>
 		);

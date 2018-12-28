@@ -16,6 +16,8 @@ const vodSelector = createSelector([firebaseSelector], firebase => firebase.get(
 const currentUserSelector = createSelector([firebaseSelector], firebase => firebase.get('currentUser').toJS());
 const userErrorSelector = createSelector([firebaseSelector], firebase => firebase.get('userError'));
 const accessUserListSelector = createSelector([firebaseSelector], firebase => firebase.get('accessUserList'));
+const newDocIdSelector = createSelector([firebaseSelector], firebase => firebase.get('newDocId'));
+const newDocErrorSelector = createSelector([firebaseSelector], firebase => firebase.get('newDocError'));
 
 export {
   firebaseSelector,
@@ -28,4 +30,6 @@ export {
   currentUserSelector,
   userErrorSelector,
   accessUserListSelector,
+  newDocIdSelector,
+  newDocErrorSelector,
 };
