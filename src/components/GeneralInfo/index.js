@@ -49,7 +49,9 @@ class GeneralInfo extends InputEvent {
 
   componentDidMount() {
     this.props.getLocations();
-    this.save();
+    if (this.props.type === 'add') {
+      this.save();
+    }
   }
 
   componentWillReceiveProps(nextProps) {
@@ -88,7 +90,7 @@ class GeneralInfo extends InputEvent {
   handleInputChange = (e, type) => {
 		const stateCopy = Object.assign({}, this.state);
 		stateCopy[type] = e.target.value;
-		this.setState({ ...stateCopy }, () => this.save());
+		this.setState({ ...stateCopy }, () => (this.props.type === 'add' && this.save()));
   };
 
   upload = () => {
@@ -180,6 +182,8 @@ class GeneralInfo extends InputEvent {
 
   render() {
     const { autoUpdate } = this.state;
+    const { type } = this.props;
+
     return (
       <Grid container>
         <Grid item xs={12} sm={6}>
@@ -247,6 +251,7 @@ class GeneralInfo extends InputEvent {
           </div>
           <div className="buttons-box mt-block">
             {this.renderButton('Refresh Ipog Data', 'blue', this.refresh, <RefreshIcon />)}
+            {type === 'edit' && this.renderButton('Save', 'orange', this.save, <SaveIcon />)}
           </div>
         </Grid>
       </Grid>
@@ -259,6 +264,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 GeneralInfo.propTypes = {
+  type: PropTypes.string,
   data: PropTypes.object,
   storeId: PropTypes.string,
   genInfoSave: PropTypes.func,
@@ -266,6 +272,7 @@ GeneralInfo.propTypes = {
 };
 
 GeneralInfo.defaultProps = {
+  type: 'edit',
   data: {},
   storeId: '',
   genInfoSave: () => {},
