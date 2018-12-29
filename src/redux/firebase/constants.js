@@ -43,3 +43,5 @@ export const ADD_FB_DOC_IMAGE_FIELD = 'firebase/ADD_FB_DOC_IMAGE_FIELD';
 
 export const ADD_FB_DOC = 'firebase/ADD_FB_DOC';
 export const UPDATE_FB_DOC_NEW = 'firebase/UPDATE_FB_DOC_NEW';
+
+export const UPLOAD_IMAGE = 'firebase/UPLOAD_IMAGE';

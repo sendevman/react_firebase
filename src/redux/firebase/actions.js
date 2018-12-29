@@ -5,6 +5,7 @@
  */
 
 import { createAction } from 'redux-actions';
+
 import {
 	GET_FB_USERS,
 	GET_FB_LOCATIONS,
@@ -35,6 +36,7 @@ import {
 	ADD_FB_DOC_IMAGE_FIELD,
 	ADD_FB_SUB_COLLECTION_FIELD,
 	ADD_FB_DOC,
+	UPLOAD_IMAGE,
 	UPDATE_FB_DOC_NEW,
 	UPDATE_FB_DOC,
 } from './constants';
@@ -107,6 +109,11 @@ export const addDocImageField = createAction(
 export const addDocSubImageField = createAction(
 	ADD_FB_DOC_SUB_IMAGE_FIELD,
 	(parent, id, field, index, subField, subIndex, data, img) => ({ parent, id, field, index, subField, subIndex, data, img }),
+);
+
+export const uploadImage = createAction(
+	UPLOAD_IMAGE,
+	(path, file, data) => ({ path, file, data }),
 );
 
 /* set all data */

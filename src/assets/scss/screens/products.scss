@@ -11,6 +11,12 @@
   width: 100%;
 }
 
+.text-field-img {
+  width: calc(100% - 16px);
+  margin-right: 8px !important;
+  margin-left: 8px !important;
+}
+
 .padding-vertical {
   padding: 12px 0;
 }
