@@ -10,7 +10,7 @@ import classNames from 'classnames';
 
 import InputEvent from 'components/InputEvent';
 
-import MUIDataTable from "mui-datatables";
+import MUIDataTable from 'mui-datatables';
 
 class Table extends InputEvent {
   handleRowsSelect = (tableState) => {
@@ -24,7 +24,9 @@ class Table extends InputEvent {
     // Depends on what we want to do, we will play with multiselectEnable.
     if (multiSelectEnable) return false;
 
-    this.props.handleSelectedRows({ data: [], lookup: {} });
+    this.props.handleSelectedRows(tableState, tableState.selectedRows);
+
+    return true;
   };
 
   render() {
@@ -45,27 +47,20 @@ class Table extends InputEvent {
       rowsPerPageOptions: [5, 10, 20],
       rowsPerPage: pageSize,
       print: false,
-      rowsSelected: rowsSelected,
+      rowsSelected,
       search: searchEnable,
       selectableRows: selectableRowsEnable,
-      selectedRows: selectedRows,
+      selectedRows,
       setRowProps: (row, rowIndex) => {
         // Depends on what we want to do, we will play with multiselectEnable.
         if (multiSelectEnable) return false;
 
-        let isSelected = rowsSelected ? (rowIndex === parseInt(rowsSelected[0])) : false;
+        const isSelected = rowsSelected ? (rowIndex === parseInt(rowsSelected[0])) : false;
 
-        return { className: classNames('table-row', { ['selected']: isSelected }) };
+        return { className: classNames('table-row', { selected: isSelected }) };
       },
-      onRowClick: (rowData, rowMeta) => {
-        // Depends on what we want to do, we will play with multiselectEnable.
-        if (multiSelectEnable) return false;
-
-        this.props.handleRowsSelected(rowMeta.dataIndex);
-      },
-      onChangeRowsPerPage: (numberOfRows) => {
-        this.props.handlePageSizeSelected(numberOfRows);
-      },
+      onRowClick: (rowData, rowMeta) => (!multiSelectEnable ? this.props.handleRowsSelected(rowMeta.dataIndex) : false),
+      onChangeRowsPerPage: numberOfRows => this.props.handlePageSizeSelected(numberOfRows),
       onTableChange: (action, tableState) => {
         switch (action) {
           case 'rowsSelect':
@@ -96,6 +91,9 @@ Table.propTypes = {
   multiSelectEnable: PropTypes.bool,
   searchEnable: PropTypes.bool,
   selectableRowsEnable: PropTypes.bool,
+  handleRowsSelected: PropTypes.func,
+  handlePageSizeSelected: PropTypes.func,
+  handleSelectedRows: PropTypes.func,
 };
 
 Table.defaultProps = {
@@ -108,6 +106,9 @@ Table.defaultProps = {
   multiSelectEnable: false,
   searchEnable: false,
   selectableRowsEnable: false,
+  handleRowsSelected: () => {},
+  handlePageSizeSelected: () => {},
+  handleSelectedRows: () => {},
 };
 
 export default Table;

@@ -18,7 +18,6 @@ import TableList from 'components/TableList';
 import InputEvent from 'components/InputEvent';
 
 import GeneralInfo from 'components/GeneralInfo';
-// import Managers from './Managers';
 
 import { addCollectionData, addUsersToLocations, getUsers, getLocations } from 'redux/firebase/actions';
 import { usersSelector } from 'redux/firebase/selectors';
@@ -28,13 +27,15 @@ class LocationsAdd extends InputEvent {
 		super(props);
 
 		this.state = {
-			selected: [],
 			accessUserList: [],
-			rAccessUserList: [],
 			accessUser: {},
-			accessUserIndex: null,
+			accessUserIndex: [],
 			genData: {},
+			pageSize: 10,
+			selectedRows: { data: [], lookup: {} },
 		};
+		this.selected = {};
+		this.rAccessUserList = [];
 	}
 
 	componentDidMount() {
@@ -51,33 +52,70 @@ class LocationsAdd extends InputEvent {
 			_.each(users, user => {
 				selected[user.email] = false;
 			});
-			this.setState({ selected });
+			this.selected = selected;
 		}
+	}
+
+	getLocationUsersList = () => {
+		const { users } = this.props;
+
+		const newList = [];
+		if (users.length > 0) {
+			users.forEach(item => {
+				const newItem = [
+					item.name || '',
+					item.email || '',
+					item.group || '',
+				];
+				newList.push(newItem);
+			});
+		}
+		return newList;
+	};
+
+	getAccessUserList = () => {
+		const { accessUserList } = this.state;
+
+		const newList = [];
+		if (accessUserList.length > 0) {
+			accessUserList.forEach(item => {
+				const newItem = [
+					item.name || '',
+					item.email || '',
+					item.group || '',
+				];
+				newList.push(newItem);
+			});
+		}
+		return newList;
 	}
 
 	deleteUsers = () => {
 		const { accessUserList, accessUser } = this.state;
 		const data = accessUserList.slice();
-		_.remove(data, { email: accessUser.email });
+		_.remove(data, { email: accessUser[1] });
 		this.setState({
 			accessUserList: data,
 		});
 	}
 
 	addUsers = () => {
-		const { accessUserList, rAccessUserList } = this.state;
-		if (rAccessUserList.length > 0) {
-			const data = _.uniq(accessUserList.concat(rAccessUserList), 'email');
+		const { accessUserList } = this.state;
+		if (this.rAccessUserList.length > 0) {
+			const data = _.uniq(accessUserList.concat(this.rAccessUserList), 'email');
 			this.setState({
 				accessUserList: data,
-				rAccessUserList: [],
-				selected: [],
 			});
+			this.rAccessUserList = [];
+			this.selected = {};
 		}
 	}
 
 	addLocations = () => {
-		this.props.addLocations({ ...this.state.genData, users: this.state.accessUserList.map(item => item.fbId) });
+		const location = _.isEmpty(this.state.genData)
+			? { users: this.state.accessUserList.map(item => item.fbId) }
+			: { ...this.state.genData, users: this.state.accessUserList.map(item => item.fbId) };
+		this.props.addLocations(location);
 		this.props.getLocations();
 		this.props.history.push('/locations/manage');
 	}
@@ -86,81 +124,47 @@ class LocationsAdd extends InputEvent {
 		this.setState({ genData: data });
 	}
 
-	handleSelect = (row) => {
-		const selected = JSON.parse(JSON.stringify(this.state.selected));
-		selected[row.email] = !selected[row.email];
+	handlePageSizeSelected = size => {
+		this.setState({ pageSize: size });
+	};
+
+	handleRowsSelected = index => {
+		this.setState({
+			accessUser: this.getAccessUserList()[index],
+			accessUserIndex: [index],
+		});
+	}
+
+	handleSelectedRows = (dataRows, selectedRows) => {
+		const selected = {};
+		_.each(selectedRows.data, item => {
+			selected[dataRows.data[item.index].data[1]] = true;
+		});
 		const data = [];
 		_.each(_.keys(selected), item => {
 			if (selected[item]) {
 				data.push(_.find(this.props.users, { email: item }));
 			}
 		});
-		this.setState({
-			selected,
-			rAccessUserList: data,
-		});
-	}
-
-	handleAccessListClick = (row, index) => {
-		this.setState({
-			accessUser: row,
-			accessUserIndex: index,
-		});
-	}
-
-	updateCurrentRowStyle = (state, rowInfo) => ({
-		style: {
-			background: rowInfo && rowInfo.index === this.state.accessUserIndex ? 'green' : null,
-		},
-	});
+		this.selected = selected;
+		this.rAccessUserList = data;
+	};
 
 	render() {
-		const { accessUserList } = this.state;
-		const { users } = this.props;
+		const { accessUserIndex, pageSize, selectedRows } = this.state;
 		const accessUsersColumn = [
-			{
-				Header: () => this.renderHeader('Email'),
-				Cell: ({ row, index }) => this.renderCell(row.email, () => this.handleAccessListClick(row, index)),
-				accessor: 'email',
-			},
-			{
-				Header: () => this.renderHeader('Name'),
-				Cell: ({ row, index }) => this.renderCell(row.name, () => this.handleAccessListClick(row, index)),
-				accessor: 'name',
-			},
-			{
-				Header: () => this.renderHeader('User Type'),
-				Cell: ({ row, index }) => this.renderCell(row.group, () => this.handleAccessListClick(row, index)),
-				accessor: 'group',
-			},
+			{ name: 'Email' },
+			{ name: 'Name' },
+			{ name: 'User Type' },
 		];
 		const locationUsersColumn = [
-			{
-				Header: '',
-				/* eslint react/prop-types: 0 */
-				Cell: ({ row }) => (
-					<input
-						type="checkbox"
-						className="checkbox"
-						checked={this.state.selected[row.email] === true}
-						onChange={() => this.handleSelect(row)}
-					/>
-				),
-				width: 50,
-			},
-			{
-				Header: () => this.renderHeader('Email'),
-				accessor: 'email',
-			},
-			{
-				Header: () => this.renderHeader('Name'),
-				accessor: 'name',
-			},
-			{
-				Header: () => this.renderHeader('User Type'),
-				accessor: 'group',
-			},
+			{ name: 'Email' },
+			{ name: 'Name' },
+			{ name: 'User Type' },
 		];
+
+		const locationUsers = this.getLocationUsersList();
+		const accessUsers = this.getAccessUserList();
 
 		return (
 			<div id="locations-add" className="Container-box">
@@ -173,21 +177,32 @@ class LocationsAdd extends InputEvent {
 							{this.renderGrid('dark-purple',
 								<TableList
 									label="Managers / Users added to location"
-									tables={accessUserList}
+									tables={accessUsers}
 									columns={accessUsersColumn}
 									deletebtnTooltip="Delete User"
 									deletebtn
+									multiSelectEnable={false}
+									pageSize={pageSize}
+									rowsSelected={accessUserIndex}
+									// selectedRows={selectedRows}
+									selectableRowsEnable={false}
 									handleDelete={this.deleteUsers}
-									updateRowStyle={this.updateCurrentRowStyle} />)}
+									handlePageSizeSelected={this.handlePageSizeSelected}
+									handleRowsSelected={this.handleRowsSelected} />)}
 
 							{this.renderGrid('dark-purple',
 								<TableList
 									columns={locationUsersColumn}
-									tables={users}
+									tables={locationUsers}
 									label="Add Managers / Users to location"
 									addbtnTooltip="Add User"
 									addbtn
 									searchEnable
+									pageSize={pageSize}
+									selectableRowsEnable
+									selectedRows={selectedRows}
+									handlePageSizeSelected={this.handlePageSizeSelected}
+									handleSelectedRows={this.handleSelectedRows}
 									handleAdd={this.addUsers} />)}
 
 							<Grid item xs={12}>
