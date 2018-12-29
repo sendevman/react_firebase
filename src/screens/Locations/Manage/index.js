@@ -28,7 +28,11 @@ class Locations extends InputEvent {
       tables = this.getTables(locations, users);
     }
 
-    this.state = { tables };
+    this.state = {
+      pageSize: 10,
+      tables,
+      selectedRows: { data: [], lookup: {} },
+    };
   }
 
   componentDidMount() {
@@ -52,50 +56,58 @@ class Locations extends InputEvent {
   getTables = (locations, users) => {
     const tables = [];
     _.each(locations, location => {
-      if ((location.users.length > 0 &&
+      if ((location.users && location.users.length > 0 &&
           _.findIndex(location.users, item => _.find(users, { fbId: item }).email === localStorage.getItem('email')) > -1) ||
           _.find(users, { email: localStorage.getItem('email') }).group === 'master') {
-        tables.push({ storeId: location.storeId, ...location.storeInfo, fbId: location.fbId});
+        tables.push({ storeId: location.storeId, storeInfo: location.storeInfo, ...location.storeInfo, fbId: location.fbId });
       }
     });
     return tables;
   };
 
-  addLocations = () => {
-    this.props.history.push('/locations/add');
-  };
-
-  handleOnClick = (row) => {
-    this.props.history.push(`/locations/manage/${row._original.fbId}/info`);
-  };
-
   getLocationList = () => {
-    const { locations } = this.props;
+    const { tables } = this.state;
 
-    var newList = [];
-    locations.forEach(item => {
-      let newItem = [
-        item.storeInfo.name || '',
-        item.storeId || '',
-        item.storeInfo.city || '',
-        item.storeInfo.state || '',
-        item.storeInfo.region || '',
-        item.storeInfo.type || ''
-      ];
-      newList.push(newItem);
-    });
-
+    const newList = [];
+    if (tables.length > 0) {
+      tables.forEach(item => {
+        const newItem = [
+          item.storeInfo.name || '',
+          item.storeId || '',
+          item.storeInfo.city || '',
+          item.storeInfo.state || '',
+          item.storeInfo.region || '',
+          item.storeInfo.type || '',
+        ];
+        newList.push(newItem);
+      });
+    }
     return newList;
   };
 
+  addLocations = () => this.props.history.push('/locations/add');
+
+  handlePageSizeSelected = size => {
+    console.log('here1');
+    this.setState({ pageSize: size });
+  };
+
+  handleRowsSelected = index => this.props.history.push(`/locations/manage/${this.getLocationList()[index][1]}/info`);
+
+  handleSelectedRows = dataRows => {
+    console.log('here3');
+    this.setState({ selectedRows: dataRows });
+  };
+
   render() {
+    const { pageSize, selectedRows } = this.state;
     const columns = [
       { name: 'Name' },
       { name: 'Store ID' },
       { name: 'City' },
       { name: 'State' },
       { name: 'Region' },
-      { name: 'Type' }
+      { name: 'Type' },
     ];
 
     const locationList = this.getLocationList();
@@ -108,10 +120,15 @@ class Locations extends InputEvent {
               columns={columns}
               tables={locationList}
               title="Select a location to manage"
-              pageSize={10}
-              searchEnable={true}
+              pageSize={pageSize}
+              selectedRows={selectedRows}
+              selectableRowsEnable={false}
+              searchEnable
               addbtn
               addbtnTooltip="Add New Location"
+              handlePageSizeSelected={this.handlePageSizeSelected}
+              handleRowsSelected={this.handleRowsSelected}
+              handleSelectedRows={this.handleSelectedRows}
               handleAdd={this.addLocations} />
           </CardContent>
         </Card>
@@ -132,12 +149,15 @@ const mapDispatchToProps = dispatch => ({
 
 Locations.propTypes = {
   locations: PropTypes.array,
+  users: PropTypes.array,
   history: PropTypes.object.isRequired,
   getLocations: PropTypes.func.isRequired,
+  getUsers: PropTypes.func.isRequired,
 };
 
 Locations.defaultProps = {
   locations: [],
+  users: [],
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Locations);
