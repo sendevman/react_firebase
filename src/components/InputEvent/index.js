@@ -47,7 +47,7 @@ class InputEvent extends Component {
     </div>
   );
 
-  renderText = (name, label, className = 'Text-Field', placeholder = '', margin = 'normal', type = 'text') => (
+  renderText = (name, label, className = 'Text-Field', placeholder = '', margin = 'normal', type = 'text', readOnly = false) => (
     <TextField
       className={className}
       type={type}
@@ -58,6 +58,9 @@ class InputEvent extends Component {
       onChange={e => this.handleInputChange(e, name)}
       required
       margin={margin}
+      InputProps={{
+        readOnly: readOnly,
+      }}
     />
   );
 

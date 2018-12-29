@@ -15,6 +15,7 @@ import ProductPreview from './Product/ProductPreview';
 import ProductImport from './Product/ProductImport';
 import ProductCard from './Product/ProductCard';
 import ProductCardNew from './Product/ProductCardNew';
+import ServiceCard from './Product/ServiceCard';
 
 import InputEvent from 'components/InputEvent';
 import TableList from 'components/TableList';
@@ -230,9 +231,9 @@ class ProductsMain extends InputEvent {
                     handleCancel={this.handleImportCancel}
                     handleSave={this.handleImportSave} />)}
 
-              {editProductEnable &&
+              {editProductEnable && currentProduct.type === 'service' &&
                 this.renderGrid('dark-blue',
-                  <ProductCardNew
+                  <ServiceCard
                     currentProduct={currentProduct}
                     handleCancel={this.handleImportCancel}
                     handleSave={this.handleImportSave} />)}

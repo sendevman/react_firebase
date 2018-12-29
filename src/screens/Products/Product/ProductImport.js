@@ -58,7 +58,12 @@ class ProductImport extends InputEvent {
 
   handleSave = () => {
     const { apiUrl, manufacture, model, opusId, subType, type } = this.state;
-    this.props.handleSave({ apiUrl, manufacture, model, opusId, subType, type });
+
+    if (type === 'accessory' || type === 'device') {
+      this.props.handleSave({ apiUrl, manufacture, model, opusId, subType, type });
+    } else {
+      this.props.handleSave({ apiUrl, opusId, subType, type });
+    }
   };
 
   handleTypeChange = (e, type) => {
