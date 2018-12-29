@@ -18,6 +18,8 @@ import {
 	SET_SUB_COLLECTION,
 	SET_CURRENT_USER,
 	SET_USER_ERROR,
+	SET_NEW_DOC_ID,
+	SET_NEW_DOC_ERROR,
 } from './constants';
 
 const initialState = fromJS({
@@ -31,6 +33,8 @@ const initialState = fromJS({
 	userError: {},
 	downloadURL: '',
 	accessUserList: [],
+	newDocId: {},
+	newDocError: {},
 });
 
 export default handleActions({
@@ -58,5 +62,12 @@ export default handleActions({
 		state
 			.set('currentUser', { res: 'noUser' })
 			.set('userError', { ...action.payload, res: 'Error' }),
-
+	[SET_NEW_DOC_ID]: (state, action) =>
+		state
+			.set('newDocId', { newDocId: action.payload.newDocId, res: 'DocId' })
+			.set('newDocError', { res: 'noError' }),
+	[SET_NEW_DOC_ERROR]: (state, action) =>
+		state
+			.set('newDocId', { res: 'noDocId' })
+			.set('newDocError', { ...action.payload, res: 'Error' }),
 }, initialState);
