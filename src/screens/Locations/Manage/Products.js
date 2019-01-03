@@ -86,9 +86,11 @@ class Products extends InputEvent {
 		if (categoryProducts.length > 0) {
 			categoryProducts.forEach(item => {
 				const newItem = [
-					item.fbId || '',
+					item.manufacture || '',
+					item.model || '',
 					item.type || '',
 					item.subType || '',
+					item.sku || '',
 				];
 				newList.push(newItem);
 			});
@@ -98,15 +100,20 @@ class Products extends InputEvent {
 
 	getCurrentProductsList = () => {
 		const { selectedZoneId } = this.state;
-		const { locations, storeId } = this.props;
+		const { categoryProducts, locations, storeId } = this.props;
 
 		const products = selectedZoneId !== '' ? _.find(_.find(locations, { fbId: storeId }).subCollection.zones, { fbId: selectedZoneId }).products : [];
 		const newList = [];
 		if (products.length > 0) {
 			products.forEach(item => {
 				if (item !== 'titleCard') {
+					const data = _.find(categoryProducts, { fbId: item });
 					const newItem = [
-						item || '',
+						data.manufacture || '',
+						data.model || '',
+						data.type || '',
+						data.subType || '',
+						data.sku || '',
 					];
 					newList.push(newItem);
 				}
@@ -131,6 +138,7 @@ class Products extends InputEvent {
 					data: products,
 				},
 			);
+			this.setState({ currentProductIndex: [] });
 			getZones('locations', storeId, 'zones');
 		}
 	}
@@ -168,21 +176,26 @@ class Products extends InputEvent {
 	};
 
 	handleRowsSelected = index => {
+		const { selectedZoneId } = this.state;
+		const { locations, storeId } = this.props;
+
+		const products = selectedZoneId !== '' ? _.find(_.find(locations, { fbId: storeId }).subCollection.zones, { fbId: selectedZoneId }).products : [];
 		this.setState({
-			currentProduct: this.getCurrentProductsList()[index],
+			currentProduct: products.length > 0 ? [products[index + 1]] : [],
 			currentProductIndex: [index],
 		});
 	}
 
 	handleSelectedRows = (dataRows, selectedRows) => {
+		const { categoryProducts } = this.props;
 		const selected = {};
 		_.each(selectedRows.data, item => {
-			selected[dataRows.data[item.index].data[0]] = true;
+			selected[categoryProducts[item.dataIndex].fbId] = true;
 		});
 		const data = [];
 		_.each(_.keys(selected), item => {
 			if (selected[item]) {
-				data.push(_.find(this.props.categoryProducts, { fbId: item }));
+				data.push(_.find(categoryProducts, { fbId: item }));
 			}
 		});
 		this.selected = selected;
@@ -194,12 +207,18 @@ class Products extends InputEvent {
 		const { currentProductIndex } = this.state;
 
 		const currentProductsColumn = [
-			{ name: 'id' },
+			{ name: 'Manufacture' },
+			{ name: 'Model' },
+			{ name: 'Type' },
+			{ name: 'Subtype' },
+			{ name: 'Opus ID' },
 		];
 		const catalogProductsColumn = [
-			{ name: 'id' },
-			{ name: 'type' },
-			{ name: 'subtype' },
+			{ name: 'Manufacture' },
+			{ name: 'Model' },
+			{ name: 'Type' },
+			{ name: 'Subtype' },
+			{ name: 'Opus ID' },
 		];
 
 		const categoryProductsList = this.getCategoryProductsList();
