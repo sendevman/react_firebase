@@ -109,6 +109,9 @@ class LocationsManInfo extends InputEvent {
 		);
 	}
 
+	handleGlobalCancel = () => {
+	}
+
 	render() {
 		const { locations, storeId } = this.props;
 		const { homeData, globalData } = this.state;
@@ -138,22 +141,28 @@ class LocationsManInfo extends InputEvent {
 							title="Home Open View"
 							activeComponent={homeViewComponent}
 							savebtn
-							importbtn
-							archbtn
+							// importbtn
+							// archbtn
+							cancelbtn
 							handleSave={this.handleHomeSave}
-							handleImport={this.handleHomeImport}
-							handleArchive={this.handleHomeArchive} />)}
+							handleCancel={this.handleGlobalCancel}
+							// handleImport={this.handleHomeImport}
+							// handleArchive={this.handleHomeArchive}
+						/>)}
 					{globalData && this.renderGrid('orange',
 						<HomeView
 							data={globalData || {}}
 							title="Global Background"
 							activeComponent={globalBackComponent}
 							savebtn
-							importbtn
-							archbtn
+							// importbtn
+							// archbtn
+							cancelbtn
 							handleSave={this.handleGlobalSave}
-							handleImport={this.handleGlobalImport}
-							handleArchive={this.handleGlobalArchive} />)}
+							handleCancel={this.handleGlobalCancel}
+							// handleImport={this.handleGlobalImport}
+							// handleArchive={this.handleGlobalArchive}
+						/>)}
 				</Grid>
 			</div>
 		);
