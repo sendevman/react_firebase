@@ -112,6 +112,10 @@ class HomeView extends InputEvent {
 		});
 	}
 
+	handleCancel = () => {
+
+	}
+
 	render() {
 		const {
 			changeState,
@@ -173,13 +177,13 @@ class HomeView extends InputEvent {
 									type="file"
 									onChange={event => this.handleInputFileChange(event, 'card')} />
 
-								<label className="flat-button-file" htmlFor={`flat-button-file-card-${title}`}>
+								<label className="flat-button-file right-btn" htmlFor={`flat-button-file-card-${title}`}>
 									<Button component="span" variant="contained" size="small" className="upload-button">
 										Upload
 									</Button>
 								</label>
-								<FormControl className="select-zone-box">
-									{this.renderText('imageNameCardSrc', '', 'upload-text-field', 'Card Image')}
+								<FormControl className="text-field-img" margin="normal">
+									{this.renderText('imageNameCardSrc', '', 'upload-text-field-right-btn', 'Card Image')}
 								</FormControl>
 							</div>}
 						{activeComponent.backTitle &&
@@ -195,14 +199,14 @@ class HomeView extends InputEvent {
 									type="file"
 									onChange={event => this.handleInputFileChange(event, 'back')} />
 
-								<label className="flat-button-file" htmlFor={`flat-button-file-back-${title}`}>
+								<label className="flat-button-file right-btn" htmlFor={`flat-button-file-back-${title}`}>
 									<Button component="span" variant="contained" size="small" className="upload-button">
 										Upload
 									</Button>
 								</label>
 
-								<FormControl className="select-zone-box">
-									{this.renderText('imageNameBackSrc', '', 'upload-text-field', 'Background Image')}
+								<FormControl className="text-field-img" margin="normal">
+									{this.renderText('imageNameBackSrc', '', 'upload-text-field-right-btn', 'Background Image')}
 								</FormControl>
 							</div>}
 						{activeComponent.heroImage &&
@@ -229,10 +233,10 @@ class HomeView extends InputEvent {
 
 				<div className="buttons-box">
 					{prevbtn && this.renderButton('Preview', 'blue', () => {}, <PreviewIcon />)}
-					{savebtn && this.renderButton('Save', 'green', () => this.handleSave(), <SaveIcon />, 'contained', 'medium', !changeState)}
+					{savebtn && this.renderButton('Save', 'green', this.handleSave, <SaveIcon />, 'contained', 'medium', !changeState)}
 					{importbtn && this.renderButton('Import', 'purple', () => {}, <ImportIcon />)}
 					{archbtn && this.renderButton('Archive', 'orange', () => {}, <ArchivelIcon />)}
-					{cancelbtn && this.renderButton('Cancel', 'red', () => {}, <CloseIcon />)}
+					{cancelbtn && this.renderButton('Cancel', 'red', this.handleCancel, <CloseIcon />)}
 				</div>
 			</Grid>
 		);
