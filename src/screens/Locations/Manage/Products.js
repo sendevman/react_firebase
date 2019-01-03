@@ -90,7 +90,7 @@ class Products extends InputEvent {
 					item.model || '',
 					item.type || '',
 					item.subType || '',
-					item.Opus || '',
+					item.sku || '',
 				];
 				newList.push(newItem);
 			});
@@ -113,7 +113,7 @@ class Products extends InputEvent {
 						data.model || '',
 						data.type || '',
 						data.subType || '',
-						data.Opus || '',
+						data.sku || '',
 					];
 					newList.push(newItem);
 				}
@@ -184,7 +184,6 @@ class Products extends InputEvent {
 			currentProduct: products.length > 0 ? [products[index + 1]] : [],
 			currentProductIndex: [index],
 		});
-		console.log(products[index + 1]);
 	}
 
 	handleSelectedRows = (dataRows, selectedRows) => {
@@ -258,7 +257,7 @@ class Products extends InputEvent {
 								<TableList
 									columns={catalogProductsColumn}
 									tables={categoryProductsList}
-									pageSize={5}
+									pageSize={10}
 									showPagination
 									label="Products Catalog"
 									addbtnTooltip="Add Product"

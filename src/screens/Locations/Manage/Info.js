@@ -54,7 +54,7 @@ class LocationsManInfo extends InputEvent {
 		}
 		if (nextProps.locations.length > 0) {
 			const location = _.find(nextProps.locations, { fbId: storeId });
-			if (location.subCollection && location.subCollection.siteData.length > 0) {
+			if (location.subCollection && location.subCollection.siteData && location.subCollection.siteData.length > 0) {
 				this.setState({
 					homeData: _.find(location.subCollection.siteData, { fbId: 'home' }).homeCard,
 					globalData: _.find(location.subCollection.siteData, { fbId: 'globalBackground' }).globalCard,
