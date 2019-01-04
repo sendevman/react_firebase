@@ -55,7 +55,7 @@ class Products extends InputEvent {
 			getLocations();
 		} else {
 			const subCollection = _.find(locations, { fbId: storeId }).subCollection;
-			if (subCollection === undefined || (subCollection && !subCollection.zones === undefined)) {
+			if (subCollection === undefined || (subCollection && subCollection.zones === undefined)) {
 				getZones('locations', storeId, 'zones');
 			}
 		}
@@ -123,7 +123,7 @@ class Products extends InputEvent {
 	}
 
 	handleDeleteProducts = () => {
-		const { addSubCollectionField, getZones, storeId } = this.props;
+		const { addSubCollectionField, storeId } = this.props;
 		const {	currentProduct, selectedZone, selectedZoneId } = this.state;
 		if (selectedZoneId !== '') {
 			const products = selectedZone.products.slice();
@@ -139,12 +139,11 @@ class Products extends InputEvent {
 				},
 			);
 			this.setState({ currentProductIndex: [] });
-			getZones('locations', storeId, 'zones');
 		}
 	}
 
 	handleAddProducts = () => {
-		const { addSubCollectionField, getZones, storeId } = this.props;
+		const { addSubCollectionField, storeId } = this.props;
 		const {	selectedZone, selectedZoneId } = this.state;
 		if (selectedZoneId !== '') {
 			const products = _.uniq(selectedZone.products.concat(this.rProductsList.map(item => item.fbId)));
@@ -158,7 +157,6 @@ class Products extends InputEvent {
 					data: products,
 				},
 			);
-			getZones('locations', storeId, 'zones');
 		}
 	}
 

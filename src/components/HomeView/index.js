@@ -31,9 +31,11 @@ class HomeView extends InputEvent {
 			title: props.data.title || '',
 			subtitle: props.data.subtitle || '',
 			backTitle: props.data.backTitle || '',
+			imageURLBackSrc: props.data.bgImg || '',
 			imageNameBackSrc: props.data.bgImg || '',
 			imgBackSrc: '',
 			imgBackSrcType: undefined,
+			imageURLCardSrc: props.data.img || '',
 			imageNameCardSrc: props.data.img || '',
 			imgCardSrc: '',
 			imgCardSrcType: undefined,
@@ -49,7 +51,9 @@ class HomeView extends InputEvent {
 				title: nextProps.data.title || '',
 				subtitle: nextProps.data.subtitle || '',
 				backTitle: nextProps.data.backTitle || '',
+				imageURLBackSrc: nextProps.data.bgImg || '',
 				imageNameBackSrc: nextProps.data.bgImg || '',
+				imageURLCardSrc: nextProps.data.img || '',
 				imageNameCardSrc: nextProps.data.img || '',
 			});
 		}
@@ -112,12 +116,30 @@ class HomeView extends InputEvent {
 		});
 	}
 
+	handleCancel = () => {
+		this.setState({
+			footer: this.props.data.footer || '',
+			title: this.props.data.title || '',
+			subtitle: this.props.data.subtitle || '',
+			backTitle: this.props.data.backTitle || '',
+			imageURLBackSrc: this.props.data.bgImg || '',
+			imageNameBackSrc: this.props.data.bgImg || '',
+			imgBackSrc: '',
+			imgBackSrcType: undefined,
+			imageURLCardSrc: this.props.data.img || '',
+			imageNameCardSrc: this.props.data.img || '',
+			imgCardSrc: '',
+			imgCardSrcType: undefined,
+			changeState: false,
+		});
+	}
+
 	render() {
 		const {
 			changeState,
-			imageNameBackSrc,
+			imageURLBackSrc,
 			imgBackSrc,
-			imageNameCardSrc,
+			imageURLCardSrc,
 			imgCardSrc,
 		} = this.state;
 		const {
@@ -140,13 +162,13 @@ class HomeView extends InputEvent {
 							{(!activeComponent.cardImage || activeComponent.backImage) &&
 								<CardMedia
 									className="homeview-back-media"
-									image={imgBackSrc || imageNameBackSrc || ImgDefault}
+									image={imgBackSrc || imageURLBackSrc || ImgDefault}
 									title="Contemplative Reptile"
 								/>}
-							{(activeComponent.cardImage && (imgCardSrc !== '' || imageNameCardSrc || !activeComponent.backImage)) &&
+							{(activeComponent.cardImage && (imgCardSrc !== '' || imageURLCardSrc || !activeComponent.backImage)) &&
 								<CardMedia
 									className={activeComponent.backImage === false ? 'homeview-back-media' : 'homeview-card-media'}
-									image={imgCardSrc || imageNameCardSrc || ImgDefault}
+									image={imgCardSrc || imageURLCardSrc || ImgDefault}
 									title="Contemplative Reptile"
 								/>}
 							<div className="homeviewer-cardmedia-content">
@@ -173,19 +195,21 @@ class HomeView extends InputEvent {
 									type="file"
 									onChange={event => this.handleInputFileChange(event, 'card')} />
 
-								<label className="flat-button-file" htmlFor={`flat-button-file-card-${title}`}>
+								<label className="flat-button-file right-btn" htmlFor={`flat-button-file-card-${title}`}>
 									<Button component="span" variant="contained" size="small" className="upload-button">
 										Upload
 									</Button>
 								</label>
-								<FormControl className="select-zone-box">
-									{this.renderText('imageNameCardSrc', '', 'upload-text-field', 'Card Image')}
+								<FormControl className="text-field-img" margin="normal">
+									{this.renderText('imageURLCardSrc', '', 'upload-text-field-right-btn', 'Card Image')}
 								</FormControl>
 							</div>}
+
 						{activeComponent.backTitle &&
 							<FormGroup>
 								{this.renderText('backTitle', 'Background Title')}
 							</FormGroup>}
+
 						{activeComponent.backImage &&
 							<div className="homeview-upload-box">
 								<input
@@ -195,16 +219,17 @@ class HomeView extends InputEvent {
 									type="file"
 									onChange={event => this.handleInputFileChange(event, 'back')} />
 
-								<label className="flat-button-file" htmlFor={`flat-button-file-back-${title}`}>
+								<label className="flat-button-file right-btn" htmlFor={`flat-button-file-back-${title}`}>
 									<Button component="span" variant="contained" size="small" className="upload-button">
 										Upload
 									</Button>
 								</label>
 
-								<FormControl className="select-zone-box">
-									{this.renderText('imageNameBackSrc', '', 'upload-text-field', 'Background Image')}
+								<FormControl className="text-field-img" margin="normal">
+									{this.renderText('imageURLBackSrc', '', 'upload-text-field-right-btn', 'Background Image')}
 								</FormControl>
 							</div>}
+
 						{activeComponent.heroImage &&
 							<div className="homeview-upload-box">
 								<input
@@ -229,10 +254,10 @@ class HomeView extends InputEvent {
 
 				<div className="buttons-box">
 					{prevbtn && this.renderButton('Preview', 'blue', () => {}, <PreviewIcon />)}
-					{savebtn && this.renderButton('Save', 'green', () => this.handleSave(), <SaveIcon />, 'contained', 'medium', !changeState)}
+					{savebtn && this.renderButton('Save', 'green', this.handleSave, <SaveIcon />, 'contained', 'medium', !changeState)}
 					{importbtn && this.renderButton('Import', 'purple', () => {}, <ImportIcon />)}
 					{archbtn && this.renderButton('Archive', 'orange', () => {}, <ArchivelIcon />)}
-					{cancelbtn && this.renderButton('Cancel', 'red', () => {}, <CloseIcon />)}
+					{cancelbtn && this.renderButton('Cancel', 'red', this.handleCancel, <CloseIcon />)}
 				</div>
 			</Grid>
 		);
