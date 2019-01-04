@@ -39,7 +39,10 @@ class LocationsManInfo extends InputEvent {
 		if (locations.length === 0) {
 			getLocations();
 		} else {
-			getSiteData('locations', storeId, 'siteData');
+			const location = _.find(locations, { fbId: storeId });
+			if (location.subCollection === undefined || (location.subCollection && location.subCollection.siteData === undefined)) {
+				getSiteData('locations', storeId, 'siteData');
+			}
 		}
 	}
 
@@ -47,7 +50,7 @@ class LocationsManInfo extends InputEvent {
 		const { locations, storeId, getSiteData } = this.props;
 		if (locations !== nextProps.locations) {
 			const location = nextProps.locations.length > 0 ? _.find(nextProps.locations, { fbId: storeId }) : {};
-			if (!(location.subCollection && location.subCollection.siteData)) {
+			if (location.subCollection === undefined || (location.subCollection && location.subCollection.siteData === undefined)) {
 				getSiteData('locations', storeId, 'siteData');
 			}
 			this.setState({	location });
