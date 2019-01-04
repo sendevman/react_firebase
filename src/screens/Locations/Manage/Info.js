@@ -109,9 +109,6 @@ class LocationsManInfo extends InputEvent {
 		);
 	}
 
-	handleGlobalCancel = () => {
-	}
-
 	render() {
 		const { locations, storeId } = this.props;
 		const { homeData, globalData } = this.state;
@@ -145,7 +142,7 @@ class LocationsManInfo extends InputEvent {
 							// archbtn
 							cancelbtn
 							handleSave={this.handleHomeSave}
-							handleCancel={this.handleGlobalCancel}
+							// handleCancel={this.handleGlobalCancel}
 							// handleImport={this.handleHomeImport}
 							// handleArchive={this.handleHomeArchive}
 						/>)}
@@ -159,7 +156,7 @@ class LocationsManInfo extends InputEvent {
 							// archbtn
 							cancelbtn
 							handleSave={this.handleGlobalSave}
-							handleCancel={this.handleGlobalCancel}
+							// handleCancel={this.handleGlobalCancel}
 							// handleImport={this.handleGlobalImport}
 							// handleArchive={this.handleGlobalArchive}
 						/>)}
