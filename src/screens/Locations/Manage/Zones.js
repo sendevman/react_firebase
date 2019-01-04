@@ -42,14 +42,24 @@ class LocationsManZones extends InputEvent {
 		if (locations.length === 0) {
 			getLocations();
 		} else {
-			getZones('locations', storeId, 'zones');
+			const location = _.find(locations, { fbId: storeId });
+			if (location.subCollection === undefined || (location.subCollection && location.subCollection.zones === undefined)) {
+				getZones('locations', storeId, 'zones');
+			}
 		}
 	}
 
 	componentWillReceiveProps(nextProps) {
 		const { locations, storeId, getZones } = this.props;
+		const { selectedZoneId } = this.state;
 		if (locations !== nextProps.locations) {
-			getZones('locations', storeId, 'zones');
+			const location = _.find(nextProps.locations, { fbId: storeId });
+			if (location.subCollection === undefined || (location.subCollection && location.subCollection.zones === undefined)) {
+				getZones('locations', storeId, 'zones');
+			} else if (selectedZoneId !== '') {
+				const selectedZone = _.find(_.find(nextProps.locations, { fbId: storeId }).subCollection.zones, { fbId: selectedZoneId });
+				this.setState({ selectedZone });
+			}
 		}
 	}
 
@@ -100,7 +110,7 @@ class LocationsManZones extends InputEvent {
 
 	render() {
 		const { locations, storeId } = this.props;
-		const { selectedZone } = this.state;
+		const { selectedZone, selectedZoneId } = this.state;
 		const homeViewComponent = {
 			title: true,
 			subtitle: true,
@@ -119,51 +129,29 @@ class LocationsManZones extends InputEvent {
 				<Grid container spacing={24}>
 					{this.renderGrid('red',
 						<div>
-							{/* <div className="label-products-table select-text">Store Layout</div>
-							<CardMedia
-								className="zones-store-layout"
-								image={ImgDefault}
-								title="Contemplative Reptile"
-							/> */}
 							<SelectZone
 								data={locations.length > 0 ? _.find(locations, { fbId: storeId }) : {}}
 								handleSelectZone={this.handleSelectZone} />
 						</div>)}
-					{(selectedZone.fbId === undefined || selectedZone.homeCard) && this.renderGrid('red',
+
+					{selectedZoneId !== '' && (selectedZone.fbId === undefined || selectedZone.homeCard) && this.renderGrid('red',
 						<HomeView
 							data={selectedZone.homeCard}
 							title="Home Open View"
 							activeComponent={homeViewComponent}
 							savebtn
-							importbtn
-							archbtn
-							handleSave={this.handleHomeSave}
-							handleImport={this.handleHomeImport}
-							handleArchive={this.handleHomeArchive} />)}
-					{(selectedZone.fbId === undefined || selectedZone.titleCard) && this.renderGrid('red',
+							cancelbtn
+							handleSave={this.handleHomeSave} />)}
+
+					{selectedZoneId !== '' && (selectedZone.fbId === undefined || selectedZone.titleCard) && this.renderGrid('red',
 						<HomeView
 							data={selectedZone.titleCard}
 							title="Title Card"
 							activeComponent={titleComponent}
 							savebtn
-							importbtn
-							archbtn
-							handleSave={this.handleTitleSave}
-							handleImport={this.handleTitleImport}
-							handleArchive={this.handleTitleArchive} />)}
-					{(selectedZone.fbId === undefined || selectedZone.popupCard) && this.renderGrid('red',
-						<HomeView
-							data={selectedZone.popupCard}
-							title="Pop Up Card"
-							activeComponent={titleComponent}
-							prevbtn
-							savebtn
-							importbtn
-							archbtn
-							handlePreview={this.handlePopPreview}
-							handleSave={this.handlePopSave}
-							handleImport={this.handlePopImport}
-							handleArchive={this.handlePopArchive} />)}
+							cancelbtn
+							handleSave={this.handleTitleSave} />)}
+
 				</Grid>
 			</div>
 		);
