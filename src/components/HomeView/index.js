@@ -31,9 +31,11 @@ class HomeView extends InputEvent {
 			title: props.data.title || '',
 			subtitle: props.data.subtitle || '',
 			backTitle: props.data.backTitle || '',
+			imageURLBackSrc: props.data.bgImg || '',
 			imageNameBackSrc: props.data.bgImg || '',
 			imgBackSrc: '',
 			imgBackSrcType: undefined,
+			imageURLCardSrc: props.data.img || '',
 			imageNameCardSrc: props.data.img || '',
 			imgCardSrc: '',
 			imgCardSrcType: undefined,
@@ -49,7 +51,9 @@ class HomeView extends InputEvent {
 				title: nextProps.data.title || '',
 				subtitle: nextProps.data.subtitle || '',
 				backTitle: nextProps.data.backTitle || '',
+				imageURLBackSrc: nextProps.data.bgImg || '',
 				imageNameBackSrc: nextProps.data.bgImg || '',
+				imageURLCardSrc: nextProps.data.img || '',
 				imageNameCardSrc: nextProps.data.img || '',
 			});
 		}
@@ -113,15 +117,29 @@ class HomeView extends InputEvent {
 	}
 
 	handleCancel = () => {
-
+		this.setState({
+			footer: this.props.data.footer || '',
+			title: this.props.data.title || '',
+			subtitle: this.props.data.subtitle || '',
+			backTitle: this.props.data.backTitle || '',
+			imageURLBackSrc: this.props.data.bgImg || '',
+			imageNameBackSrc: this.props.data.bgImg || '',
+			imgBackSrc: '',
+			imgBackSrcType: undefined,
+			imageURLCardSrc: this.props.data.img || '',
+			imageNameCardSrc: this.props.data.img || '',
+			imgCardSrc: '',
+			imgCardSrcType: undefined,
+			changeState: false,
+		});
 	}
 
 	render() {
 		const {
 			changeState,
-			imageNameBackSrc,
+			imageURLBackSrc,
 			imgBackSrc,
-			imageNameCardSrc,
+			imageURLCardSrc,
 			imgCardSrc,
 		} = this.state;
 		const {
@@ -144,13 +162,13 @@ class HomeView extends InputEvent {
 							{(!activeComponent.cardImage || activeComponent.backImage) &&
 								<CardMedia
 									className="homeview-back-media"
-									image={imgBackSrc || imageNameBackSrc || ImgDefault}
+									image={imgBackSrc || imageURLBackSrc || ImgDefault}
 									title="Contemplative Reptile"
 								/>}
-							{(activeComponent.cardImage && (imgCardSrc !== '' || imageNameCardSrc || !activeComponent.backImage)) &&
+							{(activeComponent.cardImage && (imgCardSrc !== '' || imageURLCardSrc || !activeComponent.backImage)) &&
 								<CardMedia
 									className={activeComponent.backImage === false ? 'homeview-back-media' : 'homeview-card-media'}
-									image={imgCardSrc || imageNameCardSrc || ImgDefault}
+									image={imgCardSrc || imageURLCardSrc || ImgDefault}
 									title="Contemplative Reptile"
 								/>}
 							<div className="homeviewer-cardmedia-content">
@@ -183,13 +201,15 @@ class HomeView extends InputEvent {
 									</Button>
 								</label>
 								<FormControl className="text-field-img" margin="normal">
-									{this.renderText('imageNameCardSrc', '', 'upload-text-field-right-btn', 'Card Image')}
+									{this.renderText('imageURLCardSrc', '', 'upload-text-field-right-btn', 'Card Image')}
 								</FormControl>
 							</div>}
+
 						{activeComponent.backTitle &&
 							<FormGroup>
 								{this.renderText('backTitle', 'Background Title')}
 							</FormGroup>}
+
 						{activeComponent.backImage &&
 							<div className="homeview-upload-box">
 								<input
@@ -206,9 +226,10 @@ class HomeView extends InputEvent {
 								</label>
 
 								<FormControl className="text-field-img" margin="normal">
-									{this.renderText('imageNameBackSrc', '', 'upload-text-field-right-btn', 'Background Image')}
+									{this.renderText('imageURLBackSrc', '', 'upload-text-field-right-btn', 'Background Image')}
 								</FormControl>
 							</div>}
+
 						{activeComponent.heroImage &&
 							<div className="homeview-upload-box">
 								<input
