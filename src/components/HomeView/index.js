@@ -53,8 +53,12 @@ class HomeView extends InputEvent {
 				backTitle: nextProps.data.backTitle || '',
 				imageURLBackSrc: nextProps.data.bgImg || '',
 				imageNameBackSrc: nextProps.data.bgImg || '',
+				imgBackSrc: '',
+				imgBackSrcType: undefined,
 				imageURLCardSrc: nextProps.data.img || '',
 				imageNameCardSrc: nextProps.data.img || '',
+				imgCardSrc: '',
+				imgCardSrcType: undefined,
 			});
 		}
 		if (changeState !== nextProps.changeState) {
